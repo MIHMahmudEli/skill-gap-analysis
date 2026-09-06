@@ -1,0 +1,50 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Data files (large datasets)
+datasets/kaggle/
+
+# Generated outputs
+datasets/figures/
+*.pdf
+*.png
+*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Paper (not pushed)
+paper/
+*.tex
+*.bib
+*.bbl
+*.blg
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Reports and generated text
+datasets/research_summary_report.txt
+
+# Analysis output files
+datasets/table*_*.csv
