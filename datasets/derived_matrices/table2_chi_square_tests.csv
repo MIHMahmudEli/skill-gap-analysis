@@ -1,0 +1,3 @@
+Test,chi2,df,p_value,Cramers_V,Sig
+Placement vs Internship Experience,0.31,1,0.5778,0.006,ns
+Placement vs Projects Grouped,719.821,2,0.0,0.268,***

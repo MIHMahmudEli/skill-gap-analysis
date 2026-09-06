@@ -1,0 +1,7 @@
+Feature,Coefficient,Odds_Ratio,Sig
+CGPA,1.8253,6.2045,ns
+Communication_Skills,1.8672,6.47,ns
+Projects_Completed,1.1573,3.1813,ns
+Internship_Binary,0.019,1.0192,*
+IQ,1.63,5.104,ns
+Academic_Performance,-0.0208,0.9795,*

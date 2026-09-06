@@ -17,7 +17,6 @@ datasets/kaggle/
 datasets/figures/
 *.pdf
 *.png
-*.csv
 
 # Jupyter
 .ipynb_checkpoints/
@@ -46,5 +45,7 @@ paper/
 # Reports and generated text
 datasets/research_summary_report.txt
 
-# Analysis output files
-datasets/table*_*.csv
+# Top-level CSVs (large, derived) - keep only derived_matrices/
+datasets/*.csv
+!datasets/DATASET_MANIFEST.csv
+!datasets/derived_matrices/
