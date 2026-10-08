@@ -3,8 +3,12 @@ import numpy as np
 from scipy import stats
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.dummy import DummyClassifier
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score, roc_auc_score, precision_score, recall_score
 import os
 import sys
 import warnings
@@ -181,6 +185,92 @@ def table5_random_forest():
     pd.DataFrame(rows).to_csv(os.path.join(OUTPUT_DIR, 'table5_random_forest_importance.csv'), index=False)
     print(f"\nSaved: table5_random_forest_importance.csv")
     return rows
+
+
+def table_vif_analysis():
+    print_header("MULTICOLLINEARITY ASSESSMENT (Variance Inflation Factors)")
+    df = load_college_placement()
+    df['Internship_Binary'] = (df['Internship_Experience'] == 'Yes').astype(int)
+    features = ['CGPA', 'Communication_Skills', 'Projects_Completed', 'Internship_Binary', 'IQ', 'Academic_Performance']
+    X = df[features].dropna()
+    corr_matrix = X.corr().values
+    vif_values = np.diag(np.linalg.inv(corr_matrix))
+    vif_df = pd.DataFrame({
+        'Feature': features,
+        'VIF': np.round(vif_values, 3),
+        'Tolerance': np.round(1.0 / vif_values, 3),
+        'Status': ['Acceptable (<5)' if v < 5 else 'Collinear (>=5)' for v in vif_values]
+    })
+    print(vif_df.to_string(index=False))
+    derived_dir = os.path.join(OUTPUT_DIR, 'derived_matrices')
+    os.makedirs(derived_dir, exist_ok=True)
+    vif_df.to_csv(os.path.join(OUTPUT_DIR, 'table_vif.csv'), index=False)
+    vif_df.to_csv(os.path.join(derived_dir, 'table_vif.csv'), index=False)
+    print("Saved: table_vif.csv")
+    return vif_df
+
+
+def table_cross_validation_models():
+    print_header("5-FOLD STRATIFIED CROSS-VALIDATION MODEL COMPARISON")
+    df = load_college_placement()
+    df['Placement_Binary'] = (df['Placement'] == 'Yes').astype(int)
+    df['Internship_Binary'] = (df['Internship_Experience'] == 'Yes').astype(int)
+    features = ['CGPA', 'Communication_Skills', 'Projects_Completed', 'Internship_Binary', 'IQ', 'Academic_Performance']
+    X = df[features].dropna()
+    y = df.loc[X.index, 'Placement_Binary'].values
+
+    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    models = {
+        'Logistic Regression': LogisticRegression(max_iter=1000),
+        'Random Forest': RandomForestClassifier(n_estimators=100, max_depth=12, random_state=42),
+        'SVM (RBF)': SVC(kernel='rbf', C=1.0, probability=True, random_state=42),
+        'Decision Tree': DecisionTreeClassifier(max_depth=6, random_state=42),
+        'Baseline (Majority)': DummyClassifier(strategy='most_frequent')
+    }
+
+    results = []
+    scaler = StandardScaler()
+    for name, model in models.items():
+        accs, f1s, aucs, precs, recs = [], [], [], [], []
+        for train_idx, test_idx in skf.split(X, y):
+            X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
+            y_train, y_test = y[train_idx], y[test_idx]
+
+            X_tr_sc = scaler.fit_transform(X_train)
+            X_te_sc = scaler.transform(X_test)
+
+            model.fit(X_tr_sc, y_train)
+            y_pred = model.predict(X_te_sc)
+            accs.append(accuracy_score(y_test, y_pred))
+            f1s.append(f1_score(y_test, y_pred, average='weighted', zero_division=0))
+            precs.append(precision_score(y_test, y_pred, average='weighted', zero_division=0))
+            recs.append(recall_score(y_test, y_pred, average='weighted', zero_division=0))
+            if hasattr(model, 'predict_proba'):
+                y_prob = model.predict_proba(X_te_sc)[:, 1]
+                aucs.append(roc_auc_score(y_test, y_prob))
+            else:
+                aucs.append(0.5)
+
+        results.append({
+            'Model': name,
+            'Accuracy_Mean': round(np.mean(accs), 4),
+            'Accuracy_SD': round(np.std(accs), 4),
+            'F1_Mean': round(np.mean(f1s), 4),
+            'F1_SD': round(np.std(f1s), 4),
+            'Precision_Mean': round(np.mean(precs), 4),
+            'Recall_Mean': round(np.mean(recs), 4),
+            'AUC_Mean': round(np.mean(aucs), 4),
+            'AUC_SD': round(np.std(aucs), 4)
+        })
+
+    cv_df = pd.DataFrame(results)
+    print(cv_df.to_string(index=False))
+    derived_dir = os.path.join(OUTPUT_DIR, 'derived_matrices')
+    os.makedirs(derived_dir, exist_ok=True)
+    cv_df.to_csv(os.path.join(OUTPUT_DIR, 'table6_model_comparison_cv.csv'), index=False)
+    cv_df.to_csv(os.path.join(derived_dir, 'table6_model_comparison_cv.csv'), index=False)
+    print("Saved: table6_model_comparison_cv.csv")
+    return cv_df
 
 
 def table6_ngess_analysis():
@@ -457,6 +547,8 @@ if __name__ == '__main__':
     table3_correlation()
     table4_logistic()
     table5_random_forest()
+    table_vif_analysis()
+    table_cross_validation_models()
     table6_ngess_analysis()
     table7_global_placement()
     table8_student_career()

@@ -15,8 +15,8 @@ datasets/kaggle/
 
 # Generated outputs
 datasets/figures/
-*.pdf
-*.png
+datasets/*.pdf
+datasets/*.png
 
 # Jupyter
 .ipynb_checkpoints/
@@ -31,16 +31,16 @@ datasets/figures/
 .DS_Store
 Thumbs.db
 
-# Paper (not pushed)
-paper/
-*.tex
-*.bib
+# LaTeX build artifacts
+*.aux
 *.bbl
 *.blg
-*.aux
 *.log
 *.out
 *.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
 
 # Reports and generated text
 datasets/research_summary_report.txt

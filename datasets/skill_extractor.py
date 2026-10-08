@@ -166,6 +166,55 @@ def compute_alignment_metrics(market_df, academic_df, top_n=100):
     }
 
 
+def compute_semantic_alignment(market_df, academic_df, top_n=100, thresholds=[0.4, 0.5, 0.6, 0.7]):
+    from sentence_transformers import SentenceTransformer
+    from sklearn.metrics.pairwise import cosine_similarity
+
+    market_skills = market_df['skill'].head(top_n).tolist()
+    academic_skills = academic_df['skill'].head(top_n).tolist()
+
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    market_emb = model.encode(market_skills, show_progress_bar=False)
+    academic_emb = model.encode(academic_skills, show_progress_bar=False)
+
+    sim_matrix = cosine_similarity(market_emb, academic_emb)
+    max_sims = np.max(sim_matrix, axis=1)
+    best_matches = [academic_skills[idx] for idx in np.argmax(sim_matrix, axis=1)]
+
+    matches_df = pd.DataFrame({
+        'market_skill': market_skills,
+        'best_academic_match': best_matches,
+        'cosine_similarity': np.round(max_sims, 4)
+    })
+
+    results = []
+    np.random.seed(42)
+    default_covered = max_sims >= 0.5
+    default_sgi = 1.0 - np.mean(default_covered)
+
+    for tau in thresholds:
+        covered = max_sims >= tau
+        cov_rate = np.mean(covered)
+        sgi = 1.0 - cov_rate
+        boot_sgis = []
+        for _ in range(1000):
+            sample = np.random.choice(covered, size=len(covered), replace=True)
+            boot_sgis.append(1.0 - np.mean(sample))
+        ci_lower = np.percentile(boot_sgis, 2.5)
+        ci_upper = np.percentile(boot_sgis, 97.5)
+        results.append({
+            'tau': tau,
+            'SGI': round(sgi, 4),
+            'Coverage_Rate': round(cov_rate, 4),
+            'CI_Lower': round(ci_lower, 4),
+            'CI_Upper': round(ci_upper, 4),
+            'Delta_SGI': round(sgi - default_sgi, 4)
+        })
+
+    sensitivity_df = pd.DataFrame(results)
+    return matches_df, sensitivity_df
+
+
 def analyze_skill_evolution():
     df_ai = load_ai_market_trends()
     if 'job_posting_year' in df_ai.columns:
@@ -210,9 +259,24 @@ if __name__ == '__main__':
 
     print("\n3. Computing alignment metrics...")
     metrics = compute_alignment_metrics(market, academic)
-    print(f"   Coverage rate: {metrics['coverage_rate']:.1%}")
-    print(f"   Gap index: {metrics['gap_index']:.1%}")
+    print(f"   String-match coverage rate: {metrics['coverage_rate']:.1%}")
+    print(f"   String-match gap index: {metrics['gap_index']:.1%}")
     print(f"   Missing skills: {metrics['missing_skills'][:10]}")
+
+    print("\n3b. Computing SentenceTransformer semantic alignment (all-MiniLM-L6-v2)...")
+    matches_df, sensitivity_df = compute_semantic_alignment(market, academic)
+    print("   Sensitivity across tau thresholds:")
+    print(sensitivity_df.to_string(index=False))
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    derived_dir = os.path.join(base_dir, 'derived_matrices')
+    os.makedirs(derived_dir, exist_ok=True)
+
+    sensitivity_df.to_csv(os.path.join(base_dir, 'table_sensitivity_tau.csv'), index=False)
+    sensitivity_df.to_csv(os.path.join(derived_dir, 'table_sensitivity_tau.csv'), index=False)
+    matches_df.to_csv(os.path.join(base_dir, 'skill_semantic_matches.csv'), index=False)
+    matches_df.to_csv(os.path.join(derived_dir, 'skill_semantic_matches.csv'), index=False)
+    print("   Saved: table_sensitivity_tau.csv and skill_semantic_matches.csv")
 
     print("\n4. Analyzing skill evolution...")
     evolution = analyze_skill_evolution()

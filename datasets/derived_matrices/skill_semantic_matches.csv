@@ -1,0 +1,101 @@
+market_skill,best_academic_match,cosine_similarity
+communication,communication,1.0
+customer service,customer service,1.0
+teamwork,teamwork,1.0
+communication skills,interpersonal skills,0.7355
+leadership,leadership,1.0
+problem solving,problem solving,1.0
+time management,time management,1.0
+attention to detail,attention to detail,1.0
+problemsolving,problem-solving,0.6396
+project management,project management,1.0
+patient care,customer service,0.5011
+interpersonal skills,interpersonal skills,1.0
+sales,sales,1.0
+nursing,training,0.401
+collaboration,collaboration,1.0
+training,training,1.0
+data analysis,data analysis,1.0
+organizational skills,organizational skills,1.0
+microsoft office suite,microsoft office suite,1.0
+inventory management,inventory management,1.0
+high school diploma,training,0.3682
+scheduling,time management,0.6122
+bachelor's degree,professionalism,0.2937
+multitasking,multitasking,1.0
+microsoft office,microsoft office,1.0
+analytical skills,analytical skills,1.0
+adaptability,adaptability,1.0
+flexibility,flexibility,1.0
+critical thinking,critical thinking,1.0
+documentation,documentation,1.0
+organization,organization,1.0
+safety,risk management,0.4918
+budgeting,budgeting,1.0
+troubleshooting,troubleshooting,1.0
+excel,excel,1.0
+written communication,communication,0.7782
+conflict resolution,conflict resolution,1.0
+problemsolving skills,analytical skills,0.6447
+supervision,mentoring,0.595
+coaching,coaching,1.0
+quality control,integrity,0.4755
+merchandising,sales,0.3795
+verbal communication,communication,0.7904
+paid time off,time management,0.4642
+life insurance,risk management,0.3942
+reporting,reporting,1.0
+decision making,decision making,1.0
+computer skills,organizational skills,0.5878
+quality assurance,integrity,0.5492
+team management,team management,1.0
+accounting,accounting,1.0
+research,market research,0.6295
+travel,marketing,0.366
+registered nurse,training,0.3667
+lifting,training,0.4841
+team leadership,team leadership,1.0
+driver's license,salesforce,0.236
+food safety,risk management,0.3821
+cash handling,accounting,0.4785
+negotiation,negotiation,1.0
+dental insurance,benefits administration,0.3869
+healthcare,benefits administration,0.4307
+planning,strategic planning,0.6881
+management,team management,0.7198
+risk management,risk management,1.0
+mentoring,mentoring,1.0
+marketing,marketing,1.0
+presentation skills,presentation skills,1.0
+engineering,training,0.455
+health insurance,benefits administration,0.4929
+supervisory experience,organizational skills,0.5127
+compliance,compliance,1.0
+vision insurance,benefits administration,0.3394
+bls,b2b sales,0.4709
+valid driver's license,integrity,0.256
+retail experience,customer service,0.4686
+patient education,training and development,0.4275
+equal opportunity employer,employee relations,0.3934
+confidentiality,confidentiality,1.0
+prioritization,prioritization,1.0
+microsoft excel,microsoft excel,1.0
+professionalism,professionalism,1.0
+business development,business development,1.0
+python,microsoft office,0.3903
+data entry,data management,0.5578
+cpr,training,0.3136
+fastpaced environment,time management,0.2287
+professional development,professionalism,0.6986
+acls,confidentiality,0.3803
+education,training and development,0.5876
+high school diploma or equivalent,training,0.3217
+motivation,motivation,1.0
+high school diploma or ged,training,0.2838
+decisionmaking,decision making,0.8536
+leadership skills,leadership,0.7842
+initiative,initiative,1.0
+bls certification,b2b sales,0.3709
+retail,sales,0.6792
+sql,sql,1.0
+physical stamina,motivation,0.3518

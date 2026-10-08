@@ -1,0 +1,7 @@
+Feature,VIF,Tolerance,Status
+CGPA,1.001,0.999,Acceptable (<5)
+Communication_Skills,1.001,0.999,Acceptable (<5)
+Projects_Completed,1.001,0.999,Acceptable (<5)
+Internship_Binary,1.001,0.999,Acceptable (<5)
+IQ,1.0,1.0,Acceptable (<5)
+Academic_Performance,1.001,0.999,Acceptable (<5)
