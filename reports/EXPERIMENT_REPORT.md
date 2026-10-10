@@ -1,7 +1,7 @@
 # Experiment Report — Academic–Industry Skills Gap Project
 
-**Date:** 2026-10-10 · **Manuscript:** `paper/main.pdf` (12 pp, IEEEtran)
-**Registry:** `results/registry.json` · **All 9 experiments: `USED_IN_MANUSCRIPT`**
+**Date:** 2026-10-10 · **Manuscript:** `paper/main.pdf` (13 pp, IEEEtran)
+**Registry:** `results/registry.json` · **All 10 experiments: `USED_IN_MANUSCRIPT`**
 
 ## 1. Execution Pipeline
 
@@ -38,6 +38,7 @@ experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
 | TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 (1) | 0.2 s | CPU | Python 47.5–52.2%, SQL 48.2–51.9%, ML 48.8–53.5%, Cloud 47.1–53.9% |
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 (1) | 5.4 s | CPU | 57.60% vs 42.26% ⇒ **+15.34 pp**, CI [14.99, 15.73], h=0.31 (N=300k) |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 (1) | 0.1 s | CPU | India 63.17, USA 62.21, Canada 61.54, UK 60.76, Germany 59.99 (all CI ±2.1 pp) |
+| VALID01 | External gold-standard matcher validation | nihanshadman/sg-valid01-gold-a1 (1) | 215.6 s | CUDA | vs expert SkillSpan→ESCO mappings (2,907 pairs): SBERT τ=0.5 **κ=0.737** [0.711,0.760], acc 87.9%, AUC 0.961; lexical exact κ=0.112; ESCO coverage of top-100: 91%/99% semantic |
 
 ## 3. Corrections Applied During Verification
 
@@ -66,7 +67,15 @@ experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
    table's "significant" p-values (0.038/0.041) came from the buggy fit.
 7. **BibTeX:** removed a commented-out retracted citation that BibTeX cannot
    parse (it does not honor `%` inside entries); audit note retained as plain
-   comment. `bibtex` now reports 0 errors, 45 entries used.
+   comment. `bibtex` now reports 0 errors (48 entries after adding the
+   SkillSpan/ESCO references).
+8. **Human-validity gap closed (VALID01):** instead of in-house annotation,
+   matcher validity is established against the published expert gold standard
+   of Decorte et al. (SkillSpan spans manually mapped to ESCO, CC-BY-4.0,
+   fetched from a pinned upstream commit). SBERT τ=0.5 agrees with expert
+   mappings at κ=0.737 (accuracy 87.9%, AUC 0.961); lexical rules barely
+   agree (exact κ=0.112), independently supporting the paper's semantic-first
+   framing.
 
 ## 4. Scheduler / Infra Fixes
 
@@ -75,10 +84,14 @@ experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
   as terminal → retry (ALIGN02 needed 3 attempts; ALIGN03 2).
 - `PYTHONIOENCODING=utf-8`/`PYTHONUTF8=1` for CLI subprocesses (Windows
   charmap crashes during dataset download).
-- Post-push verification (~20 s) + 6-strike circuit breaker; single-worker
-  pool mode (`SKILLGAP_WORKER=nihanshadman`).
+- Post-push verification (~20 s) + 6-strike circuit breaker; worker pool is
+  now the full 16-account list with **parallel racing candidates** (a kernel
+  queued >8 min is additionally pushed on other workers; first to complete
+  wins, duplicates recorded as abandoned). RUNNING entries are re-adopted on
+  scheduler restart (VALID01 adopted a queued kernel that completed 2 min
+  later).
 - `.env` parse fixed (stray CLI lines commented); `kaggle kernels delete` is
-  broken in CLI v2.2.4, so 9 legacy `-a1` ERROR kernels remain (private,
+  broken in CLI v2.2.4, so legacy `-a1` ERROR kernels remain (private,
   harmless).
 
 ## 5. Verification & Archive State

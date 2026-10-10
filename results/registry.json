@@ -23,8 +23,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "nihanshadman/sg-align01-lexical-a1",
@@ -93,8 +93,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "nihanshadman/sg-align02-semantic-a3",
@@ -143,8 +143,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "nihanshadman/sg-align03-domaingap-a2",
@@ -178,8 +178,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "sadmanhasanmiraj/sg-geo01-linkedin-a1",
@@ -213,8 +213,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "afrojahaqueshornaly/sg-intl01-internship-a1",
@@ -248,8 +248,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "abdullahalsayfan/sg-plac01-global-a1",
@@ -303,8 +303,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "nihanshadman/sg-stat01-placement-a2",
@@ -338,8 +338,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "leyamridha/sg-stat02-external-a1",
@@ -373,8 +373,8 @@
         },
         {
           "event": "used_in_manuscript",
-          "ts": "2026-10-10",
-          "manuscript": "paper/main.pdf"
+          "manuscript": "paper/main.pdf",
+          "ts": "2026-10-10"
         }
       ],
       "kernel_ref": "nishat1156/sg-trends01-ai-a1",
@@ -385,6 +385,42 @@
       "status_errors": 0,
       "verified_utc": "2026-10-10T14:38:10Z",
       "worker": "nishat1156"
+    },
+    "VALID01_esco_gold": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T16:28:46Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "pending",
+          "ts": "2026-10-10T15:44:13Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-valid01-gold-a1",
+          "ts": "2026-10-10T15:44:13Z"
+        },
+        {
+          "event": "downloaded",
+          "kernel_ref": "nihanshadman/sg-valid01-gold-a1",
+          "metrics_json": true,
+          "ts": "2026-10-10T16:28:46Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "manuscript": "paper/main.pdf",
+          "section": "RQ2 external validation",
+          "ts": "2026-10-10"
+        }
+      ],
+      "kernel_ref": "nihanshadman/sg-valid01-gold-a1",
+      "pushed_utc": "2026-10-10T15:44:13Z",
+      "slug": "sg-valid01-gold",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T16:30:21Z",
+      "worker": "nihanshadman"
     }
   },
   "input_dataset": "studyhub991/skill-gap-inputs-v1"

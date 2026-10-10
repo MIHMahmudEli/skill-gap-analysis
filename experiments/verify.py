@@ -32,6 +32,8 @@ REQUIRED = {
     "TRENDS01_ai_longitudinal": ["metrics.json", "trends_yearly.csv"],
     "INTL01_internship_effect": ["metrics.json", "internship_effect.csv"],
     "PLAC01_global_by_country": ["metrics.json", "placement_by_country.csv"],
+    "VALID01_esco_gold": ["metrics.json", "table_valid_pairs.csv",
+                          "table_valid_coverage.csv", "pair_results.csv"],
 }
 
 
@@ -104,6 +106,23 @@ def check_numeric_sanity(exp_id: str, dir_path: Path) -> list[str]:
         m3 = json.loads((dir_path / "metrics.json").read_text(encoding="utf-8"))
         if not (0 < m3["overall_placement_rate_pct"] < 100):
             issues.append("overall rate out of range")
+    elif exp_id == "VALID01_esco_gold":
+        m4 = json.loads((dir_path / "metrics.json").read_text(encoding="utf-8"))
+        if not (m4["n_positive"] > 500 and m4["n_negative"] > 500):
+            issues.append("unexpected pair counts")
+        if not (0.2 < m4["kappa_at_tau_0.5"] <= 1.0):
+            issues.append(f"kappa out of plausible range: "
+                          f"{m4['kappa_at_tau_0.5']}")
+        if not (0.6 < m4["auc_cosine"] <= 1.0):
+            issues.append(f"cosine AUC out of plausible range: {m4['auc_cosine']}")
+        for cov in m4["esco_coverage"]:
+            if not (0.05 <= cov["lexical_coverage"] <= 0.98) or \
+               not (0.05 <= cov["semantic_coverage_tau0.5"] <= 0.99):
+                issues.append(f"ESCO coverage out of range: {cov}")
+        t = pd.read_csv(dir_path / "table_valid_pairs.csv")
+        taus = sorted(t.dropna(subset=["tau"]).tau.round(1).tolist())
+        if taus != [0.4, 0.5, 0.6, 0.7]:
+            issues.append(f"tau grid mismatch in valid pairs table: {taus}")
     return issues
 
 
@@ -122,7 +141,8 @@ def main() -> None:
                 issues = check_numeric_sanity(exp_id, d)
             except Exception as e:
                 issues = [f"sanity check crashed: {e}"]
-        ok = status in ("COMPLETED", "VERIFIED") and not missing and not issues
+        ok = status in ("COMPLETED", "VERIFIED", "USED_IN_MANUSCRIPT") \
+            and not missing and not issues
         report["experiments"][exp_id] = {
             "registry_status": status,
             "missing_files": missing,
@@ -130,8 +150,9 @@ def main() -> None:
             "verified": ok,
         }
         if ok:
-            reg["experiments"][exp_id]["status"] = "VERIFIED"
-            reg["experiments"][exp_id]["verified_utc"] = utc_now()
+            if status == "COMPLETED":
+                reg["experiments"][exp_id]["status"] = "VERIFIED"
+                reg["experiments"][exp_id]["verified_utc"] = utc_now()
         else:
             all_ok = False
     report["all_verified"] = all_ok

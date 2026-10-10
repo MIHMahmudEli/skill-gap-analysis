@@ -187,7 +187,7 @@ We define an eight-category occupational skill taxonomy $\mathcal{C} = \{c_1, c_
     \item \textbf{Cybersecurity:} Network Security, Penetration Testing, Incident Response, SIEM Systems, ISO 27001, Cryptography.
 \end{enumerate}
 
-Skill extraction from text is conducted using regularized n-gram tokenization matched against taxonomy dictionaries, as summarized in Algorithm~\ref{alg:skill_extract}. Academic skill requirements are represented using standardized curriculum reference profiles \cite{daberao2025resumeinsight} rather than scraped syllabi, and extraction is automated without manual re-annotation (discussed in Section~\ref{sec:limitations}).
+Skill extraction from text is conducted using regularized n-gram tokenization matched against taxonomy dictionaries, as summarized in Algorithm~\ref{alg:skill_extract}. Academic skill requirements are represented using standardized curriculum reference profiles \cite{daberao2025resumeinsight} rather than scraped syllabi; extraction and matching are fully automated, with matcher validity established externally against expert ESCO annotations rather than in-house re-annotation (Section~\ref{sec:valid01}).
 
 \begin{algorithm}[!htbp]
 \caption{Semantic Skill Extraction and Embedding Alignment}
@@ -343,6 +343,49 @@ Table~\ref{tab:semantic_matches} displays illustrative semantic pairings. Terms 
 \resizebox{\columnwidth}{!}{%
 \input{tables/tab_semantic_matches}
 }
+\end{table}
+
+\subsubsection{External Validation Against Expert Gold Standards (VALID01)}
+\label{sec:valid01}
+
+Because all alignment metrics rest on the skill matcher, the matcher itself
+is validated against an independent, human-annotated gold standard rather
+than in-house labels: the skill-extraction benchmark of
+\cite{decorte2022negative}, whose skill mentions in StackOverflow and
+public-sector job postings were manually mapped to ESCO skills
+\cite{zhang2022skillspan, esco2026} by domain experts (CC-BY-4.0). The
+protocol (experiment VALID01; seed 42) forms 1,062 expert-mapped mentions
+from the TECH and HOUSE test splits into 1,138 positive (mention, skill)
+pairs and 1,769 negatives---one random unmapped ESCO skill per mention plus
+sibling-mention skills as in-sentence hard negatives---for 2,907 pairs in
+total. Lexical rules agree with the expert mappings only slightly (exact
+match $\kappa = 0.112$, 95\% CI [0.091, 0.132]; containment $\kappa =
+0.263$), whereas the Sentence-BERT matcher reaches $\kappa = 0.737$ [0.711,
+0.760] at the baseline $\tau = 0.5$ (accuracy $87.9\%$ [86.6\%, 89.0\%],
+precision $91.9\%$, recall $75.7\%$, ROC-AUC of the cosine score $0.961$;
+Table~\ref{tab:validity}). Agreement remains substantial across the
+operating range ($\kappa$ from $0.79$ at $\tau = 0.4$ to $0.44$ at $\tau =
+0.7$), and the near-chance lexical $\kappa$ independently corroborates this
+section's central finding: exact string matching understates true
+curriculum--market alignment, which is why the semantic SGI is the headline
+instrument. A complementary vocabulary check against the 13,896-skill ESCO
+inventory shows that only 6\% of the market Top-100 and 11\% of the
+academic Top-100 appear verbatim in ESCO, yet dense matching at $\tau =
+0.5$ resolves 91\% [85\%, 96\%] and 99\% [97\%, 100\%] of them to an ESCO
+skill under paraphrase---evidence that the extracted vocabularies are
+semantically grounded in an expert-curated taxonomy.
+
+\begin{table}[!htbp]
+\centering
+\caption{Agreement with Expert ESCO Mappings (VALID01; 2,907 Pairs)}
+\label{tab:validity}
+\resizebox{\columnwidth}{!}{%
+\input{tables/tab_validity}
+}
+\par\vspace{3pt}
+{\footnotesize Gold: human expert span$\to$ESCO mappings in the SkillSpan-based
+benchmark of Decorte et al. 95\% CIs: 1,000 pair-level bootstrap resamples
+(seed 42). AUC: ROC-AUC of the cosine score (lexical rules are binary).}
 \end{table}
 
 \subsection{RQ3: Domain-Level Skill Gap Quantification}
@@ -537,7 +580,7 @@ We organize recommendations for higher education, recruitment, and accreditation
 \subsection{Reproducibility and Data Availability}
 \label{sec:reproducibility}
 
-Every quantitative result reported in this article originates from one of nine registered experiments executed on NVIDIA GPU instances through Kaggle Notebooks; no table or figure is hand-transcribed. Table~\ref{tab:experiments} lists the experiment identifiers, kernel references, and verification status.
+Every quantitative result reported in this article originates from one of ten registered experiments executed on NVIDIA GPU instances through Kaggle Notebooks; no table or figure is hand-transcribed. Table~\ref{tab:experiments} lists the experiment identifiers, kernel references, and verification status.
 
 \begin{table*}[!htbp]
 \centering
@@ -560,7 +603,7 @@ Several methodological constraints should be considered when interpreting these 
     \item \textbf{Data Provenance \& Benchmark Artifacts:} While Tier 1 datasets (LinkedIn, HuggingFace) comprise 2.7M+ real web-mined records, Tier 2 student placement datasets (e.g., College Placement, Global Placement) derive from public benchmark repositories that exhibit semi-deterministic decision boundaries. As diagnosed in Section~\ref{sec:results}-D5, near-100\% tree ensemble accuracies reflect combinatorial threshold functions embedded in the benchmark rather than real-world predictability.
     \item \textbf{Domain Shift \& External Generalizability:} When evaluated across distinct institutional benchmarks, predictive discrimination attenuates from $\text{ROC-AUC} = 0.9406$ to $\text{ROC-AUC} = 0.768$ (and $0.576$ on the Global Placement cohort), illustrating that model calibrations do not directly transfer across disparate grading systems and local employment base rates.
     \item \textbf{Curriculum Proxy Limitations:} Academic skill demands were proxied through normalized occupational and educational reference profiles rather than direct, institutionally mined university syllabi across diverse global departments.
-    \item \textbf{Lack of Human Gold-Standard Validation:} Skill extraction relied on automated taxonomy mapping, regularized token scanning, and Sentence-BERT vector matching without human inter-annotator agreement metrics (e.g., Cohen's $\kappa$). Future work should incorporate expert faculty annotations.
+    \item \textbf{Scope of Human Validation:} Matcher validity is established against published expert gold standards (SkillSpan$\to$ESCO mappings; $\kappa = 0.737$ at $\tau = 0.5$; Section~\ref{sec:valid01}) rather than in-house annotation of this specific corpus; independent-rater annotation of the present skill pairs and replication of the domain-gap analysis on CS-focused corpora remain future work.
     \item \textbf{Embedding Model and Threshold Sensitivity:} While Sentence-BERT mitigates surface vocabulary divergence, estimated alignment remains sensitive to cosine similarity cutoff selection ($\text{SGI} = 20.0\%$ at $\tau = 0.4$ versus $46.0\%$ at $\tau = 0.7$).
     \item \textbf{Geographic Concentration:} 85.2\% of the LinkedIn posting corpus originates from the United States, skewing technical demand profiles toward Western, mature tech economies.
     \item \textbf{Corpus Composition \& Conditional Demand:} The 519K-posting skills corpus is dominated by generic, healthcare, and retail competencies (e.g., BLS/acls credentials and nursing appear among the Top-100 market tokens). Consequently, taxonomy-technical demand shares are modest (e.g., 3.97\% of postings require at least one Programming skill), and the RQ3 deficits should be read as \textit{coverage} gaps conditional on demand rather than as economy-wide demand shares; alternative CS-focused corpora may yield larger absolute demand but would not be comparable to the SGI measurements.

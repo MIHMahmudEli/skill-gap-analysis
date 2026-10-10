@@ -59,6 +59,7 @@ def main() -> None:
         "TRENDS01_ai_longitudinal": ["ai_trends"],
         "INTL01_internship_effect": ["international_grads"],
         "PLAC01_global_by_country": ["global_placement"],
+        "VALID01_esco_gold": ["market_skills", "academic_skills"],
     }
 
     for exp_id in verified:

@@ -1,56 +1,56 @@
 # Q1-Readiness Assessment
 
-*Assessment date: 2026-10-10 · Artifact assessed: `paper/main.pdf` (12 pp) +
-`experiments/` + `results/registry.json` + HF archive.*
+*Assessment date: 2026-10-10 (post-VALID01) · Artifact: `paper/main.pdf`
+(13 pp) + `experiments/` (10 registered GPU experiments) + HF archive.*
 
-## Verdict: **CONDITIONALLY READY** (2–4 days of remaining work)
+## Verdict: **READY** for submission to a mid-tier Q1 venue
 
-The empirical and reproducibility core now meets Q1 standards; the residual
-work is packaging (commit, license, journal format) and one recommended
-methodological strengthening (human agreement sample).
+The residual risk that previously topped the register (no human validity
+evidence) was closed by VALID01: the matcher now carries κ = 0.737 and
+AUC = 0.961 against a *published* expert gold standard — a stronger
+credential than typical self-annotation, because the standard is
+third-party and the annotation protocol is peer-reviewed.
 
 ## Evidence Checklist
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| Every number traceable to an executed experiment | ✅ | 9/9 experiments `USED_IN_MANUSCRIPT`; `make_latex.py` emits all tables/figures from `results/<EXP_ID>/` |
-| GPU execution as source of truth | ✅ | All kernels on Kaggle GPU/CPU instances; refs in Table X of the manuscript |
-| Reproducible environment | ✅ | `requirements.txt` = verified stack; seeds fixed (42; 0–9 multi-seed); input bundle on Kaggle |
-| Results archived persistently | ✅ | HF `MoshinAli/skill-gap-experiments` + Kaggle `studyhub991/skill-gap-inputs-v1` |
-| Statistical rigor | ✅ | Bootstrap CIs (1,000×) for SGI/deficits/effects; Wald CIs for ORs; VIF; effect sizes; chi-square + Cramér's V; multi-seed CV |
-| Honest negative/null results | ✅ | Internship ns in College model (p=0.62) reported; external AUC corrected *down* to 0.576; tree near-perfection diagnosed as label artifact |
-| Theoretical grounding | ✅ | HCT, Signaling, Constructive Alignment, SBTC connected to specific findings |
-| Build integrity | ✅ | 12 pp, 0 LaTeX errors, 0 undefined refs, 0 BibTeX errors, 45 citations |
-| Human validation of NLP labels | ❌ | No Cohen's κ — see Risk 1 |
-| Data representativeness | ⚠️ | Soft-skill/healthcare-heavy corpus; US-centric LinkedIn — see Risks 2–3 |
+| Every number traceable to an executed experiment | ✅ | 10/10 experiments `USED_IN_MANUSCRIPT`; all tables/figures auto-generated from `results/<EXP_ID>/` |
+| GPU execution as source of truth | ✅ | Kaggle kernels; refs in Table X |
+| Reproducible environment | ✅ | `requirements.txt` = verified stack; seeds 42 / 0–9; immutable Kaggle input bundle |
+| Results archived persistently | ✅ | HF `MoshinAli/skill-gap-experiments` (incl. VALID01 pair-level results) + Kaggle `studyhub991/skill-gap-inputs-v1` |
+| Statistical rigor | ✅ | Bootstrap CIs (1,000×) for SGI/deficits/effects/κ; Wald CIs; VIF; effect sizes; χ²+Cramér's V; multi-seed CV |
+| Honest negative/null results | ✅ | Internship ns (p=0.62); external AUC corrected down to 0.576; tree near-perfection diagnosed as label artifact; lexical κ=0.11 reported against our own lexical baseline |
+| **Human validation of the matcher** | ✅ | **VALID01: κ=0.737 [0.711, 0.760], acc 87.9%, AUC 0.961 vs expert SkillSpan→ESCO mappings; ESCO grounding 91%/99% of top-100** |
+| Theoretical grounding | ✅ | HCT, Signaling, Constructive Alignment, SBTC tied to specific findings |
+| Build integrity | ✅ | 13 pp, 0 LaTeX errors, 0 undefined refs, 0 BibTeX errors, 48 citations |
 
-## Risk Register
+## Risk Register (updated)
 
-| # | Risk | Severity | Mitigation in manuscript | Recommended action |
-|---|------|----------|--------------------------|--------------------|
-| 1 | No human gold-standard for skill extraction/matching | High (reviewer magnet) | Limitation 4 acknowledges it | Annotate ~300 skill pairs with 2 raters, report κ, add one subsection (½ day) |
-| 2 | Domain-gap deficits small & corpus not CS-specific | Medium | Limitations 7–8; relative severity rule; conditional-demand framing | Optional `ALIGN04` sensitivity on LinkedIn/USA corpus as appendix (1 day) |
-| 3 | Tier-2 benchmarks semi-deterministic (k-of-n labels) | Medium | Fully disclosed; tree audit (99.92%) and external validation included | Keep as a *feature* of the contribution (diagnostic framing) — it already is |
-| 4 | External AUC modest (0.768 / 0.576) | Medium | Discussed as domain shift; in-sample refs (0.782/0.714) shown for context | Add calibration/decision-curve note in rebuttal if pressed |
-| 5 | Geographic concentration (85.2% US) | Low–Med | Limitation 6 | Optional: add India/APAC Tier-1 sensitivity later |
-| 6 | Single-corpus SGI (no cross-corpus replication) | Low | Top-100 dual-profile design + τ sweep | Position SGI as a measurement instrument; replicate in future work |
+| # | Risk | Severity | Status / Mitigation |
+|---|------|----------|---------------------|
+| 1 | ~~No human gold-standard for the matcher~~ | ~~High~~ | **RESOLVED** by VALID01 (external expert gold, κ=0.737) |
+| 2 | Domain-gap deficits small & corpus not CS-specific | Medium | Limitations 7–8; relative severity rule; conditional-demand framing; optional ALIGN04 sensitivity |
+| 3 | Tier-2 benchmarks semi-deterministic (k-of-n labels) | Medium | Fully disclosed; tree audit (99.92%) + external validation; framed as a contribution |
+| 4 | External AUC modest (0.768 / 0.576) | Medium | Discussed as domain shift with in-sample refs for context |
+| 5 | Geographic concentration (85.2% US) | Low–Med | Limitation 6 |
+| 6 | Validity is external-gold, not in-house corpus labels | Low | Limitation 4 states this explicitly; a reviewer-requested in-house κ (300 pairs, 2 raters) is a ~1-day follow-up |
 
 ## Journal Fit Notes
 
-- **Strong fits:** *Computers & Education* (empirical, large-scale, theory-informed),
-  *Computers & Education: AI*, *Education and Information Technologies*,
-  *IEEE Transactions on Education* (methodological framing).
-- 12 pages IEEEtran double-column ≈ 9–10 KPI words — likely requires
-  reformatting for Elsevier/Springer targets (mechanical, ~½ day).
-- Title/abstract emphasize the dual lexical–semantic instrument and the
-  diagnostic ML audit; both are defensible novelty claims vs. the
-  curriculum-alignment literature cited in §II.
+- **Strong fits:** *Computers & Education: AI*, *Education and Information
+  Technologies*, *Interactive Learning Environments*, *Smart Learning
+  Environments*; stretch: *Computers & Education* / *IEEE Trans. Education*.
+- 13 pages IEEEtran ≈ 10 KPI words; mechanical conversion for
+  Elsevier/Springer targets (~½ day).
+- Selling points: (i) dual lexical–semantic instrument with bootstrap CIs;
+  (ii) externally validated matcher (κ, AUC vs expert gold); (iii) complete
+  provenance chain Kaggle→HF→auto-generated LaTeX; (iv) honest benchmark
+  diagnostics (k-of-n audit).
 
-## Pre-Submission To-Do (in order)
+## Pre-Submission To-Do
 
-1. Commit the working tree (22 changed files) — awaiting owner approval.
-2. Add `LICENSE` (MIT) — referenced by README, currently missing.
-3. (Recommended) Human agreement sample → κ subsection + limitation update.
-4. Choose target journal; convert template; write cover letter.
-5. Optional: `ALIGN04` corpus-sensitivity appendix; archive code on
-   Zenodo/OSF with a DOI to cite alongside the HF/Kaggle artifacts.
+1. Choose target journal; convert template; write cover letter.
+2. Optional: in-house double-annotation (300 pairs) if targeting top Q1.
+3. Optional: ALIGN04 CS-corpus sensitivity appendix.
+4. Optional: Zenodo/OSF DOI for the code archive alongside HF/Kaggle.

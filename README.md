@@ -37,7 +37,8 @@ LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5
 │       ├── geo01_linkedin.py
 │       ├── trends01_ai.py
 │       ├── intl01_internship.py
-│       └── plac01_global_country.py
+│       ├── plac01_global_country.py
+│       └── valid01_esco_gold.py
 ├── results/
 │   ├── registry.json          # Experiment lifecycle status (see below)
 │   └── <EXP_ID>/              # Downloaded metrics.json + CSV artifacts
@@ -69,6 +70,8 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | USED_IN_MANUSCRIPT |
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
+| VALID01 | External matcher validation (SkillSpan→ESCO gold) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
+| VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
 
 ## Usage
 
@@ -113,6 +116,9 @@ local smoke tests; on Kaggle they read the mounted bundle
 - **Internship effect**: +15.34 pp employment (95% CI [14.99, 15.73]),
   N = 300,000
 - **Geographic**: USA 85.2%, UK 8.4%, Canada 4.2%, Australia 2.2% (N = 1.35M)
+- **Matcher validity** (VALID01 vs expert SkillSpan→ESCO mappings, 2,907
+  pairs): SBERT τ = 0.5 agreement **κ = 0.737** [0.711, 0.760], accuracy
+  87.9%, ROC-AUC 0.961; lexical exact-match κ = 0.112
 
 ## Data & Artifact Archives
 

@@ -1,0 +1,26 @@
+{
+  "bootstrap_n": 1000,
+  "code_commit": "ab05a8c22ce60deecfe1497c4b121fb390ed7399",
+  "datasets": {
+    "academic_skills": "hf_job_skill_set.csv",
+    "market_skills": "hf_skill_gap_skills.csv"
+  },
+  "experiment_id": "VALID01_esco_gold",
+  "gpu": true,
+  "hyperparameters": {},
+  "kaggle_kernel_ref": "nihanshadman/sg-valid01-gold-a1",
+  "model": "see metrics.json",
+  "protocol": "see metrics.json",
+  "python_version": "3.14.6",
+  "runtime_sec": 215.56,
+  "sbert_model": null,
+  "seed": 42,
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "timestamp_utc": "2026-10-10T16:30:45Z",
+  "worker": "nihanshadman"
+}

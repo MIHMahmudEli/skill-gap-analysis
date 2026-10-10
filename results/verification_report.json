@@ -4,57 +4,63 @@
     "ALIGN01_lexical_bootstrap": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "ALIGN02_semantic_sbert": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "ALIGN03_domain_gap": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "GEO01_linkedin_shares": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "INTL01_internship_effect": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "PLAC01_global_by_country": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "STAT01_placement_core": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "COMPLETED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "STAT02_external_validation": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
     "TRENDS01_ai_longitudinal": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "VERIFIED",
+      "registry_status": "USED_IN_MANUSCRIPT",
+      "verified": true
+    },
+    "VALID01_esco_gold": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     }
   },
-  "verified_utc": "2026-10-10T14:38:10Z"
+  "verified_utc": "2026-10-10T16:48:01Z"
 }
