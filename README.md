@@ -1,187 +1,145 @@
 # Skill Gap Analysis
 
-A data-driven framework for analyzing the gap between academic education and industry skill requirements using NLP, statistical analysis, and machine learning.
+A data-driven framework for quantifying the gap between academic curricula and
+industry skill requirements using NLP, statistics, and machine learning — with
+**every reported number traceable to a registered, GPU-executed experiment**.
 
 ## Overview
 
-This project quantifies the misalignment between academic curricula and market demands by analyzing 15 publicly available datasets comprising 3.18M+ records from LinkedIn, Kaggle, and HuggingFace. The framework employs:
+The project analyzes 15 publicly available datasets (3,176,266 records) from
+LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5):
 
-- **NLP-based skill extraction** using TF-IDF and semantic alignment
-- **Statistical analysis** with chi-square tests, logistic regression, and random forests
-- **Machine learning prediction** models for graduate employability
-- **Skill Gap Index (SGI)** quantification across 8 skill categories
+- **RQ1** — market skill topography and 2020–2026 trends
+- **RQ2** — lexical vs. semantic (Sentence-BERT) curriculum alignment (SGI)
+- **RQ3** — eight-category domain-level skill gaps with bootstrap CIs
+- **RQ4** — graduate placement determinants, CV benchmarks, tree-rule audit,
+  external validation
+- **RQ5** — geographic concentration and internship/cohort effects
 
 ## Project Structure
 
 ```
-skill-gap-analysis/
-├── datasets/
-│   ├── data_loader.py          # Dataset loading and management
-│   ├── skill_extractor.py      # NLP skill extraction pipeline
-│   ├── statistical_tests.py    # Statistical analysis and ML models
-│   ├── analysis.py             # Figure generation and visualization
-│   ├── summary.py              # Dataset summary utilities
-│   ├── search_kaggle.py        # Kaggle dataset search
-│   ├── download_kaggle.py      # Kaggle dataset download
-│   ├── research_report.py      # Research report generation
-│   └── hf_*.csv                # HuggingFace datasets (local copies)
-├── requirements.txt
-├── .gitignore
-└── README.md
+.
+├── experiments/               # Reproducible experiment suite (source of truth)
+│   ├── common.py              # Seeds, taxonomy, env helpers, worker parsing
+│   ├── kaggle_client.py       # Kaggle CLI wrapper (push/poll/download, UTF-8)
+│   ├── scheduler.py           # Dependency-aware registry loop + watchdog
+│   ├── stage_inputs.py        # Builds/pushes input bundle to Kaggle dataset
+│   ├── verify.py              # Schema + sanity checks -> VERIFIED
+│   ├── sync_to_hf.py          # Uploads verified results to HuggingFace
+│   ├── make_latex.py          # Generates paper/tables/*.tex + figures/*.pdf
+│   └── exp_scripts/           # One self-contained script per experiment
+│       ├── align01_lexical_bootstrap.py
+│       ├── align02_semantic_sbert.py
+│       ├── align03_domain_gap.py
+│       ├── stat01_placement_core.py
+│       ├── stat02_external_valid.py
+│       ├── geo01_linkedin.py
+│       ├── trends01_ai.py
+│       ├── intl01_internship.py
+│       └── plac01_global_country.py
+├── results/
+│   ├── registry.json          # Experiment lifecycle status (see below)
+│   └── <EXP_ID>/              # Downloaded metrics.json + CSV artifacts
+├── paper/
+│   ├── main.tex, references.bib, main.pdf
+│   ├── tables/*.tex           # AUTO-GENERATED from verified CSVs
+│   └── figures/*.pdf          # AUTO-GENERATED from verified CSVs
+├── datasets/                  # Local data copies + legacy analysis scripts
+├── reports/                   # Experiment / gap / Q1-readiness reports
+├── requirements.txt           # Verified execution environment
+└── .env                       # Kaggle/HF credentials (git-ignored)
 ```
 
-## Installation
+## Experiment Lifecycle
 
-```bash
-git clone https://github.com/MIHMahmudEli/skill-gap-analysis.git
-cd skill-gap-analysis
-pip install -r requirements.txt
-```
+Each experiment moves through
+`PENDING → RUNNING → COMPLETED → VERIFIED → USED_IN_MANUSCRIPT`
+(with `FAILED`/`RETRY` on error). Statuses live in `results/registry.json`;
+manuscript tables/figures are generated only from `VERIFIED` outputs.
 
-## Dependencies
-
-- Python 3.12+
-- pandas >= 2.0.0
-- numpy >= 1.24.0
-- scipy >= 1.10.0
-- scikit-learn >= 1.2.0
-- matplotlib >= 3.7.0
-- sentence-transformers >= 2.2.0
+| ID | Task | Kernel (Kaggle GPU) | Status |
+|----|------|---------------------|--------|
+| ALIGN01 | Lexical alignment + SGI bootstrap | nihanshadman/sg-align01-lexical-a1 | USED_IN_MANUSCRIPT |
+| ALIGN02 | SBERT semantic alignment, τ sweep | nihanshadman/sg-align02-semantic-a3 | USED_IN_MANUSCRIPT |
+| ALIGN03 | Eight-category domain gap | nihanshadman/sg-align03-domaingap-a2 | USED_IN_MANUSCRIPT |
+| STAT01 | Placement statistics + CV | nihanshadman/sg-stat01-placement-a2 | USED_IN_MANUSCRIPT |
+| STAT02 | External validation | leyamridha/sg-stat02-external-a1 | USED_IN_MANUSCRIPT |
+| GEO01 | Geographic shares | sadmanhasanmiraj/sg-geo01-linkedin-a1 | USED_IN_MANUSCRIPT |
+| TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | USED_IN_MANUSCRIPT |
+| INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
+| PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
 
 ## Usage
 
-### 1. Data Loading
+```bash
+pip install -r requirements.txt
 
-```python
-from datasets.data_loader import load_linkedin_skills, load_hf_skill_gap_skills
+# 1. (one-off) stage inputs and publish the Kaggle input dataset
+python experiments/stage_inputs.py
 
-# Load LinkedIn skills data
-linkedin_skills = load_linkedin_skills()
+# 2. run the scheduler (pushes -> polls -> downloads; watchdog on errors)
+python experiments/scheduler.py
 
-# Load HuggingFace skill gap data
-hf_skills = load_hf_skill_gap_skills()
+# 3. verify outputs (schema + sanity + cross-checks)
+python experiments/verify.py
+
+# 4. archive verified results to HuggingFace
+python experiments/sync_to_hf.py
+
+# 5. regenerate all manuscript tables and figures from verified CSVs
+python experiments/make_latex.py
+
+# 6. compile the manuscript
+cd paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
 ```
 
-### 2. Skill Extraction
+Experiment scripts accept `SKILLGAP_INPUT_DIR` / `SKILLGAP_OUTPUT_DIR` for
+local smoke tests; on Kaggle they read the mounted bundle
+`/kaggle/input/datasets/studyhub991/skill-gap-inputs-v1/`.
 
-```python
-from datasets.skill_extractor import (
-    get_market_skills,
-    get_academic_skills,
-    compute_alignment_metrics,
-    SKILL_CATEGORIES
-)
+## Key Verified Results
 
-# Get market skill profile
-market_skills = get_market_skills()
+- **Skill Gap Index**: lexical **52%** (95% CI [42, 63]); semantic **32%** at
+  τ = 0.5 (95% CI [23, 41]); 46% at τ = 0.7
+- **Domain gaps** (postings, pp): Cloud & Infrastructure **2.45** (Critical),
+  Programming **1.69**, Data Science **1.20**; semantic alignment cuts each by
+  up to 74%; Soft Skills fully covered
+- **Placement model** (statsmodels MLE, standardized): Communication
+  OR = 6.55 [5.86, 7.31], CGPA OR = 6.28, IQ OR = 5.16, Projects OR = 3.20
+  (all p < 0.001); CV accuracy 90.11% ± 0.74%, ROC-AUC 0.9406
+- **External validation**: ROC-AUC 0.768 (Student Career Success, N = 50k),
+  0.576 (Global Placement)
+- **Internship effect**: +15.34 pp employment (95% CI [14.99, 15.73]),
+  N = 300,000
+- **Geographic**: USA 85.2%, UK 8.4%, Canada 4.2%, Australia 2.2% (N = 1.35M)
 
-# Get academic skill profile
-academic_skills = get_academic_skills()
+## Data & Artifact Archives
 
-# Compute alignment metrics
-metrics = compute_alignment_metrics(market_skills, academic_skills)
-print(f"Skill Gap Index: {metrics['gap_index']:.1%}")
-```
+- **Input bundle (Kaggle)**: https://www.kaggle.com/datasets/studyhub991/skill-gap-inputs-v1
+- **Experiment outputs (HuggingFace)**: https://huggingface.co/datasets/MoshinAli/skill-gap-experiments
+- **Manuscript**: `paper/main.pdf` (12 pp, IEEEtran)
 
-### 3. Statistical Analysis
+Large source datasets (>10 MB) are not committed; see
+`datasets/DATASET_MANIFEST.csv` and `datasets/download_kaggle.py`.
 
-```python
-from datasets.statistical_tests import (
-    table1_descriptive,
-    table2_chi_square,
-    table3_correlation,
-    table4_logistic_regression,
-    table5_random_forest
-)
+## Environment
 
-# Run all statistical analyses
-table1_descriptive()
-table2_chi_square()
-table3_correlation()
-table4_logistic_regression()
-table5_random_forest()
-```
-
-### 4. Visualization
-
-```python
-from datasets.analysis import (
-    fig1_top_skills,
-    fig2_skill_gap,
-    fig3_employability,
-    fig4_geographic_ai,
-    fig5_model_comparison,
-    fig6_internship
-)
-
-# Generate all figures
-fig1_top_skills()
-fig2_skill_gap()
-fig3_employability()
-fig4_geographic_ai()
-fig5_model_comparison()
-fig6_internship()
-```
-
-## Skill Categories
-
-The framework uses an 8-category taxonomy for skill classification:
-
-| Category | Examples |
-|----------|----------|
-| Programming & Development | Python, Java, JavaScript, SQL, React |
-| Data Science & Analytics | Machine Learning, Deep Learning, TensorFlow |
-| Cloud & Infrastructure | AWS, Azure, GCP, Docker, Kubernetes |
-| Soft Skills | Communication, Leadership, Teamwork |
-| Business & Domain | Agile, Scrum, Product Management |
-| Design & UX | UI/UX, Figma, User Research |
-| Data Engineering | ETL, Airflow, Kafka, PostgreSQL |
-| Cybersecurity | Information Security, Penetration Testing |
-
-## Key Metrics
-
-- **Skill Gap Index (SGI)**: 52% (95% CI: 49-55%)
-- **Top Missing Skills**: Data Science (18pp gap), Cloud Computing (15pp gap)
-- **Strongest Employability Predictors**: Communication (OR=6.47), CGPA (OR=6.20), Projects (OR=3.18)
-
-## Data Sources
-
-This project uses 15 publicly available datasets:
-
-- **LinkedIn Jobs & Skills** (1.35M records)
-- **HuggingFace Skill Gap** (519K records)
-- **USA Job Market Skills** (316K records)
-- **International Graduates** (300K records)
-- **College Student Placement** (10K records)
-- And 10 more datasets from Kaggle and HuggingFace
-
-## Datasets Not Included
-
-Large datasets (>10MB) are excluded from the repository due to size constraints. To download them:
-
-1. Install Kaggle CLI: `pip install kaggle`
-2. Set up credentials: `kaggle.json` in `~/.kaggle/`
-3. Run: `python datasets/download_kaggle.py`
+Python 3.14.6 with pandas 3.0.5, numpy 2.5.1, scipy 1.18.1,
+scikit-learn 1.9.0, statsmodels 0.15.0, sentence-transformers 6.0.1
+(all-MiniLM-L6-v2), matplotlib 3.11.1, kaggle 2.2.4, huggingface_hub 1.29.0.
+All splits/bootstrap resamples use seed 42 (multi-seed robustness: seeds 0–9).
 
 ## Citation
-
-If you use this framework in your research, please cite:
 
 ```bibtex
 @software{skill_gap_analysis,
   title={Skill Gap Analysis: Academic-Industry Skills Gap Quantification},
-  author={MIHMahmudEli},
-  year={2025},
+  year={2026},
   url={https://github.com/MIHMahmudEli/skill-gap-analysis}
 }
 ```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Dataset providers on Kaggle and HuggingFace
-- scikit-learn and pandas communities
-- Research on skill gap analysis in higher education
+MIT — see [LICENSE](LICENSE).

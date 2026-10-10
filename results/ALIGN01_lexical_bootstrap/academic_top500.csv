@@ -1,0 +1,501 @@
+skill,frequency
+communication,1092
+problem solving,878
+adaptability,588
+teamwork,569
+collaboration,341
+leadership,325
+time management,316
+interpersonal skills,288
+customer service,272
+relationship building,267
+attention to detail,253
+data analysis,251
+project management,234
+organizational skills,231
+negotiation,157
+sales,148
+presentation skills,144
+business development,137
+financial analysis,131
+strategic thinking,127
+analytical skills,122
+team collaboration,107
+self-motivation,105
+employee relations,103
+financial reporting,95
+flexibility,92
+customer relationship management,88
+microsoft office,85
+creativity,85
+performance management,83
+budgeting,82
+market analysis,81
+independence,80
+microsoft office suite,79
+strategic planning,74
+networking,74
+excel,72
+analytical thinking,71
+confidentiality,70
+initiative,69
+coaching,66
+microsoft excel,62
+accounting,62
+lead generation,61
+organization,59
+change management,56
+motivation,56
+critical thinking,56
+financial modeling,56
+recruitment,55
+professionalism,55
+compliance,55
+problem-solving,55
+budget management,53
+team management,53
+forecasting,53
+conflict resolution,52
+customer focus,52
+product knowledge,52
+mentoring,51
+market research,51
+positive attitude,50
+risk management,50
+integrity,50
+multi-tasking,49
+troubleshooting,47
+salesforce,47
+benefits administration,45
+training and development,44
+reporting,44
+documentation,44
+crm software,44
+inventory management,43
+onboarding,42
+relationship management,42
+team leadership,41
+account management,41
+technical support,39
+data management,38
+self-starter,38
+decision making,37
+b2b sales,37
+powerpoint,35
+hris,35
+talent acquisition,33
+microsoft word,33
+recruiting,33
+multitasking,33
+marketing,33
+human resources management,32
+detail-oriented,32
+client relationship management,32
+sql,31
+finance,31
+training,30
+sap,30
+stakeholder management,29
+process improvement,29
+microsoft powerpoint,29
+prioritization,29
+vendor management,29
+communication skills,28
+ms office,27
+data analytics,27
+cold calling,27
+empathy,26
+accountability,26
+influencing,26
+active directory,26
+policy development,25
+data entry,25
+regulatory compliance,24
+crm,24
+influence,23
+innovation,23
+sales management,23
+hr management,22
+business acumen,22
+results-oriented,22
+financial management,22
+crm systems,22
+sales experience,22
+merchandising,22
+employment law,21
+proactivity,21
+erp systems,21
+goal-oriented,21
+accounting principles,21
+payroll management,20
+cultural awareness,20
+curiosity,20
+sharepoint,20
+contract negotiation,20
+computer skills,19
+talent management,19
+hris systems,19
+financial forecasting,19
+sales strategy,19
+consultative selling,19
+team building,18
+self-motivated,18
+ms office suite,18
+listening skills,18
+decision-making,18
+ms excel,18
+jira,18
+customer engagement,18
+internal controls,18
+sales techniques,18
+cash flow management,18
+payroll administration,17
+judgment,17
+engagement,17
+work ethic,17
+independent work,17
+risk assessment,17
+mentorship,17
+power bi,17
+cpa,17
+visual merchandising,17
+sales strategies,17
+prospecting,17
+payroll processing,16
+organizational development,16
+workday,16
+influencing skills,16
+territory management,16
+employee engagement,15
+pmp certification,15
+human resources,15
+customer service orientation,15
+it management,15
+cybersecurity,15
+enthusiasm,15
+gaap,15
+financial planning,15
+continuous learning,14
+compensation management,14
+stakeholder engagement,14
+cash handling,14
+network security,14
+continuous improvement,14
+saas,14
+persuasion,14
+sales strategy development,14
+"""valid drivers license""",13
+succession planning,13
+information technology,13
+accounts payable,13
+sales forecasting,13
+pipeline management,13
+background checks,12
+workforce planning,12
+employee onboarding,12
+organizational design,12
+discretion,12
+employment laws,12
+entrepreneurial mindset,12
+auditing,12
+office 365,12
+cross-functional collaboration,12
+pos systems,12
+business analysis,12
+sales presentations,12
+proposal development,12
+variance analysis,12
+cost accounting,12
+advanced excel,11
+microsoft outlook,11
+contract management,11
+negotiation skills,11
+resilience,11
+written communication,11
+python,11
+network administration,11
+software installation,11
+planning,11
+disaster recovery planning,11
+retail experience,11
+intellectual curiosity,10
+autonomy,10
+training development,10
+budget preparation,10
+active listening,10
+trust building,10
+ownership,10
+operating systems,10
+agile,10
+desktop support,10
+powershell,10
+azure,10
+healthcare knowledge,10
+digital marketing,10
+accounts receivable,10
+compensation and benefits,9
+conflict management,9
+"""bachelors degree""",9
+report generation,9
+growth mindset,9
+record keeping,9
+event planning,9
+trustworthiness,9
+proactive approach,9
+resourcefulness,9
+facilitation,9
+willingness to learn,9
+data visualization,9
+hardware support,9
+linux,9
+project management tools,9
+data governance,9
+network management,9
+java,9
+results-driven,9
+listening,9
+mba,9
+cash management,9
+employee benefits administration,8
+legal compliance,8
+compliance knowledge,8
+proactive,8
+agile methodologies,8
+computer proficiency,8
+delegation,8
+oracle,8
+ability to work under pressure,8
+project coordination,8
+automation,8
+research skills,8
+verbal communication,8
+performance metrics,8
+quality assurance,8
+hardware installation,8
+presentation,8
+help desk support,8
+database management,8
+data mining,8
+team player,8
+system administration,8
+engineering,8
+vmware,8
+word,8
+interpersonal communication,8
+customer satisfaction,8
+portfolio management,8
+team development,8
+tableau,8
+self-discipline,8
+consultative sales,8
+ambition,8
+salesforce.com,8
+crm tools,8
+fp&a,8
+financial systems,8
+compliance with labor laws,7
+stress management,7
+crm management,7
+documentation management,7
+hr policies,7
+diversity and inclusion,7
+report writing,7
+emotional intelligence,7
+onboarding processes,7
+microsoft 365,7
+leadership development,7
+smartsheet,7
+servicenow,7
+google suite,7
+bilingual (spanish),7
+data security,7
+configuration management,7
+windows server,7
+itil,7
+performance monitoring,7
+windows operating systems,7
+software support,7
+supply chain management,7
+dns,7
+sdlc,7
+ms project,7
+technical documentation,7
+cyber security,7
+business case development,7
+research,7
+javascript,7
+cost analysis,7
+oral communication,7
+product development,7
+sales reporting,7
+customer relationship building,7
+hubspot,7
+business planning,7
+financial statements preparation,7
+assertiveness,7
+hr policies and procedures,6
+fmla,6
+shrm-cp certification,6
+hr compliance,6
+diplomacy,6
+business intelligence,6
+hr administration,6
+social media marketing,6
+compensation analysis,6
+safety training,6
+report preparation,6
+email communication,6
+offboarding,6
+employment law knowledge,6
+hr strategies,6
+administrative tasks,6
+diversity,6
+equity,6
+performance evaluation,6
+cultural sensitivity,6
+independent judgment,6
+applicant tracking systems,6
+talent development,6
+program management,6
+kronos,6
+urgency,6
+ms word,6
+data warehousing,6
+project planning,6
+incident management,6
+networking concepts,6
+it infrastructure,6
+windows 10,6
+microsoft teams,6
+confluence,6
+machine learning,6
+technical skills,6
+network infrastructure,6
+html,6
+server administration,6
+o365,6
+network configuration,6
+client service,6
+statistical analysis,6
+server management,6
+reliability,6
+quickbooks,6
+market intelligence,6
+consensus building,6
+crm (salesforce),6
+invoicing,6
+persistence,6
+retail sales,6
+drive,6
+saas knowledge,6
+results oriented,6
+storytelling,6
+order processing,6
+persuasiveness,6
+respectfulness,6
+results-oriented mindset,6
+market knowledge,6
+project finance,6
+due diligence,6
+client account management,6
+p&l management,6
+entrepreneurial spirit,6
+ada,5
+self-management,5
+consulting,5
+bilingual (english/spanish),5
+pivot tables,5
+continuous improvement mindset,5
+interviewing skills,5
+approachability,5
+learning and development,5
+administrative support,5
+microsoft suite,5
+hr metrics,5
+microsoft office (excel,5
+leave administration,5
+compliance management,5
+dependability,5
+payroll,5
+performance appraisal,5
+talent management systems,5
+accounting software,5
+technology proficiency,5
+follow-up skills,5
+facilitation skills,5
+outlook,5
+customer relationship management (crm),5
+advisory skills,5
+etl,5
+resource management,5
+windows,5
+problem management,5
+comptia a+,5
+microsoft office 365,5
+hardware troubleshooting,5
+software troubleshooting,5
+helpdesk support,5
+application development,5
+microsoft azure,5
+cloud computing,5
+resource allocation,5
+microsoft windows,5
+ethical conduct,5
+powerbi,5
+reporting tools,5
+hospitality industry knowledge,5
+programming,5
+firewalls,5
+technical writing,5
+it support,5
+event management,5
+detail oriented,5
+css,5
+financial acumen,5
+tenacity,5
+driving,5
+financial regulations,5
+customer satisfaction focus,5
+technical sales,5
+sales skills,5
+sales development,5
+ecommerce,5
+lead qualification,5
+personal development,5
+competitive,5
+team selling,5
+alteration fitting,5
+sales leadership,5
+sales planning,5
+sales pipeline management,5
+pricing strategy,5
+financial operations,5
+hyperion,5
+gaap compliance,5
+tax compliance,5
+financial strategy,5
+general ledger,5
+ifrs,5
+profitability analysis,5
+financial controls,5
+proposal writing,5
+strategic partnerships,5
+recruitment strategies,4
+professional development,4
+flsa,4
+inclusivity,4
+data integration,4
+business requirements gathering,4
+policy adherence,4
+project documentation,4
+hr experience,4
+mathematical skills,4
+agility,4
+compensation,4
+peoplesoft,4
+hr strategy development,4
+supervision,4
+human resource management,4
+bilingual,4
+compensation administration,4
+analytics,4

@@ -1,0 +1,60 @@
+{
+  "all_verified": true,
+  "experiments": {
+    "ALIGN01_lexical_bootstrap": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "ALIGN02_semantic_sbert": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "ALIGN03_domain_gap": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "GEO01_linkedin_shares": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "INTL01_internship_effect": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "PLAC01_global_by_country": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "STAT01_placement_core": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "COMPLETED",
+      "verified": true
+    },
+    "STAT02_external_validation": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    },
+    "TRENDS01_ai_longitudinal": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "VERIFIED",
+      "verified": true
+    }
+  },
+  "verified_utc": "2026-10-10T14:38:10Z"
+}

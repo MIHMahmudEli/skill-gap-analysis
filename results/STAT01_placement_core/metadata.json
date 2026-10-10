@@ -1,0 +1,25 @@
+{
+  "bootstrap_n": 1000,
+  "code_commit": "2900ba9f18867659c67ac0ca79ff3f709280207c",
+  "datasets": {
+    "college_placement": "college_student_placement_dataset.csv"
+  },
+  "experiment_id": "STAT01_placement_core",
+  "gpu": true,
+  "hyperparameters": {},
+  "kaggle_kernel_ref": "nihanshadman/sg-stat01-placement-a2",
+  "model": "see metrics.json",
+  "protocol": "see metrics.json",
+  "python_version": "3.14.6",
+  "runtime_sec": 155.81,
+  "sbert_model": null,
+  "seed": 42,
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "timestamp_utc": "2026-10-10T14:38:51Z",
+  "worker": "nihanshadman"
+}

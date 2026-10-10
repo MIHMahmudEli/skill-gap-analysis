@@ -1,0 +1,5 @@
+train,test,n,base_rate,accuracy,f1_weighted,auc
+College (features subset A),Student Career Success,50000,0.7808,0.2986,0.2346,0.768
+Student Career Success (in-sample ref.),Student Career Success,50000,0.7808,0.8073,0.7763,0.7816
+College (features subset B),Global Placement,10000,0.6153,0.6153,0.4688,0.5757
+Global Placement (in-sample ref.),Global Placement,10000,0.6153,0.6846,0.6694,0.7142

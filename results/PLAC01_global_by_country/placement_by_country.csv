@@ -1,0 +1,6 @@
+country,n,placed,placement_rate_pct,ci_lower_pct,ci_upper_pct
+India,1985,1254,63.17,61.03,65.27
+USA,2040,1269,62.21,60.08,64.29
+Canada,1976,1216,61.54,59.37,63.66
+UK,1942,1180,60.76,58.57,62.91
+Germany,2057,1234,59.99,57.86,62.09

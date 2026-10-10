@@ -1,0 +1,7 @@
+{
+  "depth4_cart_train_accuracy": 1.0,
+  "kofn_rule": "placed if >=3 of {CGPA>8.01, IQ>110.5, Communication>7.50, Projects>=2}",
+  "kofn_agreement_with_labels": 0.9992,
+  "cart_vs_kofn_agreement": 0.9992,
+  "tree_rules": "|--- Communication_Skills <= 0.67\n|   |--- IQ <= 0.73\n|   |   |--- class: 0\n|   |--- IQ >  0.73\n|   |   |--- CGPA <= 0.32\n|   |   |   |--- class: 0\n|   |   |--- CGPA >  0.32\n|   |   |   |--- Projects_Completed <= -0.59\n|   |   |   |   |--- class: 0\n|   |   |   |--- Projects_Completed >  -0.59\n|   |   |   |   |--- class: 1\n|--- Communication_Skills >  0.67\n|   |--- CGPA <= 0.32\n|   |   |--- IQ <= 0.73\n|   |   |   |--- class: 0\n|   |   |--- IQ >  0.73\n|   |   |   |--- Projects_Completed <= -0.59\n|   |   |   |   |--- class: 0\n|   |   |   |--- Projects_Completed >  -0.59\n|   |   |   |   |--- class: 1\n|   |--- CGPA >  0.32\n|   |   |--- Projects_Completed <= -0.59\n|   |   |   |--- IQ <= 0.73\n|   |   |   |   |--- class: 0\n|   |   |   |--- IQ >  0.73\n|   |   |   |   |--- class: 1\n|   |   |--- Projects_Completed >  -0.59\n|   |   |   |--- class: 1\n"
+}

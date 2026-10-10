@@ -1,0 +1,69 @@
+{
+  "experiment_id": "TRENDS01_ai_longitudinal",
+  "status": "completed",
+  "runtime_sec": 0.15,
+  "dataset": "ai_job_market_2020_2026.csv",
+  "n_postings": 10345,
+  "yearly_shares": [
+    {
+      "year": 2020,
+      "python_share_pct": 47.48,
+      "sql_share_pct": 51.91,
+      "ml_share_pct": 48.84,
+      "deep_learning_share_pct": 50.89,
+      "cloud_share_pct": 52.04
+    },
+    {
+      "year": 2021,
+      "python_share_pct": 49.66,
+      "sql_share_pct": 50.47,
+      "ml_share_pct": 51.01,
+      "deep_learning_share_pct": 50.61,
+      "cloud_share_pct": 53.85
+    },
+    {
+      "year": 2022,
+      "python_share_pct": 47.59,
+      "sql_share_pct": 51.41,
+      "ml_share_pct": 49.73,
+      "deep_learning_share_pct": 48.73,
+      "cloud_share_pct": 47.05
+    },
+    {
+      "year": 2023,
+      "python_share_pct": 52.2,
+      "sql_share_pct": 49.79,
+      "ml_share_pct": 53.51,
+      "deep_learning_share_pct": 51.1,
+      "cloud_share_pct": 51.38
+    },
+    {
+      "year": 2024,
+      "python_share_pct": 48.8,
+      "sql_share_pct": 50.4,
+      "ml_share_pct": 51.0,
+      "deep_learning_share_pct": 49.07,
+      "cloud_share_pct": 50.73
+    },
+    {
+      "year": 2025,
+      "python_share_pct": 51.11,
+      "sql_share_pct": 49.9,
+      "ml_share_pct": 52.26,
+      "deep_learning_share_pct": 48.41,
+      "cloud_share_pct": 51.11
+    },
+    {
+      "year": 2026,
+      "python_share_pct": 48.36,
+      "sql_share_pct": 48.23,
+      "ml_share_pct": 49.18,
+      "deep_learning_share_pct": 49.86,
+      "cloud_share_pct": 51.91
+    }
+  ],
+  "salary_anova": {
+    "anova_f": 3615.564,
+    "p_value": 0.0
+  }
+}

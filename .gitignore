@@ -49,3 +49,9 @@ datasets/research_summary_report.txt
 datasets/*.csv
 !datasets/DATASET_MANIFEST.csv
 !datasets/derived_matrices/
+
+# Experiment staging areas (large/hardlinked inputs, kernel build dirs)
+results/_staging/
+results/_kernels/
+results/*_attempt*/
+

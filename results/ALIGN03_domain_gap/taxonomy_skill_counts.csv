@@ -1,0 +1,128 @@
+category,skill,market_count,academic_count,lexically_covered,semantically_covered_tau0.5
+Programming & Development,python,10043,11,1,1
+Programming & Development,java,5585,9,1,1
+Programming & Development,javascript,3787,7,1,1
+Programming & Development,c++,2668,2,0,1
+Programming & Development,c#,1865,4,0,0
+Programming & Development,sql,8839,31,1,1
+Programming & Development,r,1998,2,0,0
+Programming & Development,scala,931,1,0,0
+Programming & Development,go,1398,0,0,0
+Programming & Development,rust,232,0,0,0
+Programming & Development,typescript,1311,0,0,0
+Programming & Development,php,623,0,0,1
+Programming & Development,ruby,436,0,0,0
+Programming & Development,swift,229,0,0,0
+Programming & Development,kotlin,301,0,0,0
+Programming & Development,html,2168,6,1,1
+Programming & Development,css,1882,5,1,1
+Programming & Development,react,1473,1,0,0
+Programming & Development,angular,1061,0,0,0
+Programming & Development,vue,99,0,0,0
+Programming & Development,node.js,940,0,0,1
+Programming & Development,django,171,0,0,0
+Programming & Development,flask,120,0,0,0
+Programming & Development,spring,313,0,0,0
+Programming & Development,rails,45,0,0,0
+Programming & Development,git,2358,1,0,0
+Programming & Development,docker,2533,1,0,0
+Programming & Development,kubernetes,2717,1,0,0
+Data Science & Analytics,machine learning,3946,6,1,1
+Data Science & Analytics,deep learning,643,0,0,1
+Data Science & Analytics,data analysis,32670,251,1,1
+Data Science & Analytics,data visualization,3409,9,1,1
+Data Science & Analytics,statistical analysis,2465,6,1,1
+Data Science & Analytics,tensorflow,541,0,0,0
+Data Science & Analytics,pytorch,599,0,0,0
+Data Science & Analytics,pandas,219,0,0,0
+Data Science & Analytics,numpy,186,0,0,1
+Data Science & Analytics,scikit-learn,0,0,0,0
+Data Science & Analytics,tableau,2827,8,1,1
+Data Science & Analytics,power bi,2189,17,1,1
+Data Science & Analytics,hadoop,867,2,0,0
+Data Science & Analytics,spark,859,2,0,0
+Data Science & Analytics,data mining,1367,8,1,1
+Data Science & Analytics,neural networks,99,0,0,1
+Data Science & Analytics,natural language processing,473,0,0,0
+Data Science & Analytics,nlp,263,0,0,0
+Data Science & Analytics,computer vision,560,1,0,1
+Data Science & Analytics,ai,1450,3,0,1
+Data Science & Analytics,artificial intelligence,1789,0,0,1
+Cloud & Infrastructure,aws,5128,4,0,1
+Cloud & Infrastructure,azure,2938,10,1,1
+Cloud & Infrastructure,gcp,1475,0,0,1
+Cloud & Infrastructure,cloud computing,3063,5,1,1
+Cloud & Infrastructure,devops,2576,4,0,0
+Cloud & Infrastructure,ci/cd,1141,1,0,0
+Cloud & Infrastructure,jenkins,1328,1,0,0
+Cloud & Infrastructure,terraform,1168,0,0,0
+Cloud & Infrastructure,ansible,1208,0,0,0
+Cloud & Infrastructure,linux,3126,9,1,1
+Cloud & Infrastructure,windows server,685,7,1,1
+Cloud & Infrastructure,networking,6764,74,1,1
+Cloud & Infrastructure,security,5019,1,0,1
+Cloud & Infrastructure,microservices,1350,1,0,1
+Cloud & Infrastructure,rest api,278,0,0,0
+Cloud & Infrastructure,graphql,324,1,0,0
+Cloud & Infrastructure,serverless,84,0,0,1
+Soft Skills,communication,148765,1092,1,1
+Soft Skills,leadership,74517,325,1,1
+Soft Skills,teamwork,91559,569,1,1
+Soft Skills,problem solving,59713,878,1,1
+Soft Skills,critical thinking,21382,56,1,1
+Soft Skills,time management,57352,316,1,1
+Soft Skills,project management,48656,234,1,1
+Soft Skills,analytical skills,24306,122,1,1
+Soft Skills,creativity,4684,85,1,1
+Soft Skills,adaptability,23818,588,1,1
+Soft Skills,collaboration,34877,341,1,1
+Soft Skills,presentation,3410,8,1,1
+Soft Skills,negotiation,12722,157,1,1
+Soft Skills,mentoring,12148,51,1,1
+Business & Domain,agile,4685,10,1,1
+Business & Domain,scrum,1952,3,0,1
+Business & Domain,product management,1750,4,0,1
+Business & Domain,business analysis,2753,12,1,1
+Business & Domain,stakeholder management,3718,29,1,1
+Business & Domain,requirements gathering,1408,3,0,1
+Business & Domain,process improvement,6124,29,1,1
+Business & Domain,quality assurance,14333,8,1,1
+Business & Domain,compliance,11356,55,1,1
+Business & Domain,risk management,12229,50,1,1
+Business & Domain,strategic planning,6398,74,1,1
+Business & Domain,budget management,8549,53,1,1
+Business & Domain,client management,2464,4,0,1
+Design & UX,ui/ux,94,0,0,1
+Design & UX,figma,450,1,0,0
+Design & UX,sketch,152,0,0,0
+Design & UX,adobe xd,68,0,0,0
+Design & UX,user research,254,0,0,1
+Design & UX,wireframing,164,0,0,0
+Design & UX,prototyping,1059,0,0,0
+Design & UX,user interface,88,0,0,1
+Design & UX,user experience,532,0,0,1
+Design & UX,graphic design,1183,2,0,0
+Data Engineering,etl,713,5,1,1
+Data Engineering,data pipeline,41,0,0,1
+Data Engineering,airflow,248,0,0,0
+Data Engineering,kafka,987,1,0,0
+Data Engineering,database design,382,1,0,1
+Data Engineering,data warehousing,1057,6,1,1
+Data Engineering,nosql,1287,2,0,0
+Data Engineering,mongodb,589,0,0,0
+Data Engineering,postgresql,634,0,0,1
+Data Engineering,mysql,934,0,0,1
+Data Engineering,redis,348,0,0,1
+Data Engineering,elasticsearch,275,0,0,0
+Data Engineering,data governance,859,9,1,1
+Cybersecurity,information security,1033,4,0,1
+Cybersecurity,penetration testing,402,3,0,0
+Cybersecurity,vulnerability assessment,251,0,0,1
+Cybersecurity,incident response,937,4,0,1
+Cybersecurity,forensics,105,0,0,1
+Cybersecurity,encryption,345,0,0,1
+Cybersecurity,firewall,201,0,0,1
+Cybersecurity,siem,300,1,0,0
+Cybersecurity,gdpr,408,1,0,1
+Cybersecurity,iso 27001,153,2,0,0
+Cybersecurity,nist,315,2,0,0

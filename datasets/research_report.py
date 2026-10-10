@@ -25,6 +25,9 @@ def generate_report():
     report.append("RESEARCH SUMMARY REPORT")
     report.append("Gap Between Academic Knowledge and Job Market Skills")
     report.append("=" * 80)
+    report.append("NOTE: Legacy exploratory summary. Authoritative, GPU-verified")
+    report.append("results are in results/<EXP_ID>/ and reports/EXPERIMENT_REPORT.md;")
+    report.append("the manuscript (paper/main.pdf) uses only VERIFIED outputs.")
 
     # Dataset Overview
     report.append("\n\n1. DATASET OVERVIEW")
@@ -150,32 +153,31 @@ def generate_report():
 
     report.append("""
   RQ1: What are the most in-demand skills in the current job market?
-    - Communication, Customer Service, Teamwork, Leadership, Problem Solving
-    - Technical: Python, SQL, Machine Learning, Cloud Computing
-    - Significant gap between market demands and academic offerings
+    - Exact tokens: communication (148,765 postings), customer service (111,342),
+      teamwork (91,559), communication skills (78,182), leadership (74,517)
+    - Technical: Python 47.5-52.2%, SQL 48.2-51.9%, ML 48.8-53.5% (2020-2026)
 
   RQ2: To what extent do academic curricula align with industry requirements?
-    - Coverage Rate: 48.0% (52% gap)
-    - Major gaps in: Data Science, Cloud Computing, Emerging Technologies
-    - Strong alignment in: Communication, Basic Problem Solving
+    - Lexical coverage 48% (SGI 52%, 95% CI [42, 63])
+    - Semantic coverage 68% at tau=0.5 (SGI 32%, 95% CI [23, 41])
 
   RQ3: What is the magnitude and nature of the skill gap?
-    - Overall Gap Index: 52.0%
-    - 10+ skills missing from academic curriculum
-    - Gap varies by region (45-58%) and industry
+    - Largest posting-level deficits: Cloud & Infrastructure 2.45 pp (Critical),
+      Programming 1.69 pp, Data Science 1.20 pp; Soft Skills fully covered
+    - Semantic alignment reduces deficits by up to 74% per category
 
   RQ4: Which factors best predict graduate employability?
-    - CGPA (OR=6.20), Communication Skills (OR=6.47), Projects (OR=3.18)
-    - Programming Skill, Interview Score, Internships are significant predictors
-    - Random Forest achieves 100% accuracy on training data
+    - Communication OR=6.55, CGPA OR=6.28, IQ OR=5.16, Projects OR=3.20
+      (statsmodels MLE, standardized; all p<0.001)
+    - CV accuracy 90.11%, ROC-AUC 0.9406; tree ensembles reach 99.99% because
+      labels follow a deterministic k-of-n rule (99.92% agreement)
 
   RQ5: How does the skill gap vary across regions/industries?
-    - North America: 45% gap
-    - Europe: 48% gap
-    - Asia Pacific: 55% gap
-    - Latin America: 52% gap
-    - Middle East & Africa: 58% gap
-    """)
+    - LinkedIn postings: USA 85.2%, UK 8.4%, Canada 4.2%, Australia 2.2%
+    - Internship effect: +15.34 pp employment (N=300,000)
+
+  See reports/EXPERIMENT_REPORT.md and results/registry.json for provenance.
+  """)
 
     # Recommendations
     report.append("\n5. RECOMMENDATIONS")
@@ -218,7 +220,7 @@ def generate_report():
     report.append("""
   Data Sources:
     - 15 datasets from Kaggle and HuggingFace
-    - Total: 4.8M+ records across multiple domains
+    - Total: 3,176,266 records across multiple domains
     - Time period: 2020-2026
 
   Analytical Methods:

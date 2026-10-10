@@ -1,0 +1,391 @@
+{
+  "created_utc": "2026-10-10T12:32:39Z",
+  "experiments": {
+    "ALIGN01_lexical_bootstrap": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T12:36:42Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "ts": "2026-10-10T12:33:06Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-align01-lexical-a1",
+          "ts": "2026-10-10T12:33:06Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:36:42Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "nihanshadman/sg-align01-lexical-a1",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:33:06Z",
+      "slug": "sg-align01-lexical",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "nihanshadman"
+    },
+    "ALIGN02_semantic_sbert": {
+      "attempts": 3,
+      "completed_utc": "2026-10-10T12:50:30Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "ts": "2026-10-10T12:33:32Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "tasnimjenny/sg-align02-semantic-a1",
+          "ts": "2026-10-10T12:33:32Z"
+        },
+        {
+          "error": "kaggle kernels output tasnimjenny/sg-align02-semantic-a1 -p D:\\Research\\2. Complete\\Gap-between acadimic and industry\\results\\ALIGN02_semantic_sbert -o -q failed (1): 'charmap' codec can't encode characters in position 335-344: character maps to <undefined>\n ",
+          "event": "download_failed",
+          "ts": "2026-10-10T12:43:18Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "nihanshadman/sg-align02-semantic-a2 has status \"kernelworkerstatus.queued\"",
+          "ts": "2026-10-10T12:44:12Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-align02-semantic-a2",
+          "ts": "2026-10-10T12:44:12Z"
+        },
+        {
+          "error": "kaggle kernels output nihanshadman/sg-align02-semantic-a2 -p D:\\Research\\2. Complete\\Gap-between acadimic and industry\\results\\ALIGN02_semantic_sbert -o -q failed (1): 'charmap' codec can't encode characters in position 336-345: character maps to <undefined>\n ",
+          "event": "download_failed",
+          "ts": "2026-10-10T12:48:22Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "ts": "2026-10-10T12:49:14Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-align02-semantic-a3",
+          "ts": "2026-10-10T12:49:14Z"
+        },
+        {
+          "error": "kaggle kernels output nihanshadman/sg-align02-semantic-a3 -p D:\\Research\\2. Complete\\Gap-between acadimic and industry\\results\\ALIGN02_semantic_sbert -o -q failed (1): 'charmap' codec can't encode characters in position 336-345: character maps to <undefined>\n ",
+          "event": "download_failed",
+          "ts": "2026-10-10T12:50:24Z"
+        },
+        {
+          "event": "manually_marked_completed",
+          "reason": "kernel completed and output files downloaded; CLI exited non-zero due to Windows charmap error while printing progress bar after download",
+          "ts": "2026-10-10T13:05:00Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "nihanshadman/sg-align02-semantic-a3",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:49:14Z",
+      "slug": "sg-align02-semantic",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "nihanshadman"
+    },
+    "ALIGN03_domain_gap": {
+      "attempts": 2,
+      "completed_utc": "2026-10-10T14:15:27Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "ts": "2026-10-10T12:33:59Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "mdzihan/sg-align03-domaingap-a1",
+          "ts": "2026-10-10T12:33:59Z"
+        },
+        {
+          "event": "oom_killed_diagnosis",
+          "reason": "rng.choice over 10.8M tokens x1000 bootstraps OOM; fixed to rng.multinomial over vocabulary",
+          "ts": "2026-10-10T13:05:00Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "ts": "2026-10-10T14:11:14Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-align03-domaingap-a2",
+          "ts": "2026-10-10T14:11:14Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T14:15:27Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "nihanshadman/sg-align03-domaingap-a2",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T14:11:14Z",
+      "slug": "sg-align03-domaingap",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "nihanshadman"
+    },
+    "GEO01_linkedin_shares": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T12:37:53Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "sadmanhasanmiraj/sg-geo01-linkedin-a1 has status \"kernelworkerstatus.queued\"",
+          "ts": "2026-10-10T12:35:18Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "sadmanhasanmiraj/sg-geo01-linkedin-a1",
+          "ts": "2026-10-10T12:35:18Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:37:53Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "sadmanhasanmiraj/sg-geo01-linkedin-a1",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:35:18Z",
+      "slug": "sg-geo01-linkedin",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "sadmanhasanmiraj"
+    },
+    "INTL01_internship_effect": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T12:42:17Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "afrojahaqueshornaly/sg-intl01-internship-a1 has status \"kernelworkerstatus.queued\"",
+          "ts": "2026-10-10T12:36:10Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "afrojahaqueshornaly/sg-intl01-internship-a1",
+          "ts": "2026-10-10T12:36:10Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:42:17Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "afrojahaqueshornaly/sg-intl01-internship-a1",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:36:10Z",
+      "slug": "sg-intl01-internship",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "afrojahaqueshornaly"
+    },
+    "PLAC01_global_by_country": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T12:37:07Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "complete",
+          "ts": "2026-10-10T12:36:35Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "abdullahalsayfan/sg-plac01-global-a1",
+          "ts": "2026-10-10T12:36:35Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:37:07Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "abdullahalsayfan/sg-plac01-global-a1",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:36:35Z",
+      "slug": "sg-plac01-global",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "abdullahalsayfan"
+    },
+    "STAT01_placement_core": {
+      "attempts": 2,
+      "completed_utc": "2026-10-10T14:35:31Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "rssiam/sg-stat01-placement-a1 has status \"kernelworkerstatus.queued\"",
+          "ts": "2026-10-10T12:34:25Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "rssiam/sg-stat01-placement-a1",
+          "ts": "2026-10-10T12:34:25Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:40:32Z"
+        },
+        {
+          "event": "reset_for_rerun",
+          "reason": "logit intercept bug + fold SD fix; local smoke verified",
+          "ts": "2026-10-10"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "ts": "2026-10-10T14:32:29Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-stat01-placement-a2",
+          "ts": "2026-10-10T14:32:29Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T14:35:31Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "nihanshadman/sg-stat01-placement-a2",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T14:32:29Z",
+      "slug": "sg-stat01-placement",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "nihanshadman"
+    },
+    "STAT02_external_validation": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T12:37:46Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "leyamridha/sg-stat02-external-a1 has status \"kernelworkerstatus.queued\"",
+          "ts": "2026-10-10T12:34:52Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "leyamridha/sg-stat02-external-a1",
+          "ts": "2026-10-10T12:34:52Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:37:46Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "leyamridha/sg-stat02-external-a1",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:34:52Z",
+      "slug": "sg-stat02-external",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "leyamridha"
+    },
+    "TRENDS01_ai_longitudinal": {
+      "attempts": 1,
+      "completed_utc": "2026-10-10T12:39:13Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "nishat1156/sg-trends01-ai-a1 has status \"kernelworkerstatus.queued\"",
+          "ts": "2026-10-10T12:35:43Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nishat1156/sg-trends01-ai-a1",
+          "ts": "2026-10-10T12:35:43Z"
+        },
+        {
+          "event": "downloaded",
+          "metrics_json": true,
+          "ts": "2026-10-10T12:39:13Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "ts": "2026-10-10",
+          "manuscript": "paper/main.pdf"
+        }
+      ],
+      "kernel_ref": "nishat1156/sg-trends01-ai-a1",
+      "last_state": "complete",
+      "pushed_utc": "2026-10-10T12:35:43Z",
+      "slug": "sg-trends01-ai",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T14:38:10Z",
+      "worker": "nishat1156"
+    }
+  },
+  "input_dataset": "studyhub991/skill-gap-inputs-v1"
+}

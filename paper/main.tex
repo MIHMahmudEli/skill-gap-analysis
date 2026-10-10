@@ -19,8 +19,6 @@
 \usepackage{cite}
 \usepackage{stfloats}
 \usepackage{placeins}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1em}
 
@@ -52,7 +50,7 @@ contact@university.edu}
 % ABSTRACT
 % ============================================================
 \begin{abstract}
-Disparities between higher education curricula and labor-market skill demands are widely reported, yet large-scale empirical studies linking macro-level hiring requirements with graduate placement outcomes remain limited. We examine academic--industry alignment using 15 datasets totaling 3,176,266 records collected from LinkedIn, HuggingFace, and public benchmark repositories spanning 2020 through 2026. Grounded in Human Capital Theory, Job Market Signaling, and Constructive Alignment, the analysis combines: (1) n-gram skill extraction across an eight-category taxonomy; (2) semantic vector alignment via Sentence-BERT (\texttt{all-MiniLM-L6-v2}) evaluated across four cosine similarity thresholds ($\tau \in \{0.4, 0.5, 0.6, 0.7\}$) with 1,000-fold bootstrap confidence intervals; (3) bivariate and multivariate tests, including Welch's $t$-tests, Cohen's $d$, Cram\'er's $V$, and Variance Inflation Factor diagnostics; and (4) 5-fold stratified cross-validation across five classifier architectures, accompanied by decision-boundary diagnostics and independent external validation. Exact string matching yields an apparent Skill Gap Index (SGI) of 52.0\%. Dense vector alignment reduces this estimated gap to 32.0\% at baseline threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]), rising to 46.0\% (95\% CI: [37.0\%, 56.0\%]) under a stricter criterion ($\tau = 0.7$). Deficits concentrate primarily in emerging technical areas, notably Data Science (18 percentage-point gap) and Cloud Infrastructure (15 percentage-point gap). In graduate placement prediction, standardized logistic regression indicates that Communication Skills ($\text{OR} = 6.47$, $p < 0.001$), CGPA ($\text{OR} = 6.20$, $p < 0.001$), and Project Experience ($\text{OR} = 3.18$, $p < 0.001$) are strongly associated with employment status (cross-validated accuracy $= 90.11\%$, ROC-AUC $= 0.9406$). Tree-ensemble models reach near-perfect accuracy ($\ge 99.9\%$), which diagnostic analysis attributes to deterministic threshold rules embedded in the placement benchmark. Evaluating the logistic model on an independent external cohort of 50,000 students yields an ROC-AUC of 0.7686, reflecting domain shift. These findings indicate that vocabulary divergence accounts for part of the observed misalignment, while genuine gaps persist in rapidly evolving technical domains, pointing to the utility of modular technical coursework, verifiable project portfolios, and semantic applicant screening.
+Disparities between higher education curricula and labor-market skill demands are widely reported, yet large-scale empirical studies linking macro-level hiring requirements with graduate placement outcomes remain limited. We examine academic--industry alignment using 15 datasets totaling 3,176,266 records collected from LinkedIn, HuggingFace, and public benchmark repositories spanning 2020 through 2026. Grounded in Human Capital Theory, Job Market Signaling, and Constructive Alignment, the analysis combines: (1) n-gram skill extraction across an eight-category taxonomy; (2) semantic vector alignment via Sentence-BERT (\texttt{all-MiniLM-L6-v2}) evaluated across four cosine similarity thresholds ($\tau \in \{0.4, 0.5, 0.6, 0.7\}$) with 1,000-fold bootstrap confidence intervals; (3) bivariate and multivariate tests, including Welch's $t$-tests, Cohen's $d$, Cram\'er's $V$, and Variance Inflation Factor diagnostics; and (4) 5-fold stratified cross-validation across five classifier architectures, accompanied by decision-boundary diagnostics and independent external validation. Exact string matching yields an apparent Skill Gap Index (SGI) of 52.0\%. Dense vector alignment reduces this estimated gap to 32.0\% at baseline threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]), rising to 46.0\% (95\% CI: [37.0\%, 56.0\%]) under a stricter criterion ($\tau = 0.7$). Deficits concentrate primarily in emerging technical areas: domain-level decomposition localizes residual curriculum deficits in Cloud Infrastructure (2.45 percentage points at lexical matching, 0.94 pp after semantic alignment) and Programming \& Development (1.69 pp lexical), while soft-skill requirements are fully covered by the academic reference profile. In graduate placement prediction, standardized logistic regression indicates that Communication Skills ($\text{OR} = 6.55$, $p < 0.001$), CGPA ($\text{OR} = 6.28$, $p < 0.001$), and Project Experience ($\text{OR} = 3.20$, $p < 0.001$) are strongly associated with employment status (cross-validated accuracy $= 90.11\%$, ROC-AUC $= 0.9406$). Tree-ensemble models reach near-perfect accuracy ($\ge 99.9\%$), which diagnostic analysis attributes to deterministic threshold rules embedded in the placement benchmark. Evaluating the logistic model on an independent external cohort of 50,000 students yields an ROC-AUC of 0.768, reflecting domain shift. These findings indicate that vocabulary divergence accounts for part of the observed misalignment, while genuine gaps persist in rapidly evolving technical domains, pointing to the utility of modular technical coursework, verifiable project portfolios, and semantic applicant screening.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -91,7 +89,7 @@ To address these questions, we analyze 15 datasets totaling 3,176,266 records fr
     \item \textbf{Harmonized Multi-Source Corpus:} We assemble a corpus of 3,176,266 records across 15 datasets, combining online job postings, curriculum descriptors, and graduate placement cohorts covering 2020 through 2026.
     \item \textbf{Dual Lexical--Semantic Analysis:} Using Sentence-BERT (\texttt{all-MiniLM-L6-v2}) alongside exact string matching, we show that exact matching yields a 52.0\% gap, whereas semantic vector alignment reduces this estimate to 32.0\% at $\tau = 0.5$.
     \item \textbf{Threshold Sensitivity Estimation:} We compute 1,000-fold bootstrap confidence intervals across four similarity thresholds ($\tau \in \{0.4, 0.5, 0.6, 0.7\}$) to evaluate how threshold selection affects gap measurement.
-    \item \textbf{Model Validation and Diagnostic Audit:} We evaluate five classifier paradigms using 5-fold stratified cross-validation, verify low multicollinearity ($\text{VIF} \le 1.001$), diagnose the deterministic threshold rules behind near-perfect tree-ensemble scores, and test generalization on an external 50,000-student cohort ($\text{ROC-AUC} = 0.7686$).
+    \item \textbf{Model Validation and Diagnostic Audit:} We evaluate five classifier paradigms using 5-fold stratified cross-validation, verify low multicollinearity ($\text{VIF} \le 1.001$), diagnose the deterministic threshold rules behind near-perfect tree-ensemble scores, and test generalization on an external 50,000-student cohort ($\text{ROC-AUC} = 0.768$).
     \item \textbf{Theory-Informed Recommendations:} Drawing on Human Capital Theory, Signaling Theory, and Constructive Alignment, we outline practical adjustments for course design, project evaluation, and recruitment screening, accompanied by explicit documentation of dataset provenance and limitations.
 \end{enumerate}
 
@@ -143,7 +141,7 @@ The corpus comprises 15 datasets totaling 3,176,266 records, acquired in Septemb
 To avoid pooling datasets with incompatible collection mechanisms, we divide the corpus into two functional tiers:
 \begin{itemize}
     \item \textbf{Tier 1: Online Labor Market Postings ($N > 2.7\text{M}$ records):} Comprises the LinkedIn dataset ($1.35\text{M}$ records) \cite{asaniczka2024linkedin}, the USA Job Market dataset (316K records) \cite{batuhanklac2024usa}, and HuggingFace Skill Gap collections (519K records). These corpora contain job advertisements from North America, Europe, and the Asia-Pacific region, providing direct observations of employer skill specifications.
-    \item \textbf{Tier 2: Student Placement and Career Benchmarks ($N \approx 475\text{K}$ records):} Comprises College Student Placement ($N = 10,000$) \cite{sumedh15072024college}, NGESS Graduate Employment ($N = 7,200$) \cite{philipdayo2024ngess}, Global Student Placement ($N = 10,000$) \cite{rakesh6302024global}, Student Career Success ($N = 50,000$) \cite{mobeenfatimah2024career}, and International Graduates ($N = 300,000$) \cite{quackquackrp2024international}. These tabular records provide academic, behavioral, and placement indicators used for statistical testing, collinearity evaluation, and predictive modeling.
+    \item \textbf{Tier 2: Student Placement and Career Benchmarks ($N \approx 421\text{K}$ records):} Comprises College Student Placement ($N = 10,000$) \cite{sumedh15072024college}, NGESS Graduate Employment ($N = 7,200$) \cite{philipdayo2024ngess}, Global Student Placement ($N = 10,000$) \cite{rakesh6302024global}, Student Career Success ($N = 50,000$) \cite{mobeenfatimah2024career}, International Graduates ($N = 300,000$) \cite{quackquackrp2024international}, Field-of-Study vs.\ Occupation ($N = 38,444$) \cite{jahnavipaliwal2024field}, and India Fresher Market ($N = 5,000$) \cite{shambhurajejagadale2024india} ($420{,}644$ records in total). These tabular records provide academic, behavioral, and placement indicators used for statistical testing, collinearity evaluation, and predictive modeling.
 \end{itemize}
 
 \begin{table*}[!htbp]
@@ -308,50 +306,12 @@ To evaluate model behavior under domain shift, we train the standardized logisti
 
 \subsection{RQ1: Labor Market Skill Topography and Trends}
 
-Among the 519,814 skill requirements extracted from the posting corpus, communication and interpersonal competencies appear most frequently (Figure~\ref{fig:top_skills}). Communication is specified in 226,959 postings (43.7\%), followed by Problem Solving (111,649; 21.5\%), Customer Service (111,399; 21.4\%), and Teamwork (91,007; 17.5\%).
+Among the 519,814 skill requirements extracted from the posting corpus, communication and interpersonal competencies appear most frequently (Figure~\ref{fig:top_skills}). The exact token ``communication'' is specified in 148,765 postings (28.6\%), followed by Customer Service (111,342; 21.4\%), Teamwork (91,559; 17.6\%), ``communication skills'' (78,182; 15.0\%), Leadership (74,517; 14.3\%), and Problem Solving (59,713; 11.5\%). Near-duplicate variants (e.g., ``problem solving'' versus ``problemsolving'') are counted as distinct exact tokens at this stage and are reconciled only by the semantic analysis of RQ2.
 
 \begin{figure*}[!htbp]
     \centering
-    \begin{tikzpicture}
-    \begin{axis}[
-        width=0.88\textwidth,
-        height=6cm,
-        xbar,
-        bar width=4pt,
-        xlabel={Number of Job Postings},
-        symbolic y coords={Proj.\ Mgmt.,Training,Collaboration,Nursing,Sales,Leadership,Teamwork,Customer Service,Problem Solving,Communication},
-        ytick=data,
-        y dir=reverse,
-        xmin=0, xmax=250000,
-        xtick={0,50000,100000,150000,200000,250000},
-        x tick label style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
-        nodes near coords,
-        nodes near coords align={horizontal},
-        every node near coord/.append style={font=\tiny, color=black},
-        grid=major,
-        grid style={gray!15},
-        tick label style={font=\footnotesize},
-        label style={font=\footnotesize},
-        axis lines*=left,
-        enlarge y limits=0.06,
-        legend style={at={(0.5,-0.18)}, anchor=north, legend columns=1, font=\footnotesize, draw=none, fill=white, fill opacity=0.85},
-    ]
-    \addplot[fill=blue!50!cyan!60, draw=blue!70!black] coordinates {
-        (32441,Proj.\ Mgmt.)
-        (33311,Training)
-        (34742,Collaboration)
-        (35322,Nursing)
-        (37070,Sales)
-        (74172,Leadership)
-        (91007,Teamwork)
-        (111399,Customer Service)
-        (111649,Problem Solving)
-        (226959,Communication)
-    };
-    \legend{Market Postings}
-    \end{axis}
-    \end{tikzpicture}
-    \caption{Top 10 Most In-Demand Competencies Across Global Postings ($N = 519,814$ postings).}
+    \includegraphics[width=0.86\textwidth]{figures/fig1_top_skills.pdf}
+    \caption{Top 10 Most In-Demand Exact Skill Tokens Across Global Postings ($N = 519{,}814$ postings; counts are postings containing the exact token).}
     \label{fig:top_skills}
 \end{figure*}
 
@@ -368,21 +328,10 @@ When evaluated using Sentence-BERT embeddings (\texttt{all-MiniLM-L6-v2}), seman
 \caption{Sensitivity Analysis: Semantic Vector Threshold ($\tau$) vs. SGI}
 \label{tab:sensitivity}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}cccccc@{}}
-\toprule
-\textbf{Threshold $\tau$} & \textbf{SGI} & \textbf{Coverage Rate} & \textbf{95\% Bootstrap CI} & \textbf{$\Delta$SGI} \\
-\midrule
-$\tau = 0.4$ (Permissive) & 0.2000 & 80.0\% & [0.1200, 0.2800] & $-0.1200$ \\
-$\tau = 0.5$ (Baseline)   & \textbf{0.3200} & \textbf{68.0\%} & \textbf{[0.2300, 0.4100]} & \textbf{0.0000} \\
-$\tau = 0.6$ (Moderate)   & 0.3900 & 61.0\% & [0.3000, 0.4800] & $+0.0700$ \\
-$\tau = 0.7$ (Strict)     & 0.4600 & 54.0\% & [0.3700, 0.5600] & $+0.1400$ \\
-\midrule
-\textit{Lexical Match (Baseline)} & \textit{0.5200} & \textit{48.0\%} & \textit{[0.4200, 0.6200]} & \textit{+0.2000} \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_sensitivity}
 }
 \par\vspace{3pt}
-{\footnotesize Evaluated over Top-100 skill distributions. Bootstrap 95\% CI via 1,000 resamples.}
+{\footnotesize Evaluated over Top-100 skill distributions. Bootstrap 95\% CI via 1,000 resamples (seed 42; experiment ALIGN02). Lexical CI from ALIGN01.}
 \end{table}
 
 Table~\ref{tab:semantic_matches} displays illustrative semantic pairings. Terms such as ``scheduling'' align closely with ``time management'' ($\cos = 0.6122$), whereas credential requirements such as ``bachelor's degree'' show low similarity with specific skill descriptors ($\cos = 0.2937$).
@@ -392,112 +341,33 @@ Table~\ref{tab:semantic_matches} displays illustrative semantic pairings. Terms 
 \caption{Representative Semantic Skill Pairings (\texttt{all-MiniLM-L6-v2})}
 \label{tab:semantic_matches}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}llcc@{}}
-\toprule
-\textbf{Market Term} & \textbf{Closest Syllabus Match} & \textbf{Cosine Sim.} & \textbf{Status ($\tau \ge 0.5$)} \\
-\midrule
-communication skills & interpersonal skills & 0.7355 & Covered \\
-problemsolving & problem-solving & 0.6396 & Covered \\
-scheduling & time management & 0.6122 & Covered \\
-patient care & customer service & 0.5011 & Covered \\
-nursing & training & 0.4010 & Gap \\
-high school diploma & training & 0.3682 & Gap \\
-bachelor's degree & professionalism & 0.2937 & Gap \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_semantic_matches}
 }
 \end{table}
 
 \subsection{RQ3: Domain-Level Skill Gap Quantification}
 
-Aggregating requirements across the eight taxonomy domains indicates that curriculum deficits vary substantially by subject area (Table~\ref{tab:gap} and Figure~\ref{fig:skill_gap}). 
+For each of the eight taxonomy domains we quantify: (i) \textit{market demand}---the share of postings whose skill set requires at least one taxonomy skill of the category; (ii) \textit{coverage rate}---the occurrence-weighted share of those category-skill requirements present in the academic top-500 reference profile, evaluated by exact match and by dense matching at $\tau = 0.5$; and (iii) the resulting \textit{deficit} in percentage points of postings, $\text{deficit} = \text{demand} \times (1 - \text{coverage})$. Confidence intervals come from a 1,000-fold non-parametric bootstrap over postings (seed 42; experiment ALIGN03). Because the posting corpus is dominated by generic and non-technical competencies (Section~\ref{sec:limitations}), absolute taxonomy deficits are small in magnitude; severity is therefore assigned \textit{relative to the cross-category median deficit} (Critical $\ge 2\times$ the median, Moderate $\ge$ median, Mild otherwise).
+
+Table~\ref{tab:gap} and Figure~\ref{fig:skill_gap} summarize the results.
 
 \begin{table}[!htbp]
 \centering
-\caption{Domain-Level Skill Gaps Across Taxonomy Categories}
+\caption{Domain-Level Skill Gaps Across Taxonomy Categories (ALIGN03)}
 \label{tab:gap}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-\textbf{Category} & \textbf{Market Demand} & \textbf{Curriculum Cover.} & \textbf{Deficit (pp)} & \textbf{Severity} \\
-\midrule
-Programming \& Dev. & 83\% & 73\% & 10pp & Moderate \\
-Data Science \& Analytics & 47\% & 29\% & \textbf{18pp} & \textbf{Critical} \\
-Cloud Infrastructure & 39\% & 24\% & \textbf{15pp} & \textbf{Critical} \\
-Soft Skills & 88\% & 78\% & 10pp & Moderate \\
-Business \& Domain & 52\% & 44\% & 8pp & Mild \\
-Design \& UX & 28\% & 21\% & 7pp & Mild \\
-Data Engineering & 36\% & 22\% & 14pp & Critical \\
-Cybersecurity & 31\% & 20\% & 11pp & Moderate \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_gap}
 }
+\par\vspace{3pt}
+{\footnotesize Demand: \% of postings requiring $\ge 1$ category skill. Deficit: pp of postings, 95\% bootstrap CI. Coverage: share of category-skill occurrences in the academic profile (lexical; semantic at $\tau = 0.5$). Severity: relative-to-median rule.}
 \end{table}
 
-The largest percentage-point deficits occur in Data Science \& Analytics (18 percentage points; 47\% market demand versus 29\% curriculum coverage) and Cloud Infrastructure (15 percentage points; 39\% versus 24\%), followed by Data Engineering (14 percentage points; 36\% versus 22\%). In comparison, Programming \& Development (10 percentage points) and Soft Skills (10 percentage points) show higher baseline curriculum coverage.
+Soft Skills dominate market demand (52.3\% of postings require at least one soft skill) and are fully covered by the reference profile (deficit $0.00$ pp). Among technical categories, Cloud \& Infrastructure exhibits the largest deficit (2.45 pp, 95\% CI [2.42, 2.49]; the only Critical classification): only 44.1\% of its skill requirements appear in the academic profile lexically, though dense semantic matching recovers coverage to 78.7\% and reduces the deficit to 0.94 pp. Programming \& Development shows the second-largest lexical deficit (1.69 pp; 57.5\% coverage), followed by Data Science \& Analytics (1.20 pp despite 85.1\% lexical coverage) and Business \& Domain (1.16 pp). Semantic alignment reduces the residual gap in every category with a nonzero deficit---by 74\% in Cybersecurity, 62\% in Cloud, 56\% in Data Science, and 41\% in Data Engineering---and eliminates the Business \& Domain deficit entirely, confirming that vocabulary divergence accounts for a substantial share of the raw lexical gap. Design \& UX and Cybersecurity have zero lexical coverage but occur in under 1.1\% of postings each, limiting their aggregate impact to below 0.7 pp.
 
 \begin{figure*}[!htbp]
     \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}
-        \begin{axis}[
-            width=\textwidth,
-            height=5.5cm,
-            ybar=3pt,
-            bar width=14pt,
-            ylabel={Coverage (\%)},
-            symbolic x coords={Prog.,DataSci,Cloud,SoftSk,Business},
-            xtick=data,
-            ymin=0, ymax=105,
-            ytick={0,20,40,60,80,100},
-            legend style={at={(0.5,-0.22)}, anchor=north, legend columns=2, font=\footnotesize, draw=none, fill=white, fill opacity=0.85},
-            grid=major,
-            grid style={gray!15},
-            tick label style={font=\footnotesize},
-            label style={font=\footnotesize},
-            axis lines*=left,
-            enlarge x limits=0.2,
-        ]
-        \addplot[fill=blue!50!cyan!60, draw=blue!70!black, nodes near coords, nodes near coords align={vertical}, every node near coord/.style={font=\tiny, color=blue!70!black, xshift=-8pt}] coordinates {(Prog.,83) (DataSci,47) (Cloud,39) (SoftSk,88) (Business,52)};
-        \addplot[fill=red!50, draw=red!70!black, nodes near coords, nodes near coords align={vertical}, every node near coord/.style={font=\tiny, color=red!70!black, xshift=8pt}] coordinates {(Prog.,73) (DataSci,29) (Cloud,24) (SoftSk,78) (Business,44)};
-        \legend{Market Demand,Academic Coverage}
-        \end{axis}
-        \end{tikzpicture}
-        \caption{Coverage by skill category}
-        \label{fig:skill_gap_a}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}
-        \begin{axis}[
-            width=\textwidth,
-            height=5.5cm,
-            ybar=3pt,
-            bar width=14pt,
-            ylabel={Deficit (pp)},
-            symbolic x coords={Prog.,DataSci,Cloud,SoftSk,Business},
-            xtick=data,
-            ymin=0, ymax=22,
-            ytick={0,5,10,15,20},
-            nodes near coords,
-            nodes near coords align={vertical},
-            every node near coord/.style={font=\tiny, color=black},
-            grid=major,
-            grid style={gray!15},
-            tick label style={font=\footnotesize},
-            label style={font=\footnotesize},
-            axis lines*=left,
-            enlarge x limits=0.2,
-        ]
-        \addplot[fill=red!40!orange!60, draw=red!60!black] coordinates {(Prog.,10) (DataSci,18) (Cloud,15) (SoftSk,10) (Business,8)};
-        \end{axis}
-        \end{tikzpicture}
-        \caption{Deficit magnitude (percentage points)}
-        \label{fig:skill_gap_b}
-    \end{subfigure}
-    \caption{Skill gap analysis across core disciplines: (a) market demand versus syllabus coverage; (b) deficit magnitude, identifying Data Science (18pp) and Cloud (15pp) as primary structural voids.}
+    \includegraphics[width=0.94\textwidth]{figures/fig2_skill_gap.pdf}
+    \caption{Skill gap analysis across taxonomy categories: (a) market demand versus curriculum coverage (lexical and dense semantic at $\tau = 0.5$); (b) deficit magnitude in percentage points of postings with 95\% bootstrap confidence intervals. Cloud Infrastructure is the only Critical deficit under the relative-to-median severity rule.}
     \label{fig:skill_gap}
 \end{figure*}
 
@@ -511,87 +381,28 @@ In the College Placement cohort ($N = 10,000$; 1,659 placed, 8,341 not placed, b
 \caption{Descriptive Statistics: Placed vs. Non-Placed Cohort ($N = 10,000$)}
 \label{tab:descriptive}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lccccc@{}}
-\toprule
-\textbf{Variable} & \textbf{Placed ($n=1659$)} & \textbf{Not Placed ($n=8341$)} & \textbf{$t$-stat} & \textbf{$p$-value} & \textbf{Cohen's $d$} \\
-\midrule
-CGPA & $8.59 \pm 1.15$ & $7.32 \pm 1.44$ & 39.37 & $<0.001$ & 0.913 \\
-Comm. Skills & $7.66 \pm 2.59$ & $5.14 \pm 2.78$ & 35.79 & $<0.001$ & 0.918 \\
-IQ Score & $109.12 \pm 15.21$ & $97.55 \pm 14.26$ & 28.58 & $<0.001$ & 0.802 \\
-Projects & $3.35 \pm 1.28$ & $2.35 \pm 1.74$ & 27.21 & $<0.001$ & 0.599 \\
-Acad. Perf. & $5.45 \pm 2.90$ & $5.57 \pm 2.87$ & $-1.48$ & 0.1386 & $-0.040$ \\
-Extra-Curr. & $4.94 \pm 3.19$ & $4.98 \pm 3.15$ & $-0.47$ & 0.6383 & $-0.013$ \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_descriptive}
 }
 \end{table}
+
+Bivariate chi-square tests confirm that placement is strongly associated with project completion ($\chi^2(2) = 719.82$, $p < 0.001$, $V = 0.268$) but not with internship experience in this cohort ($\chi^2(1) = 0.31$, $p = 0.578$, $V = 0.006$).
 
 \begin{figure*}[!htbp]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \begin{tikzpicture}
-        \begin{axis}[
-            width=\textwidth,
-            height=5.5cm,
-            ybar=3pt,
-            bar width=18pt,
-            ylabel={Mean Score},
-            symbolic x coords={CGPA,Comm.},
-            xtick=data,
-            ymin=0, ymax=10,
-            ytick={0,2,4,6,8,10},
-            legend style={at={(0.5,-0.22)}, anchor=north, legend columns=2, font=\footnotesize, draw=none, fill=white, fill opacity=0.85},
-            nodes near coords,
-            every node near coord/.append style={font=\footnotesize, color=black},
-            grid=major,
-            grid style={gray!15},
-            tick label style={font=\footnotesize},
-            label style={font=\footnotesize},
-            axis lines*=left,
-            enlarge x limits=0.3,
-        ]
-        \addplot[fill=blue!50!cyan!60, draw=blue!70!black] coordinates {(CGPA,8.59) (Comm.,7.66)};
-        \addplot[fill=red!50, draw=red!70!black] coordinates {(CGPA,7.32) (Comm.,5.14)};
-        \legend{Placed,Not Placed}
-        \end{axis}
-        \end{tikzpicture}
-        \caption{CGPA \& Communication Skills}
+        \includegraphics[width=\textwidth]{figures/fig4a_placement_effect_sizes.pdf}
+        \caption{Standardized effect sizes (Cohen's $d$)}
         \label{fig:placement_a}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \begin{tikzpicture}
-        \begin{axis}[
-            width=\textwidth,
-            height=5.5cm,
-            ybar=3pt,
-            bar width=18pt,
-            ylabel={Mean Score},
-            symbolic x coords={Projects,IQ},
-            xtick=data,
-            ymin=0, ymax=120,
-            ytick={0,20,40,60,80,100,120},
-            legend style={at={(0.5,-0.22)}, anchor=north, legend columns=2, font=\footnotesize, draw=none, fill=white, fill opacity=0.85},
-            nodes near coords,
-            every node near coord/.append style={font=\footnotesize, color=black},
-            grid=major,
-            grid style={gray!15},
-            tick label style={font=\footnotesize},
-            label style={font=\footnotesize},
-            axis lines*=left,
-            enlarge x limits=0.3,
-        ]
-        \addplot[fill=blue!50!cyan!60, draw=blue!70!black] coordinates {(Projects,3.35) (IQ,109)};
-        \addplot[fill=red!50, draw=red!70!black] coordinates {(Projects,2.35) (IQ,97.6)};
-        \legend{Placed,Not Placed}
-        \end{axis}
-        \end{tikzpicture}
-        \caption{Projects Completed \& IQ Score}
+        \includegraphics[width=\textwidth]{figures/fig4b_placement_means.pdf}
+        \caption{Group means for key predictors}
         \label{fig:placement_b}
     \end{subfigure}
-    \caption{Key predictors for placed versus non-placed graduates ($N = 10,000$). All differences statistically significant at $p < 0.001$.}
+    \caption{Key predictors for placed versus non-placed graduates ($N = 10{,}000$). (a) Cohen's $d$ for all seven audited variables; Academic Performance and Extra-Curricular Score are negligible. (b) Group means (all differences in (b) significant at $p < 0.001$, Welch $t$-tests).}
     \label{fig:placement}
 \end{figure*}
 
@@ -603,170 +414,79 @@ Variance Inflation Factors computed for the continuous predictors are summarized
 \caption{Variance Inflation Factor (VIF) Multicollinearity Audit}
 \label{tab:vif}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lccc@{}}
-\toprule
-\textbf{Feature Name} & \textbf{VIF} & \textbf{Tolerance ($1/\text{VIF}$)} & \textbf{Collinearity Status} \\
-\midrule
-CGPA & 1.001 & 0.999 & Acceptable ($< 5.0$) \\
-Communication Skills & 1.001 & 0.999 & Acceptable ($< 5.0$) \\
-Projects Completed & 1.001 & 0.999 & Acceptable ($< 5.0$) \\
-Internship Experience & 1.001 & 0.999 & Acceptable ($< 5.0$) \\
-IQ Score & 1.000 & 1.000 & Acceptable ($< 5.0$) \\
-Academic Performance & 1.001 & 0.999 & Acceptable ($< 5.0$) \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_vif}
 }
 \end{table}
 
 \subsubsection{Standardized Logistic Regression}
-Standardized logistic regression estimates are reported in Table~\ref{tab:logistic}. A one-standard-deviation increase in Communication Skills is associated with an odds ratio of 6.47 (95\% CI: [5.62, 7.45], $p < 0.001$). CGPA ($\text{OR} = 6.20$, 95\% CI: [5.31, 7.24], $p < 0.001$), IQ score ($\text{OR} = 5.10$, 95\% CI: [4.41, 5.90], $p < 0.001$), and completed projects ($\text{OR} = 3.18$, 95\% CI: [2.79, 3.63], $p < 0.001$) are also positively associated with placement.
+Standardized logistic regression estimates (maximum likelihood with intercept, Wald inference) are reported in Table~\ref{tab:logistic}. A one-standard-deviation increase in Communication Skills is associated with an odds ratio of 6.55 (95\% CI: [5.86, 7.31], $p < 0.001$). CGPA ($\text{OR} = 6.28$, 95\% CI: [5.62, 7.01], $p < 0.001$), IQ score ($\text{OR} = 5.16$, 95\% CI: [4.65, 5.72], $p < 0.001$), and completed projects ($\text{OR} = 3.20$, 95\% CI: [2.92, 3.51], $p < 0.001$) are also positively associated with placement. In contrast to the bivariate internship comparison in the international cohort (Section~\ref{sec:results}-E), neither Internship Experience ($\text{OR} = 1.02$, $p = 0.620$) nor generalized Academic Performance ($\text{OR} = 0.98$, $p = 0.588$) contributes independent signal once the remaining predictors are controlled.
 
 \begin{table}[!htbp]
 \centering
-\caption{Standardized Logistic Regression Placement Model}
+\caption{Standardized Logistic Regression Placement Model (STAT01; statsmodels MLE with intercept)}
 \label{tab:logistic}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-\textbf{Predictor Feature} & \textbf{Coef ($\beta$)} & \textbf{Odds Ratio (OR)} & \textbf{95\% CI} & \textbf{$p$-value} \\
-\midrule
-Communication Skills & 1.8672 & 6.4705 & [5.62, 7.45] & $<0.001$ \\
-CGPA & 1.8253 & 6.2045 & [5.31, 7.24] & $<0.001$ \\
-IQ Score & 1.6300 & 5.1040 & [4.41, 5.90] & $<0.001$ \\
-Projects Completed & 1.1573 & 3.1813 & [2.79, 3.63] & $<0.001$ \\
-Internship Experience & 0.0190 & 1.0192 & [1.00, 1.04] & 0.0382 \\
-Academic Performance & $-0.0208$ & 0.9795 & [0.96, 1.00] & 0.0410 \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_logistic}
 }
 \end{table}
 
 \subsubsection{5-Fold Cross-Validation Model Comparison}
-Table~\ref{tab:model_comparison} documents 5-fold stratified cross-validation performance across five classifier paradigms. 
+Table~\ref{tab:model_comparison} documents 5-fold stratified cross-validation performance across five classifier paradigms (mean $\pm$ SD across the five folds, seed 42).
 
 \begin{table}[!htbp]
 \centering
-\caption{Stratified 5-Fold Cross-Validation Performance Benchmarks}
+\caption{Stratified 5-Fold Cross-Validation Performance Benchmarks (seed 42)}
 \label{tab:model_comparison}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-\textbf{Model Architecture} & \textbf{Accuracy (Mean$\pm$SD)} & \textbf{$F_1$-Score} & \textbf{ROC-AUC} \\
-\midrule
-Logistic Regression & $90.11\% \pm 0.66\%$ & $0.8966 \pm 0.007$ & $0.9406 \pm 0.007$ \\
-Random Forest & $99.99\% \pm 0.02\%$ & $0.9999 \pm 0.000$ & $1.0000 \pm 0.000$ \\
-SVM (RBF Kernel) & $95.72\% \pm 0.50\%$ & $0.9565 \pm 0.005$ & $0.9894 \pm 0.002$ \\
-Decision Tree (CART) & $99.97\% \pm 0.06\%$ & $0.9997 \pm 0.001$ & $0.9998 \pm 0.000$ \\
-Baseline (Majority) & $83.41\% \pm 0.02\%$ & $0.7587 \pm 0.000$ & $0.5000 \pm 0.000$ \\
-\bottomrule
-\end{tabular}%
+\input{tables/tab_model_comparison}
+}
+\end{table}
+
+Results are stable across random seeds: repeating the full 5-fold protocol over 10 seeds (50 fold evaluations per model; Table~\ref{tab:multiseed}) yields a mean accuracy of $90.12\% \pm 0.04\%$ for logistic regression and $95.76\% \pm 0.07\%$ for the SVM, with tree ensembles remaining at $\ge 99.99\%$.
+
+\begin{table}[!htbp]
+\centering
+\caption{Multi-Seed Robustness: 10 Seeds $\times$ 5 Folds (STAT01)}
+\label{tab:multiseed}
+\resizebox{\columnwidth}{!}{%
+\input{tables/tab_multiseed}
 }
 \end{table}
 
 \subsubsection{Diagnostic Audit of Tree Ensembles \& External Generalization}
 The near-perfect classification performance of Random Forest ($99.99\%$) and Decision Tree ($99.97\%$) models prompted an inspection of the underlying data-generating process. Fitting a depth-4 CART tree to the placement cohort yielded 100\% training accuracy, indicating that placement labels in this benchmark were generated via a deterministic $k$-of-$n$ threshold rule: individuals are labeled as placed when meeting at least three of four conditions ($\text{CGPA} > 8.01$, $\text{IQ} > 110.5$, $\text{Communication} > 7.50$, $\text{Projects} \ge 2$), accounting for $99.92\%$ of label assignments. Because orthogonal recursive partitioning aligns directly with this axis-parallel step function, tree ensembles reproduce the rule with minimal error. Logistic regression estimates a linear decision surface across these features, yielding $90.11\%$ cross-validated accuracy and an ROC-AUC of 0.9406.
 
-To evaluate performance on an independent sample, the logistic regression model was tested on the Student Career Success dataset ($N = 50,000$) using standardized values for CGPA, communication, and project count. On this external cohort, discriminative performance decreased to $\text{ROC-AUC} = 0.7686$ (and $\text{ROC-AUC} = 0.6764$ on the Global Placement dataset). This reduction reflects domain shift and differences in baseline placement rates ($16.59\%$ versus $78.08\%$), showing that the near-perfect in-distribution tree metrics reflect benchmark-specific rules rather than generalizable real-world predictability.
+To evaluate performance on an independent sample, the logistic regression model was tested on the Student Career Success dataset ($N = 50,000$) using standardized values for CGPA, communication, and project count. On this external cohort, discriminative performance decreased to $\text{ROC-AUC} = 0.768$ (accuracy $= 29.9\%$, $F_1 = 0.235$ at the shifted base rate of $78.08\%$), and to $\text{ROC-AUC} = 0.576$ on the Global Placement dataset ($N = 10{,}000$, subset-B features). The in-sample reference fits on the target cohorts reach only $0.782$ and $0.714$, respectively. This reduction reflects domain shift and differences in baseline placement rates ($16.59\%$ versus $78.08\%$), showing that the near-perfect in-distribution tree metrics reflect benchmark-specific rules rather than generalizable real-world predictability.
 
 \subsection{RQ5: Geographic Concentration \& Cross-Cohort Placement Dynamics}
 
-Regional parsing of 1.35M LinkedIn records (Figure~\ref{fig:geographic}a) reveals that the posting corpus is predominantly concentrated in the United States (86.8\%), followed by the United Kingdom (7.1\%), Canada (4.2\%), and Australia (1.9\%). 
+Regional parsing of 1.35M LinkedIn records (Figure~\ref{fig:geographic}a) reveals that the posting corpus is predominantly concentrated in the United States (85.2\%), followed by the United Kingdom (8.4\%), Canada (4.2\%), and Australia (2.2\%). 
 
 \begin{figure*}[!htbp]
     \centering
     \begin{subfigure}[t]{0.42\textwidth}
         \centering
-        \begin{tikzpicture}
-        \begin{axis}[
-            width=\textwidth,
-            height=5.5cm,
-            ybar=3pt,
-            bar width=16pt,
-            ylabel={Share of Postings (\%)},
-            symbolic x coords={Australia,Canada,UK,USA},
-            xtick=data,
-            ymin=0, ymax=100,
-            ytick={0,20,40,60,80,100},
-            nodes near coords,
-            every node near coord/.append style={font=\footnotesize, color=black},
-            grid=major,
-            grid style={gray!15},
-            tick label style={font=\footnotesize},
-            label style={font=\footnotesize},
-            axis lines*=left,
-            enlarge x limits=0.25,
-        ]
-        \addplot[fill=blue!50!cyan!60, draw=blue!70!black] coordinates {(Australia,1.9) (Canada,4.2) (UK,7.1) (USA,86.8)};
-        \end{axis}
-        \end{tikzpicture}
+        \includegraphics[width=\textwidth]{figures/fig3a_geo_shares.pdf}
         \caption{Geographic distribution (LinkedIn)}
         \label{fig:geo_a}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.55\textwidth}
         \centering
-        \begin{tikzpicture}
-        \begin{axis}[
-            width=\textwidth,
-            height=5.5cm,
-            xlabel={Year},
-            ylabel={Posting Frequency},
-            xmin=2019.5, xmax=2026.5,
-            ymin=650, ymax=850,
-            xtick={2020,2021,2022,2023,2024,2025,2026},
-            x tick label style={font=\footnotesize},
-            legend style={at={(0.5,-0.28)}, anchor=north, legend columns=4, font=\tiny, draw=none, fill=white, fill opacity=0.85},
-            grid=major,
-            grid style={gray!15},
-            tick label style={font=\footnotesize},
-            label style={font=\footnotesize},
-        ]
-        \addplot[color=blue!70!cyan, mark=square*, mark size=2pt, thick] coordinates {(2020,697) (2021,735) (2022,711) (2023,759) (2024,733) (2025,757) (2026,709)};
-        \addplot[color=red!70, mark=triangle*, mark size=2pt, thick] coordinates {(2020,762) (2021,747) (2022,768) (2023,724) (2024,757) (2025,739) (2026,707)};
-        \addplot[color=green!50!black, mark=diamond*, mark size=2pt, thick] coordinates {(2020,717) (2021,755) (2022,743) (2023,778) (2024,766) (2025,774) (2026,721)};
-        \addplot[color=orange!80!red, mark=o, mark size=2pt, thick] coordinates {(2020,764) (2021,797) (2022,703) (2023,747) (2024,762) (2025,757) (2026,761)};
-        \legend{Python,SQL,ML,Cloud}
-        \end{axis}
-        \end{tikzpicture}
+        \includegraphics[width=\textwidth]{figures/fig3b_ai_trends.pdf}
         \caption{AI skill demand trajectories (2020--2026)}
         \label{fig:geo_b}
     \end{subfigure}
-    \caption{(a) Geographic concentration of 1.35M job postings. (b) Longitudinal AI technical skill stability over 2020--2026.}
+    \caption{(a) Geographic concentration of 1.35M job postings (GEO01). (b) Longitudinal share of AI/data-science postings requiring core technologies, 2020--2026 (TRENDS01; $N = 10{,}345$).}
     \label{fig:geographic}
 \end{figure*}
 
-In the cohort of 300,000 international graduates (Figure~\ref{fig:international}), graduates with internship experience had an employment rate of 57.6\%, compared with 42.3\% for those without internships, a difference of 15.3 percentage points. Across the multi-national placement benchmark ($N = 10,000$), placement rates were similar across countries (Canada 61.5\%, Germany 60.0\%, India 63.2\%, UK 60.8\%, USA 62.2\%), showing consistent baseline placement patterns across the recorded regions.
+In the cohort of 300,000 international graduates (Figure~\ref{fig:international}), graduates with internship experience had an employment rate of 57.60\%, compared with 42.26\% for those without internships, a difference of 15.34 percentage points (95\% bootstrap CI: [14.99, 15.73], Cohen's $h = 0.31$). Across the multi-national placement benchmark ($N = 10,000$), placement rates were similar across countries (Canada 61.5\%, Germany 60.0\%, India 63.2\%, UK 60.8\%, USA 62.2\%), showing consistent baseline placement patterns across the recorded regions.
 
 \begin{figure}[!htbp]
     \centering
-    \begin{tikzpicture}
-    \begin{axis}[
-        width=\columnwidth,
-        height=4.5cm,
-        ybar=3pt,
-        bar width=12pt,
-        ylabel={Employment Rate (\%)},
-        symbolic x coords={With Internship,Without Internship},
-        xtick=data,
-        x tick label style={font=\footnotesize, align=center},
-        ymin=0, ymax=70,
-        ytick={0,10,20,30,40,50,60,70},
-        legend style={at={(0.5,-0.22)}, anchor=north, legend columns=2, font=\footnotesize, draw=none, fill=white, fill opacity=0.85},
-        nodes near coords,
-        every node near coord/.append style={font=\footnotesize, color=black},
-        grid=major,
-        grid style={gray!15},
-        tick label style={font=\footnotesize},
-        label style={font=\footnotesize},
-        axis lines*=left,
-        enlarge x limits=0.25,
-    ]
-    \addplot[fill=blue!50!cyan!60, draw=blue!70!black] coordinates {(With Internship,57.6) (Without Internship,42.3)};
-    \addplot[fill=red!50, draw=red!70!black] coordinates {(With Internship,42.4) (Without Internship,57.7)};
-    \legend{Employed,Unemployed}
-    \end{axis}
-    \end{tikzpicture}
-    \caption{Impact of practical internship experience on international graduate employment ($N = 300,000$).}
+    \includegraphics[width=0.72\columnwidth]{figures/fig5_internship.pdf}
+    \caption{Impact of practical internship experience on international graduate employment ($N = 300{,}000$; INTL01).}
     \label{fig:international}
 \end{figure}
 
@@ -780,11 +500,11 @@ In the cohort of 300,000 international graduates (Figure~\ref{fig:international}
 
 \textbf{1) Terminology Divergence and Semantic Alignment:} Studies evaluating curriculum alignment through exact keyword matching often report misalignment rates exceeding 50\% \cite{baral2026analyzing}. Our findings qualify this observation. While exact string matching yields an apparent gap of 52.0\%, dense vector embeddings reduce the estimated deficit to 32.0\% at $\tau = 0.5$ (95\% CI: [23.0\%, 41.0\%]). This divergence indicates that a portion of the measured gap arises from vocabulary differences: academic syllabi often describe learning outcomes using conceptual terms (e.g., interpersonal communication or database principles), whereas job postings emphasize specific tool names or operational tasks.
 
-\textbf{2) Complementary Signals in Graduate Placement:} The statistical associations observed for Communication Skills ($\text{OR} = 6.47$), CGPA ($\text{OR} = 6.20$), and Project Experience ($\text{OR} = 3.18$) illustrate how general and applied competencies interact in hiring outcomes. In terms of Signaling Theory \cite{spence1973job}, CGPA provides an initial screening signal of academic ability. However, completed projects provide concrete evidence of applied capability, reducing hiring uncertainty regarding technical execution. Communication proficiency represents a shared requirement across collaborative technical roles.
+\textbf{2) Complementary Signals in Graduate Placement:} The statistical associations observed for Communication Skills ($\text{OR} = 6.55$), CGPA ($\text{OR} = 6.28$), and Project Experience ($\text{OR} = 3.20$) illustrate how general and applied competencies interact in hiring outcomes. In terms of Signaling Theory \cite{spence1973job}, CGPA provides an initial screening signal of academic ability. However, completed projects provide concrete evidence of applied capability, reducing hiring uncertainty regarding technical execution. Communication proficiency represents a shared requirement across collaborative technical roles.
 
 \subsection{Institutional Factors in Curriculum Adaptation}
 
-The persistent 32.0\% semantic deficit, particularly in Data Science (18 percentage points) and Cloud Infrastructure (15 percentage points), reflects institutional constraints in curriculum adaptation \cite{biggs1996enhancing}:
+The persistent 32.0\% semantic deficit, and the domain-level deficits concentrated in Cloud Infrastructure (2.45 pp lexical; 0.94 pp semantic) and Programming \& Development (1.69 pp lexical), reflect institutional constraints in curriculum adaptation \cite{biggs1996enhancing}:
 \begin{enumerate}
     \item \textbf{Curriculum Governance and Accreditation:} Formal degree reviews and accreditation bodies operate on multi-year cycles (typically 3 to 6 years). Modifying course requirements or introducing new technical electives requires administrative and faculty committee approvals that lag industry tool adoption.
     \item \textbf{Faculty Development Latency:} Teaching rapidly evolving frameworks (e.g., container orchestration, distributed cloud platforms, specific ML toolchains) requires ongoing technical training, which institutional development budgets rarely prioritize over core research obligations.
@@ -797,9 +517,9 @@ We organize recommendations for higher education, recruitment, and accreditation
 
 \textbf{For Higher Education Institutions (HEIs):}
 \begin{itemize}
-    \item \textit{Integration of Modular Technical Credentials:} With deficits of 15 percentage points in Cloud Infrastructure and 18 percentage points in Data Science, full degree restructuring may be too slow to keep pace with industry toolchains. HEIs can address this by embedding modular, vendor-neutral technical modules (e.g., containerization fundamentals, cloud storage basics) directly into existing operating systems and database courses.
-    \item \textit{Applied Project Work and Portfolio Development:} Because completed projects are strongly associated with placement odds ($\text{OR} = 3.18$, $p < 0.001$), curricula should prioritize multi-term capstone projects that require version control, system deployment, and written documentation, giving students verifiable evidence of practical technical ability.
-    \item \textit{Embedding Communication Skills into Technical Coursework:} Communication skills demonstrated the strongest association with placement ($\text{OR} = 6.47$, $p < 0.001$), alongside a 10 percentage-point curriculum deficit. Rather than relegating communication instruction to standalone electives, departments should integrate oral presentations, collaborative design reviews, and peer code reviews directly into core computing courses.
+    \item \textit{Integration of Modular Technical Credentials:} Cloud Infrastructure has the lowest curriculum coverage of any category (44.1\% lexical; 78.7\% under semantic matching) and is the only Critical deficit, while Programming \& Development retains a 1.69 pp deficit. Full degree restructuring may be too slow to keep pace with industry toolchains; HEIs can address this by embedding modular, vendor-neutral technical modules (e.g., containerization fundamentals, cloud storage basics) directly into existing operating systems and database courses.
+    \item \textit{Applied Project Work and Portfolio Development:} Because completed projects are strongly associated with placement odds ($\text{OR} = 3.20$, $p < 0.001$), curricula should prioritize multi-term capstone projects that require version control, system deployment, and written documentation, giving students verifiable evidence of practical technical ability.
+    \item \textit{Embedding Communication Skills into Technical Coursework:} Communication skills demonstrated the strongest association with placement ($\text{OR} = 6.55$, $p < 0.001$); at the same time, the academic reference profile already covers soft-skill requirements in full (deficit $0.00$ pp). The priority is therefore not new content but assessment: rather than relegating communication instruction to standalone electives, departments should integrate oral presentations, collaborative design reviews, and peer code reviews directly into core computing courses.
 \end{itemize}
 
 \textbf{For Industry Recruiters:}
@@ -811,13 +531,26 @@ We organize recommendations for higher education, recruitment, and accreditation
 \textbf{For Accreditation Bodies and Policymakers:}
 \begin{itemize}
     \item \textit{Adaptive Curriculum Guidelines:} Longitudinal tracking indicates that while foundational requirements (Python, SQL) remain stable, specialized frameworks diversify quickly. Accreditation bodies and professional societies (ACM, IEEE-CS) should issue regular modular addenda to curriculum guidelines to facilitate elective updates.
-    \item \textit{Regional Labor-Market Observatories:} Given the concentration of postings (86.8\% US) and regional variation in placement rates, educational authorities should maintain regional labor-market tracking to help institutions align elective offerings with local economic demand.
+    \item \textit{Regional Labor-Market Observatories:} Given the concentration of postings (85.2\% US) and regional variation in placement rates, educational authorities should maintain regional labor-market tracking to help institutions align elective offerings with local economic demand.
 \end{itemize}
 
 \subsection{Reproducibility and Data Availability}
 \label{sec:reproducibility}
 
-Code, preprocessing routines, and derived matrices are provided in the project repository for replication. The empirical analyses were implemented in Python 3.14 / 3.12 utilizing \texttt{scikit-learn} (v1.2+), \texttt{sentence-transformers} (v2.2+, \texttt{all-MiniLM-L6-v2}), \texttt{scipy} (v1.10+), and \texttt{pandas} (v2.0+). Stratified cross-validation splits and bootstrap resamplings were executed under fixed pseudorandom seeds ($\text{seed} = 42$). All 15 underlying datasets are publicly accessible via Kaggle and HuggingFace under open-access licenses (CC0, CC-BY 4.0, and ODbL), with specific source repositories cataloged in Table~\ref{tab:datasets} and \texttt{DATASET\_MANIFEST.csv}.
+Every quantitative result reported in this article originates from one of nine registered experiments executed on NVIDIA GPU instances through Kaggle Notebooks; no table or figure is hand-transcribed. Table~\ref{tab:experiments} lists the experiment identifiers, kernel references, and verification status.
+
+\begin{table*}[!htbp]
+\centering
+\caption{Experiment Registry: Provenance of All Reported Results (status per \texttt{results/registry.json})}
+\label{tab:experiments}
+\resizebox{\textwidth}{!}{%
+\input{tables/tab_experiments}
+}
+\par\vspace{3pt}
+{\footnotesize Each kernel receives an immutable input bundle from the public Kaggle dataset \texttt{studyhub991/skill-gap-inputs-v1} and writes \texttt{metrics.json} plus CSV artifacts; outputs are downloaded, schema- and sanity-verified (\texttt{experiments/verify.py}), and only \texttt{VERIFIED} outputs are used in this manuscript. Table and figure generation is automated by \texttt{experiments/make\_latex.py} from those verified artifacts.}
+\end{table*}
+
+The analyses were implemented in Python 3.14.6 with \texttt{scikit-learn} 1.9.0, \texttt{statsmodels} 0.15.0, \texttt{sentence-transformers} 6.0.1 (\texttt{all-MiniLM-L6-v2}), \texttt{scipy} 1.18.1, \texttt{pandas} 3.0.5, and \texttt{numpy}; stratified cross-validation splits, bootstrap resamplings, and all estimators use fixed seeds ($\text{seed} = 42$; multi-seed robustness uses seeds 0--9). Complete experiment outputs are archived in the HuggingFace dataset \texttt{MoshinAli/skill-gap-experiments}, the runnable experiment suite and scheduler live in the project repository (\texttt{experiments/}), and all 15 source datasets are publicly accessible under open-access licenses (CC0, CC-BY 4.0, ODbL; Table~\ref{tab:datasets} and \texttt{DATASET\_MANIFEST.csv}).
 
 \subsection{Threats to Validity and Limitations}
 \label{sec:limitations}
@@ -825,11 +558,13 @@ Code, preprocessing routines, and derived matrices are provided in the project r
 Several methodological constraints should be considered when interpreting these findings:
 \begin{enumerate}
     \item \textbf{Data Provenance \& Benchmark Artifacts:} While Tier 1 datasets (LinkedIn, HuggingFace) comprise 2.7M+ real web-mined records, Tier 2 student placement datasets (e.g., College Placement, Global Placement) derive from public benchmark repositories that exhibit semi-deterministic decision boundaries. As diagnosed in Section~\ref{sec:results}-D5, near-100\% tree ensemble accuracies reflect combinatorial threshold functions embedded in the benchmark rather than real-world predictability.
-    \item \textbf{Domain Shift \& External Generalizability:} When evaluated across distinct institutional benchmarks, predictive discrimination attenuates from $\text{ROC-AUC} = 0.9406$ to $\text{ROC-AUC} = 0.7686$, illustrating that model calibrations do not directly transfer across disparate grading systems and local employment base rates.
+    \item \textbf{Domain Shift \& External Generalizability:} When evaluated across distinct institutional benchmarks, predictive discrimination attenuates from $\text{ROC-AUC} = 0.9406$ to $\text{ROC-AUC} = 0.768$ (and $0.576$ on the Global Placement cohort), illustrating that model calibrations do not directly transfer across disparate grading systems and local employment base rates.
     \item \textbf{Curriculum Proxy Limitations:} Academic skill demands were proxied through normalized occupational and educational reference profiles rather than direct, institutionally mined university syllabi across diverse global departments.
     \item \textbf{Lack of Human Gold-Standard Validation:} Skill extraction relied on automated taxonomy mapping, regularized token scanning, and Sentence-BERT vector matching without human inter-annotator agreement metrics (e.g., Cohen's $\kappa$). Future work should incorporate expert faculty annotations.
     \item \textbf{Embedding Model and Threshold Sensitivity:} While Sentence-BERT mitigates surface vocabulary divergence, estimated alignment remains sensitive to cosine similarity cutoff selection ($\text{SGI} = 20.0\%$ at $\tau = 0.4$ versus $46.0\%$ at $\tau = 0.7$).
-    \item \textbf{Geographic Concentration:} 86.8\% of the LinkedIn posting corpus originates from the United States, skewing technical demand profiles toward Western, mature tech economies.
+    \item \textbf{Geographic Concentration:} 85.2\% of the LinkedIn posting corpus originates from the United States, skewing technical demand profiles toward Western, mature tech economies.
+    \item \textbf{Corpus Composition \& Conditional Demand:} The 519K-posting skills corpus is dominated by generic, healthcare, and retail competencies (e.g., BLS/acls credentials and nursing appear among the Top-100 market tokens). Consequently, taxonomy-technical demand shares are modest (e.g., 3.97\% of postings require at least one Programming skill), and the RQ3 deficits should be read as \textit{coverage} gaps conditional on demand rather than as economy-wide demand shares; alternative CS-focused corpora may yield larger absolute demand but would not be comparable to the SGI measurements.
+    \item \textbf{Automated Severity Calibration:} Because absolute domain deficits are small, the Critical/Moderate/Mild labels use a relative-to-median rule rather than externally anchored thresholds; different anchors would reassign labels, though the ranking of categories is invariant.
     \item \textbf{Measurement Error in Behavioral Scores:} In placement benchmarks, communication scores are frequently reviewer-graded or self-reported, potentially inflating their predictive odds ratios through measurement bias.
     \item \textbf{Observational Non-Causal Design:} Our econometric models establish associative rather than causal relationships; students with high project completion may possess latent motivation or unmeasured self-efficacy that drives hiring outcomes.
 \end{enumerate}
@@ -840,7 +575,7 @@ Several methodological constraints should be considered when interpreting these 
 \section{Conclusion}
 \label{sec:conclusion}
 
-Across 15 datasets spanning 2020 through 2026, this empirical investigation demonstrates that curriculum--market misalignment is twofold. A substantial share of the apparent deficit reflects vocabulary divergence between academic descriptors and recruitment postings, while substantive gaps remain concentrated in rapidly evolving technical areas, specifically Data Science and Cloud Infrastructure. Methodologically, the analysis cautions against relying on in-distribution benchmark evaluations alone: near-perfect classification scores can mask synthetic threshold rules that degrade under domain shift on external cohorts. In practical terms, addressing this divide does not necessitate wholesale curriculum redesign. Integrating modular credentials into established courses, requiring verifiable applied project portfolios, and adopting semantic matching in hiring workflows offer feasible steps toward aligning academic preparation with contemporary workforce demands.
+Across 15 datasets spanning 2020 through 2026, this empirical investigation demonstrates that curriculum--market misalignment is twofold. A substantial share of the apparent deficit reflects vocabulary divergence between academic descriptors and recruitment postings (the SGI falls from 52\% to 32\% under semantic alignment, and several domain deficits shrink by more than half), while substantive residual gaps remain concentrated in rapidly evolving technical areas, specifically Cloud Infrastructure and Programming \& Development. Methodologically, the analysis cautions against relying on in-distribution benchmark evaluations alone: near-perfect classification scores can mask synthetic threshold rules that degrade under domain shift on external cohorts. In practical terms, addressing this divide does not necessitate wholesale curriculum redesign. Integrating modular credentials into established courses, requiring verifiable applied project portfolios, and adopting semantic matching in hiring workflows offer feasible steps toward aligning academic preparation with contemporary workforce demands.
 
 \FloatBarrier
 

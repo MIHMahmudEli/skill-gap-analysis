@@ -1,0 +1,25 @@
+{
+  "bootstrap_n": 1000,
+  "code_commit": "2900ba9f18867659c67ac0ca79ff3f709280207c",
+  "datasets": {
+    "ai_trends": "ai_job_market_2020_2026.csv"
+  },
+  "experiment_id": "TRENDS01_ai_longitudinal",
+  "gpu": true,
+  "hyperparameters": {},
+  "kaggle_kernel_ref": "nishat1156/sg-trends01-ai-a1",
+  "model": "see metrics.json",
+  "protocol": "see metrics.json",
+  "python_version": "3.14.6",
+  "runtime_sec": 0.15,
+  "sbert_model": null,
+  "seed": 42,
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "timestamp_utc": "2026-10-10T14:38:53Z",
+  "worker": "nishat1156"
+}

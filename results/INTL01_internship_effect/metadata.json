@@ -1,0 +1,25 @@
+{
+  "bootstrap_n": 1000,
+  "code_commit": "2900ba9f18867659c67ac0ca79ff3f709280207c",
+  "datasets": {
+    "international_grads": "international_graduates_dataset.csv"
+  },
+  "experiment_id": "INTL01_internship_effect",
+  "gpu": true,
+  "hyperparameters": {},
+  "kaggle_kernel_ref": "afrojahaqueshornaly/sg-intl01-internship-a1",
+  "model": "see metrics.json",
+  "protocol": "see metrics.json",
+  "python_version": "3.14.6",
+  "runtime_sec": 5.36,
+  "sbert_model": null,
+  "seed": 42,
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "timestamp_utc": "2026-10-10T14:38:49Z",
+  "worker": "afrojahaqueshornaly"
+}

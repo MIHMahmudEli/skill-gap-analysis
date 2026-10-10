@@ -1,0 +1,27 @@
+{
+  "bootstrap_n": 1000,
+  "code_commit": "2900ba9f18867659c67ac0ca79ff3f709280207c",
+  "datasets": {
+    "college_placement": "college_student_placement_dataset.csv",
+    "global_placement": "global_placement.csv",
+    "student_career": "student_career_success_dataset.csv"
+  },
+  "experiment_id": "STAT02_external_validation",
+  "gpu": true,
+  "hyperparameters": {},
+  "kaggle_kernel_ref": "leyamridha/sg-stat02-external-a1",
+  "model": "see metrics.json",
+  "protocol": "see metrics.json",
+  "python_version": "3.14.6",
+  "runtime_sec": 1.18,
+  "sbert_model": null,
+  "seed": 42,
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "timestamp_utc": "2026-10-10T14:38:52Z",
+  "worker": "leyamridha"
+}

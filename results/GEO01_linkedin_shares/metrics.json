@@ -1,0 +1,72 @@
+{
+  "experiment_id": "GEO01_linkedin_shares",
+  "status": "completed",
+  "runtime_sec": 26.06,
+  "dataset": "linkedin_job_postings.csv",
+  "n_rows": 1348454,
+  "n_with_location": 1348454,
+  "top_countries": [
+    {
+      "country": "United States",
+      "postings": 1149342,
+      "share_pct": 85.23
+    },
+    {
+      "country": "United Kingdom",
+      "postings": 113421,
+      "share_pct": 8.41
+    },
+    {
+      "country": "Canada",
+      "postings": 55972,
+      "share_pct": 4.15
+    },
+    {
+      "country": "Australia",
+      "postings": 29719,
+      "share_pct": 2.2
+    }
+  ],
+  "top_titles": [
+    {
+      "title": "LEAD SALES ASSOCIATE-FT",
+      "count": 7325
+    },
+    {
+      "title": "Shift Manager",
+      "count": 5818
+    },
+    {
+      "title": "First Year Tax Professional",
+      "count": 5356
+    },
+    {
+      "title": "Assistant Manager",
+      "count": 5346
+    },
+    {
+      "title": "Customer Service Representative",
+      "count": 5203
+    },
+    {
+      "title": "LEAD SALES ASSOCIATE-PT",
+      "count": 4924
+    },
+    {
+      "title": "Store Manager",
+      "count": 4791
+    },
+    {
+      "title": "CUSTOMER SERVICE REPRESENTATIVE",
+      "count": 4218
+    },
+    {
+      "title": "Registered Nurse",
+      "count": 4190
+    },
+    {
+      "title": "Hourly Supervisor & Training",
+      "count": 2955
+    }
+  ]
+}
