@@ -6,8 +6,9 @@ industry skill requirements using NLP, statistics, and machine learning — with
 
 ## Overview
 
-The project analyzes 15 publicly available datasets (3,176,266 records) from
-LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5):
+The project analyzes 15 publicly available open datasets (2.64M unique records;
+raw file row-sum 3.18M includes a linked HF posting–skill pair counted once)
+from LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5):
 
 - **RQ1** — market skill topography and 2020–2026 trends
 - **RQ2** — lexical vs. semantic (Sentence-BERT) curriculum alignment (SGI)
@@ -49,10 +50,24 @@ LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5
 │   ├── tables/*.tex           # AUTO-GENERATED from verified CSVs
 │   └── figures/*.pdf          # AUTO-GENERATED from verified CSVs
 ├── datasets/                  # Local data copies + legacy analysis scripts
+├── audit/                     # Q1-readiness audit (Phases 0–12; claim ledger, fixes)
+├── tests/                     # Unit + integration tests (pytest)
+├── reproduce_local.py         # Single local entry point (env→checksums→verify→claims→stats→citations)
 ├── reports/                   # Experiment / gap / Q1-readiness reports
 ├── requirements.txt           # Verified execution environment
 └── .env                       # Kaggle/HF credentials (git-ignored)
 ```
+
+## Quick Start (local reproduction)
+
+```bash
+pip install -r requirements.txt pytest
+python -m pytest tests/ -q          # 13 tests; requires results/ + optional raw CSVs
+python reproduce_local.py           # full local gate (skippable stages via --skip)
+# PDF: cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
+```
+
+Kaggle GPU re-runs: see `experiments/scheduler.py` and `reports/EXPERIMENT_REPORT.md`.
 
 ## Experiment Lifecycle
 

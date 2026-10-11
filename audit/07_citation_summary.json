@@ -5,8 +5,7 @@
   "no_doi": 17,
   "errors": 0,
   "title_mismatch": [
-    "schlippe2023skill",
-    "korrapati2025aligning"
+    "schlippe2023skill"
   ],
   "year_mismatch": [
     "cuckov2022quantifying:bib=2022/cr=None",
