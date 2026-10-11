@@ -1,0 +1,52 @@
+{
+  "manifest_rows": 15,
+  "manifest_total": 3176266,
+  "hf_jobs_cols": [
+    "job_link",
+    "last_processed_time",
+    "got_summary",
+    "got_ner",
+    "is_being_worked",
+    "job_title",
+    "company",
+    "job_location",
+    "first_seen",
+    "search_city",
+    "search_country",
+    "search_position",
+    "job_level",
+    "job_type"
+  ],
+  "hf_skills_cols": [
+    "job_link",
+    "job_skills"
+  ],
+  "linkedin_postings_rows": 1348454,
+  "linkedin_postings_cols": [
+    "job_link",
+    "last_processed_time",
+    "got_summary",
+    "got_ner",
+    "is_being_worked",
+    "job_title",
+    "company",
+    "job_location",
+    "first_seen",
+    "search_city",
+    "search_country",
+    "search_position",
+    "job_level",
+    "job_type"
+  ],
+  "linkedin_job_skills_rows": 1296381,
+  "college_n": 10000,
+  "college_placement_values": {
+    "No": 8341,
+    "Yes": 1659
+  },
+  "college_internship_values": {
+    "No": 6036,
+    "Yes": 3964
+  },
+  "college_dup_ids": 9900
+}
