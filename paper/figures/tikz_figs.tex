@@ -83,26 +83,31 @@
 \begin{tikzpicture}
 \begin{axis}[
   sg axis,
+  ybar,
+  bar width=7pt,
   width=0.98\linewidth,
   height=0.78\linewidth,
   symbolic x coords={Prog,DataSci,Cloud,Soft,Bus,Design,DataEng,Cyber},
   xtick=data,
   x tick label style={rotate=32, anchor=east, font=\scriptsize},
   enlarge x limits=0.10,
-  ymin=0, ymax=110,
+  ymin=0, ymax=115,
   ylabel={Percent},
   legend pos=north east,
+  legend cell align=left,
 ]
-\addplot[sg bar=sgBlue, forget plot] coordinates {
+\addplot[fill=sgBlue, draw=sgBlue!70!black, line width=0.3pt, bar shift=-7pt] coordinates {
   (Prog,3.97)(DataSci,8.04)(Cloud,4.39)(Soft,52.26)(Bus,11.81)(Design,0.60)(DataEng,1.02)(Cyber,0.62)
 };
-\addplot[sg bar=sgTeal, forget plot] coordinates {
+\addlegendentry{Demand}
+\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt, bar shift=0pt] coordinates {
   (Prog,57.47)(DataSci,85.10)(Cloud,44.06)(Soft,100)(Bus,90.22)(Design,0)(DataEng,31.28)(Cyber,0)
 };
-\addplot[sg bar=sgGreen] coordinates {
+\addlegendentry{Coverage (lex.)}
+\addplot[fill=sgGreen, draw=sgGreen!70!black, line width=0.3pt, bar shift=7pt] coordinates {
   (Prog,65.05)(DataSci,93.36)(Cloud,78.67)(Soft,100)(Bus,100)(Design,24.07)(DataEng,59.50)(Cyber,73.71)
 };
-\legend{Demand, Coverage (lex.), Coverage (sem.)}
+\addlegendentry{Coverage (sem.)}
 \end{axis}
 \end{tikzpicture}%
 }%
@@ -113,6 +118,8 @@
 \begin{tikzpicture}
 \begin{axis}[
   sg axis,
+  ybar,
+  bar width=7pt,
   width=0.96\linewidth,
   height=0.78\linewidth,
   symbolic x coords={Prog,DataSci,Cloud,Soft,Bus,Design,DataEng,Cyber},
@@ -122,18 +129,16 @@
   ymin=0, ymax=3.2,
   ylabel={Deficit (pp)},
   legend pos=north east,
-  bar width=8pt,
-  ybar,
 ]
-\addplot[fill=sgOrange, draw=sgOrange!70!black, line width=0.3pt] coordinates {
+\addplot[fill=sgOrange, draw=sgOrange!70!black, line width=0.3pt, bar shift=-4pt] coordinates {
   (Prog,1.69)(DataSci,1.20)(Cloud,2.45)(Soft,0.00)(Bus,1.16)(Design,0.60)(DataEng,0.70)(Cyber,0.62)
 };
 \addlegendentry{Lexical deficit}
-\addplot[fill=sgRed, draw=sgRed!70!black, line width=0.3pt] coordinates {
+\addplot[fill=sgRed, draw=sgRed!70!black, line width=0.3pt, bar shift=4pt] coordinates {
   (Prog,1.39)(DataSci,0.53)(Cloud,0.94)(Soft,0.00)(Bus,0.00)(Design,0.46)(DataEng,0.41)(Cyber,0.16)
 };
 \addlegendentry{Semantic deficit}
-% error bars as thin caps (lexical CI half-widths, ALIGN03)
+% CI caps on lexical deficit (ALIGN03 bootstrap half-widths)
 \draw[sgGrey, line width=0.5pt] (axis cs:Prog,1.66) -- (axis cs:Prog,1.72);
 \draw[sgGrey, line width=0.5pt] (axis cs:DataSci,1.16) -- (axis cs:DataSci,1.24);
 \draw[sgGrey, line width=0.5pt] (axis cs:Cloud,2.42) -- (axis cs:Cloud,2.49);
@@ -255,7 +260,7 @@
 \begin{axis}[
   sg axis,
   ybar,
-  bar width=11pt,
+  bar width=10pt,
   width=0.98\linewidth,
   height=0.72\linewidth,
   symbolic x coords={CGPA,Comm,Projects},
@@ -268,9 +273,9 @@
   nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
   every node near coord/.append style={font=\scriptsize, color=black!70, yshift=2pt},
 ]
-\addplot[sg bar=sgTeal] coordinates {(CGPA,8.59)(Comm,7.66)(Projects,3.35)};
+\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt, bar shift=-5pt] coordinates {(CGPA,8.59)(Comm,7.66)(Projects,3.35)};
 \addlegendentry{Placed}
-\addplot[sg bar=sgRed] coordinates {(CGPA,7.32)(Comm,5.14)(Projects,2.35)};
+\addplot[fill=sgRed, draw=sgRed!70!black, line width=0.3pt, bar shift=5pt] coordinates {(CGPA,7.32)(Comm,5.14)(Projects,2.35)};
 \addlegendentry{Not placed}
 \end{axis}
 \end{tikzpicture}%
