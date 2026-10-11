@@ -31,14 +31,12 @@ Manuscript: `paper/main.tex` / `paper/main.pdf`*
 
 ---
 
-## Phase 1 — Construct validity (STOP for author choice)
+## Phase 1 — Construct validity (complete; CURR02 gated on author labelling)
 
 | ID | Task | Status |
 |---|---|---|
-| P1-A | **Option A:** build real curriculum corpus (20–50 programs; MIT OCW / open catalogs; `datasets/curriculum/MANIFEST.csv` with URL+license+retrieval date+ToS notes) + experiment **CURR02** (SGI on real curricula vs proxy) | **BLOCKED — awaiting author choice** |
-| P1-B | **Option B:** reframe as measurement-methods paper; strip curriculum conclusions from title/abstract/intro/conclusion; rewrite RQs | **BLOCKED — awaiting author choice** |
-
-**Author decision required:** Option A (add real curricula) vs Option B (reframe as methods paper). Recommendation below.
+| P1-A | **Option A:** build real curriculum corpus (20–50 programs; MIT OCW / open catalogs; `datasets/curriculum/MANIFEST.csv` with URL+license+retrieval date+ToS notes) + experiment **CURR02** (SGI on real curricula vs proxy) | Corpus **DONE** (2026-10-11): 41 units / 799 phrases extracted; primary set 20 courses / 3 institutions / deterministic ≤8-per-institution cap (`datasets/curriculum/PRIMARY_SET.md`); region bar waived to 2 regions by author (protocol §9a; license-blocked third region, manuscript limitation required); human validation samples ready (`extracted/validation_{precision,recall}_100.csv` + `LABELLING_BRIEF.md`) — **CURR02 blocked until author labels or waives** |
+| P1-B | **Option B:** reframe as measurement-methods paper; strip curriculum conclusions from title/abstract/intro/conclusion; rewrite RQs | Not chosen (superseded by Option A) |
 
 ---
 
