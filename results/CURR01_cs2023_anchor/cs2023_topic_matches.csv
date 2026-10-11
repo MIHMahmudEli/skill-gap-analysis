@@ -1,0 +1,2198 @@
+ka_code,cs2023_topic,best_academic_match,cosine_similarity,lexically_exact
+AI,"Overview of AI problems, Examples of successful recent AI applications",machine learning,0.3535,0
+AI,Definitions of agents with examples,delegation,0.2771,0
+AI,What is intelligent behavior?,emotional intelligence,0.5595,0
+AI,Problem characteristics,problem management,0.5981,0
+AI,Nature of agents,autonomy,0.3095,0
+AI,"Overview of AI Applications, growth, and impact",business intelligence,0.4074,0
+AI,Practice identifying problem characteristics in example environments,problem management,0.6195,0
+AI,Additional depth on nature of agents with examples,approachability,0.3064,0
+AI,"Additional depth on AI Applications, Growth, and Impact",innovation,0.3659,0
+AI,Philosophical issues,critical thinking,0.4376,0
+AI,History of AI,automation,0.4177,0
+AI,the Turing test and the Chinese Room thought experiment,written communication,0.3795,0
+AI,between optimal reasoning/behavior and human-like reasoning/behavior,approachability,0.4248,0
+AI,"the terms: AI, machine learning, and deep learning",machine learning,0.5228,0
+AI,Enumerate the characteristics of a specific problem,problem-solving,0.4981,0
+AI,State space representation of a problem,problem management,0.3405,0
+AI,Uninformed graph search for problem solving,problem-solving,0.4738,0
+AI,Heuristic graph search for problem solving,problem solving,0.4992,0
+AI,Space and time complexities of graph search algorithms,time management,0.3006,0
+AI,Bidirectional search,results-oriented,0.4238,0
+AI,Beam search,presentation,0.299,0
+AI,Two-player adversarial games,machine learning,0.3246,0
+AI,Implementation of A* search,results-oriented,0.3493,0
+AI,Constraint satisfaction,problem solving,0.4373,0
+AI,Understanding the search space,recruitment,0.3371,0
+AI,Local search,machine learning,0.2988,0
+AI,Tabu search,tableau,0.412,0
+AI,Variations on A*,fp&a,0.3232,0
+AI,"Implementation of minimax search, beam search",prioritization,0.2415,0
+AI,Expectimax search and chance nodes,results-driven,0.2863,0
+AI,Stochastic search,machine learning,0.4543,0
+AI,the state space representation for a puzzle,pos systems,0.3266,0
+AI,and implement an appropriate uninformed search algorithm for a problem,problem solving,0.4328,0
+AI,and implement an appropriate informed search algorithm for a problem after designing a,problem solving,0.4667,0
+AI,whether a heuristic for a given problem is admissible/can guarantee an optimal solution,approachability,0.3683,0
+AI,"minimax search in a two-player adversarial game, using heuristic",competitive,0.3231,0
+AI,and implement a genetic algorithm solution to a problem,problem solving,0.5245,0
+AI,and implement a simulated annealing schedule to avoid local minima in a problem,machine learning,0.2787,0
+AI,"and implement A*/beam search to solve a problem, and compare it against other search",problem solving,0.4315,0
+AI,minimax search with alpha-beta pruning to prune search space in a two-player adversarial,agility,0.2991,0
+AI,"and contrast genetic algorithms with classic search techniques, explaining when it is most",machine learning,0.3507,0
+AI,and contrast various heuristic searches vis-a-vis applicability to a given problem,problem-solving,0.4499,0
+AI,Types of representations,technical writing,0.2587,0
+AI,"Review of probabilistic reasoning, Bayes theorem",prioritization,0.3789,0
+AI,Bayesian reasoning,prioritization,0.4634,0
+AI,Random variables and probability distributions,variance analysis,0.3245,0
+AI,Independence,independence,1.0,1
+AI,Conditional Independence,independence,0.6669,0
+AI,Markov chains and Markov models,erp systems,0.3375,0
+AI,Utility and decision making,decision making,0.6824,0
+AI,"how we can make decisions under uncertainty, using concepts such as Bayes theorem and",decision making,0.4814,0
+AI,a probabilistic inference in a real-world problem using Bayes theorem to determine the,machine learning,0.4412,0
+AI,Bayes rule to determine the probability of a hypothesis given evidence,statistical analysis,0.2522,0
+AI,the probability of outcomes and test whether outcomes are independent,independent judgment,0.5392,0
+AI,Definition and examples of a broad variety of machine learning tasks,machine learning,0.5947,0
+AI,Fundamental ideas:,detail oriented,0.4111,0
+AI,A simple statistical-based supervised learning such as linear regression or decision trees,machine learning,0.628,0
+AI,The overfitting problem/controlling solution complexity,approachability,0.4304,0
+AI,Working with Data,data entry,0.6617,0
+AI,Representations,empathy,0.3789,0
+AI,Machine learning evaluation,machine learning,0.7236,0
+AI,Basic neural networks,machine learning,0.5085,0
+AI,Ethics for Machine Learning,machine learning,0.5038,0
+AI,Ensembles of models,machine learning,0.4759,0
+AI,Deep learning,machine learning,0.6887,0
+AI,Performance evaluation,performance evaluation,1.0,1
+AI,Overview of reinforcement learning methods,continuous learning,0.4101,0
+AI,Two or more applications of machine learning algorithms,machine learning,0.6616,0
+AI,"General statistical-based learning, parameter estimation",machine learning,0.5375,0
+AI,Supervised learning,machine learning,0.7597,0
+AI,Overfitting,machine learning,0.4447,0
+AI,Experimental design,organizational design,0.4371,0
+AI,Bayesian learning,machine learning,0.613,0
+AI,Unsupervised learning and clustering,data mining,0.4755,0
+AI,Graph analysis,data analysis,0.6279,0
+AI,Semi-supervised learning,machine learning,0.5779,0
+AI,Graphical models,data visualization,0.5169,0
+AI,Ensembles,machine learning,0.5136,0
+AI,Learning theory,continuous learning,0.6066,0
+AI,Reinforcement learning,machine learning,0.6364,0
+AI,Explainable / interpretable machine learning,machine learning,0.5333,0
+AI,Recommender systems,machine learning,0.3925,0
+AI,Hardware for machine learning,hardware support,0.5227,0
+AI,Application of machine learning algorithms to:,machine learning,0.753,0
+AI,"the differences among the three main styles of learning (supervised, reinforcement, and",learning and development,0.4646,0
+AI,"the terms of AI, machine learning, and deep learning",machine learning,0.5152,0
+AI,overfitting in the context of a problem and learning curves and describe solutions to,machine learning,0.4166,0
+AI,how machine learning works as an optimization/search process,machine learning,0.6109,0
+AI,a statistical learning algorithm and the corresponding optimization process to train the,machine learning,0.6046,0
+AI,the neural network training process and resulting learned representations,training development,0.4774,0
+AI,"proper ML evaluation procedures, including the differences between training and testing",training development,0.504,0
+AI,"two machine learning algorithms on a dataset, implementing the data preprocessing and",machine learning,0.5563,0
+AI,"and contrast several learning techniques (e.g., decision trees, logistic regression, naive",data mining,0.4967,0
+AI,the performance of a simple learning system on a real-world dataset,machine learning,0.507,0
+AI,"the problem of overfitting, along with techniques for detecting and managing the problem",machine learning,0.5096,0
+AI,"At least one application of AI to a specific problem and field, such as medicine, health",healthcare knowledge,0.4475,0
+AI,Deployed deep generative models,machine learning,0.3007,0
+AI,Overview of societal impact of AI,emotional intelligence,0.3989,0
+AI,Additional depth on deployed deep generative models,attention to detail,0.276,0
+AI,Analysis and discussion of the societal impact of AI,emotional intelligence,0.3708,0
+AI,"the societal impact of one or more specific real-world AI applications, identifying issues",automation,0.3577,0
+AI,"some of the failure modes of current deep generative models for language or images, and",creativity,0.2735,0
+AI,Review of propositional and predicate logic,prioritization,0.3048,0
+AI,Resolution and theorem proving,conflict resolution,0.3699,0
+AI,Knowledge representation issues,product knowledge,0.5409,0
+AI,Semantic web,business intelligence,0.4921,0
+AI,Non-monotonic reasoning,prioritization,0.4241,0
+AI,Argumentation,persuasion,0.4784,0
+AI,Reasoning about action and change,proactive approach,0.4727,0
+AI,Temporal and spatial reasoning,planning,0.4829,0
+AI,Logic programming,programming,0.5458,0
+AI,Rule-based Expert Systems,machine learning,0.4518,0
+AI,Semantic networks,machine learning,0.466,0
+AI,Model-based and Case-based reasoning,business case development,0.5519,0
+AI,a natural language sentence into a predicate logic statement,financial statements preparation,0.341,0
+AI,Convert a logic statement into clausal form,financial statements preparation,0.3381,0
+AI,resolution to a set of logic statements to answer a query,sql,0.4445,0
+AI,and contrast the most common models used for structured knowledge representation,product knowledge,0.4123,0
+AI,the components of non-monotonic reasoning and its usefulness as a representational,prioritization,0.3561,0
+AI,and contrast the basic techniques for representing uncertainty,approachability,0.3737,0
+AI,and contrast the basic techniques for qualitative representation,data analysis,0.4514,0
+AI,situation and event calculus to problems of action and change,event planning,0.5901,0
+AI,"the distinction between temporal and spatial reasoning, and how they interrelate",time management,0.3633,0
+AI,"the difference between rule-based, case-based, and model-based reasoning techniques",business case development,0.5016,0
+AI,the concept of a planning system and how it differs from classical search techniques,planning,0.6399,0
+AI,"the differences between planning as search, operator-based planning, and propositional",planning,0.6076,0
+AI,the distinction between monotonic and non-monotonic inference,prioritization,0.3116,0
+AI,Conditional Independence review,independent judgment,0.5783,0
+AI,Knowledge representations,product knowledge,0.6053,0
+AI,Decision Theory,decision making,0.6813,0
+AI,the probability of a hypothesis given the evidence in a Bayesian network,machine learning,0.259,0
+AI,how conditional independence assertions allow for greater efficiency of probabilistic,independent judgment,0.4988,0
+AI,examples of knowledge representations for reasoning under uncertainty,product knowledge,0.4116,0
+AI,State the complexity of exact inference. Identify methods for approximate inference,approachability,0.3832,0
+AI,and implement at least one knowledge representation for reasoning under uncertainty,product knowledge,0.3799,0
+AI,the complexities of temporal probabilistic reasoning,event planning,0.4192,0
+AI,and implement an HMM as one example of a temporal probabilistic system,automation,0.4257,0
+AI,the relationship between preferences and utility functions,dependability,0.4063,0
+AI,how utility functions and probabilistic reasoning can be combined to make rational,prioritization,0.3845,0
+AI,Review of propositional and first-order logic,approachability,0.319,0
+AI,Planning operators and state representations,planning,0.5817,0
+AI,Total order planning,order processing,0.6885,0
+AI,Partial-order planning,planning,0.6959,0
+AI,Plan graphs and GraphPlan,planning,0.3621,0
+AI,Hierarchical planning,planning,0.6593,0
+AI,Planning languages and representations,planning,0.6177,0
+AI,Multi-agent planning,planning,0.6553,0
+AI,MDP-based planning,planning,0.6405,0
+AI,"Interconnecting planning, execution, and dynamic replanning",planning,0.5937,0
+AI,"the state representation, goal, and operators for a given planning problem",planning,0.6235,0
+AI,Encode a planning problem in PDDL and use a planner to solve it,planning,0.6058,0
+AI,the complete planning graph for GraphPlan to solve a given problem,planning,0.5048,0
+AI,Agent architectures,goal-oriented,0.467,0
+AI,Agent theory,diplomacy,0.4242,0
+AI,"Rationality, Game Theory",strategic thinking,0.4798,0
+AI,"Software agents, personal assistants, and information access",computer skills,0.3764,0
+AI,Learning agents,continuous learning,0.5351,0
+AI,Cognitive systems,erp systems,0.4671,0
+AI,Multi-agent systems,multi-tasking,0.4815,0
+AI,Human-agent interaction,interpersonal communication,0.4515,0
+AI,Characterize and contrast the standard agent architectures,goal-oriented,0.3818,0
+AI,"the applications of agent theory to domains such as software agents, personal assistants",automation,0.393,0
+AI,the primary paradigms used by learning agents,learning and development,0.4444,0
+AI,using appropriate examples how multi-agent systems support agent interaction,automation,0.3645,0
+AI,an intelligent agent using a well-established cognitive architecture for,automation,0.4251,0
+AI,Deterministic and stochastic grammars,written communication,0.3123,0
+AI,Parsing algorithms,data mining,0.4313,0
+AI,Representing meaning/Semantics,documentation,0.3582,0
+AI,Corpus-based methods,machine learning,0.4063,0
+AI,N-grams and HMMs,performance metrics,0.2422,0
+AI,Smoothing and backoff,continuous improvement,0.3469,0
+AI,Examples of use: POS tagging and morphology,pos systems,0.4241,0
+AI,Information retrieval,data mining,0.56,0
+AI,Information extraction,business intelligence,0.4554,0
+AI,Language translation,bilingual (spanish),0.6071,0
+AI,"Text classification, categorization",data mining,0.5613,0
+AI,Deep learning for NLP,machine learning,0.3966,0
+AI,"and contrast deterministic and stochastic grammars, providing examples to show the",written communication,0.3746,0
+AI,the challenges of representing meaning,storytelling,0.415,0
+AI,"techniques for information retrieval, language translation, and text classification",bilingual,0.375,0
+AI,"a TF/IDF transform, use it to extract features from a corpus, and train an off-the-shelf",report generation,0.3115,0
+AI,Overview: problems and progress,problem-solving,0.4319,0
+AI,Sensors and effectors,internal controls,0.3027,0
+AI,"Coordinate frames, translation, and rotation",bilingual,0.3139,0
+AI,Configuration space and environmental maps,configuration management,0.5292,0
+AI,Interpreting uncertain sensor data,data analysis,0.3356,0
+AI,Localization and mapping,territory management,0.3126,0
+AI,Navigation and control,internal controls,0.5189,0
+AI,Forward and inverse kinematics,autonomy,0.2649,0
+AI,Motion path planning and trajectory optimization,planning,0.5262,0
+AI,Manipulation and grasping,planning,0.4054,0
+AI,Joint control and dynamics,internal controls,0.4002,0
+AI,Vision-based control,internal controls,0.4643,0
+AI,Multiple-robot coordination and collaboration,team collaboration,0.5113,0
+AI,Human-robot interaction,automation,0.4349,0
+AI,"Applications and Societal, Economic, and Ethical Issues",ethical conduct,0.5335,0
+AI,fundamental motion planning algorithms within a robot configuration space,planning,0.5018,0
+AI,and contrast at least three strategies for robot navigation within known and/or unknown,planning,0.3575,0
+AI,at least one approach for coordinating the actions and sensing of several robots to,multi-tasking,0.4363,0
+AI,and contrast a multi-robot coordination and a human-robot collaboration approach and,team collaboration,0.4845,0
+AI,"the societal, economic, and ethical issues of a real-world robotics application",ethical conduct,0.3635,0
+AI,Computer vision,machine learning,0.5184,0
+AI,Audio and speech recognition,listening skills,0.4173,0
+AI,Touch and proprioception,flexibility,0.3074,0
+AI,Other modalities,adaptability,0.3932,0
+AI,Modularity in recognition,adaptability,0.3403,0
+AI,Approaches to pattern recognition,data mining,0.4964,0
+AI,the importance of image and object recognition in AI and indicate several significant,attention to detail,0.384,0
+AI,"at least three image-segmentation approaches, such as thresholding, edge-based and region",data mining,0.267,0
+AI,2d object recognition based on contour-based and/or region-based shape,detail oriented,0.2108,0
+AI,"a feature-extraction algorithm on real data, e.g., an edge or corner detector for images",machine learning,0.273,0
+AI,"an algorithm combining features into higher-level percepts, e.g., a contour or polygon",machine learning,0.3861,0
+AI,a classification algorithm that segments input percepts into output categories and,machine learning,0.5134,0
+AI,"the performance of the underlying feature-extraction, relative to at least one alternative",machine learning,0.3975,0
+AI,"and evaluate a deep learning solution to problems in computer vision, such as object or",machine learning,0.4071,0
+AL,Abstract Data Type and operations on an ADT,data entry,0.3401,0
+AL,Arrays,javascript,0.3383,0
+AL,Records/Structs/Tuples and Objects,data warehousing,0.3909,0
+AL,Linked lists,results-oriented,0.3132,0
+AL,Stacks,offboarding,0.3301,0
+AL,Queues and deques,order processing,0.3706,0
+AL,Hash tables/maps,database management,0.3681,0
+AL,Graphs,data visualization,0.4921,0
+AL,Trees,windows,0.349,0
+AL,Sets,machine learning,0.3519,0
+AL,Search algorithms,data mining,0.4903,0
+AL,Sorting algorithms,order processing,0.5832,0
+AL,Graph algorithms,data mining,0.4012,0
+AL,Matching,recruitment,0.404,0
+AL,Cryptography algorithms,data security,0.4699,0
+AL,Parallel algorithms,multi-tasking,0.4281,0
+AL,Consensus algorithms,consensus building,0.731,0
+AL,Quantum computing algorithms,cloud computing,0.3023,0
+AL,Fast-Fourier Transform algorithm,order processing,0.2683,0
+AL,Differential evolution algorithm,alteration fitting,0.3073,0
+AL,For each ADT/Data-Structure in this unit,data management,0.3771,0
+AL,For each algorithm in this unit explain step-by-step how the algorithm operates,order processing,0.3727,0
+AL,For each algorithmic approach in this unit apply a prototypical example of the,approachability,0.4687,0
+AL,how collision avoidance and collision resolution is handled in hash tables,conflict resolution,0.3771,0
+AL,"factors beyond computational efficiency that influence the choice of algorithms, such as",approachability,0.3698,0
+AL,the heap property and the use of heaps as an implementation of a priority queue,prioritization,0.4459,0
+AL,For each of the algorithms and algorithmic approaches in the KA Core topics:,data mining,0.3855,0
+AL,An appreciation of quantum computation and its application to certain problems,mathematical skills,0.2904,0
+AL,Paradigms,goal-oriented,0.4696,0
+AL,Handling exponential growth,growth mindset,0.443,0
+AL,Iteration vs recursion,approachability,0.3459,0
+AL,Quantum computing,cloud computing,0.4026,0
+AL,For each of the paradigms in this unit,goal-oriented,0.4313,0
+AL,"Given an algorithm, explain the paradigm used by the algorithm and how it exemplifies this",approachability,0.3379,0
+AL,whether a greedy approach leads to an optimal solution,prioritization,0.4966,0
+AL,various approaches for addressing computational problems whose algorithmic solutions are,problem solving,0.5425,0
+AL,Complexity Analysis Framework,business analysis,0.4542,0
+AL,Asymptotic complexity analysis,cost analysis,0.3217,0
+AL,Empirical measurements of performance,performance metrics,0.8344,0
+AL,Tractability and intractability,dependability,0.4521,0
+AL,Time and space tradeoffs in algorithms,time management,0.3222,0
+AL,"Little-o, Little-Omega, and Little Theta notations",o365,0.2113,0
+AL,Formal recursive analysis,approachability,0.4016,0
+AL,Amortized analysis,financial analysis,0.541,0
+AL,Turing Machine-based models of complexity,approachability,0.3561,0
+AL,"Using examples, explain each of the foundational complexity classes in this unit",approachability,0.3049,0
+AL,Informally evaluate the foundational complexity class of simple algorithms,approachability,0.3964,0
+AL,empirical studies to determine and validate hypotheses about the runtime complexity of,performance metrics,0.4303,0
+AL,examples that illustrate time-space tradeoffs of algorithms,time management,0.3973,0
+AL,how tree balance affects the efficiency of binary search tree operations,resource allocation,0.3604,0
+AL,the significance of NP-Completeness,assertiveness,0.2723,0
+AL,how NP-Hard is a lower bound and NP is an upper bound for NP-Completeness,lead qualification,0.1785,0
+AL,examples of NP-complete problems,problem-solving,0.3522,0
+AL,recurrence relations to evaluate the time complexity of recursively defined algorithms,performance metrics,0.3018,0
+AL,elementary recurrence relations using a form of the Master Theorem,accounts receivable,0.2651,0
+AL,Big-O notation to give upper case bounds on time/space complexity of algorithms,performance metrics,0.2798,0
+AL,the Cook-Levin Theorem and the NP-Completeness of SAT,lead qualification,0.2503,0
+AL,the classes P and NP,pmp certification,0.4194,0
+AL,the P-space class and its relation to the EXP class,pmp certification,0.2737,0
+AL,Formal automata,automation,0.5312,0
+AL,"Formal languages, grammars and Chomsky Hierarchy",technical writing,0.311,0
+AL,"Relations among formal automata, languages, and grammars",automation,0.3841,0
+AL,"Decidability,computability, and halting",written communication,0.31,0
+AL,The Church-Turing thesis,written communication,0.4281,0
+AL,Algorithmic correctness,approachability,0.5241,0
+AL,Deterministic and nondeterministic automata,crm systems,0.2966,0
+AL,Pumping Lemma proofs,pipeline management,0.2015,0
+AL,Decidability,integrity,0.3863,0
+AL,Reducibility and reductions,integrity,0.2256,0
+AL,Time complexity based on Turing Machine,time management,0.4444,0
+AL,Space complexity,performance metrics,0.2629,0
+AL,Equivalent models of algorithmic computation,approachability,0.4022,0
+AL,Quantum computation,mathematical skills,0.3009,0
+AL,For each formal automaton in this unit:,automation,0.5062,0
+AL,"Given a problem, develop an appropriate automaton that addresses the problem",automation,0.5452,0
+AL,a regular expression for a given regular language expressed in natural language,ada,0.2912,0
+AL,the difference between regular expressions and the regular expressions,respectfulness,0.2006,0
+AL,For each formal model in this unit:,financial modeling,0.3843,0
+AL,a universal Turing Machine and its operation,automation,0.3623,0
+AL,examples of classic uncomputable problems,programming,0.3786,0
+AL,the Church-Turing Thesis and its significance for algorithmic computation,programming,0.3526,0
+AL,how invariants can be used to prove the correctness of an algorithm,approachability,0.349,0
+AL,For each formal automaton in this unit explain its deterministic and,automation,0.4334,0
+AL,arithmetization and diagonalization to prove the Halting Problem for Turing Machines is,approachability,0.2146,0
+AL,Rices theorem and its significance,due diligence,0.17,0
+AL,an example proof of a problem that is uncomputable by reducing a classic known,problem-solving,0.3351,0
+AL,"the Primitive and General Recursive functions (zero, successor, selection, primitive",succession planning,0.2593,0
+AL,"how computation is performed in Lambda Calculus (e.g., Alpha conversion and Beta",mathematical skills,0.2596,0
+AL,For a quantum system give examples that explain the following postulates,pos systems,0.2544,0
+AL,the operation of a quantum XNOT or CNOT gate on a quantum bit represented as a matrix,tableau,0.1502,0
+AL,"Social, ethical, and secure algorithms",data security,0.4261,0
+AL,Algorithmic fairness,prioritization,0.4138,0
+AL,Anonymity,confidentiality,0.6034,0
+AL,Accountability/Transparency,accountability,0.8609,0
+AL,Responsible algorithms,accountability,0.5226,0
+AL,Economic and other impacts of inefficient algorithms,cost analysis,0.4073,0
+AL,Sustainability,resourcefulness,0.421,0
+AL,Context aware computing,multitasking,0.4142,0
+AL,"algorithmic solutions to real-world societal problems, such as routing an ambulance to a",problem management,0.4397,0
+AL,the impact that an algorithm may have on the environment and society when used to solve,problem-solving,0.421,0
+AL,an example that articulates how differential privacy protects knowledge of an individuals,confidentiality,0.5645,0
+AL,the environmental impacts of design choices that relate to algorithm design,organizational design,0.4153,0
+AL,the tradeoffs involved in proof-of-work and proof-of-stake algorithms,stakeholder management,0.3896,0
+AR,Combinational vs sequential logic/field programmable gate arrays,order processing,0.2882,0
+AR,Computer-aided design tools that process hardware and architectural representations,hardware support,0.4759,0
+AR,High-level synthesis,creativity,0.2714,0
+AR,System-on-chip design flow,hardware support,0.4625,0
+AR,Physical constraints,flexibility,0.4315,0
+AR,"the progression of computer technology components from vacuum tubes to VLSI, from",hardware support,0.3706,0
+AR,parallelism and data dependencies between and within components in a modern,data warehousing,0.4009,0
+AR,the relationship between parallelism and power consumption,resource allocation,0.3955,0
+AR,the design of basic building blocks for a computer: arithmetic-logic unit,programming,0.4027,0
+AR,simple building blocks,team building,0.4355,0
+AR,"the timing behavior of a pipelined processor, identifying data dependency issues",pipeline management,0.551,0
+AR,Overview and history of computer architecture,operating systems,0.4631,0
+AR,"Bits, bytes, and words",written communication,0.3398,0
+AR,"Unsigned, signed and twos complement representations",written communication,0.2689,0
+AR,Numeric data representation and number bases,data entry,0.3748,0
+AR,Representation of non-numeric data,data visualization,0.4578,0
+AR,"Representation of records, arrays and UTF data types",data entry,0.3759,0
+AR,"why everything in computers are data, including instructions",data security,0.4632,0
+AR,how fixed-length number representations can affect accuracy and precision,mathematical skills,0.2933,0
+AR,how negative integers are stored in sign-magnitude and twos-complement,mathematical skills,0.225,0
+AR,how different formats can represent numerical data,data visualization,0.3808,0
+AR,numerical data from one format to another,data integration,0.4331,0
+AR,how a single adder can handle both signed (twos,delegation,0.2261,0
+AR,von Neumann machine architecture,operating systems,0.3297,0
+AR,"Control unit: instruction fetch, decode, and execution",system administration,0.4454,0
+AR,Introduction to SIMD vs MIMD and the Flynn taxonomy,detail-oriented,0.2919,0
+AR,Shared memory multiprocessors/multicore organization,multi-tasking,0.3875,0
+AR,Instruction set architecture,programming,0.4339,0
+AR,Subroutine call and return mechanisms,results-oriented,0.2362,0
+AR,I/O and interrupts,operating systems,0.3785,0
+AR,"Heap, static, stack, and code segments",java,0.3196,0
+AR,how the classical von Neumann functional units are implemented in embedded systems,operating systems,0.3355,0
+AR,"how instructions are executed in a classical von Neumann machine, with extensions for",order processing,0.2793,0
+AR,how instructions are represented at the machine level and in the context of a symbolic,programming,0.4162,0
+AR,Map an example of high-level language patterns into assembly/machine language notations,programming,0.3696,0
+AR,a subroutine diagram to comment on how subroutine calls are handled at the assembly,onboarding processes,0.4034,0
+AR,basic concepts of interrupts and I/O operations,operating systems,0.3535,0
+AR,a simple assembly language program for string/array processing and manipulation,programming,0.4649,0
+AR,Memory hierarchy: the importance of temporal and spatial locality,detail-oriented,0.4046,0
+AR,Main memory organization and operations,program management,0.4767,0
+AR,Persistent memory,persistence,0.7135,0
+AR,"Latency, cycle time, bandwidth, and interleaving",network infrastructure,0.3677,0
+AR,Cache memories,persistence,0.4259,0
+AR,Multiprocessor cache coherence,performance monitoring,0.3753,0
+AR,Virtual memory,vmware,0.4954,0
+AR,Fault handling and reliability,reliability,0.6896,0
+AR,Reliability,reliability,1.0,1
+AR,Processing In-Memory,order processing,0.4778,0
+AR,"Using a memory system diagram, identify the main types of memory technology (e.g., SRAM",hardware support,0.3615,0
+AR,the effect of memory latency on running time,performance monitoring,0.4443,0
+AR,Enumerate the functions of a system with virtual memory management,operating systems,0.4591,0
+AR,average memory access time under various cache and memory configurations and mixes,performance metrics,0.4018,0
+AR,I/O fundamentals,detail oriented,0.4443,0
+AR,"Interrupt structures: vectored and prioritized, interrupt acknowledgment",active listening,0.2999,0
+AR,I/O devices,operating systems,0.4662,0
+AR,"External storage, physical organization, and drives",data warehousing,0.3922,0
+AR,Buses fundamentals,network infrastructure,0.397,0
+AR,an interrupt control diagram to comment on how interrupts are used to implement I/O,operating systems,0.3206,0
+AR,Enumerate various types of buses in a computer system,operating systems,0.3627,0
+AR,the advantages of magnetic disks and contrast them with those of solid-state disks,accounting software,0.22,0
+AR,Control unit,internal controls,0.5976,0
+AR,Instruction pipelining,pipeline management,0.5305,0
+AR,Introduction to instruction-level parallelism,programming,0.456,0
+AR,alternative implementation of datapaths in modern computer architectures,data integration,0.3936,0
+AR,instruction-level parallelism using pipelining and significant hazards that may occur,pipeline management,0.4254,0
+AR,"a complete processor, including datapath and control",operating systems,0.4548,0
+AR,the average cycles per instruction for a given processor and memory system,performance metrics,0.3432,0
+AR,"Performance-energy evaluation: performance, power consumption, memory, and",performance evaluation,0.5733,0
+AR,"Branch prediction, speculative execution, out-of-order execution, Tomasulo's algorithm",order processing,0.4111,0
+AR,Enhancements for vector processors and GPUs,hardware support,0.357,0
+AR,Hardware support for multithreading,hardware support,0.6105,0
+AR,Scalability,adaptability,0.4976,0
+AR,Dynamic voltage and frequency scaling,adaptability,0.244,0
+AR,Dark Silicon,tenacity,0.3676,0
+AR,performance and energy efficiency evaluation metrics,performance metrics,0.665,0
+AR,a speculative execution diagram and write about the decisions that can be made,onboarding processes,0.3988,0
+AR,a GPU performance-watt benchmarking diagram,performance metrics,0.4727,0
+AR,a multithreaded program that adds elements of two integer vectors,programming,0.3216,0
+AR,Recommend a set of design choices for alternative computer architectures,hardware support,0.4171,0
+AR,Enumerate key concepts associated with dynamic voltage and frequency scaling,adaptability,0.2732,0
+AR,energy savings improvement for an 8-bit integer quantization compared to a 32-bit,operating systems,0.23,0
+AR,SIMD and MIMD architectures,operating systems,0.3486,0
+AR,Heterogeneous memory systems,operating systems,0.3829,0
+AR,Domain-Specific Architectures,networking concepts,0.4278,0
+AR,Packaging and integration solutions such as 3DIC and chiplets,onboarding processes,0.3234,0
+AR,Machine learning in architecture design,machine learning,0.5599,0
+AR,what memory-management issues are found in multiprocessors that are not present in,operating systems,0.3956,0
+AR,how you would determine when to use a domain-specific accelerator instead of a general,performance metrics,0.2628,0
+AR,the advantages and disadvantages of a PIM architecture,crm systems,0.4241,0
+AR,Principles of Secure Hardware,data security,0.5325,0
+AR,"Roots of trust in hardware, Physically Unclonable Functions",trustworthiness,0.476,0
+AR,Hardware Random Number Generators,hardware support,0.3075,0
+AR,Memory protection extensions,data security,0.3732,0
+AR,Trusted Execution Environment,trust building,0.4267,0
+AR,Homomorphic encryption for privacy-preserving data processing,data security,0.4485,0
+AR,how Physically Unclonable Functions can be a unique device identifier in security,data security,0.3682,0
+AR,the advantages and disadvantages of memory protection at the ISA level,data security,0.4036,0
+AR,key design issues of a trusted execution environment to support virtual machines,integrity,0.3561,0
+AR,Principles,accounting principles,0.5888,0
+AR,"Axioms of QM: superposition principle, measurement axiom, unitary evolution",accounting principles,0.2839,0
+AR,"Single qubit gates for the circuit model of quantum computation: X, Z, H",multitasking,0.1759,0
+AR,"Two qubit gates and tensor products, working with matrices",b2b sales,0.174,0
+AR,The No-Cloning Theorem. The Quantum Teleportation protocol,delegation,0.2589,0
+AR,Algorithms,machine learning,0.5814,0
+AR,Implementation aspects,approachability,0.5371,0
+AR,Emerging Applications,application development,0.5288,0
+AR,how a quantum object produced as a particle propagates like a wave and is detected as a,delegation,0.1657,0
+AR,the quantum-level nature that is inherently probabilistic,dependability,0.323,0
+AR,quantum parallelism and the role of constructive vs destructive interference in quantum,inclusivity,0.2422,0
+AR,a code snippet providing the role of quantum Fourier transform in Shors algorithm,ifrs,0.2059,0
+AR,Environmental impacts of implementation decisions,decision making,0.3942,0
+DM,the five stages of the Data Life Cycle,data management,0.5631,0
+DM,Purpose and advantages of database systems,database management,0.7066,0
+DM,Components of database systems,database management,0.7198,0
+DM,"of core DBMS functions (e.g., query mechanisms, transaction management, buffer",database management,0.5695,0
+DM,"Database architecture, data independence, and data abstraction",database management,0.559,0
+DM,Transaction management,database management,0.6129,0
+DM,Normalization,machine learning,0.4003,0
+DM,"Approaches for managing large volumes of data (e.g., NoSQL database systems, use of",data management,0.6143,0
+DM,How to support CRUD-only applications,application development,0.3839,0
+DM,Distributed databases/cloud-based systems,cloud computing,0.5921,0
+DM,"Structured, semi-structured, and unstructured data",data warehousing,0.4354,0
+DM,of a declarative query language,sql,0.474,0
+DM,Systems supporting structured and/or stream content,detail-oriented,0.4127,0
+DM,at least four advantages that using a database system provides,database management,0.6167,0
+DM,Enumerate the components of a database system,database management,0.5463,0
+DM,Follow a query as it is processed by the components of a database system,sql,0.4881,0
+DM,Defend the value of data independence,data governance,0.5478,0
+DM,Compose a simple select-project-join query in SQL,sql,0.4853,0
+DM,Enumerate the four properties of a correct transaction manager,financial management,0.4559,0
+DM,the advantages for eliminating duplicate repeated data,record keeping,0.4051,0
+DM,Outline how MapReduce uses parallelism to process data efficiently,data management,0.4219,0
+DM,the differences between structured and semi/unstructured databases,database management,0.5091,0
+DM,Data modeling,data analysis,0.6499,0
+DM,Relational data model,data warehousing,0.5303,0
+DM,Conceptual models,financial modeling,0.4606,0
+DM,Semi-structured data models,data warehousing,0.4377,0
+DM,Spreadsheet models,excel,0.6518,0
+DM,Object-oriented models,goal-oriented,0.5291,0
+DM,New features in SQL,sql,0.5821,0
+DM,Specialized Data Modeling topics,data warehousing,0.5115,0
+DM,the components of the relational data model,data warehousing,0.4911,0
+DM,"1:1, 1:n, and n:m relationships using the relational data model",relationship management,0.4855,0
+DM,the components of the E-R data model,data integration,0.3749,0
+DM,a given environment using a conceptual data model,data analysis,0.396,0
+DM,a given environment using the document-based or key-value store-based data model,data management,0.5326,0
+DM,"Entity and referential integrity: Candidate key, superkeys",integrity,0.5002,0
+DM,Relational database design,database management,0.6019,0
+DM,Mapping conceptual schema to a relational schema,relationship management,0.3926,0
+DM,Physical database design: file and storage structures,database management,0.5038,0
+DM,Introduction to Functional dependency theory,dependability,0.5644,0
+DM,Normalization Theory,prioritization,0.3569,0
+DM,Functional dependency theory,dependability,0.584,0
+DM,the defining characteristics behind the relational data model,database management,0.4678,0
+DM,Comment on the difference between a foreign key and a superkey,intellectual curiosity,0.2039,0
+DM,Enumerate the different types of integrity constraints,integrity,0.6257,0
+DM,"Compose a relational schema from a conceptual schema which contains 1:1, 1:n, and n:m",relationship building,0.3573,0
+DM,Map appropriate file structure to relations and indices,data warehousing,0.3175,0
+DM,how functional dependency theory generalizes the notion of key,dependability,0.4057,0
+DM,Defend a given decomposition as lossless and or dependency preserving,dependability,0.3518,0
+DM,Detect which normal form a given decomposition yields,alteration fitting,0.1789,0
+DM,Comment on reasons for denormalizing a relation,relationship building,0.4086,0
+DM,SQL Query Formation,sql,0.697,0
+DM,Relational Algebra,relationship building,0.4802,0
+DM,SQL,sql,1.0,1
+DM,Relational Calculus,problem-solving,0.4768,0
+DM,QBE and 4th-generation environments,application development,0.329,0
+DM,Different ways to invoke non-procedural queries in conventional languages,results-oriented,0.3665,0
+DM,Introduction to other major query languages,sql,0.4666,0
+DM,Stored procedures,sql,0.4295,0
+DM,when a nested SQL query is correlated or not,sql,0.4338,0
+DM,Iterate over data retrieved programmatically from a database via an SQL query,sql,0.3741,0
+DM,Compose an SQL query to update a tuple in a relation,sql,0.4577,0
+DM,Page structures,html,0.4087,0
+DM,Index structures,data analysis,0.3227,0
+DM,File structures,data management,0.3706,0
+DM,Algorithms for query operators,sql,0.4214,0
+DM,Query transformations,sql,0.4636,0
+DM,Query optimization,sql,0.5468,0
+DM,Parallel Query Processing,sql,0.4682,0
+DM,Database tuning/performance,database management,0.6024,0
+DM,the purpose and organization of both B+ tree and hash index structures,data warehousing,0.2923,0
+DM,Compose an SQL command to create an index,sql,0.405,0
+DM,"the steps for the various query operator algorithms: external sorting, projection with",order processing,0.5198,0
+DM,Derive the run-time for each of the above algorithms,performance metrics,0.344,0
+DM,selectivity estimates for a given selection and/or join operation,prioritization,0.3138,0
+DM,how DBMSs leverage parallelism to speed up query processing by dividing the work,database management,0.4183,0
+DM,DB Buffer Management,database management,0.6033,0
+DM,Transaction Management,database management,0.6129,0
+DM,Concurrency Control:,conflict management,0.5293,0
+DM,Recovery Manager,disaster recovery planning,0.4578,0
+DM,how a DBMS manages its Buffer Pool,database management,0.4834,0
+DM,the four properties for a correct transaction manager,financial management,0.5009,0
+DM,Outline the principle of serializability,integrity,0.3842,0
+DM,Why NoSQL?,database management,0.3786,0
+DM,Key-Value and Document data model,data entry,0.4279,0
+DM,Storage systems,data management,0.5101,0
+DM,Distribution Models,financial modeling,0.5082,0
+DM,Graph Databases,data visualization,0.4899,0
+DM,Consistency Models,persistence,0.4671,0
+DM,Processing model,order processing,0.5789,0
+DM,Case Studies: Cloud storage system; Graph databases; When not to use NoSQL (See,data management,0.4572,0
+DM,a use case for the use of NoSQL over RDBMS,database management,0.5301,0
+DM,the defining characteristics behind Key-Value and Document-based data models,data management,0.4183,0
+DM,Differences between data security and data privacy,data security,0.6979,0
+DM,"Protecting data and database systems from attacks, including injection attacks such as SQL",data security,0.6202,0
+DM,Personally identifying information and its protection,data security,0.617,0
+DM,Ethical considerations in ensuring the security and privacy of data,data security,0.6934,0
+DM,Database auditing and its role in digital forensics,auditing,0.6418,0
+DM,Data inferencing and preventing attacks,data security,0.6554,0
+DM,Laws and regulations governing data security and data privacy,data security,0.7051,0
+DM,Typical risk factors and prevention measures for ensuring data integrity,integrity,0.6024,0
+DM,Ransomware and prevention of data loss and destruction,data security,0.509,0
+DM,the differences in the goals for data security and data privacy,data security,0.7058,0
+DM,and mitigate risks associated with different approaches to protecting data,data security,0.6918,0
+DM,legal and ethical considerations of end-to-end data security and privacy,data security,0.6716,0
+DM,a database auditing system given risk considerations,auditing,0.7127,0
+DM,several data exploration approaches to understanding unfamiliar datasets,data analysis,0.4255,0
+DM,Exploratory data techniques,data visualization,0.6295,0
+DM,Data acquisition and governance,data governance,0.8433,0
+DM,Data security and privacy considerations,data security,0.8153,0
+DM,Data fairness and bias,data governance,0.4285,0
+DM,Data visualization techniques and their use in data analytics,data visualization,0.8312,0
+DM,Entity Resolution,conflict resolution,0.4486,0
+DM,"several data exploration approaches, including visualization, to understanding unfamiliar",data visualization,0.5597,0
+DM,several data exploration approaches to understanding unfamiliar datasets,data analysis,0.4255,0
+DM,basic machine learning/data mining algorithms and when they are appropriate for use,data mining,0.6233,0
+DM,several machine learning/data mining algorithms,data mining,0.6861,0
+DM,"legal and ethical considerations in acquiring, using, and modifying datasets",data governance,0.5036,0
+DM,issues of fairness and bias in data collection and usage,persuasiveness,0.3717,0
+DM,Distributed DBMS,database management,0.6529,0
+DM,Parallel DBMS,database management,0.5904,0
+DM,Vectorized unstructured data and vector storage,data warehousing,0.4903,0
+DM,Semi-structured databases,database management,0.5527,0
+DM,Issues related to scale,growth mindset,0.3294,0
+DM,Data privacy overall,data security,0.628,0
+DM,Data anonymity,data security,0.5809,0
+DM,Data ownership/custodianship,data governance,0.5763,0
+DM,Intended and unintended applications of stored data,data management,0.5363,0
+DM,Reliability of data,reliability,0.6929,0
+DM,"Provenance, data lineage, and metadata management",data management,0.5176,0
+DM,Data security,data security,1.0,1
+DM,Enumerate three social and three legal issues related to large data collections,data warehousing,0.4769,0
+DM,the value of data privacy,data security,0.6631,0
+DM,the competing stakeholders with respect to data ownership,data governance,0.7115,0
+DM,Enumerate three negative unintended consequences from a given data-centric,data analysis,0.3555,0
+DM,the meaning of data provenance and lineage,data warehousing,0.441,0
+DM,how a database might contribute to data security as well as how it may introduce,data security,0.6976,0
+FPL,Imperative programming as a subset of object-oriented programming,programming,0.4709,0
+FPL,Object-oriented design:,goal-oriented,0.5493,0
+FPL,"Definition of classes: fields, methods, and constructors",networking concepts,0.282,0
+FPL,"Subclasses, inheritance, and method overriding",java,0.2419,0
+FPL,Dynamic dispatch: definition of method-call,goal-oriented,0.2888,0
+FPL,Exception handling,incident management,0.3848,0
+FPL,Object-oriented idioms for encapsulation:,detail-oriented,0.4199,0
+FPL,Dynamic vs static properties,dependability,0.3259,0
+FPL,Composition vs inheritance,creativity,0.3112,0
+FPL,Subtyping:,merchandising,0.3447,0
+FPL,"Collection classes, iterators, and other common library components",data warehousing,0.2416,0
+FPL,Metaprogramming and reflection,program management,0.3114,0
+FPL,Enumerate the differences between imperative and object-oriented programming paradigms,program management,0.4404,0
+FPL,a simple class hierarchy utilizing subclassing that allows code to be reused for distinct,program management,0.3431,0
+FPL,and validate control flow in a program using dynamic dispatch,program management,0.4187,0
+FPL,"and contrast how computational solutions to a problem differ in procedural, functional",problem-solving,0.4053,0
+FPL,and contrast mechanisms to define and protect data elements within procedural,detail-oriented,0.3567,0
+FPL,and contrast the benefits and costs/impact of using inheritance and,succession planning,0.3672,0
+FPL,the relationship between object-oriented inheritance and,goal-oriented,0.4024,0
+FPL,object-oriented encapsulation mechanisms such as interfaces and private members,internal controls,0.3456,0
+FPL,"and use iterators and other operations on aggregates, including operations that take",order processing,0.3986,0
+FPL,collection classes and iterators effectively to solve a problem,approachability,0.2943,0
+FPL,Lambda expressions and evaluation:,performance evaluation,0.3625,0
+FPL,Effect-free programming:,programming,0.6393,0
+FPL,Processing structured data via functions with cases for each data variant:,data warehousing,0.4467,0
+FPL,Using higher-order functions,order processing,0.3037,0
+FPL,Metaprogramming and reflection,program management,0.3114,0
+FPL,Function closures,firewalls,0.2417,0
+FPL,Graph reduction machine and call-by-need,network management,0.3615,0
+FPL,Implementing lazy evaluation,performance evaluation,0.5452,0
+FPL,Integration with other programming paradigms such as imperative and object-oriented,programming,0.4893,0
+FPL,basic algorithms that avoid assigning to mutable states or considering reference equality,prioritization,0.3418,0
+FPL,useful functions that take and return other functions,sales strategies,0.2809,0
+FPL,"and contrast how computational solutions to a problem differ in procedural, functional",problem-solving,0.4053,0
+FPL,and contrast mechanisms to define and protect data elements within procedural,detail-oriented,0.3567,0
+FPL,"a simple example of lambda expression being implemented using a virtual machine, such",vmware,0.3167,0
+FPL,Correctly interpret variables and lexical scope in a program using function closures,programming,0.3351,0
+FPL,functional encapsulation mechanisms such as closures and modular interfaces,internal controls,0.3225,0
+FPL,and contrast stateful vs stateless execution,performance evaluation,0.3431,0
+FPL,"and use iterators and other operations on aggregates, including operations that take",order processing,0.3986,0
+FPL,Illustrate graph reduction using a -expression using a shared subexpression,data visualization,0.2941,0
+FPL,Universal vs existential quantifiers,persistence,0.2128,0
+FPL,First order predicate logic vs higher order logic,order processing,0.303,0
+FPL,Expressing complex relations using logical connectives and simpler relations,relationship building,0.3316,0
+FPL,"Definitions of Horn clause, facts, goals and subgoals",ambition,0.3576,0
+FPL,Unification and unification algorithm; unification vs assertion vs expression evaluation,consensus building,0.3254,0
+FPL,Mixing relations with functions,employee relations,0.3505,0
+FPL,"Cuts, backtracking, and non-determinism",detail-oriented,0.3183,0
+FPL,Closed-world vs open-world assumptions,diversity and inclusion,0.266,0
+FPL,Memory overhead of variable copying in handling iterative programs,programming,0.3885,0
+FPL,Programming constructs to store partial computation and pruning search trees,programming,0.381,0
+FPL,"Higher-order, constraint, and inductive logic programming",approachability,0.3474,0
+FPL,Integration with other programming paradigms such as object-oriented programming,programming,0.5029,0
+FPL,a logic language to implement a conventional algorithm,automation,0.4104,0
+FPL,a simple illustrative example to show correspondence between First Order Predicate Logic,order processing,0.2834,0
+FPL,"simple logic programs interleaving relations, functions, and recursive programming such as",programming,0.4741,0
+FPL,Error/exception handling,problem management,0.3787,0
+FPL,Piping,pipeline management,0.6681,0
+FPL,System commands,system administration,0.6238,0
+FPL,Environment variables,configuration management,0.3173,0
+FPL,File abstraction and operators,detail-oriented,0.3739,0
+FPL,"Data structures, such as arrays and lists",data management,0.4236,0
+FPL,Regular expressions,machine learning,0.2833,0
+FPL,Programs and processes,program management,0.6684,0
+FPL,Workflow,payroll processing,0.4692,0
+FPL,and execute automated scripts to manage various system tasks,automation,0.6199,0
+FPL,Solve various text processing problems through scripting,automation,0.4303,0
+FPL,Procedural programming vs reactive programming: advantages of reactive programming in,programming,0.4562,0
+FPL,Stateless and state-transition models of event-based programming,event management,0.5075,0
+FPL,"Canonical uses such as GUIs, mobile devices, robots, servers",it infrastructure,0.3976,0
+FPL,Using a reactive framework:,automation,0.3172,0
+FPL,"Separation of model, view, and controller",internal controls,0.404,0
+FPL,Event-driven and reactive programs as state-transition systems,program management,0.4704,0
+FPL,"event handlers for use in reactive systems, such as GUIs",event management,0.5005,0
+FPL,and use a reactive framework,automation,0.4208,0
+FPL,"an interactive system in terms of a model, a view, and a controller",automation,0.4063,0
+FPL,Safety and liveness,safety training,0.5615,0
+FPL,Programming models,programming,0.6897,0
+FPL,Properties,ownership,0.3776,0
+FPL,Execution control:,system administration,0.5603,0
+FPL,Communication and coordination,communication,0.8216,0
+FPL,Futures,forecasting,0.5158,0
+FPL,"Language support for data parallelism such as forall, loop unrolling, map/reduce",data management,0.3819,0
+FPL,Effect of memory-consistency models on language semantics and correct code generation,programming,0.3941,0
+FPL,Representational State Transfer Application Programming Interfaces,program management,0.453,0
+FPL,Overheads of message-passing,communication,0.4596,0
+FPL,Granularity of program for efficient exploitation of concurrency,program management,0.4574,0
+FPL,Concurrency and other programming paradigms,program management,0.4514,0
+FPL,why programming languages do not guarantee sequential consistency in the presence of,order processing,0.3202,0
+FPL,"correct concurrent programs using multiple programming models, such as shared",program management,0.492,0
+FPL,a message-passing model to analyze a communication protocol,communication,0.5023,0
+FPL,synchronization constructions such as monitor/synchronized methods in a simple program,performance monitoring,0.4269,0
+FPL,"Modeling data dependency using simple programming constructs involving variables, read and",dependability,0.4422,0
+FPL,Modeling control dependency using simple constructs such as selection and iteration,dependability,0.4323,0
+FPL,how REST API's integrate applications and automate processes,application development,0.4024,0
+FPL,"benefits, constraints and challenges related to distributed and parallel computing",cloud computing,0.4581,0
+FPL,Aspects,detail oriented,0.5013,0
+FPL,Join points,sql,0.4053,0
+FPL,Advice,advisory skills,0.3853,0
+FPL,Point cuts,continuous improvement,0.3331,0
+FPL,Weaving  static and dynamic,flexibility,0.332,0
+FPL,Alternatives including annotations and IDEs,documentation management,0.4009,0
+FPL,A type as a set of values together with a set of operations,financial operations,0.3079,0
+FPL,"Association of types to variables, arguments, results, and fields",results oriented,0.3715,0
+FPL,Type safety as an aspect of program correctness,program management,0.41,0
+FPL,Type safety and errors caused by using values inconsistently given their intended types,approachability,0.319,0
+FPL,Generic types,technical writing,0.3112,0
+FPL,Type equivalence: structural vs name equivalence,adaptability,0.1878,0
+FPL,Complementary benefits of static and dynamic typing:,flexibility,0.3594,0
+FPL,"Compositional type constructors, such as product types, sum types",product development,0.3368,0
+FPL,Type checking,data entry,0.3616,0
+FPL,Subtyping:,merchandising,0.3447,0
+FPL,Type safety as preservation plus progress,safety training,0.3495,0
+FPL,Type inference,data mining,0.3131,0
+FPL,Static overloading,resource allocation,0.3277,0
+FPL,Propositions as types,technical writing,0.2761,0
+FPL,"Describe, for both a primitive and a compound type, the values that have that type",tenacity,0.2164,0
+FPL,examples of program errors detected by a type system,software troubleshooting,0.5076,0
+FPL,"program properties, for multiple programming languages, that are checked statically and",program management,0.3753,0
+FPL,an example program that does not type-check in a particular language and yet would have,programming,0.4094,0
+FPL,types and type-error messages to write and debug programs,software troubleshooting,0.5162,0
+FPL,how typing rules define the set of operations that are legal for a type,legal compliance,0.3731,0
+FPL,the type rules governing the use of a particular compound type,accounting principles,0.2673,0
+FPL,why undecidability requires type systems to conservatively approximate program behavior,approachability,0.3505,0
+FPL,and use program pieces that use generic types,program management,0.3863,0
+FPL,"the differences among generics, subtyping, and overloading",adaptability,0.2787,0
+FPL,"multiple benefits and limitations of static typing in writing, maintaining, and debugging",technical writing,0.4689,0
+FPL,a type system precisely and compositionally,detail-oriented,0.3287,0
+FPL,Precisely describe the invariants preserved by a sound type system,listening skills,0.289,0
+FPL,Prove type safety for a simple language in terms of preservation and progress theorems,dependability,0.3115,0
+FPL,a unification-based type-inference algorithm for a simple language,approachability,0.3136,0
+FPL,how static overloading and associated resolution algorithms influence the dynamic behavior,resource allocation,0.3628,0
+FPL,"Direct, indirect, and indexed access to memory location",resource allocation,0.3842,0
+FPL,"Run-time layout of memory: activation record, static data, call-stack, heap",detail-oriented,0.3531,0
+FPL,Memory management:,resource management,0.6163,0
+FPL,Green computing,cloud computing,0.6008,0
+FPL,"how a core language construct, such as data abstractions and control abstractions, is",detail-oriented,0.3681,0
+FPL,how programming language implementations typically organize memory into global data,program management,0.4909,0
+FPL,"why memory leaks and dangling pointer problems occur, and what can be done by a",detail-oriented,0.3223,0
+FPL,"Execution models for JIT, compiler, interpreter",jira,0.419,0
+FPL,"of intermediate code, e.g., bytecode",programming,0.4389,0
+FPL,"Limitations and benefits of JIT, compiler, and interpreter",programming,0.4157,0
+FPL,Cross compilers/transpilers,cross-functional collaboration,0.371,0
+FPL,BNF and extended BNF representation of context-free grammar,written communication,0.3083,0
+FPL,Parse tree using a simple sentence such as arithmetic expression or if-then-else statement,data mining,0.2777,0
+FPL,Execution as native code or within a virtual machine,vmware,0.4726,0
+FPL,Run-time representation of core language constructs such as objects and first-class,detail-oriented,0.3249,0
+FPL,Secure compiler development,data security,0.3966,0
+FPL,"and understand the differences between compiled, JIT, and interpreted language",programming,0.4225,0
+FPL,syntax and parsing from semantics and evaluation,programming,0.3264,0
+FPL,"BNF and extended BNF to specify the syntax of simple constructs such as if-then-else, type",ifrs,0.2316,0
+FPL,Illustrate the parse tree using a simple sentence/arithmetic expression,data visualization,0.3071,0
+FPL,"the benefits and limitations of garbage collection, including the notion of reachability",dependability,0.3702,0
+FPL,BNF and regular expressions,b2b sales,0.2414,0
+FPL,"Programs that take programs as input such as interpreters, compilers, type-checkers",programming,0.5333,0
+FPL,Components of a language:,bilingual,0.3783,0
+FPL,Program as a set of non-ambiguous meaningful sentences,programming,0.4666,0
+FPL,"Basic programming abstractions: constants, variables, declarations",programming,0.5151,0
+FPL,Mutable vs immutable variables: advantages and disadvantages of reusing existing memory,adaptability,0.4177,0
+FPL,Scope rules: static vs dynamic; visibility of variables; side-effects,dependability,0.2964,0
+FPL,"Side-effects induced by nonlocal variables, global variables and aliased variables",cultural sensitivity,0.2222,0
+FPL,Environment vs store and their properties,persistence,0.3773,0
+FPL,Data and control abstraction,data management,0.5111,0
+FPL,"Data structures to represent code for execution, translation, or transmission",program management,0.4222,0
+FPL,"Lambda calculus, variable binding, and variable renaming",delegation,0.2491,0
+FPL,Illustrate the scope of variables and visibility using simple programs,programming,0.4782,0
+FPL,Illustrate different types of parameter-passing using simple pseudo programming language,programming,0.399,0
+FPL,side-effect using global and nonlocal variables and how to fix such programs,programming,0.3207,0
+FPL,how programs that process other programs treat the other programs as their input data,program management,0.5552,0
+FPL,a grammar and an abstract syntax tree for a small language,programming,0.3622,0
+FPL,the benefits of having program representations other than strings of source code,program management,0.4705,0
+FPL,"a program to process some representation of code for some purpose, such as an",programming,0.5684,0
+FPL,Regular grammars vs context-free grammars,technical writing,0.2506,0
+FPL,Scanning and parsing based on language specifications,programming,0.3568,0
+FPL,Lexical analysis using regular expressions,data mining,0.3595,0
+FPL,Tokens and their use,account management,0.3296,0
+FPL,"Parsing strategies including top-down and bottom-up (e.g., LR or",order processing,0.3785,0
+FPL,Language theory:,written communication,0.4913,0
+FPL,Parser error recovery mechanisms,reliability,0.3356,0
+FPL,Generating scanners and parsers from declarative specifications,programming,0.3631,0
+FPL,formal grammars to specify the syntax of languages,written communication,0.2909,0
+FPL,Illustrate the role of lookahead tables in parsing,data entry,0.347,0
+FPL,declarative tools to generate parsers and scanners,crm tools,0.4368,0
+FPL,"key issues in syntax definitions: ambiguity, associativity, precedence",approachability,0.256,0
+FPL,Abstract syntax trees; contrast with concrete syntax,ada,0.3254,0
+FPL,"Defining, traversing, and modifying high-level program representations",program management,0.5271,0
+FPL,Scope and binding resolution,conflict resolution,0.3042,0
+FPL,Static semantics,detail-oriented,0.355,0
+FPL,L-values/R-values,data analysis,0.2712,0
+FPL,Call semantics,cold calling,0.4066,0
+FPL,Draw the abstract syntax tree for a small language,programming,0.3856,0
+FPL,"context-sensitive, source-level static analyses such as type-checkers or resolving",approachability,0.3573,0
+FPL,semantic analyses using an attribute grammar,data analysis,0.3655,0
+FPL,Undecidability and consequences for program analysis,program management,0.4322,0
+FPL,"Flow-insensitive analysis, such as type-checking and scalable pointer and alias analysis",approachability,0.3775,0
+FPL,"Flow-sensitive analysis, such as forward and backward dataflow analyses",data analysis,0.5006,0
+FPL,"Path-sensitive analysis, such as software model checking and software verification",software troubleshooting,0.4286,0
+FPL,Tools and frameworks for implementing analyzers,performance monitoring,0.482,0
+FPL,Role of program analysis in verification and bug-finding,software troubleshooting,0.5622,0
+FPL,Parallelization:,multi-tasking,0.5056,0
+FPL,the difference between dataflow graph and control flow graph,data visualization,0.3358,0
+FPL,why non-trivial sound program analyses must be approximate,approachability,0.3633,0
+FPL,Argue why an analysis is correct,data analysis,0.5188,0
+FPL,why potential aliasing limits sound program analysis and how alias analysis can help,data analysis,0.2664,0
+FPL,Instruction sets,programming,0.5127,0
+FPL,Control flow,internal controls,0.4999,0
+FPL,Memory management,resource management,0.6126,0
+FPL,Procedure calls and method dispatching,order processing,0.397,0
+FPL,Separate compilation; linking,confluence,0.3727,0
+FPL,Instruction selection,programming,0.5018,0
+FPL,Instruction scheduling,programming,0.5465,0
+FPL,Register allocation,resource allocation,0.4729,0
+FPL,Code optimization as a form of program analysis,program management,0.5527,0
+FPL,Program generation through generative AI,program management,0.5281,0
+FPL,the low-level code necessary for calling functions/methods in modern languages,programming,0.3746,0
+FPL,why separate compilation requires uniform calling conventions,conflict resolution,0.2267,0
+FPL,why separate compilation limits optimization because of unknown effects of calls,resource allocation,0.3584,0
+FPL,Process models using stacks and heaps to allocate and deallocate activation records and,onboarding processes,0.4594,0
+FPL,Data layout for objects and activation records,data entry,0.4445,0
+FPL,Object allocation in heap,resource allocation,0.4529,0
+FPL,Run-time behavior of object-oriented programs,program management,0.5061,0
+FPL,and contrast allocation of memory during information exchange using parameter-passing,communication,0.4144,0
+FPL,"Dynamic memory management approaches and techniques: malloc/free, garbage collection (mark",resource management,0.3859,0
+FPL,Just-in-time compilation and dynamic recompilation,performance monitoring,0.3198,0
+FPL,Interface to operating system,operating systems,0.7293,0
+FPL,Interoperability between programming languages including parameter-passing mechanisms and,programming,0.3946,0
+FPL,Sandboxing,problem management,0.3964,0
+FPL,benefits and limitations of automatic memory management,database management,0.4157,0
+FPL,"the use of metadata in run-time representations of objects and activation records, such as",data warehousing,0.4309,0
+FPL,and contrast static allocation vs stack-based allocation vs heap-based allocation of data,resource allocation,0.4771,0
+FPL,why some data elements cannot be automatically deallocated at the end of a,data entry,0.3316,0
+FPL,"advantages, disadvantages, and difficulties of just-in-time and dynamic recompilation",operating systems,0.3676,0
+FPL,the use of sandboxing in mobile code,application development,0.4273,0
+FPL,the services provided by modern language run-time systems,operating systems,0.4512,0
+FPL,Encapsulation mechanisms,internal controls,0.3363,0
+FPL,Lazy evaluation and infinite streams,performance evaluation,0.3798,0
+FPL,and contrast lazy evaluation vs eager evaluation,performance evaluation,0.5355,0
+FPL,Unification vs assertion vs expression evaluation,assertiveness,0.3816,0
+FPL,"Control abstractions: exception handling, continuations, monads",results-oriented,0.3302,0
+FPL,"Object-oriented abstractions: multiple inheritance, mixins, traits, multimethods",detail-oriented,0.4368,0
+FPL,"Metaprogramming: macros, generative programming, model-based development",programming,0.5082,0
+FPL,String manipulation via pattern-matching,order processing,0.2803,0
+FPL,Dynamic code evaluation,performance evaluation,0.5076,0
+FPL,"Language support for checking assertions, invariants, and pre/post-conditions",assertiveness,0.3741,0
+FPL,"Domain specific languages, such as database languages, data science languages, embedded",data integration,0.4146,0
+FPL,Massive parallel high performance computing models and languages,cloud computing,0.3815,0
+FPL,various advanced programming constructs and idioms correctly,programming,0.5646,0
+FPL,"how various advanced programming constructs aim to improve program structure, software",programming,0.5203,0
+FPL,how various advanced programming constructs interact with the definition and,programming,0.4642,0
+FPL,Problem domains and programming paradigm,problem management,0.5744,0
+FPL,Criteria for good programming language design,programming,0.5727,0
+FPL,"Evaluation order, precedence, and associativity",order processing,0.4011,0
+FPL,Eager vs delayed evaluation,performance evaluation,0.4595,0
+FPL,Defining control and iteration constructs,internal controls,0.3935,0
+FPL,External calls and system libraries,operating systems,0.4017,0
+FPL,the role of concepts such as orthogonality and well-chosen defaults in language design,detail oriented,0.3487,0
+FPL,Objectively evaluate and justify language-design decisions,approachability,0.4232,0
+FPL,an example program whose result can differ under different rules for evaluation order,order processing,0.5121,0
+FPL,"Illustrate uses of delayed evaluation, such as user-defined control abstractions",performance evaluation,0.3941,0
+FPL,Syntax vs semantics,programming,0.361,0
+FPL,"Approaches to semantics: axiomatic, operational, denotational, type-based",approachability,0.3787,0
+FPL,Operational semantics analysis of abstract constructs and sequence of such as assignment,program management,0.3361,0
+FPL,Denotational semantics,machine learning,0.308,0
+FPL,Proofs by induction over language semantics,assertiveness,0.2711,0
+FPL,Formal definitions and proofs for type systems,technical documentation,0.3266,0
+FPL,formal semantics for a small language,written communication,0.333,0
+FPL,a lambda-calculus program and show its evaluation to a normal form,performance evaluation,0.2778,0
+FPL,"the different approaches of operational, denotational, and axiomatic semantics",documentation,0.3544,0
+FPL,induction to prove properties of all programs in a language,programming,0.3779,0
+FPL,parametricity to establish the behavior of code given only its type,programming,0.2791,0
+FPL,Formal specification languages and methodologies,technical documentation,0.4739,0
+FPL,"Theorem provers, proof assistants, and logics",technical documentation,0.4175,0
+FPL,Constraint checkers,integrity,0.3343,0
+FPL,Formal modeling and manual refinement/implementation of software systems,program management,0.4582,0
+FPL,of symbolic testing and fuzzing in software development,application development,0.4325,0
+FPL,checking,troubleshooting,0.4627,0
+FPL,formal modeling techniques to develop and validate architectures,approachability,0.3564,0
+FPL,verifier and specification support in programming languages to formally validate system,automation,0.3458,0
+FPL,Integrate symbolic validation tooling into a programming workflow,automation,0.3815,0
+FPL,when and how formal methods can be effectively used in the development process,application development,0.5043,0
+FPL,Language design principles,written communication,0.471,0
+FPL,Designing a language to fit a specific domain or problem,programming,0.3738,0
+FPL,Interoperability between programming languages,programming,0.4737,0
+FPL,Language portability,bilingual,0.4692,0
+FPL,Formal description of a programming language,programming,0.5264,0
+FPL,Green computing principles,cloud computing,0.5315,0
+FPL,Impact of English-centric programming languages,programming,0.4845,0
+FPL,Enhancing accessibility and inclusivity for people with disabilities  Supporting assistive,help desk support,0.4302,0
+FPL,Human factors related to programming languages and usability,programming,0.5352,0
+FPL,"Etymology of terms such as class, master, and slave in programming languages",programming,0.3404,0
+FPL,Increasing accessibility by supporting multiple languages within applications,application development,0.4422,0
+FPL,Consciously design programming languages to be inclusive and non-offensive,programming,0.5074,0
+FPL,Professional: Students must demonstrate and apply the highest standards when using,professional development,0.525,0
+FPL,Meticulous: Attention to detail is essential when using programming languages and applying,attention to detail,0.6202,0
+FPL,Proactive: Programmers are responsible for anticipating all forms of user input and system,proactive approach,0.4824,0
+GIT,Uses of computer graphics and interactive techniques and their potential risks and abuses,visual merchandising,0.4039,0
+GIT,Graphic output,data visualization,0.4232,0
+GIT,Human vision system,visual merchandising,0.4005,0
+GIT,Standard image formats,microsoft powerpoint,0.275,0
+GIT,Digitization of analog data,data integration,0.3407,0
+GIT,"Color models: additive, subtractive, and color perception",visual merchandising,0.3623,0
+GIT,Tradeoffs between storing image data and re-computing image data,data management,0.3836,0
+GIT,"Spatialization: coordinate systems, absolute and relative positioning",detail oriented,0.3437,0
+GIT,Animation as a sequence of still images,visual merchandising,0.3666,0
+GIT,Applied interactive graphics,data visualization,0.4189,0
+GIT,Display characteristics,presentation,0.4021,0
+GIT,common uses of digital presentation to humans,presentation,0.6269,0
+GIT,"how analog signals can be reasonably represented by discrete samples, for example, how",statistical analysis,0.2113,0
+GIT,the memory requirement for storing a color image given its resolution,resource allocation,0.2469,0
+GIT,a graphic depicting how the limits of human perception affect choices about the digital,visual merchandising,0.4309,0
+GIT,color models and their use in graphics display devices,visual merchandising,0.3197,0
+GIT,the memory requirements for a multi-second movie displaying at a,presentation,0.2281,0
+GIT,and contrast digital video to analog video,visual merchandising,0.2415,0
+GIT,the basic process of producing continuous motion from a sequence of discrete frames,continuous learning,0.377,0
+GIT,a possible visual misrepresentation that could result from digitally sampling an analog,visual merchandising,0.2986,0
+GIT,memory space requirements based on resolution and color coding,resource allocation,0.3448,0
+GIT,time requirements based on refresh rates and rasterization techniques,time management,0.3815,0
+GIT,a user interface and an alternative for persons with color perception deficiency,visual merchandising,0.3623,0
+GIT,a simple graphical user interface using a graphics library,data visualization,0.4598,0
+GIT,Scientific Data Visualization and Information Visualization,data visualization,0.7781,0
+GIT,Visualization techniques,data visualization,0.8188,0
+GIT,Visualization pipeline,data visualization,0.7053,0
+GIT,High-dimensional data handling techniques,data warehousing,0.5911,0
+GIT,Perceptual and cognitive foundations that drive visual abstractions,detail oriented,0.4415,0
+GIT,and evaluation of visualizations,data visualization,0.6852,0
+GIT,and contrast data visualization and information visualization,data visualization,0.7599,0
+GIT,Deploy basic algorithms for visualization,data visualization,0.5782,0
+GIT,the tradeoffs of visualization algorithms in terms of accuracy and performance,data visualization,0.6646,0
+GIT,the effectiveness of a given visualization for a particular task,data visualization,0.5956,0
+GIT,a process to evaluate the utility of a visualization algorithm or system,data visualization,0.5914,0
+GIT,Object and scene modeling,detail oriented,0.4309,0
+GIT,Camera and projection modeling,presentation,0.3618,0
+GIT,Radiometry and light models,alteration fitting,0.1606,0
+GIT,Rendering,html,0.4128,0
+GIT,the basic rendering pipeline,pipeline management,0.501,0
+GIT,and contrast how forward and backwards rendering factor into the graphics pipeline,visual merchandising,0.3107,0
+GIT,a program to display 2D shapes in a window,data visualization,0.3863,0
+GIT,a program to display 3D models,data visualization,0.3626,0
+GIT,Produce linear perspective from similar triangles by converting points to points,alteration fitting,0.3087,0
+GIT,two-dimensional and 3-dimensional points by applying affine transformations,alteration fitting,0.2936,0
+GIT,"texture mapping, sampling, and anti-aliasing, and describe examples of each",data visualization,0.3087,0
+GIT,ray tracing and rasterization for the visibility problem,windows,0.2257,0
+GIT,a program that performs transformation and clipping operations on simple two,programming,0.3852,0
+GIT,a simple real-time renderer using a rasterization API using,visual merchandising,0.31,0
+GIT,and contrast the different rendering techniques,visual merchandising,0.3689,0
+GIT,and contrast the difference in transforming the camera vs the models,adaptability,0.3238,0
+GIT,Surface representation/model,detail oriented,0.3249,0
+GIT,Volumetric representation/model,alteration fitting,0.3623,0
+GIT,Procedural representation/model,data visualization,0.3553,0
+GIT,Multi-resolution modeling,alteration fitting,0.3121,0
+GIT,"Reconstruction, e.g., 3D scanning, photogrammetry",engineering,0.2985,0
+GIT,Contrast representing curves and surfaces in both implicit and parametric forms,data visualization,0.2958,0
+GIT,simple polyhedral models by surface tessellation,alteration fitting,0.2291,0
+GIT,a mesh representation from an implicit surface,detail oriented,0.2678,0
+GIT,a fractal model or terrain using a procedural method,data visualization,0.2326,0
+GIT,a mesh from data points acquired with a laser scanner,data visualization,0.306,0
+GIT,"CSG models from simple primitives, such as cubes and quadric surfaces",financial modeling,0.2461,0
+GIT,"Solutions and approximations to the rendering equation, for example",problem-solving,0.2446,0
+GIT,"Time, lens position, and continuous frequency and their impact on",time management,0.2782,0
+GIT,Shadow mapping,visual merchandising,0.3439,0
+GIT,Occlusion culling,inclusivity,0.3242,0
+GIT,Bidirectional Scattering Distribution function theory and microfacets,proposal writing,0.1935,0
+GIT,Subsurface scattering,proposal writing,0.1821,0
+GIT,Area light sources,hubspot,0.2031,0
+GIT,Hierarchical depth buffering,detail-oriented,0.3095,0
+GIT,Image-based rendering,visual merchandising,0.4296,0
+GIT,Non-photorealistic rendering,visual merchandising,0.453,0
+GIT,Realtime rendering,visual merchandising,0.3923,0
+GIT,GPU architecture,hardware support,0.4368,0
+GIT,how an algorithm estimates a solution to the rendering equation,compensation analysis,0.2941,0
+GIT,the properties of a rendering algorithm,visual merchandising,0.4267,0
+GIT,the bandwidth and computation demands of a simple shading algorithm,css,0.3301,0
+GIT,a non-trivial shading algorithm under a,visual merchandising,0.2878,0
+GIT,State how a particular artistic technique might be implemented in a renderer,visual merchandising,0.3928,0
+GIT,how one might recognize the shading techniques used to create a particular image,visual merchandising,0.3618,0
+GIT,a ray tracer for scenes using a simple Bidirectional Reflection Distribution,alteration fitting,0.246,0
+GIT,Types of animation,presentation,0.3359,0
+GIT,Key-frame animation,powerpoint,0.2505,0
+GIT,Forward and inverse kinematics,autonomy,0.2649,0
+GIT,Skinning algorithms,visual merchandising,0.3894,0
+GIT,Motion capture,visual merchandising,0.3935,0
+GIT,the location and orientation of model parts using a forward kinematic approach,detail oriented,0.3199,0
+GIT,the orientation of articulated parts of a model from a location and orientation using an,detail oriented,0.3763,0
+GIT,the tradeoffs in different representations of rotations,flexibility,0.2681,0
+GIT,Collision detection and response,conflict resolution,0.3405,0
+GIT,Procedural animation using noise,creativity,0.2121,0
+GIT,Particle systems,pos systems,0.4086,0
+GIT,Grid-based fluids,data visualization,0.19,0
+GIT,Heightfields,css,0.2841,0
+GIT,Rule-based systems,automation,0.4662,0
+GIT,algorithms for physical modeling of particle dynamics using simple Newtonian,financial modeling,0.2603,0
+GIT,a smoke solver with user interaction,automation,0.3536,0
+GIT,"Immersion levels, Augmented Reality, and Mixed Reality)",adaptability,0.3158,0
+GIT,Definitions of and distinctions between immersion and presence,interpersonal skills,0.3265,0
+GIT,360 Video,o365,0.3406,0
+GIT,Stereoscopic display,sales presentations,0.3243,0
+GIT,Viewer tracking,applicant tracking systems,0.4552,0
+GIT,Time-critical rendering to achieve optimal Motion To Photon latency,urgency,0.2821,0
+GIT,"Distributed VR, collaboration over computer network",collaboration,0.5335,0
+GIT,Presence and factors that impact level of immersion,interpersonal skills,0.3699,0
+GIT,3D interaction,presentation,0.3657,0
+GIT,"Applications in medicine, simulation, training, and visualization",data visualization,0.4352,0
+GIT,Safety in immersive applications,safety training,0.3802,0
+GIT,a stereoscopic image,visual merchandising,0.3611,0
+GIT,and write an AR or VR application,windows,0.3819,0
+GIT,the pros and cons of different types of viewer tracking,applicant tracking systems,0.4059,0
+GIT,and contrast the differences between geometry- and image-based virtual reality,visual merchandising,0.2683,0
+GIT,the design issues of user action synchronization and data consistency in a networked,network management,0.3727,0
+GIT,the specifications for an augmented reality application to be used by surgeons in the,powerpoint,0.3205,0
+GIT,Assess an immersive applications accessibility,application development,0.3786,0
+GIT,the most important technical characteristics of a VR system/application that should be,vmware,0.3549,0
+GIT,Event Driven Programming,event management,0.6922,0
+GIT,Graphical User Interface,data visualization,0.5019,0
+GIT,Accessibility,adaptability,0.4576,0
+GIT,Gestural Interfaces,detail oriented,0.3651,0
+GIT,Haptic Interfaces,internal controls,0.3189,0
+GIT,Multimodal Interfaces,visual merchandising,0.3948,0
+GIT,Head-worn Interfaces,adaptability,0.3867,0
+GIT,Natural Language Interfaces,ms word,0.3944,0
+GIT,a simple game that responds to single channel mouse and keyboard events,event planning,0.3503,0
+GIT,a mobile app that responds to touch events,event management,0.4089,0
+GIT,and create an application that responds to different event triggers,event management,0.5211,0
+GIT,Assess the consistency or lack of consistency in cross-platform touch screen gestures,computer proficiency,0.2723,0
+GIT,and create an application that provides haptic feedback,internal controls,0.3354,0
+GIT,a program that is controlled by gestures,programming,0.491,0
+GIT,Morphological operations,order processing,0.3225,0
+GIT,Color histograms,data visualization,0.4129,0
+GIT,Image enhancement,alteration fitting,0.4106,0
+GIT,Image restoration,alteration fitting,0.3223,0
+GIT,Image coding,programming,0.4158,0
+GIT,Connections to deep learning,continuous learning,0.4795,0
+GIT,a program that uses dilation and erosion to smooth the edges of a binary image,alteration fitting,0.3329,0
+GIT,Manipulating the hue of an image,visual merchandising,0.3353,0
+GIT,a program that applies a high-pass filter to an image. (The advanced variation would be to,alteration fitting,0.3255,0
+GIT,Assess the results of selectively filtering an image in the frequency domain,statistical analysis,0.2549,0
+GIT,Interaction with the physical world,communication,0.4306,0
+GIT,Connection to physical artifacts,integrity,0.2866,0
+GIT,Internet of Things,networking,0.4846,0
+GIT,a simple virtual switch or application button and use it to turn on an LED,application development,0.2695,0
+GIT,a simple system to move a servo in response to sensor data,automation,0.2929,0
+GIT,a 3D form in a CAD package,detail-oriented,0.2839,0
+GIT,the G- and M-Code to construct a 3D maze and use a CAD/CAM package to check your,programming,0.2823,0
+GIT,"Accessibility in immersive, interactive, and physical computing applications",adaptability,0.3651,0
+GIT,Ethics/privacy in graphics applications,ethical conduct,0.4214,0
+GIT,Intellectual Property law as it relates to computer graphics and interactive techniques,visual merchandising,0.3944,0
+GIT,Current and past contributors to the field,influence,0.4284,0
+GIT,the security issues inherent in location tags,data security,0.4086,0
+GIT,the copyright issues of using watermarked images to train a neural network,visual merchandising,0.3507,0
+GIT,Coordinate geometry,sharepoint,0.281,0
+GIT,Trigonometry,problem solving,0.3503,0
+GIT,MSF-Linear*,ms project,0.3306,0
+GIT,MSF-Calculus*,ms project,0.3697,0
+GIT,MSF-Linear,ms project,0.3813,0
+GIT,MSF-Calculus,ms project,0.3809,0
+GIT,MSF-Probability,ms project,0.3222,0
+GIT,MSF-Statistics,statistical analysis,0.5004,0
+GIT,MSF-Discrete,fp&a,0.3476,0
+GIT,Data Structures necessary for this knowledge area,data warehousing,0.5604,0
+GIT,Data Structures desirable for this knowledge area,data warehousing,0.556,0
+HCI,User-centered design and evaluation methods,organizational design,0.5103,0
+HCI,User-centered design methodology,organizational design,0.6206,0
+HCI,Physical and cognitive characteristics of the user,computer skills,0.4827,0
+HCI,Designing for diverse user populations,diversity,0.5397,0
+HCI,Collaboration and communication,collaboration,0.8408,0
+HCI,Multi-user systems,operating systems,0.5872,0
+HCI,Conduct a user-centered design process that is integrated into a project,organizational design,0.5259,0
+HCI,and contrast the needs of users with those of designers,organizational design,0.4983,0
+HCI,the representative users of a design and discuss who else could be impacted by it,organizational design,0.502,0
+HCI,empathy and evaluation as elements of the design process,empathy,0.5893,0
+HCI,Carry out and document an analysis of users and their needs,technical documentation,0.4911,0
+HCI,a user story from a needs assessment,report writing,0.4422,0
+HCI,Contrast the different needs-finding methods for a given design problem,organizational design,0.456,0
+HCI,Reflect on whether your design would benefit from low-tech or no-tech components,hardware support,0.4237,0
+HCI,the implications of designing for a multi-user system/context,operating systems,0.4682,0
+HCI,impact,influence,0.5618,0
+HCI,Ethics in design methods and solutions,ethical conduct,0.568,0
+HCI,Requirements in design,business requirements gathering,0.6399,0
+HCI,Value-sensitive design,organizational design,0.4597,0
+HCI,Persuasion through design,persuasion,0.7865,0
+HCI,and critique the potential impacts of a design on society and relevant communities to,organizational design,0.5026,0
+HCI,the potential human factor elements in a design,organizational design,0.5768,0
+HCI,and understand direct and indirect stakeholders,stakeholder management,0.6783,0
+HCI,"scenarios that consider the entire lifespan of a design, beyond the immediately planned",organizational design,0.4099,0
+HCI,Assess the persuasive content of a design and its intent relative to user interests,persuasiveness,0.621,0
+HCI,Critique the outcomes of a design given its intent,organizational design,0.5576,0
+HCI,Understand the impact of design decisions,organizational design,0.5543,0
+HCI,Background,css,0.5296,0
+HCI,Techniques,sales techniques,0.4696,0
+HCI,Technologies,information technology,0.706,0
+HCI,IDFs,servicenow,0.3874,0
+HCI,Universal design,organizational design,0.5456,0
+HCI,Inclusive Design Frameworks,diversity and inclusion,0.4787,0
+HCI,Technologies: the Return On Investment of inclusion,diversity and inclusion,0.5158,0
+HCI,Inclusive Design Frameworks: user-sensitive inclusive design,diversity and inclusion,0.4676,0
+HCI,Critical approaches to HCI,approachability,0.3747,0
+HCI,"appropriate inclusive design approaches, such as universal design and ability-based",organizational design,0.4693,0
+HCI,and demonstrate understanding of software accessibility guidelines,software support,0.4486,0
+HCI,recognition of laws and regulations applicable to accessible design,legal compliance,0.4805,0
+HCI,"inclusive frameworks to design, such as universal design and usability and ability-based",diversity and inclusion,0.427,0
+HCI,understanding of laws and regulations applicable to accessible design,legal compliance,0.4623,0
+HCI,understanding of what is appropriate and inappropriate high level of skill during,influencing skills,0.67,0
+HCI,web pages and mobile apps for current standards of accessibility,compliance,0.3287,0
+HCI,Conceptualize user experience research to identify user needs and generate design insights,business requirements gathering,0.3991,0
+HCI,Methods for evaluation with users,performance evaluation,0.6041,0
+HCI,Study planning,planning,0.6735,0
+HCI,Techniques and tools for quantitative analysis,statistical analysis,0.6283,0
+HCI,Data management,data management,1.0,1
+HCI,the differences between formative and summative assessment and their role in evaluating,performance appraisal,0.4414,0
+HCI,appropriate formative or summative evaluation methods at different points throughout the,performance evaluation,0.5121,0
+HCI,the benefits of using both qualitative and quantitative methods for evaluation,performance evaluation,0.5069,0
+HCI,the implications and broader impacts of a given design,organizational design,0.5052,0
+HCI,"Pre-register a study design, with planned statistical tests",report preparation,0.4755,0
+HCI,Prototyping techniques and tools,application development,0.4142,0
+HCI,patterns,detail oriented,0.4288,0
+HCI,constraints,problem solving,0.4941,0
+HCI,patterns and guidelines,compliance,0.5073,0
+HCI,processes,process improvement,0.6727,0
+HCI,Interaction techniques,approachability,0.456,0
+HCI,Visual UI design,data visualization,0.512,0
+HCI,Immersive environments,visual merchandising,0.3669,0
+HCI,3D printing and fabrication,engineering,0.2772,0
+HCI,Asynchronous interaction models,cross-functional collaboration,0.3548,0
+HCI,Creativity support tools,creativity,0.5954,0
+HCI,Voice UI designs,oral communication,0.3736,0
+HCI,Propose system designs tailored to a specified appropriate mode of interaction,organizational design,0.3736,0
+HCI,Follow an iterative design and development process that incorporates the following:,product development,0.4633,0
+HCI,the impact of changing constraints and design tradeoffs on,adaptability,0.4436,0
+HCI,architectural design approaches in the context of project goals,project planning,0.6247,0
+HCI,synchronization challenges as part of the user experience in distributed environments,server management,0.3863,0
+HCI,and compare the privacy implications behind different input techniques for a given,data security,0.4288,0
+HCI,the rationale behind a UI design based on visual design principles,organizational design,0.3923,0
+HCI,the privacy implications within a VR/AR/MR scenario,confidentiality,0.3628,0
+HCI,Universal and user-centered design,organizational design,0.5663,0
+HCI,Accountability,accountability,1.0,1
+HCI,Accessibility and inclusive design,diversity and inclusion,0.5311,0
+HCI,Evaluating the design,performance evaluation,0.6613,0
+HCI,System design,organizational design,0.5606,0
+HCI,Participatory and inclusive design processes,organizational design,0.5008,0
+HCI,Evaluating the design: Implications and impacts of design: with respect to the environment,organizational design,0.5392,0
+HCI,VR/AR/MR scenarios,planning,0.2764,0
+HCI,Conduct a user-centered design process that is integrated into a project,organizational design,0.5259,0
+HCI,and critique the potential impacts of a design on society and relevant communities to,organizational design,0.5026,0
+HCI,Evaluating the design: Identify the implications and broader impacts of a given design,organizational design,0.529,0
+HCI,the privacy implications within a VR/AR/MR scenario,confidentiality,0.3628,0
+MSF,"Sets, relations, functions, cardinality",employee relations,0.3354,0
+MSF,Recursive mathematical definitions,mathematical skills,0.3138,0
+MSF,Proof techniques,problem-solving,0.3765,0
+MSF,"Permutations, combinations, counting, pigeonhole principle",problem-solving,0.2785,0
+MSF,Modular arithmetic,comptia a+,0.2786,0
+MSF,"Logic: truth tables, connectives, inference rules, formulas, normal forms, simple",documentation,0.3376,0
+MSF,Graphs: basic definitions,data visualization,0.4103,0
+MSF,Order notation,order processing,0.5568,0
+MSF,"Sets, Relations, and Functions, Cardinality",employee relations,0.3169,0
+MSF,"Permutations, combinations, and counting",problem-solving,0.335,0
+MSF,Logic,judgment,0.4645,0
+MSF,Graphs,data visualization,0.4921,0
+MSF,"Basic notions: sample spaces, events, probability, conditional probability, Bayes rule",event management,0.3343,0
+MSF,Discrete random variables and distributions,variance analysis,0.3017,0
+MSF,Continuous random variables and distributions,continuous learning,0.4084,0
+MSF,"Expectation, variance, law of large numbers, central limit theorem",variance analysis,0.4673,0
+MSF,Conditional distributions and expectation,variance analysis,0.2743,0
+MSF,"Applications to computing, the difference between probability and statistics",statistical analysis,0.5363,0
+MSF,Applications to computing,data mining,0.48,0
+MSF,"Univariate data: point estimation, confidence intervals",statistical analysis,0.3854,0
+MSF,"Multivariate data: estimation, correlation, regression",data analytics,0.41,0
+MSF,"Data transformation: dimension reduction, smoothing",alteration fitting,0.4708,0
+MSF,Statistical models and algorithms,statistical analysis,0.6819,0
+MSF,Hypothesis testing,statistical analysis,0.5385,0
+MSF,"Sampling, bias, adequacy of samples, Bayesian vs frequentist interpretations",statistical analysis,0.313,0
+MSF,"Solving equations, row-reduction",problem solving,0.419,0
+MSF,"Linear independence, span, basis",independence,0.4466,0
+MSF,"Orthogonality, projection, least-squares, orthogonal bases",employee relations,0.3004,0
+MSF,"Linear combinations of polynomials, Bezier curves",alteration fitting,0.2428,0
+MSF,Eigenvectors and eigenvalues,due diligence,0.3033,0
+MSF,"Applications to computer science: Principal Components Analysis, Singular Value",data analysis,0.4428,0
+MSF,"Vectors: definitions, vector operations, geometric interpretation, angles",mathematical skills,0.3124,0
+MSF,"Applications to computer science: PCA, SVD, page-rank, graphics",data analysis,0.3833,0
+MSF,"Sequences, series, limits",forecasting,0.2299,0
+MSF,"Single-variable derivatives: definition, computation rules, derivatives of important",compensation analysis,0.244,0
+MSF,Parametric and polar representations,persuasion,0.2336,0
+MSF,Taylor series,forecasting,0.316,0
+MSF,"Multivariate calculus: partial derivatives, gradient, chain-rule, vector valued functions",supply chain management,0.2459,0
+MSF,"CS applications: gradient descent for machine learning, forward and inverse kinematics",machine learning,0.4263,0
+MSF,"ODEs: definition, Euler method, applications to simulation",financial modeling,0.2228,0
+NC,"Importance of networking in contemporary computing, and associated challenges",networking,0.615,0
+NC,Switching techniques,change management,0.4517,0
+NC,Layers and their roles,internal controls,0.3994,0
+NC,Layering principles,detail oriented,0.3747,0
+NC,Network elements,network infrastructure,0.655,0
+NC,Basic queueing concepts,order processing,0.4191,0
+NC,Articulate the organization of the internet,organization,0.5382,0
+NC,and define the appropriate network terminology,networking concepts,0.6109,0
+NC,the layered structure of a typical networked architecture,network infrastructure,0.5005,0
+NC,the different types of complexity in a network,network infrastructure,0.4317,0
+NC,Naming and address schemes,dns,0.3699,0
+NC,Distributed application paradigms,application development,0.5378,0
+NC,Diversity of networked application demands (See,network management,0.5028,0
+NC,Coverage of application-layer protocols,firewalls,0.3444,0
+NC,"Interactions with TCP, UDP, and Socket APIs",firewalls,0.3761,0
+NC,"the principles of naming, addressing, resource location",resource management,0.5091,0
+NC,the needs of specific networked application demands,network management,0.5643,0
+NC,the details of one application layer protocol,networking concepts,0.4167,0
+NC,a simple client-server socket-based application,client service,0.5456,0
+NC,Unreliable delivery,reliability,0.5002,0
+NC,Principles of reliability,reliability,0.8807,0
+NC,Error control,problem management,0.4395,0
+NC,Flow control,internal controls,0.4568,0
+NC,Congestion control,network management,0.4399,0
+NC,TCP and performance issues,performance monitoring,0.4119,0
+NC,the operation of reliable delivery protocols,reliability,0.4691,0
+NC,the factors that affect the performance of reliable delivery protocols,reliability,0.5065,0
+NC,some TCP reliability design issues,reliability,0.4871,0
+NC,and implement a simple reliable protocol,network security,0.4065,0
+NC,Forwarding methods,approachability,0.4146,0
+NC,IP and Scalability issues,networking,0.5415,0
+NC,various routing paradigms and hierarchies,networking concepts,0.4605,0
+NC,how packets are forwarded in an IP network,networking,0.3968,0
+NC,how the Internet tackles scalability challenges,network infrastructure,0.5209,0
+NC,"Introduction to modulation, bandwidth, and communication media",networking concepts,0.3877,0
+NC,Encoding and Framing,written communication,0.4067,0
+NC,Medium Access Control,internal controls,0.4968,0
+NC,Ethernet and WiFi,network configuration,0.5204,0
+NC,Switching,change management,0.4884,0
+NC,Local Area Network Topologies,network infrastructure,0.5995,0
+NC,"some basic aspects of modulation, bandwidth, and communication media",networking concepts,0.4252,0
+NC,in detail a MAC protocol,networking concepts,0.3918,0
+NC,understanding of encoding and framing solution tradeoffs,resource allocation,0.3465,0
+NC,details of the implementation of Ethernet,networking concepts,0.4887,0
+NC,how switching works,change management,0.4045,0
+NC,one kind of a LAN topology,network infrastructure,0.565,0
+NC,General intro about security,network security,0.6089,0
+NC,Countermeasures,accountability,0.3954,0
+NC,some of the threat models of network security,network security,0.7283,0
+NC,specific network-based countermeasures,network security,0.5753,0
+NC,various aspects of network security from a case study,network security,0.7463,0
+NC,Principles of cellular communication,communication,0.5112,0
+NC,Principles of Wireless LANs,networking concepts,0.5563,0
+NC,Device to device communication,communication,0.4915,0
+NC,Multi-hop wireless networks,networking concepts,0.4727,0
+NC,some aspects of cellular communication such as registration,communication,0.5049,0
+NC,how 802.11 supports mobile users,desktop support,0.3171,0
+NC,"practical uses of device-to-device communication, as well as multihop",communication,0.4349,0
+NC,one type of mobile network such as ad hoc,networking concepts,0.4937,0
+NC,Network Virtualization,network infrastructure,0.6144,0
+NC,Quantum Networking,networking,0.6058,0
+NC,"Satellite, mmWave, Visible Light",windows server,0.2449,0
+NC,the value of advances in middleboxes in networks,network infrastructure,0.4982,0
+NC,the importance of Software Defined Networks,networking concepts,0.4964,0
+NC,some of the added value achieved by using Quantum Networking,networking,0.4868,0
+OS,"Influences of security, networking, multimedia, parallel and distributed computing",it infrastructure,0.5062,0
+OS,Exposure of operating systems functions in shells and systems programming,operating systems,0.6799,0
+OS,Understand the objectives and functions of modern operating systems,operating systems,0.7613,0
+OS,the design issues in different usage scenarios,organizational design,0.4712,0
+OS,Understand the functions of a contemporary operating system with respect to convenience,operating systems,0.7732,0
+OS,"Operating system software design and approaches (e.g., monolithic, layered, modular, micro",operating systems,0.6524,0
+OS,"Abstractions, processes, and resources",resource management,0.5339,0
+OS,Concept of system calls and links to application program interfaces. (See,application development,0.5033,0
+OS,The evolution of the link between hardware architecture and the operating system functions,operating systems,0.6872,0
+OS,Protection of resources means protecting some machine instructions/functions,resource management,0.4682,0
+OS,Leveraging interrupts from hardware level: service routines and implementations,operating systems,0.3747,0
+OS,Performance costs of context switches and associated cache flushes when performing process,performance monitoring,0.3878,0
+OS,Understand how the application of software design approaches to operating systems,operating systems,0.6794,0
+OS,Categorize system calls by purpose,system administration,0.4311,0
+OS,Understand dynamics of invoking a system call,system administration,0.347,0
+OS,whether a function can be implemented in the application layer or can only be,application development,0.3293,0
+OS,Understand how the separation into kernel and user mode affects safety and performance,operating systems,0.4505,0
+OS,Understand the advantages and disadvantages of using interrupt processing in enabling,operating systems,0.3672,0
+OS,Thread abstraction relative to concurrency,multi-tasking,0.389,0
+OS,"Race conditions, critical regions",diversity and inclusion,0.3328,0
+OS,Deadlocks and starvation,resilience,0.3367,0
+OS,Multiprocessor issues,hardware troubleshooting,0.493,0
+OS,Multiprocess concurrency vs multithreading,multi-tasking,0.4478,0
+OS,"Thread creation, states, structures",multi-tasking,0.3088,0
+OS,Thread APIs,performance monitoring,0.3005,0
+OS,Implementing thread safe code,safety training,0.3332,0
+OS,Race conditions in shared memory,resource allocation,0.3805,0
+OS,Understand concurrency issues in multiprocessor systems,operating systems,0.4342,0
+OS,Overview of operating system security mechanisms,operating systems,0.6931,0
+OS,Attacks and antagonism,cybersecurity,0.3761,0
+OS,Review of major vulnerabilities in real operating systems,operating systems,0.5996,0
+OS,Operating systems mitigation strategies such as backups,operating systems,0.5963,0
+OS,Policy/mechanism separation,policy development,0.6284,0
+OS,Security methods and devices,data security,0.5893,0
+OS,"Protection, access control, and authentication",data security,0.6084,0
+OS,Understand the requirement for protection and security mechanisms in operating systems,operating systems,0.6646,0
+OS,and describe the attack vectors that leverage OS vulnerabilities,operating systems,0.5361,0
+OS,Understand the mechanisms available in an OS to control access to resources,resource management,0.6195,0
+OS,the features and limitations of an operating system that impact protection and security,operating systems,0.7275,0
+OS,Preemptive and non-preemptive scheduling,resource allocation,0.4423,0
+OS,Concepts of Symmetric Multi-Processor scheduling and cache coherence,multi-tasking,0.3712,0
+OS,Timers,time management,0.5885,0
+OS,Fairness and starvation,accountability,0.4168,0
+OS,"Cooperative scheduling, such as Linux futexes and userland scheduling",resource allocation,0.399,0
+OS,and contrast the common algorithms used for both preemptive and non-preemptive,prioritization,0.5288,0
+OS,the relationships between scheduling algorithms and application domains,resource allocation,0.4132,0
+OS,"the distinctions among types of processor scheduler such as short-term, medium-term",performance monitoring,0.334,0
+OS,a problem or solution to determine appropriateness for asymmetric and/or symmetric,problem-solving,0.3338,0
+OS,a problem or solution to determine appropriateness as a process vs threads,process improvement,0.4695,0
+OS,some contexts benefitting from preemption and deadline scheduling,time management,0.4921,0
+OS,"Processes and threads relative to virtualization protected memory, process state, memory",operating systems,0.3882,0
+OS,Memory footprint/segmentation,resource allocation,0.3792,0
+OS,"Creating and loading executables, shared libraries, and dynamic linking",application development,0.3272,0
+OS,Dispatching and context switching,multi-tasking,0.4058,0
+OS,"Interprocess communication (e.g., shared memory, message passing, signals, environment",communication,0.5355,0
+OS,Understand how processes and threads use concurrency features to virtualize control,operating systems,0.3368,0
+OS,the appropriate interprocess communication mechanism for a specific purpose in a,communication,0.496,0
+OS,"Review of physical memory, address translation and memory management hardware",hardware support,0.4279,0
+OS,"Impact of memory hierarchy including cache concept, cache lookup, and per-CPU caching on",resource allocation,0.3425,0
+OS,"Logical and physical addressing, address space virtualization",operating systems,0.3653,0
+OS,"Concepts of paging, page replacement, thrashing and allocation of pages and frames",resource allocation,0.4446,0
+OS,Allocation/deallocation/storage techniques performance and,resource allocation,0.555,0
+OS,"Security mechanisms and concepts in memory management including sandboxing, protection",data security,0.446,0
+OS,Virtual memory: leveraging virtual memory hardware for OS services and efficiency,operating systems,0.4848,0
+OS,memory hierarchy and cost-performance tradeoffs,resource allocation,0.4267,0
+OS,the principles of virtual memory as applied to caching and paging,resource allocation,0.3656,0
+OS,the tradeoffs in terms of memory size,adaptability,0.3588,0
+OS,"the reason for and use of cache memory (performance and proximity, how caches",resource allocation,0.3828,0
+OS,how hardware is utilized for efficient virtualization,vmware,0.4858,0
+OS,Buffering strategies,resource allocation,0.443,0
+OS,"Direct Memory Access and polled I/O, Memory-mapped I/O",detail-oriented,0.3059,0
+OS,"Device interface abstractions, hardware abstraction layer",hardware support,0.4004,0
+OS,"Device driver purpose, abstraction, implementation, and testing challenges",hardware support,0.3996,0
+OS,High-level fault tolerance in device communication,reliability,0.3714,0
+OS,architecture level device control implementation and link relevant operating system,operating systems,0.5398,0
+OS,"OS device management layers and the architecture (e.g., device controller, device driver",operating systems,0.5184,0
+OS,the relationship between the physical hardware and the virtual devices maintained by the,hardware support,0.5028,0
+OS,I/O data buffering and describe strategies for implementing it,performance monitoring,0.4182,0
+OS,the advantages and disadvantages of direct memory access and discuss the,operating systems,0.4174,0
+OS,the complexity and best practices for the creation of device drivers,hardware installation,0.4107,0
+OS,"Concept of a file including data, metadata, operations, and access-mode",data management,0.4461,0
+OS,File system mounting,operating systems,0.3464,0
+OS,File access control,data security,0.49,0
+OS,File sharing,sharepoint,0.494,0
+OS,"Basic file allocation methods, including linked allocation table",resource allocation,0.435,0
+OS,Allocation/deallocation/storage techniques impact on performance,resource allocation,0.5701,0
+OS,Free space management such as using bit tables vs linking,data management,0.4083,0
+OS,Implementation of directories to segment and track file location,applicant tracking systems,0.3134,0
+OS,the choices to be made in designing file systems,operating systems,0.4968,0
+OS,"different approaches to file organization, recognizing the strengths and weaknesses of",data management,0.4584,0
+OS,software constructs appropriately given knowledge of the file system implementation,operating systems,0.5138,0
+OS,"File systems: partitioning, mount/unmount, virtual file systems",operating systems,0.457,0
+OS,In-depth implementation techniques,detail-oriented,0.4707,0
+OS,Memory-mapped files,data management,0.3295,0
+OS,Special-purpose file systems,operating systems,0.5379,0
+OS,"Naming, searching, access, backups",data management,0.4948,0
+OS,Journaling and log-structured file systems,record keeping,0.3974,0
+OS,Distributed file systems,data management,0.4736,0
+OS,Encrypted file systems,data security,0.5071,0
+OS,Fault tolerance,reliability,0.5541,0
+OS,how hardware developments have led to changes in the priorities for the design and the,hardware support,0.5834,0
+OS,Map file abstractions to a list of relevant devices and interfaces,detail-oriented,0.3528,0
+OS,and categorize different mount types,detail oriented,0.2957,0
+OS,the use of journaling and how log-structured file systems enhance fault tolerance,record keeping,0.3394,0
+OS,purpose and complexity of distributed file systems,operating systems,0.4431,0
+OS,examples of distributed file systems protocols,network infrastructure,0.4179,0
+OS,mechanisms in file systems to improve fault tolerance,operating systems,0.4196,0
+OS,Using virtualization and isolation to achieve protection and predictable performance,vmware,0.4712,0
+OS,Advanced paging and virtual memory,resource allocation,0.3242,0
+OS,Virtual file systems and virtual devices,operating systems,0.487,0
+OS,Containers and their comparison to virtual machines,vmware,0.4622,0
+OS,Thrashing,teamwork,0.3937,0
+OS,Types of virtualizations,vmware,0.5359,0
+OS,Portable virtualization; emulation vs isolation,vmware,0.4042,0
+OS,Cost of virtualization,vmware,0.4759,0
+OS,"Virtual machines and container escapes, dangers from a security perspective",data security,0.3882,0
+OS,"Hypervisors- hardware virtual machine extensions, hosts with kernel support, QEMU KVM",vmware,0.3429,0
+OS,how hardware architecture provides support and efficiencies for virtualization,hardware support,0.5411,0
+OS,the difference between emulation and isolation,operating systems,0.3662,0
+OS,virtualization tradeoffs,vmware,0.4815,0
+OS,hypervisors and the need for them in conjunction with different types of hypervisors,hyperion,0.326,0
+OS,Process and task scheduling,administrative tasks,0.5528,0
+OS,Deadlines and real-time issues,time management,0.4775,0
+OS,"Low-latency vs soft real-time"" vs ""hard real time.""",performance metrics,0.3018,0
+OS,Memory/disk management requirements in a real-time environment,data management,0.4367,0
+OS,"Failures, risks, and recovery",reliability,0.6163,0
+OS,Special concerns in real-time systems,automation,0.4506,0
+OS,what makes a system a real-time system,crm systems,0.4521,0
+OS,latency and its sources in software systems and its characteristics,performance monitoring,0.4826,0
+OS,specific real time operating systems features and mechanisms,operating systems,0.6794,0
+OS,Reliable and available systems,reliability,0.5914,0
+OS,Software and hardware approaches to address tolerance,hardware support,0.4378,0
+OS,Spatial and temporal redundancy,persistence,0.3903,0
+OS,Methods used to implement fault tolerance,reliability,0.4343,0
+OS,"Error identification and correction mechanisms, checksums of volatile memory in RAM",performance monitoring,0.3012,0
+OS,File system consistency check and recovery,reliability,0.3659,0
+OS,Journaling and log-structured file systems,record keeping,0.3974,0
+OS,Use-cases for fault-tolerance,reliability,0.5085,0
+OS,"how operating systems can facilitate fault tolerance, reliability, and availability",operating systems,0.6776,0
+OS,the range of methods for implementing fault tolerance in an operating system,operating systems,0.5504,0
+OS,how an operating system can continue functioning after a fault occurs,operating systems,0.5996,0
+OS,the performance and flexibility tradeoffs that impact using fault tolerance,reliability,0.4659,0
+OS,operating systems fault tolerance issues and mechanisms in detail,operating systems,0.5864,0
+OS,Open source in operating systems,operating systems,0.7242,0
+OS,End-of-life issues with sunsetting operating systems,operating systems,0.6007,0
+OS,advantages and disadvantages of finding and addressing bugs in open-source kernels,operating systems,0.3801,0
+OS,Contextualize history and positive and negative impact of Linux as an open-source product,linux,0.5538,0
+OS,complications with reliance on operating systems past end-of-life,operating systems,0.618,0
+PDC,Parallelism,multi-tasking,0.4933,0
+PDC,Distribution,sales,0.375,0
+PDC,Starting activities,self-starter,0.4906,0
+PDC,Execution Properties,performance monitoring,0.3357,0
+PDC,One or more of the following mappings and mechanisms across layered systems:,cross-functional collaboration,0.339,0
+PDC,Graphically show) how to parallelize a compound numerical,data visualization,0.31,0
+PDC,why the concepts of consistency and fault tolerance do not arise in purely sequential,consensus building,0.335,0
+PDC,a function that efficiently counts events such as networking packet receptions,network management,0.4794,0
+PDC,a filter/map/reduce program in multiple styles,css,0.2879,0
+PDC,a service that creates a thread to return a requested,servicenow,0.4465,0
+PDC,Media,marketing,0.5589,0
+PDC,Channels,communication,0.5138,0
+PDC,Memory,attention to detail,0.4494,0
+PDC,Data Stores,data management,0.695,0
+PDC,One or more of the following properties and extensions,flexibility,0.2644,0
+PDC,the similarities and differences among: Party A sends a message on channel X with,communication,0.5697,0
+PDC,a parallel program that requests data from multiple sites and summarizes them using some,data warehousing,0.3987,0
+PDC,the performance of buffered versus unbuffered versions of a producer-consumer,performance monitoring,0.4014,0
+PDC,whether a given communication scheme provides sufficient security properties for a,communication,0.418,0
+PDC,Give an example of a scenario in which blocking message sends can deadlock,firewalls,0.3722,0
+PDC,at least one design technique for avoiding liveness failures in programs using multiple,program management,0.3913,0
+PDC,a program that illustrates memory-access or message reordering,program management,0.465,0
+PDC,the relative merits of optimistic versus conservative concurrency control under different,consensus building,0.3616,0
+PDC,Give an example of a scenario in which an attempted optimistic update may never complete,reliability,0.3071,0
+PDC,"Modify a concurrent system to use a more scalable, reliable, or available data store",data management,0.4557,0
+PDC,Dependencies,dependability,0.7072,0
+PDC,Control constructs and design patterns,internal controls,0.5319,0
+PDC,Atomicity,tenacity,0.3927,0
+PDC,One or more of the following properties and extensions,flexibility,0.2644,0
+PDC,Show how to avoid or repair a race error in a given program,software troubleshooting,0.4463,0
+PDC,a function that efficiently counts events such as sensor inputs or networking packet,event management,0.4726,0
+PDC,a filter/map/reduce program in multiple styles,css,0.2879,0
+PDC,a program in which the termination of one set of parallel actions is followed by another,multi-tasking,0.4196,0
+PDC,"a program that speculatively searches for a solution by multiple activities, terminating",multi-tasking,0.4755,0
+PDC,a program in which a numerical exception in one activity causes,program management,0.4012,0
+PDC,a service that creates a thread to return a,servicenow,0.4506,0
+PDC,"Performance impact of design and implementation choices, including granularity, overhead",performance evaluation,0.4928,0
+PDC,One or more of the following methods and tools:,crm tools,0.5057,0
+PDC,how concurrent notions of safety and liveness extend their sequential counterparts,safety training,0.4197,0
+PDC,a set of invariants that must hold at each bulk-parallel step of a computation,multi-tasking,0.2895,0
+PDC,"a test program that can reveal a data race error; for example, missing an update when two",software troubleshooting,0.4418,0
+PDC,and measure behavior when a service is requested by unexpectedly many clients,client service,0.5849,0
+PDC,and repair a performance problem due to sequential bottlenecks,performance monitoring,0.4842,0
+PDC,Empirically compare throughput of two implementations of a common design (perhaps using an,performance metrics,0.5091,0
+PDC,and repair a performance problem due to communication or data latency,performance monitoring,0.5121,0
+PDC,and repair a performance problem due to resource management overhead,resource management,0.6335,0
+PDC,and repair a reliability or availability problem,reliability,0.5898,0
+PDC,One of more of the following algorithmic domains,data mining,0.3173,0
+PDC,a parallel/distributed component based on a known algorithm,network infrastructure,0.3549,0
+PDC,a data-parallel program that for example computes the average of an array of numbers,program management,0.3457,0
+PDC,"a producer-consumer program in which one component generates numbers, and another",inventory management,0.4238,0
+PDC,Choose among different parallel/distributed designs for components of a given system,multi-tasking,0.3768,0
+PDC,"the performance and energy efficiency of multiple implementations of a similar design, for",performance evaluation,0.3813,0
+PDC,"Programs: KA Core on threads, tasks, instruction-level parallelism",operating systems,0.4454,0
+PDC,"Communication: KA Core on multicore architectures, memory, concurrent data stores",operating systems,0.3874,0
+PDC,Evaluation: KA Core on performance analysis,performance evaluation,0.7794,0
+PDC,Algorithms: project-based KA Core coverage of data processing and resource management,data management,0.462,0
+PDC,SDF-Fundamentals: Fundamental Programming Concepts and Practices  This knowledge unit,sdlc,0.458,0
+PDC,SDF-Data-Structures: Fundamental Data Structures  This knowledge unit aims to develop core,data integration,0.5089,0
+PDC,SDF-Practices: Software Development Practices  This knowledge unit develops the core,compliance knowledge,0.4327,0
+SDF,"Basic concepts such as variables, primitive data types, expressions, and their evaluation",technical documentation,0.3995,0
+SDF,"Key modularity constructs such as functions (and methods and classes, if supported in the",dependability,0.3168,0
+SDF,Input and output using files and APIs,programming,0.3282,0
+SDF,Libraries and frameworks provided by the language,programming,0.3788,0
+SDF,Recursion,accounts receivable,0.3293,0
+SDF,Dealing with runtime errors in programs,software troubleshooting,0.5374,0
+SDF,"Basic concepts of programming errors, testing, and debugging",software troubleshooting,0.5866,0
+SDF,Documenting/commenting code at the program and module level,project documentation,0.4844,0
+SDF,a security mindset,network security,0.6079,0
+SDF,programs that use the fundamental programming constructs: assignment and expressions,programming,0.5929,0
+SDF,programs using functions with parameter passing,programming,0.455,0
+SDF,programs that effectively use the different structured data types provided in the language,program management,0.4462,0
+SDF,programs that use file I/O to provide data persistence across multiple executions,persistence,0.4032,0
+SDF,programs that use language-provided libraries and frameworks,programming,0.4189,0
+SDF,programs that use APIs to access or update data,program management,0.46,0
+SDF,programs that create simple classes and instantiate objects of those classes (if supported,program management,0.3545,0
+SDF,the concept of recursion and identify when and how to use it effectively,approachability,0.3524,0
+SDF,recursive functions,accounts receivable,0.2967,0
+SDF,programs that can handle runtime errors,software troubleshooting,0.5195,0
+SDF,a given program and explain what it does,programming,0.5972,0
+SDF,comments for a program or a module specifying what it does,program management,0.441,0
+SDF,the flow of control during the execution of a program,program management,0.5376,0
+SDF,appropriate terminology to identify elements of a program,program management,0.5517,0
+SDF,Selecting and using appropriate data structures,data management,0.5352,0
+SDF,Performance implications of choice of data structure,data management,0.5148,0
+SDF,Strings and string processing,order processing,0.387,0
+SDF,the appropriate data structure for a given problem,data analysis,0.5099,0
+SDF,how the performance of a program may change when using different data structures or,performance monitoring,0.4437,0
+SDF,Concept of algorithm and notion of algorithm efficiency,performance evaluation,0.383,0
+SDF,Some common algorithms,data mining,0.4839,0
+SDF,Impact of algorithms on time-space efficiency of programs,performance metrics,0.4,0
+SDF,the role of algorithms for writing programs,programming,0.5966,0
+SDF,"how a problem may be solved by different algorithms, each with different properties",problem solving,0.4612,0
+SDF,the impact on space/time performance of some algorithms,performance metrics,0.4745,0
+SDF,"Basic testing, including test case design",business case development,0.5133,0
+SDF,"of a general-purpose IDE, including its debugger",software troubleshooting,0.4794,0
+SDF,Programming style that improves readability,approachability,0.4736,0
+SDF,Specifying functionality of a module in a natural language,python,0.2921,0
+SDF,tests for modules and apply a variety of strategies to design test cases,business case development,0.365,0
+SDF,some limitations of testing programs,program management,0.4253,0
+SDF,"Build, execute, and debug programs using a modern IDE and associated tools such as visual",software troubleshooting,0.4764,0
+SDF,basic programming style guidelines to aid readability of programs such as comments,approachability,0.4403,0
+SDF,specifications of a module as module comment describing its functionality,technical documentation,0.3414,0
+SDF,Intellectual property rights of programmers for programs they develop,programming,0.4144,0
+SDF,Plagiarism and academic integrity,integrity,0.566,0
+SDF,Responsibility and liability of programmers regarding code they develop for solutions,programming,0.3953,0
+SDF,Basic professional work ethics of programmers,ethical conduct,0.5626,0
+SDF,Explain/understand some of the intellectual property issues relating to programs,program management,0.4467,0
+SDF,Explain/understand when code developed by others can be used and proper ways of disclosing,technical documentation,0.3914,0
+SDF,Explain/understand one or more codes of conduct applicable to programmers,programming,0.5632,0
+SDF,SDF-Fundamentals,sdlc,0.4718,0
+SDF,SDF-Data-Structures,data integration,0.4993,0
+SDF,SDF-Algorithms,sdlc,0.4253,0
+SDF,SDF-Practices,sdlc,0.4811,0
+SDF,SDF-SEP,sdlc,0.556,0
+SDF,SE-Design: While Product Requirements focus on the user-facing functionality of a software,product development,0.526,0
+SDF,SE-Refactoring: Refactoring and Code Evolution focuses on refactoring and maintenance,detail-oriented,0.3167,0
+SDF,SE-Formal: Formal Methods provides mathematically rigorous mechanisms to apply to software,program management,0.3809,0
+SE,"Common causes of team conflict, and approaches for conflict resolution",conflict resolution,0.7702,0
+SE,Cooperative programming:,programming,0.6431,0
+SE,Roles and responsibilities in a software team:,team leadership,0.5906,0
+SE,Importance of team diversity and inclusivity,diversity,0.6003,0
+SE,"Interfacing with stakeholders, as a team:",stakeholder management,0.6955,0
+SE,Follow effective team communication practices,team collaboration,0.5679,0
+SE,Facilitate a conflict-resolution and problem-solving strategy in a team setting,conflict resolution,0.6773,0
+SE,Collaborate effectively in cooperative development/programming,team collaboration,0.6915,0
+SE,Propose and delegate necessary roles and responsibilities in a software development team,team development,0.5502,0
+SE,Compose and follow an agenda for a team meeting,team collaboration,0.5494,0
+SE,Promote the importance of and benefits that diversity and inclusivity brings to a software,diversity,0.6081,0
+SE,Software configuration management and version control:,configuration management,0.7514,0
+SE,Release management,program management,0.4745,0
+SE,Testing tools including static and dynamic analysis tools,software troubleshooting,0.4628,0
+SE,Software process automation:,automation,0.6708,0
+SE,and communication tools,communication,0.5704,0
+SE,Tool integration concepts and mechanisms,project management tools,0.4926,0
+SE,"of modern IDE facilities  debugging, refactoring, searching/indexing, ML-powered code",program management,0.4293,0
+SE,the difference between centralized and distributed software configuration management,configuration management,0.6632,0
+SE,how version control can be used to help manage software release management,program management,0.5171,0
+SE,configuration items and use a source code control tool in a small team-based project,project management tools,0.5734,0
+SE,how available static and dynamic test tools can be integrated into the software,software troubleshooting,0.4138,0
+SE,the capability to use software tools in support of the development of a software,software support,0.6927,0
+SE,"functional requirements using, for example, use cases or user stories",business requirements gathering,0.5236,0
+SE,"Properties of requirements including consistency, validity, completeness, and feasibility",business requirements gathering,0.5096,0
+SE,Requirements elicitation,business requirements gathering,0.661,0
+SE,Communicating and/or formalizing requirement specifications,business requirements gathering,0.6161,0
+SE,Prototyping a tool for both eliciting and validating/confirming requirements,business requirements gathering,0.514,0
+SE,Effort estimation:,cost analysis,0.5858,0
+SE,different methods of eliciting requirements along multiple axes,business requirements gathering,0.4768,0
+SE,"differences between two methods of describing functional requirements (e.g., customer",business requirements gathering,0.5014,0
+SE,Collect a set of requirements for a simple software system,business requirements gathering,0.5795,0
+SE,"areas of a software system that need to be changed, given a description of the system and",system administration,0.5821,0
+SE,the functional and non-functional requirements in a set of requirements,business requirements gathering,0.5683,0
+SE,a prototype of a software system to validate a set of requirements  building a mock-up,business requirements gathering,0.4831,0
+SE,"an implementation sequence for a set of tasks, adhering to dependencies between",multi-tasking,0.565,0
+SE,a requirement specification for a simple software system,business requirements gathering,0.5391,0
+SE,System design principles,organizational design,0.5331,0
+SE,Software architecture,application development,0.5497,0
+SE,Programming in the large vs programming in the small,programming,0.576,0
+SE,"Code smells and other indications of code quality, distinct from correctness",quality assurance,0.4335,0
+SE,API design principles,organizational design,0.3795,0
+SE,Identifying and codifying data invariants and time invariants,data analysis,0.3796,0
+SE,Structural and behavioral models of software designs,organizational design,0.518,0
+SE,Data design,data management,0.6883,0
+SE,Requirement traceability,business requirements gathering,0.5473,0
+SE,"modeling, for instance with class diagrams, entity relationship diagrams, or sequence",financial modeling,0.4206,0
+SE,Measurement and analysis of design quality,quality assurance,0.5142,0
+SE,Principles of secure design and coding,data security,0.5687,0
+SE,Evaluating design tradeoffs,performance evaluation,0.5119,0
+SE,the standard software architecture of a given high-level design,organizational design,0.3901,0
+SE,and use an appropriate design paradigm to design a simple software system and explain,application development,0.4595,0
+SE,Adapt a flawed system design to better follow principles such as separation of concerns or,conflict resolution,0.4738,0
+SE,the dependencies among a set of software components in an architectural design,dependability,0.5079,0
+SE,"an API for a single component of a large software system, including identifying and",program management,0.4196,0
+SE,"an API description in terms of consistency, composability, and expandability",approachability,0.4361,0
+SE,Expand an existing design to include a new piece of functionality,innovation,0.363,0
+SE,a set of data structures to implement a provided API surface,data warehousing,0.4786,0
+SE,which requirements are satisfied by a provided software design,business requirements gathering,0.5383,0
+SE,a natural language software design into class diagrams,program management,0.4276,0
+SE,"Contrast two software designs across different qualities, such as efficiency or usability",performance metrics,0.4112,0
+SE,Practical small-scale testing,performance evaluation,0.2853,0
+SE,Documentation,documentation,1.0,1
+SE,Coding style,programming,0.5535,0
+SE,Debugging,software troubleshooting,0.7187,0
+SE,Logging,auditing,0.5032,0
+SE,of libraries and frameworks developed by others,application development,0.4561,0
+SE,Larger-scale testing,performance monitoring,0.3309,0
+SE,"Work sequencing, including dependency identification, milestones, and risk retirement",workforce planning,0.4872,0
+SE,Potential security problems in programs,data security,0.5629,0
+SE,Development context: green field vs existing code base,application development,0.3798,0
+SE,Release management,program management,0.4745,0
+SE,DevOps practices,vendor management,0.4296,0
+SE,appropriate unit tests for a small component,hardware troubleshooting,0.3174,0
+SE,appropriate interface and implementation comments for a small component,detail-oriented,0.3366,0
+SE,"techniques, coding idioms and mechanisms for implementing designs to achieve desired",organizational design,0.4956,0
+SE,robust code using exception handling mechanisms,program management,0.3481,0
+SE,secure coding and defensive coding practices,data security,0.4828,0
+SE,and use a defined coding standard in a small software project,programming,0.4183,0
+SE,"and contrast integration strategies including top-down, bottom-up, and sandwich",detail oriented,0.3876,0
+SE,the process of analyzing and implementing changes to code base developed for a specific,application development,0.5227,0
+SE,the process of analyzing and implementing changes to a large existing code base,program management,0.4849,0
+SE,a software component that performs some non-trivial task and is resilient to input and run,software support,0.4228,0
+SE,Verification and validation concepts,integrity,0.4579,0
+SE,Why testing matters: Does the component remain functional as the code evolves?,dependability,0.2646,0
+SE,Testing objectives,goal-oriented,0.455,0
+SE,Test kinds,mathematical skills,0.3297,0
+SE,Stylistic differences between tests and production code: DAMP vs DRY  more duplication is,report preparation,0.3013,0
+SE,Test planning and generation,planning,0.463,0
+SE,Test development,team development,0.576,0
+SE,Verification and validation in the development cycle,team development,0.4938,0
+SE,Domain specific verification and validation challenges,"""valid drivers license""",0.3312,0
+SE,Verification and validation tooling and automation,automation,0.6773,0
+SE,Performance testing and benchmarking,performance monitoring,0.6993,0
+SE,"Testing asynchronous, parallel, and concurrent systems",performance monitoring,0.329,0
+SE,Verification and validation of non-code artifacts,integrity,0.3554,0
+SE,why testing is important,influencing skills,0.3682,0
+SE,Distinguish between program validation and verification,program management,0.3926,0
+SE,different objectives of testing,performance evaluation,0.3842,0
+SE,"and contrast the different types and levels of testing (regression, unit, integration",statistical analysis,0.3995,0
+SE,techniques for creating a test plan and generating test cases,business case development,0.487,0
+SE,a test plan for a medium-size code segment which includes a test matrix and generation of,programming,0.3788,0
+SE,a test plan for a medium-size code segment,programming,0.4006,0
+SE,the fundamental principles of test-driven development methods and explain the role of,learning and development,0.4741,0
+SE,issues involving the testing of object-oriented software,software troubleshooting,0.4796,0
+SE,mocking and dependency injection and their application,dependability,0.3588,0
+SE,"Undertake, as part of a team activity, a code review of a medium-size code segment",programming,0.4517,0
+SE,the role that tools can play in the validation of software,software support,0.5596,0
+SE,Automate the testing in a small software project,automation,0.5057,0
+SE,"the roles, pros, and cons of pre-commit and post-commit testing",facilitation,0.2966,0
+SE,the tradeoffs between test coverage and test throughput/latency and how this can impact,performance evaluation,0.2854,0
+SE,a defect tracking tool to manage software defects in a small software project,project management tools,0.5439,0
+SE,the limitations of testing in certain domains,compliance,0.3002,0
+SE,and compare different tools for verification and validation,crm tools,0.4383,0
+SE,Automate the use of different tools in a small software project,project management tools,0.6126,0
+SE,how and when random numbers should be used in testing,risk assessment,0.2477,0
+SE,approaches for fault estimation,software troubleshooting,0.4143,0
+SE,throughput and latency and provide examples of each,performance metrics,0.4809,0
+SE,speedup and the different forms of scaling and how they are computed,performance metrics,0.4263,0
+SE,common performance bottlenecks,performance metrics,0.645,0
+SE,statistical methods and best practices for benchmarking software,performance metrics,0.6446,0
+SE,techniques for and challenges with measuring time when constructing a benchmark,performance metrics,0.5755,0
+SE,"techniques and issues with testing asynchronous, concurrent, and parallel software",software troubleshooting,0.4027,0
+SE,"a test plan for a medium-size code segment which contains asynchronous, concurrent",performance monitoring,0.3324,0
+SE,techniques for the verification and validation of non-code artifacts,crm tools,0.3896,0
+SE,Hyrums Law/The Law of Implicit Interfaces,adaptability,0.2332,0
+SE,Backward compatibility,adaptability,0.468,0
+SE,Refactoring,process improvement,0.4103,0
+SE,Versioning,software support,0.4712,0
+SE,"changes that can be broadly considered backward compatible, potentially with explicit",adaptability,0.4233,0
+SE,whether a proposed change is sufficiently safe given the versioning methodology in use,approachability,0.3485,0
+SE,Plan a complex multi-step refactoring to change default behavior of an API safely,approachability,0.2792,0
+SE,Identifying reliability requirements for different kinds of software,reliability,0.5878,0
+SE,"Software reliability, system reliability and failure behavior",reliability,0.653,0
+SE,"Defect injection and removal cycle, and different approaches for defect removal",hardware installation,0.2915,0
+SE,the error budget approach to reliability with the error-free approach and identify,reliability,0.5925,0
+SE,Software reliability models,reliability,0.6256,0
+SE,Software fault tolerance techniques and models,program management,0.4577,0
+SE,"Measurement-based analysis of software reliability  telemetry, monitoring and alerting",reliability,0.4802,0
+SE,how to determine the level of reliability required by a software system,reliability,0.6086,0
+SE,the problems that exist in achieving very high levels of reliability,reliability,0.796,0
+SE,the ability to apply multiple methods to develop reliability estimates for a software,reliability,0.5922,0
+SE,ways to apply redundancy to achieve fault tolerance,reliability,0.4387,0
+SE,single-point-of-failure dependencies in a system design,dependability,0.5682,0
+SE,Formal specification of interfaces,technical documentation,0.4003,0
+SE,Problem areas well served by formal methods,problem management,0.5091,0
+SE,Comparison to other tools and techniques for defect detection,software troubleshooting,0.4612,0
+SE,Formal approaches to software modeling and analysis,program management,0.4716,0
+SE,the role formal specification and analysis techniques can play in the development of,technical documentation,0.4512,0
+SE,formal specification and analysis techniques to software designs and programs with low,program management,0.4266,0
+SE,the potential benefits and drawbacks of using formal specification languages,technical documentation,0.3902,0
+SE,Basic concepts t3 of authentication and authorization/access control,data security,0.4224,0
+SE,"Vulnerabilities, threats, attack surfaces, and attack vectors",cyber security,0.5092,0
+SE,Denial of Service and Distributed Denial of Service,firewalls,0.4365,0
+SE,Access control models,data security,0.4422,0
+SE,Security controls,data security,0.638,0
+SE,Concepts of trust and trustworthiness,trustworthiness,0.9166,0
+SE,"Applications of a security mindset: web, cloud, and mobile devices",data security,0.441,0
+SE,Protecting embedded and cyber-physical systems,cyber security,0.506,0
+SE,Principles of usable security and human-centered computing,cyber security,0.4937,0
+SE,"Security risks in building and operating AI/machine learning systems (e.g., algorithm bias",data security,0.4011,0
+SE,"Hardware considerations in security, e.g., principles of secure hardware, secure processor",hardware support,0.5451,0
+SE,a system for possible attacks that can be launched by an adversary,network security,0.4852,0
+SE,and develop approaches to protect a system from a set of identified threats,cyber security,0.5534,0
+SE,how harm to user privacy can be avoided,confidentiality,0.4981,0
+SE,a system that incorporates various principles of security and privacy,data security,0.6061,0
+SE,the different access control models in terms of functionality and performance,network administration,0.4006,0
+SE,hardware vulnerabilities that can impact software,hardware support,0.5196,0
+SEC,Principles and practices of privacy,confidentiality,0.5142,0
+SEC,Societal impacts on breakdowns in security and privacy,cyber security,0.4805,0
+SEC,Applicability of laws and regulations on security and privacy,confidentiality,0.5413,0
+SEC,Security by design,network security,0.6293,0
+SEC,Privacy by design and privacy engineering,confidentiality,0.4928,0
+SEC,Societal impacts of Internet of Things devices and other emerging technologies on security,cyber security,0.4396,0
+SEC,Calculate the impact of a breakdown in security of a given system,network security,0.3691,0
+SEC,a system that conforms to security laws,cyber security,0.5282,0
+SEC,a set of privacy regulations to design a system that protects privacy,confidentiality,0.5147,0
+SEC,the legal ramifications of a system not corresponding to applicable laws and regulations,legal compliance,0.5008,0
+SEC,a system that is designed to avoid harm to user privacy,data security,0.5261,0
+SEC,Common vulnerabilities and weaknesses,data security,0.4592,0
+SEC,SQL injection and other injection attacks,data security,0.457,0
+SEC,Cross-site scripting techniques and mitigations,automation,0.3162,0
+SEC,Input validation and data sanitization,data security,0.4798,0
+SEC,Type safety and type-safe languages,safety training,0.3696,0
+SEC,"Buffer overflows, stack smashing, and integer overflows",java,0.2845,0
+SEC,Security issues due to race conditions,data security,0.431,0
+SEC,Principles of noninterference and nondeducibility,approachability,0.2939,0
+SEC,Preventing information flow attacks,data security,0.5076,0
+SEC,Offensive security techniques as a defense,cyber security,0.546,0
+SEC,AI-assisted malware detection techniques,cybersecurity,0.3641,0
+SEC,"Ransomware: creation, prevention, and mitigation",data security,0.3643,0
+SEC,Secure use of third-party components,data security,0.4299,0
+SEC,"Malware: varieties, creation, reverse engineering, and defense against them",cybersecurity,0.4233,0
+SEC,"Assurance: testing, verification, and validation",quality assurance,0.6209,0
+SEC,Static and dynamic analyses,statistical analysis,0.4454,0
+SEC,Secure compilers and secure code generation,data security,0.3762,0
+SEC,underlying problems in given examples of an enumeration of common weaknesses and,approachability,0.4284,0
+SEC,input validation and data sanitization techniques to enhance security of a program,data security,0.5211,0
+SEC,how the selection of a programming language can impact the security of the system being,programming,0.4862,0
+SEC,Rewrite a program in a type-safe language originally written in an unsafe,program management,0.2973,0
+SEC,a program for possible buffer overflow attacks and rewrite to prevent such attacks,firewalls,0.3716,0
+SEC,a set of related programs for possible race conditions and prevent an adversary from,operating systems,0.3423,0
+SEC,and prevent SQL injections attacks on a database application,data security,0.5254,0
+SEC,and prevent cross-site scripting attacks against a website,data security,0.3437,0
+SEC,different kinds of malicious software,cybersecurity,0.4196,0
+SEC,a program that tests for all input handling errors,software troubleshooting,0.4555,0
+SEC,a system that is protected from unauthorized information flows,data security,0.5874,0
+SEC,static and dynamic tools to identify programming faults,software troubleshooting,0.6052,0
+SEC,a system for the existence of malware and remove it,cybersecurity,0.4655,0
+SEC,preventive techniques to reduce the occurrence of ransomware,cybersecurity,0.3269,0
+SEC,"Differences between algorithmic, applied, and mathematical views of cryptography",data security,0.3287,0
+SEC,Basic cryptography: symmetric key and public key cryptography,data security,0.4195,0
+SEC,"Basic cryptographic building blocks, including symmetric encryption, asymmetric encryption",data security,0.3888,0
+SEC,Kerckhoffs principle and use of vetted libraries,dependability,0.3705,0
+SEC,"Additional mathematics: primality, factoring, and elliptic curve cryptography",mathematical skills,0.3049,0
+SEC,Public-key cryptosystems: Diffie-Hellman and RSA,confidentiality,0.3129,0
+SEC,"Data integrity and authentication: hashing, and digital signatures",data security,0.5266,0
+SEC,"Cryptographic protocols: challenge-response authentication, zero-knowledge protocols",data security,0.3253,0
+SEC,"Attacker capabilities: chosen-message attack, birthday attacks, side channel",network security,0.3937,0
+SEC,Quantum cryptography; Post Quantum/Quantum resistant cryptography,data security,0.2965,0
+SEC,Blockchain and cryptocurrencies,financial systems,0.3525,0
+SEC,the role of cryptography in supporting security and privacy,data security,0.5276,0
+SEC,the risks of inventing ones own cryptographic methods,data security,0.3879,0
+SEC,the importance of prime numbers in cryptography and explain their use in cryptographic,data security,0.3505,0
+SEC,and cryptanalyze classical ciphers,data security,0.3448,0
+SEC,how crypto keys can be managed securely,data security,0.3887,0
+SEC,the space and time performance of a given set of cryptographic methods,data security,0.3391,0
+SEC,how modern private-key cryptosystems work and ways to cryptanalyze them,data security,0.3419,0
+SEC,how modern public-key cryptosystems work and ways to cryptanalyze them,data security,0.398,0
+SEC,different cryptographic algorithms in terms of security,data security,0.4432,0
+SEC,key exchange protocols and show approaches to reduce their failure,email communication,0.3986,0
+SEC,real-world applications of cryptographic primitives and protocols,data security,0.4213,0
+SEC,how quantum cryptography works and the impact of quantum computing on cryptographic,confidentiality,0.3166,0
+SEC,Problem analysis and situational analysis to address system security,cyber security,0.4607,0
+SEC,"Security design and engineering, including functional requirements, security subsystems",cyber security,0.4993,0
+SEC,"Security attack domains and attack surfaces, e.g., communications and networking, hardware",network security,0.5822,0
+SEC,Attestation of software products with respect to their specification and adaptiveness,product development,0.4055,0
+SEC,and development of cyber-physical systems,cyber security,0.4963,0
+SEC,a threat model for a system or system design,cyber security,0.4641,0
+SEC,situational analysis to develop secure solutions under a specified scenario,problem solving,0.4374,0
+SEC,"a given scenario for tradeoff analysis for system performance, risk assessment, and costs",cost analysis,0.5487,0
+SEC,"a set of technical security controls, countermeasures, and information protections to meet",data security,0.5743,0
+SEC,"the effectiveness of security functions, technical controls, and componentry for a system",cyber security,0.5947,0
+SEC,and mitigate security vulnerabilities and weaknesses in a system,cyber security,0.5418,0
+SEC,"and predict emergent behavior in areas such as Data Science, AI, and Machine Learning",machine learning,0.4714,0
+SEC,Basic principles and methodologies for digital forensics,data security,0.3752,0
+SEC,System design for forensics,data security,0.3875,0
+SEC,Attacks on forensics and preventing such attacks,data security,0.5255,0
+SEC,Incident handling processes,incident management,0.779,0
+SEC,Rules of evidence  general concepts and differences between jurisdictions,legal compliance,0.5472,0
+SEC,what a digital investigation is and how it can be implemented,auditing,0.4746,0
+SEC,and implement software to support forensics,software support,0.4666,0
+SEC,legal requirements for using seized data and its usage,data security,0.4145,0
+SEC,and implement an end-to-end chain of custody from initial digital evidence seizure to,delegation,0.4016,0
+SEC,Extract data from a hard drive to comply with the law,data security,0.4529,0
+SEC,Recover data based on a given search term from an imaged system,results-driven,0.2891,0
+SEC,Capture and analyze network traffic,network infrastructure,0.4581,0
+SEC,approaches to address the challenges associated with mobile device forensics,background checks,0.3304,0
+SEC,forensics tools to investigate security breaches,auditing,0.4468,0
+SEC,and mitigate anti-forensic methods,integrity,0.4186,0
+SEC,Protecting critical assets from threats,risk management,0.4915,0
+SEC,Security governance: organizational objectives and general risk assessment,risk management,0.5022,0
+SEC,"Security management: achieve and maintain appropriate levels of confidentiality, integrity",data security,0.5659,0
+SEC,Approaches to identifying and mitigating risks to computing infrastructure,it infrastructure,0.5622,0
+SEC,critical assets and how they can be protected,critical thinking,0.4232,0
+SEC,"between security governance, management, and controls, giving examples of each",financial controls,0.5036,0
+SEC,a technical control and implement it to mitigate specific threats,cyber security,0.5241,0
+SEC,and assess risk of programs and database applications causing breaches,data security,0.5114,0
+SEC,and implement appropriate backup strategies conforming to a given policy,policy adherence,0.4591,0
+SEC,a breach disclosure policy based on legal requirements and implement the policy,legal compliance,0.4999,0
+SEC,the risks and benefits of outsourcing to the cloud,cloud computing,0.5391,0
+SEP,Social implications in a hyper-networked world where the,interpersonal communication,0.3733,0
+SEP,Impact of computing applications on individual,application development,0.482,0
+SEP,"Growth and control of the internet, data, computing, and artificial intelligence",information technology,0.5005,0
+SEP,Context-aware computing,multitasking,0.4169,0
+SEP,"the different ways that computer technology (networks, mobile computing, artificial",information technology,0.5081,0
+SEP,developers assumptions and values embedded in hardware and software design,hardware support,0.4296,0
+SEP,Interpret the social context of a given design and its implementation,organizational design,0.5611,0
+SEP,the efficacy of a given design and implementation using empirical data,organizational design,0.4751,0
+SEP,"Understand the implications of technology use for different identities, cultures",cultural awareness,0.5004,0
+SEP,"the internets role in facilitating communication between citizens, governments, and each",email communication,0.5261,0
+SEP,"the effects of reliance on computing in the implementation of democracy (e.g., delivery of",information technology,0.4305,0
+SEP,the impact of a lack of appropriate representation of people from historically minoritized,cultural sensitivity,0.3674,0
+SEP,the implications of context awareness in ubiquitous computing systems,cultural awareness,0.4218,0
+SEP,Express how access to the internet and computing technologies affect different societies,information technology,0.5034,0
+SEP,why/how internet access can be viewed as a human right,network security,0.3751,0
+SEP,Avoiding fallacies and misrepresentation in argumentation,persuasion,0.3881,0
+SEP,Ethical theories and decision-making,decision making,0.6,0
+SEP,Professional checklists,professionalism,0.5039,0
+SEP,Evaluation rubrics,performance evaluation,0.5432,0
+SEP,Stakeholder analysis,stakeholder management,0.8985,0
+SEP,Standpoint theory,approachability,0.4325,0
+SEP,"Introduction to ethical frameworks (e.g., consequentialism such as utilitarianism, non",ethical conduct,0.4708,0
+SEP,how a given cultural context impacts decision making,cultural sensitivity,0.6043,0
+SEP,Express the use of example and analogy in ethical argument,ethical conduct,0.4225,0
+SEP,basic logical fallacies in an argument,judgment,0.336,0
+SEP,an argument to identify premises and conclusion,judgment,0.3726,0
+SEP,how and why ethics is so important in computing and how it relates to cultural norms,ethical conduct,0.5365,0
+SEP,a decision made on ethical grounds,ethical conduct,0.6747,0
+SEP,the advantages and disadvantages of traditional ethical frameworks,ethical conduct,0.5131,0
+SEP,ethical dilemmas related to the creation and use of technology from multiple perspectives,ethical conduct,0.5011,0
+SEP,Community values and the laws by which we live,legal compliance,0.4169,0
+SEP,Introduction to theories describing the human creation and use of technology including,innovation,0.4305,0
+SEP,The role of the computing professional and professional societies in public policy,professionalism,0.502,0
+SEP,Maintaining awareness of consequences,accountability,0.4883,0
+SEP,Ethical dissent and whistleblowing,ethical conduct,0.5974,0
+SEP,The relationship between regional culture and ethical dilemmas,ethical conduct,0.5218,0
+SEP,Dealing with harassment and discrimination,compliance with labor laws,0.4269,0
+SEP,Forms of professional credentialing,professional development,0.5048,0
+SEP,Ergonomics and healthy computing environments,multitasking,0.3645,0
+SEP,Time-to-market and cost considerations versus quality professional standards,professionalism,0.506,0
+SEP,"ethical issues that arise in software design, development practices, and software",ethical conduct,0.5588,0
+SEP,how to address ethical issues in specific situations,ethical conduct,0.6831,0
+SEP,the mechanisms that typically exist for a professional to keep up to date in ethical,ethical conduct,0.57,0
+SEP,the strengths and weaknesses of relevant professional codes as expressions of being a,professionalism,0.5754,0
+SEP,"a global computing issue, observing the role of professionals and government officials in",it infrastructure,0.5062,0
+SEP,ways in which professionals and professional organizations may contribute to public,professionalism,0.4868,0
+SEP,the consequences of inappropriate professional behavior,professionalism,0.5195,0
+SEP,examples of how regional culture interplays with ethical dilemmas,ethical conduct,0.539,0
+SEP,forms of harassment and discrimination and avenues of assistance,ethical conduct,0.458,0
+SEP,Assess various forms of professional credentialing,professional development,0.485,0
+SEP,State the relationship between ergonomics in computing environments and peoples health,work ethic,0.3688,0
+SEP,issues associated with industries push to focus on time-to-market versus enforcing,regulatory compliance,0.4679,0
+SEP,Intellectual property rights,ownership,0.4939,0
+SEP,Intangible digital intellectual property,digital marketing,0.461,0
+SEP,Legal foundations for intellectual property protection,legal compliance,0.4396,0
+SEP,Common software licenses,"""valid drivers license""",0.4457,0
+SEP,Plagiarism and authorship,report writing,0.3172,0
+SEP,Philosophical foundations of intellectual property,innovation,0.408,0
+SEP,Forms of intellectual property and the rights,ownership,0.4355,0
+SEP,"Limitations on copyright protections, including fair use and the first sale doctrine",legal compliance,0.4654,0
+SEP,Intellectual property laws and treaties that impact the enforcement of copyrights,legal compliance,0.4677,0
+SEP,Moral and legal foundations of the open-source movement,ethical conduct,0.3807,0
+SEP,Systems that use others data,data management,0.6127,0
+SEP,and critique legislation and precedent aimed at digital copyright infringements,legal compliance,0.5061,0
+SEP,contemporary examples of intangible digital intellectual property,digital marketing,0.4118,0
+SEP,an appropriate software license for a given project,project finance,0.4202,0
+SEP,Defend legal and ethical uses of copyrighted materials,legal compliance,0.4733,0
+SEP,Interpret the intent and implementation of software licensing,software installation,0.4375,0
+SEP,whether a use of copyrighted material is likely to be fair use,legal compliance,0.3723,0
+SEP,the ethical issues inherent in various plagiarism detection mechanisms,ethical conduct,0.3945,0
+SEP,the philosophical bases of intellectual property in an appropriate context,product knowledge,0.4049,0
+SEP,Distinguish the conflicting issues involved in securing software patents,regulatory compliance,0.3406,0
+SEP,the rationale for the legal protection of intellectual property in the appropriate context,legal compliance,0.4193,0
+SEP,the use of copyrighted work under the concepts of fair use and the first sale doctrine,legal compliance,0.4052,0
+SEP,"the goals of the open-source movement and its impact on fields beyond computing, such",innovation,0.3913,0
+SEP,the global nature of software piracy,integrity,0.3627,0
+SEP,"Criticize the use of technical measures of digital rights management (e.g., encryption",data security,0.4981,0
+SEP,the nature of anti-circumvention laws in the context of copyright protection,legal compliance,0.4973,0
+SEP,"Conceptions of anonymity, pseudonymity, and identity",confidentiality,0.496,0
+SEP,"Civil liberties, privacy rights, and cultural differences",confidentiality,0.4412,0
+SEP,Legal foundations of privacy protection in relevant jurisdictions,legal compliance,0.5231,0
+SEP,Privacy legislation in areas of practice,confidentiality,0.5249,0
+SEP,Freedom of expression and its limitations,compliance,0.3784,0
+SEP,"User-generated content, content moderation, and liability",ethical conduct,0.4142,0
+SEP,solutions to privacy threats in transactional databases and data warehouses,data security,0.546,0
+SEP,the role of data collection in the implementation of pervasive surveillance systems (e.g,data management,0.4382,0
+SEP,Distinguish the concepts and goals of anonymity and pseudonymity,confidentiality,0.4915,0
+SEP,"the ramifications of technology-based privacy protections, including differential privacy",data security,0.5272,0
+SEP,the philosophical basis for the legal protection of personal privacy in an appropriate,confidentiality,0.5214,0
+SEP,strategies to enable appropriate freedom of expression,compliance,0.3852,0
+SEP,"Oral, written, and electronic team and group communication",team collaboration,0.6448,0
+SEP,"Communicating with different stakeholders such as customers, leadership, or the public",stakeholder management,0.6082,0
+SEP,Team collaboration and conflict resolution,conflict resolution,0.8067,0
+SEP,Accessibility and inclusivity requirements for addressing professional audiences,inclusivity,0.4495,0
+SEP,Tradeoffs in competing factors that affect communication channels and choices,communication,0.5229,0
+SEP,"Communicating to solve problems or make recommendations in the workplace, such as raising",problem management,0.4502,0
+SEP,"written technical documentation for technical accuracy, concision, lack of ambiguity, and",technical documentation,0.768,0
+SEP,"Compose and deliver an audience-aware, accessible, and organized formal presentation",presentation,0.6927,0
+SEP,Plan interactions with others in ways that invite,planning,0.5171,0
+SEP,"and describe qualities of effective communication (e.g., virtual, face-to-face, intragroup",interpersonal communication,0.7253,0
+SEP,ways to influence performance and results in diverse and cross-cultural teams,team leadership,0.5639,0
+SEP,Assess personal strengths and weaknesses to work remotely as part of a team drawing from,teamwork,0.4992,0
+SEP,Choose an appropriate way to communicate delicate ethical concerns,ethical conduct,0.6612,0
+SEP,Guidelines for sustainable design standards,organizational design,0.3925,0
+SEP,ways to be a sustainable practitioner in a specific area or with a specific project,project management,0.4423,0
+SEP,"Assess the environmental impacts of a given projects deployment (e.g., energy consumption",project finance,0.4136,0
+SEP,global social and environmental impacts of computer use and disposal,it infrastructure,0.4138,0
+SEP,"the sustainable effects of modern practices and activities (e.g., remote work, e-commerce",work ethic,0.4178,0
+SEP,the environmental impacts of design choices within the field of computing that relate to,organizational design,0.4079,0
+SEP,the social and environmental impacts of new system designs,organizational design,0.4834,0
+SEP,guidelines for sustainable IT design or deployment in areas such as smart energy systems,it infrastructure,0.3935,0
+SEP,"The history of computing: hardware, software, and human/organizational",hardware support,0.4507,0
+SEP,"Age I: Ancient analog computing (Stonehenge, Antikythera mechanism, Salisbury",java,0.2567,0
+SEP,"Age II: ENIAC, UNIVAC, Bombes",cybersecurity,0.2999,0
+SEP,"Age III: PCs, modern computer hardware and software, Moores Law",hardware support,0.4671,0
+SEP,"Age IV: Networking, internet architecture, browsers and their evolution, standards, born",network infrastructure,0.4747,0
+SEP,"Age V: Mobile computing and smartphones, cloud computing and models thereof",cloud computing,0.533,0
+SEP,"Age VI: Decision making systems, recommender systems, generative AI and other machine",decision making,0.3507,0
+SEP,"how perspectives held today have been shaped by history, and that alternative",influencing,0.3206,0
+SEP,formative and consequential trends in the history of the computing field,programming,0.4114,0
+SEP,"the contributions of pioneering individuals or organizations (research labs, computer",organization,0.4442,0
+SEP,"the historical context for important moments in history of computing, such as the move",computer skills,0.4255,0
+SEP,"daily life before and after the advent of milestone developments (e.g., personal",personal development,0.5127,0
+SEP,"Economic models: regulated and unregulated, monopolies, network effects, and open market;",market research,0.4432,0
+SEP,"Pricing and deployment strategies: planned obsolescence, subscriptions, freemium, software",pricing strategy,0.5399,0
+SEP,"Automation, AI, and their effects on job markets, developers, and users",automation,0.5941,0
+SEP,Ethical concerns surrounding the attention economy and other economies of computing (e.g,ethical conduct,0.4787,0
+SEP,the social effects of economic models,financial modeling,0.4471,0
+SEP,examples of digital divides,digital marketing,0.4135,0
+SEP,Understand the effects of automation and AI on society,automation,0.5591,0
+SEP,Understand the ethical implications of computing economies that rely on attention and data,data governance,0.5006,0
+SEP,"Computer crimes, legal redress for computer criminals and impact on victims and society",cyber security,0.4084,0
+SEP,"Social engineering, computing-enabled fraud, identity theft and recovery from these",cybersecurity,0.4262,0
+SEP,"Cyber terrorism, criminal hacking, and hacktivism",cyber security,0.6241,0
+SEP,"Malware, viruses, worms",cybersecurity,0.4644,0
+SEP,Attacks on critical infrastructure such as electrical grids and pipelines,network infrastructure,0.4425,0
+SEP,Non-technical fundamentals of security,cyber security,0.5828,0
+SEP,Benefits and challenges of existing and proposed computer crime laws,data security,0.4152,0
+SEP,Security policies and the challenges of change and compliance,compliance management,0.6267,0
+SEP,Responsibility for security throughout the computing life cycle,cyber security,0.5419,0
+SEP,International and local laws and how they intersect,legal compliance,0.3688,0
+SEP,classic examples of computer crimes and social engineering incidents with societal impact,cybersecurity,0.4609,0
+SEP,issues with laws that apply to computer crimes,legal compliance,0.4599,0
+SEP,"the motivation and ramifications of cyber terrorism, data theft, hacktivism, ransomware",cybersecurity,0.5575,0
+SEP,the professional's role in security and the tradeoffs and challenges involved,professionalism,0.5701,0
+SEP,Investigate measures that can be taken by both individuals and organizations including,organization,0.5109,0
+SEP,"a company-wide security policy, which includes procedures for managing passwords and",data security,0.5111,0
+SEP,The benefits of diverse development teams and the impacts of teams that are not diverse,team development,0.6265,0
+SEP,"Inclusive language and charged terminology, and why their use matters",diversity and inclusion,0.3483,0
+SEP,Inclusive behaviors and why they matter,diversity and inclusion,0.5726,0
+SEP,Designing and developing technology with accessibility in mind,technology proficiency,0.4146,0
+SEP,"and distinguish equity, equality, diversity, inclusion, and accessibility",diversity and inclusion,0.8026,0
+SEP,"language, practices, and behaviors that may make someone feel included in a workplace",interpersonal communication,0.5503,0
+SEP,the accessibility of your classroom or lab. Evaluate the accessibility of your webpage,html,0.448,0
+SEP,collegiality and respect when working with team members who do not share your,team collaboration,0.6189,0
+SEP,the demographics of your institutions computer science and STEM majors to the overall,computer proficiency,0.4587,0
+SEP,developers assumptions and values embedded in hardware and software design,hardware support,0.4296,0
+SEP,"examples of the benefits that diverse teams can bring to software products, and how a lack",microsoft teams,0.5292,0
+SEP,the work of experts who reflect the identities of the classroom and the world,influencing skills,0.5145,0
+SEP,"examples of systemic changes that could positively address diversity, equity, inclusion",diversity and inclusion,0.7127,0
+SEP,the demographics of your institution to the overall community demographics. If they,diversity and inclusion,0.3766,0
+SF,Hardware as a computational paradigm: Fundamental logic building blocks; Logic expressions,hardware support,0.4847,0
+SF,"Programming abstractions, interfaces, use of libraries",programming,0.4897,0
+SF,"Distinction and interaction between application and OS services, remote procedure call",operating systems,0.4626,0
+SF,"Basic concept of pipelining, overlapped processing stages",pipeline management,0.5992,0
+SF,Basic concept of scaling: performance vs problem size,performance metrics,0.4617,0
+SF,the basic building blocks of computers and their role in the historical development of,computer skills,0.4261,0
+SF,"how computing systems are constructed of layers upon layers, based on separation of",operating systems,0.394,0
+SF,"that hardware, OS, VM, and application are additional layers of interpretation/processing",operating systems,0.55,0
+SF,"the mechanisms of how errors are detected, signaled back, and handled through the",reliability,0.4505,0
+SF,"a simple program using methods of layering, error detection",software troubleshooting,0.3996,0
+SF,"bugs in a layered program by using tools for program tracing, single stepping, and",software troubleshooting,0.5498,0
+SF,Digital vs Analog/Discrete vs Continuous Systems,digital marketing,0.3578,0
+SF,"Simple logic gates, logical expressions, Boolean logic simplification",programming,0.3151,0
+SF,"Clocks, State, Sequencing",time management,0.4661,0
+SF,State and state transition,policy development,0.3848,0
+SF,Finite state machines,machine learning,0.3865,0
+SF,"Combinational Logic, Sequential Logic, Registers, Memories",order processing,0.3503,0
+SF,Computers and Network Protocols as examples of State Machines,network infrastructure,0.5041,0
+SF,Sequential vs parallel processing,order processing,0.5754,0
+SF,Application-level sequential processing: single thread,order processing,0.4797,0
+SF,Simple application-level parallel processing: request level,process improvement,0.4034,0
+SF,"the differences between digital and analog systems, and between discrete and continuous",digital marketing,0.3252,0
+SF,computations as a system characterized by a known set of configurations with transitions,pos systems,0.3034,0
+SF,the distinction between systems whose output is only a function of their input,pos systems,0.3438,0
+SF,"state machine descriptions for simple problem statement solutions (e.g., traffic light",problem management,0.4473,0
+SF,a computer as a state machine that interprets machine instructions,system administration,0.4717,0
+SF,how a program or network protocol can also be expressed as a state machine and that,networking concepts,0.3706,0
+SF,a simple sequential problem and a simple parallel version of the same program,multi-tasking,0.4056,0
+SF,the performance of simple sequential and parallel versions of a program with different,performance evaluation,0.4143,0
+SF,on an execution timeline how parallelism events and operations can take place,order processing,0.4283,0
+SF,Different types of resources,resource management,0.6474,0
+SF,Advantages and disadvantages of common scheduling algorithms,resource allocation,0.3768,0
+SF,"how finite computer resources (e.g., processor share, memory, storage, and network",resource allocation,0.5368,0
+SF,how common resource allocation/scheduling algorithms work,resource allocation,0.7174,0
+SF,common scheduling algorithms and evaluate their performances,resource allocation,0.4159,0
+SF,the pros and cons of common scheduling algorithms,resource allocation,0.3842,0
+SF,Latencies in computer systems,computer proficiency,0.5268,0
+SF,Introduction to the processor memory hierarchy,operating systems,0.4364,0
+SF,The formula for average memory access time,performance metrics,0.3776,0
+SF,Rationale of virtualization and isolation: protection and predictable performance,vmware,0.4391,0
+SF,Methods for implementing virtual memory and virtual machines,vmware,0.4706,0
+SF,"the breakdown of the latency of computer systems in terms of memory, disk, and network",operating systems,0.4502,0
+SF,the importance of locality in determining system performance,performance monitoring,0.5405,0
+SF,Calculate average memory access time and describe the tradeoffs in memory hierarchy,performance metrics,0.446,0
+SF,why it is important to isolate and protect the execution of individual programs and,program management,0.4856,0
+SF,how the concept of indirection can create the illusion of a dedicated machine and its,autonomy,0.3806,0
+SF,the performance of two application instances running on separate virtual machines and,vmware,0.4609,0
+SF,Performance figures of merit,performance appraisal,0.7182,0
+SF,CPI equation as a tool for understanding tradeoffs in the design of,pricing strategy,0.3747,0
+SF,Order of magnitude analysis,order processing,0.3236,0
+SF,Analysis of slow and fast paths of a system,performance evaluation,0.2967,0
+SF,Events on their effect on performance,performance metrics,0.5837,0
+SF,Analytical tools to guide quantitative evaluation,performance evaluation,0.5558,0
+SF,Microbenchmark pitfalls,smartsheet,0.1938,0
+SF,how the components of system architecture contribute to improving its performance,performance monitoring,0.4846,0
+SF,the circumstances in which a given figure of a system performance metric is useful,performance metrics,0.7754,0
+SF,the usage and inadequacies of benchmarks as a measure of system performance,performance metrics,0.7192,0
+SF,Amdahls law and discuss its limitations,legal compliance,0.3575,0
+SF,limit studies or simple calculations to produce order-of-magnitude estimates for a given,statistical analysis,0.2521,0
+SF,software tools to profile and measure program performance,performance monitoring,0.7405,0
+SF,"and conduct a performance-oriented experiment of a common system (e.g., an OS and",operating systems,0.549,0
+SF,a performance experiment on a layered system to determine the effect of a system,performance monitoring,0.5164,0
+SF,"Distinction between bugs, faults, and failures",software troubleshooting,0.4696,0
+SF,Reliability vs availability,reliability,0.7564,0
+SF,Reliability through redundancy,reliability,0.7103,0
+SF,Other approaches to reliability,reliability,0.8013,0
+SF,simple algorithms for exploiting redundant information for the purposes of data correction,data management,0.3977,0
+SF,"different error detection and correction methods for their data overhead, implementation",performance monitoring,0.4331,0
+SF,Common system security issues (See,operating systems,0.5283,0
+SF,Countermeasures,accountability,0.3954,0
+SF,Representative countermeasure systems,crm systems,0.433,0
+SF,some common system security issues and give examples,operating systems,0.5519,0
+SF,some countermeasures against system security issues,data security,0.5459,0
+SF,Common criteria of system design (See,organizational design,0.5284,0
+SF,Designs of representative systems,organizational design,0.5166,0
+SF,common criteria of system design,organizational design,0.5458,0
+SF,the design of some representative systems,organizational design,0.5032,0
+SF,Intellectual property rights of computer systems,hardware support,0.3918,0
+SF,Common software licenses,"""valid drivers license""",0.4457,0
+SF,Computer crimes,cyber security,0.5566,0
+SF,the intellectual property rights of computer systems,operating systems,0.3989,0
+SF,representative software licenses and compare their differences,"""valid drivers license""",0.3931,0
+SF,representative computer crimes,cybersecurity,0.5065,0
+SPD,Overview of development platforms,application development,0.5762,0
+SPD,Programming via platform-specific Application Programming Interface vs traditional,programming,0.4767,0
+SPD,Overview of platform Languages,operating systems,0.4814,0
+SPD,"Programming under platform constraints and requirements (e.g., available development tools",programming,0.5144,0
+SPD,Techniques for learning and mastering a platform-specific programming language,programming,0.5865,0
+SPD,the constraints of mobile programming,programming,0.5823,0
+SPD,the characteristics of scripting languages,programming,0.5357,0
+SPD,the three-tier model of web programming,programming,0.479,0
+SPD,how the state is maintained in web programming,program management,0.4747,0
+SPD,Web programming languages,programming,0.6071,0
+SPD,"Web platforms, frameworks, or meta-frameworks",application development,0.3912,0
+SPD,Software as a Service,software support,0.6235,0
+SPD,"Web standards such as document object model, accessibility",documentation,0.4576,0
+SPD,Security and Privacy Considerations,data security,0.6606,0
+SPD,Analyzing requirements for web applications,business requirements gathering,0.596,0
+SPD,Computing services,cloud computing,0.6368,0
+SPD,Data management,data management,1.0,1
+SPD,Architecture,organizational design,0.5521,0
+SPD,Storage solutions,data management,0.4888,0
+SPD,and implement a web-based application using a microservice architecture design,client service,0.4263,0
+SPD,"the constraints, such as hosting, services, and scalability, related to web platforms",server management,0.4554,0
+SPD,and contrast web programming with general-purpose programming,programming,0.5761,0
+SPD,the differences between Software-as-a-Service and traditional software products,software support,0.4663,0
+SPD,how web standards impact software development,application development,0.4185,0
+SPD,an existing web application against current web standards,application development,0.4642,0
+SPD,Development with,learning and development,0.7349,0
+SPD,Mobile platform constraints,resource allocation,0.3731,0
+SPD,Access,salesforce,0.4807,0
+SPD,Development,learning and development,0.7902,0
+SPD,Mobile computing affordances,visual merchandising,0.35,0
+SPD,Specification and testing,technical documentation,0.4649,0
+SPD,Asynchronous computing,cloud computing,0.4489,0
+SPD,mobile programming with general-purpose programming,programming,0.5522,0
+SPD,a location-aware mobile application with data API integration,data integration,0.2948,0
+SPD,a sensor-driven mobile application capable of logging data on a remote server,data management,0.3527,0
+SPD,a communication app incorporating telephony and instant messaging,email communication,0.4837,0
+SPD,the pros and cons of native and cross-platform mobile application development,application development,0.5126,0
+SPD,Types of robotic platforms and devices,hardware support,0.3035,0
+SPD,"Sensors, embedded computation, and effectors",hardware support,0.3964,0
+SPD,Robot-specific languages and libraries,programming,0.4507,0
+SPD,Robotic software architecture),automation,0.4501,0
+SPD,Robotic platform constraints and design considerations,flexibility,0.3079,0
+SPD,Interconnections with physical or simulated systems,networking concepts,0.3742,0
+SPD,Robotic Algorithms,machine learning,0.4347,0
+SPD,Safety and interaction considerations,safety training,0.5382,0
+SPD,and implement an application on a given robotic platform,automation,0.415,0
+SPD,Integrate an Arduino-based robot kit and program it to navigate a maze,automation,0.3387,0
+SPD,robot-specific languages and techniques with those used for general-purpose software,automation,0.4736,0
+SPD,the constraints a given robotic platform imposes on developers,programming,0.4479,0
+SPD,Introduction to the unique characteristics of embedded systems,operating systems,0.4601,0
+SPD,API for custom architectures,application development,0.3266,0
+SPD,Embedded Systems,operating systems,0.5731,0
+SPD,Embedded programming,programming,0.701,0
+SPD,Hard real-time systems vs soft real-time systems,crm systems,0.4067,0
+SPD,Real-time resource management,resource management,0.7132,0
+SPD,Memory management,resource management,0.6126,0
+SPD,Safety considerations and safety analysis,safety training,0.6416,0
+SPD,Sensors and actuators,pos systems,0.314,0
+SPD,Analysis and verification,data analysis,0.6115,0
+SPD,Application design,application development,0.7703,0
+SPD,"and implement a small embedded system for a given platform (e.g., a smart alarm clock or a",hardware support,0.4225,0
+SPD,the unique characteristics of embedded systems versus other systems,operating systems,0.5128,0
+SPD,Interface with sensors/actuators,automation,0.3191,0
+SPD,Debug a problem with an existing embedded platform,hardware troubleshooting,0.5286,0
+SPD,different types of embedded architectures,hardware support,0.4147,0
+SPD,which architecture is best for a given set of requirements,business requirements gathering,0.4574,0
+SPD,and develop software to interact with and control hardware,hardware support,0.557,0
+SPD,methods for real-time systems,crm systems,0.4328,0
+SPD,real-time scheduling and schedulability analysis,time management,0.3682,0
+SPD,formal specification and verification of timing constraints and properties,time management,0.3421,0
+SPD,Historical and contemporary platforms for games,goal-oriented,0.3111,0
+SPD,Real-time Simulation and Rendering Systems,visual merchandising,0.3375,0
+SPD,Game Development Tools and Techniques,project management tools,0.503,0
+SPD,Game Engines,java,0.4209,0
+SPD,Game Design,organizational design,0.542,0
+SPD,Recall the characteristics of common general-purpose graphics processing architectures,detail-oriented,0.4078,0
+SPD,the key stages of the immediate-mode rendering pipeline,pipeline management,0.3703,0
+SPD,the key constraints a specific game platform will likely impose on developers,operating systems,0.3535,0
+SPD,how eSports are streamed to large audiences over the internet,social media marketing,0.3385,0
+SPD,complex mathematical functions into performant source code,programming,0.4067,0
+SPD,an industry-standard graphics API to render a 3D model in a virtual scene,visual merchandising,0.3514,0
+SPD,Modify a shader to change a visual effect according to stated requirements,alteration fitting,0.4511,0
+SPD,a game for a particular platform according to the specification,goal-oriented,0.3971,0
+SPD,Optimize a function for processing collision detection in a simulated environment,event planning,0.3461,0
+SPD,Assess a game's run-time and memory performance using an industry-standard tool and,performance monitoring,0.5672,0
+SPD,"the interfaces of different game platforms, highlighting their respective implications for",operating systems,0.4345,0
+SPD,the key challenges in making a digital game that is cross-platform compatible,cross-functional collaboration,0.3828,0
+SPD,Express how game developers can enhance the accessibility of a game interface,adaptability,0.3958,0
+SPD,novel forms of gameplay using frontier game platforms,goal-oriented,0.3227,0
+SPD,Data Analysis Platforms,data analysis,0.6172,0
+SPD,Prompt programming,programming,0.6713,0
+SPD,Quantum Platforms,linux,0.2716,0
+SPD,large datasets interactively,data visualization,0.5052,0
+SPD,"a backing track for a musical performance, such as live coding",record keeping,0.3262,0
+SPD,compelling computational notebooks that construct a narrative for a given journalistic,storytelling,0.4989,0
+SPD,interactive code that uses a dataset and generates exploratory graphics,data visualization,0.5535,0
+SPD,a program that performs a task using LLM systems,program management,0.5788,0
+SPD,Contrast a program developed by an AI platform and by a human,programming,0.5096,0
+SPD,a system that interacts with a human without using a screen,interpersonal communication,0.4104,0
+SPD,"a program using a notebook computing platform (e.g., searching, sorting, or graph",programming,0.5215,0
+SPD,a quantum gate outcome using a quantum platform,operating systems,0.2085,0
+SPD,Privacy and data protection,data security,0.7647,0
+SPD,Accessibility in mobile design,adaptability,0.3837,0
+SPD,Security and cybersecurity,cybersecurity,0.871,0
+SPD,Social impacts of mobile technology,technology proficiency,0.4291,0
+SPD,Ethical use of AI and algorithms,ethical conduct,0.489,0
+SPD,"mobile applications with accessibility in mind, ensuring effective use by people with",application development,0.4287,0
+SPD,proficiency in secure coding practices to mitigate risks associated with various security,data security,0.4859,0
+SPD,"the broader social impacts of mobile technology, including its influence on communication",communication,0.4734,0
+SPD,Privacy concerns with mobile apps,confidentiality,0.41,0
+SPD,Designing for inclusivity and accessibility,inclusivity,0.6098,0
+SPD,Ethical use of AI in mobile apps,ethical conduct,0.463,0
+SPD,Sustainable app development and server hosting,server management,0.4938,0
+SPD,Avoiding spam or intrusive notifications,email communication,0.3751,0
+SPD,Addressing cyberbullying and harassment,interpersonal communication,0.3952,0
+SPD,Promoting positive online communities,positive attitude,0.47,0
+SPD,Monetization and advertising,digital marketing,0.5484,0
+SPD,Ethical use of gamification,ethical conduct,0.4313,0
+SPD,Understand how mobile computing impacts communications and the flow of information within,communication,0.465,0
+SPD,mobile apps that have made daily tasks easier/faster,multitasking,0.4653,0
+SPD,how the ubiquity of mobile computing has affected work-life balance,work ethic,0.4753,0
+SPD,Understand how mobile computing impacts health monitoring and healthcare services,healthcare knowledge,0.4102,0
+SPD,how mobile apps are used to educate about and help achieve UN sustainability goals,application development,0.3316,0
+SPD,Intellectual Property Rights in Creative Industries,ownership,0.4301,0
+SPD,Fair Access to Play,competitive,0.3724,0
+SPD,Game-Related Health and Safety,safety training,0.4975,0
+SPD,Platform Hardware Supply Chain and Sustainability,hardware support,0.5129,0
+SPD,Representation in the Media and Industry,social media marketing,0.4365,0
+SPD,how creators can protect their intellectual property,ownership,0.3762,0
+SPD,common pitfalls in game interfaces that exclude players with impaired or non-functional,adaptability,0.3474,0
+SPD,how heuristic evaluation can be used to identify usability problems in game interfaces,approachability,0.4856,0
+SPD,why upper body injuries are common in eSports,safety training,0.2771,0
+SPD,how to reform characters and dialogues in a scene to reduce stereotype threat,diversity,0.3063,0
+SPD,Modify a policy for a LAN party event to include mitigations that lower the risk of fire,event planning,0.4108,0
+SPD,a gamification strategy to motivate serious play for an awareness-raising game,motivation,0.4153,0
+SPD,the role of company hiring policies and advocacy on social mobility,employment laws,0.3982,0
+SPD,Assess the appropriateness of two manufacturers for producing a new game console,product development,0.4567,0
+SPD,options for open-source licensing of a game development tool,microsoft suite,0.2959,0
+SPD,whether games are addictive,multitasking,0.3842,0
+SPD,a video game that successfully advocates for climate science,storytelling,0.2988,0
+SPD,"Fairness, transparency, and accountability in robotic algorithms",accountability,0.5,0
+SPD,Mitigating biases in robot decision-making,decision making,0.4681,0
+SPD,Public safety in shared spaces with robots,safety training,0.3948,0
+SPD,Compliance with data protection laws,data security,0.7022,0
+SPD,Patient consent and trust in medical robots,autonomy,0.3794,0
+SPD,instances of bias in robotic algorithms and propose strategies to mitigate them,results-oriented mindset,0.3349,0
+SPD,"and critique robotic systems for ethical and fairness considerations, suggesting",ethical conduct,0.49,0
+SPD,real-world examples of biases in robot decision-making and develop strategies to reduce,decision making,0.4624,0
+SPD,the impact of patient consent and trust on the effectiveness of medical robot deployments,trustworthiness,0.36,0
+SPD,Ethical guidelines when using AI models to assist in journalism and content creation,ethical conduct,0.4507,0
+SPD,Accountability for AI-generated outputs,accountability,0.5426,0
+SPD,Behavior among prompt programmers and AI developers,programming,0.4734,0
+SPD,Trust with the public when using AI models,trust building,0.5489,0
+SPD,ethical codes of conduct and professional standards relevant to prompt programming and,ethical conduct,0.6394,0
+SPD,"communication plans and materials to educate the public about AI capabilities, limitations",communication skills,0.4246,0
+SPD,Memory,attention to detail,0.4494,0
+SPD,Data Stores,data management,0.695,0
+SPD,"One or more of the following properties and Explain, KA 6",accounting principles,0.3011,0
+SPD,Atomicity,tenacity,0.3927,0
+SPD,The overfitting problem / controlling solution,machine learning,0.4475,0
+SPD,Working with Data,data entry,0.6617,0
+SPD,Representations,empathy,0.3789,0
+SPD,Machine learning evaluation,machine learning,0.7236,0
+SPD,Basic neural networks,machine learning,0.5085,0
+SPD,Ethics for Machine Learning Explain,ethical conduct,0.4735,0
+SPD,Real-time Simulation and Rendering Systems,visual merchandising,0.3375,0
+SPD,Game Development Tools and Techniques:,team development,0.5085,0
+SPD,Game Engines,java,0.4209,0
+SPD,Game Design,organizational design,0.542,0
+SPD,Taylor series,forecasting,0.316,0
+SPD,"Multivariate calculus  partial derivatives, gradient",portfolio management,0.2093,0
+SPD,"Optimization  convexity, global vs local minima",prioritization,0.24,0
+SPD,"ODEs  definition, Euler method, applications to",approachability,0.2468,0
+SPD,CS applications  gradient descent for machine,machine learning,0.452,0
+SPD,CS I,css,0.6148,0
+SPD,CS II,css,0.4985,0
+SPD,Mathematical and Statistical Foundations,statistical analysis,0.6053,0
+SPD,Algorithms,machine learning,0.5814,0
+SPD,Introduction to Computing Systems,operating systems,0.5054,0
+SPD,Programming Language Concepts,programming,0.6811,0
+SPD,Introduction to Computing Applications,data mining,0.4187,0
+SPD,Capstone,marketing,0.3098,0
+SPD,Data Structures and Algorithms,data mining,0.5297,0
+SPD,Programming Languages,programming,0.7892,0
+SPD,Software Engineering,engineering,0.6912,0
+SPD,One Systems elective:,pos systems,0.4794,0
+SPD,One elective from Applications:,application development,0.4499,0
+SPD,Two from Systems electives:,system administration,0.4789,0
+SPD,Two electives from Applications:,application development,0.3779,0
+SPD,Theory of Computation,programming,0.4524,0
+SPD,Operating Systems,operating systems,1.0,1
+SPD,Computer Architecture,operating systems,0.5493,0
+SPD,Parallel and Distributed Computing,cloud computing,0.5569,0
+SPD,Networking,networking,1.0,1
+SPD,Pick one of:,decision-making,0.3083,0
+SPD,Security,data security,0.7629,0
+SPD,Two electives from:,delegation,0.3788,0
+SPD,Pick three of:,decision-making,0.3593,0
+SPD,"Society, Ethics, and the Profession",ethical conduct,0.6302,0
+SPD,Three open CS electives,programming,0.3319,0
+SPD,"Society, Ethics, and the Profession course",ethical conduct,0.5946,0

@@ -156,6 +156,158 @@
       "verified_utc": "2026-10-10T14:38:10Z",
       "worker": "nihanshadman"
     },
+    "ALIGN04_crosscorpus_linkedin": {
+      "attempts": 4,
+      "completed_utc": "2026-10-10T18:21:02Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "pending",
+          "kernel_ref": "nihanshadman/sg-align04-crosscorpus-a1",
+          "ts": "2026-10-10T17:55:44Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "nihanshadman/sg-align04-crosscorpus-a1",
+          "ts": "2026-10-10T17:55:44Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "pending",
+          "kernel_ref": "mdzihan/sg-align04-crosscorpus-a2",
+          "ts": "2026-10-10T18:08:24Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "mdzihan/sg-align04-crosscorpus-a2",
+          "ts": "2026-10-10T18:08:24Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "kernel_ref": "leyamridha/sg-align04-crosscorpus-a3",
+          "ts": "2026-10-10T18:09:49Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "leyamridha/sg-align04-crosscorpus-a3",
+          "ts": "2026-10-10T18:09:49Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "kernel_ref": "tasnimjenny/sg-align04-crosscorpus-a4",
+          "ts": "2026-10-10T18:11:30Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "tasnimjenny/sg-align04-crosscorpus-a4",
+          "ts": "2026-10-10T18:11:30Z"
+        },
+        {
+          "event": "downloaded",
+          "kernel_ref": "tasnimjenny/sg-align04-crosscorpus-a4",
+          "metrics_json": true,
+          "ts": "2026-10-10T18:21:02Z"
+        },
+        {
+          "event": "abandoned_duplicate",
+          "kernel_ref": "nihanshadman/sg-align04-crosscorpus-a1",
+          "ts": "2026-10-10T18:21:02Z"
+        },
+        {
+          "event": "abandoned_duplicate",
+          "kernel_ref": "mdzihan/sg-align04-crosscorpus-a2",
+          "ts": "2026-10-10T18:21:02Z"
+        },
+        {
+          "event": "abandoned_duplicate",
+          "kernel_ref": "leyamridha/sg-align04-crosscorpus-a3",
+          "ts": "2026-10-10T18:21:02Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "sections": "RQ2 cross-corpus/CS2023 anchor, H1-H3, discussion",
+          "ts": "2026-10-11T04:12:10Z"
+        }
+      ],
+      "kernel_ref": "tasnimjenny/sg-align04-crosscorpus-a4",
+      "pushed_utc": "2026-10-10T18:11:30Z",
+      "slug": "sg-align04-crosscorpus",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T18:21:53Z",
+      "worker": "tasnimjenny"
+    },
+    "CURR01_cs2023_anchor": {
+      "attempts": 3,
+      "completed_utc": "2026-10-10T18:10:34Z",
+      "deps": [],
+      "history": [
+        {
+          "event": "push_verified",
+          "first_state": "pending",
+          "kernel_ref": "tasnimjenny/sg-curr01-cs2023-a1",
+          "ts": "2026-10-10T17:56:11Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "tasnimjenny/sg-curr01-cs2023-a1",
+          "ts": "2026-10-10T17:56:11Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "running",
+          "kernel_ref": "rssiam/sg-curr01-cs2023-a2",
+          "ts": "2026-10-10T18:08:55Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "rssiam/sg-curr01-cs2023-a2",
+          "ts": "2026-10-10T18:08:55Z"
+        },
+        {
+          "event": "push_verified",
+          "first_state": "pending",
+          "kernel_ref": "sadmanhasanmiraj/sg-curr01-cs2023-a3",
+          "ts": "2026-10-10T18:10:23Z"
+        },
+        {
+          "event": "pushed",
+          "kernel_ref": "sadmanhasanmiraj/sg-curr01-cs2023-a3",
+          "ts": "2026-10-10T18:10:23Z"
+        },
+        {
+          "event": "downloaded",
+          "kernel_ref": "rssiam/sg-curr01-cs2023-a2",
+          "metrics_json": true,
+          "ts": "2026-10-10T18:10:34Z"
+        },
+        {
+          "event": "abandoned_duplicate",
+          "kernel_ref": "tasnimjenny/sg-curr01-cs2023-a1",
+          "ts": "2026-10-10T18:10:34Z"
+        },
+        {
+          "event": "abandoned_duplicate",
+          "kernel_ref": "sadmanhasanmiraj/sg-curr01-cs2023-a3",
+          "ts": "2026-10-10T18:10:34Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "sections": "RQ2 cross-corpus/CS2023 anchor, H1-H3, discussion",
+          "ts": "2026-10-11T04:12:10Z"
+        }
+      ],
+      "kernel_ref": "rssiam/sg-curr01-cs2023-a2",
+      "pushed_utc": "2026-10-10T18:10:23Z",
+      "slug": "sg-curr01-cs2023",
+      "status": "USED_IN_MANUSCRIPT",
+      "status_errors": 0,
+      "verified_utc": "2026-10-10T18:21:53Z",
+      "worker": "rssiam"
+    },
     "GEO01_linkedin_shares": {
       "attempts": 1,
       "completed_utc": "2026-10-10T12:37:53Z",

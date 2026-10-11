@@ -29,9 +29,11 @@ LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5
 │   ├── sync_to_hf.py          # Uploads verified results to HuggingFace
 │   ├── make_latex.py          # Generates paper/tables/*.tex + figures/*.pdf
 │   └── exp_scripts/           # One self-contained script per experiment
-│       ├── align01_lexical_bootstrap.py
-│       ├── align02_semantic_sbert.py
+│       ├── align01_lexical.py
+│       ├── align02_semantic.py
 │       ├── align03_domain_gap.py
+│       ├── align04_crosscorpus.py
+│       ├── curr01_cs2023_anchor.py
 │       ├── stat01_placement_core.py
 │       ├── stat02_external_valid.py
 │       ├── geo01_linkedin.py
@@ -70,8 +72,9 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | USED_IN_MANUSCRIPT |
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
-| VALID01 | External matcher validation (SkillSpan→ESCO gold) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
 | VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
+| ALIGN04 | Cross-corpus SGI replication (LinkedIn, 1.29M postings) | tasnimjenny/sg-align04-crosscorpus-a4 | VERIFIED |
+| CURR01 | CS2023 curriculum anchor validation (2,197 topics) | rssiam/sg-curr01-cs2023-a2 | VERIFIED |
 
 ## Usage
 
@@ -119,12 +122,20 @@ local smoke tests; on Kaggle they read the mounted bundle
 - **Matcher validity** (VALID01 vs expert SkillSpan→ESCO mappings, 2,907
   pairs): SBERT τ = 0.5 agreement **κ = 0.737** [0.711, 0.760], accuracy
   87.9%, ROC-AUC 0.961; lexical exact-match κ = 0.112
+- **Cross-corpus replication** (ALIGN04, LinkedIn N = 1.29M): lexical SGI
+  **0.37** [0.28, 0.47], semantic SGI **0.14** [0.07, 0.21] — both intervals
+  exclude zero; lexical > semantic ordering and τ-monotonicity reproduce the
+  primary corpus exactly
+- **CS2023 anchor** (CURR01, 2,197 topics / 17 knowledge areas): academic
+  profile covers **30.4%** [28.5, 32.4] of the curricular Body of Knowledge
+  at τ = 0.5 (HCI/DM best ≥ 52%; Algorithmic Foundations 12.6%, Math 10.0%),
+  with 49.6% of profile skills grounded in the guidelines
 
 ## Data & Artifact Archives
 
 - **Input bundle (Kaggle)**: https://www.kaggle.com/datasets/studyhub991/skill-gap-inputs-v1
 - **Experiment outputs (HuggingFace)**: https://huggingface.co/datasets/MoshinAli/skill-gap-experiments
-- **Manuscript**: `paper/main.pdf` (12 pp, IEEEtran)
+- **Manuscript**: `paper/main.pdf` (15 pp, IEEEtran)
 
 Large source datasets (>10 MB) are not committed; see
 `datasets/DATASET_MANIFEST.csv` and `datasets/download_kaggle.py`.

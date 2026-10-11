@@ -58,8 +58,12 @@ def main() -> None:
 
     env = os.environ.copy()
     env["KAGGLE_API_TOKEN"] = host["token"]
+    # `create -u` refuses when the title already exists; `version` publishes a new
+    # version of the existing dataset from the same staging dir.
     proc = subprocess.run(
-        ["kaggle", "datasets", "create", "-p", str(META_DIR), "-u", "-q", "-r", "skip"],
+        ["kaggle", "datasets", "version", "-p", str(META_DIR), "-m",
+         "Add job_skills.csv for ALIGN04 cross-corpus experiment",
+         "-q", "-r", "skip"],
         capture_output=True, text=True, timeout=7200, env=env,
     )
     print("stdout:", proc.stdout[-1500:])

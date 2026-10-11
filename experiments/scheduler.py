@@ -59,6 +59,10 @@ EXPERIMENTS = [
      "script": "plac01_global_country.py", "deps": [], "internet": False},
     {"exp_id": "VALID01_esco_gold", "slug": "sg-valid01-gold",
      "script": "valid01_esco_gold.py", "deps": [], "internet": True},
+    {"exp_id": "ALIGN04_crosscorpus_linkedin", "slug": "sg-align04-crosscorpus",
+     "script": "align04_crosscorpus.py", "deps": [], "internet": True},
+    {"exp_id": "CURR01_cs2023_anchor", "slug": "sg-curr01-cs2023",
+     "script": "curr01_cs2023_anchor.py", "deps": [], "internet": True},
 ]
 
 

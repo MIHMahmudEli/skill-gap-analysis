@@ -1,0 +1,23 @@
+{
+  "bootstrap_n": 1000,
+  "code_commit": "da8d4ce1c5cac947543d4980f453ebd3f5b35553",
+  "datasets": {},
+  "experiment_id": "ALIGN04_crosscorpus_linkedin",
+  "gpu": true,
+  "hyperparameters": {},
+  "kaggle_kernel_ref": "tasnimjenny/sg-align04-crosscorpus-a4",
+  "model": "see metrics.json",
+  "protocol": "see metrics.json",
+  "python_version": "3.14.6",
+  "runtime_sec": 524.41,
+  "sbert_model": null,
+  "seed": 42,
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "timestamp_utc": "2026-10-10T18:22:04Z",
+  "worker": "tasnimjenny"
+}

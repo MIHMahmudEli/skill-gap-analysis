@@ -34,6 +34,13 @@ REQUIRED = {
     "PLAC01_global_by_country": ["metrics.json", "placement_by_country.csv"],
     "VALID01_esco_gold": ["metrics.json", "table_valid_pairs.csv",
                           "table_valid_coverage.csv", "pair_results.csv"],
+    "ALIGN04_crosscorpus_linkedin": ["metrics.json", "table_crosscorpus_sgi.csv",
+                                     "domain_gap_linkedin.csv",
+                                     "market_top500_linkedin.csv",
+                                     "skill_semantic_matches_linkedin.csv"],
+    "CURR01_cs2023_anchor": ["metrics.json", "table_cs2023_per_ka.csv",
+                             "table_cs2023_sensitivity.csv",
+                             "cs2023_topic_matches.csv"],
 }
 
 
@@ -123,6 +130,37 @@ def check_numeric_sanity(exp_id: str, dir_path: Path) -> list[str]:
         taus = sorted(t.dropna(subset=["tau"]).tau.round(1).tolist())
         if taus != [0.4, 0.5, 0.6, 0.7]:
             issues.append(f"tau grid mismatch in valid pairs table: {taus}")
+    elif exp_id == "ALIGN04_crosscorpus_linkedin":
+        if not (1_000_000 <= m["n_postings"] <= 1_400_000):
+            issues.append(f"unexpected posting count: {m['n_postings']}")
+        if not (0 <= m["lexical_sgi"] <= 1):
+            issues.append("lexical SGI out of range")
+        if not (0 <= m["semantic_sgi_tau_0.5"] <= 1):
+            issues.append("semantic SGI out of range")
+        dg = pd.read_csv(dir_path / "domain_gap_linkedin.csv")
+        if len(dg) != 8:
+            issues.append(f"expected 8 categories, got {len(dg)}")
+        if (dg.deficit_pp_lexical < -1e-6).any() or (dg.deficit_pp_semantic < -1e-6).any():
+            issues.append("negative deficit")
+        sgi = pd.read_csv(dir_path / "table_crosscorpus_sgi.csv")
+        sem = sgi[sgi.method == "semantic_sbert"]
+        if not sem.SGI.is_monotonic_increasing:
+            issues.append("semantic SGI not monotone in tau")
+    elif exp_id == "CURR01_cs2023_anchor":
+        if m["n_kas"] != 17:
+            issues.append(f"expected 17 KAs, got {m['n_kas']}")
+        if m["n_topics"] < 2000:
+            issues.append(f"too few CS2023 topics: {m['n_topics']}")
+        if not (0 <= m["overall_coverage_sem_tau_0.5"] <= 1):
+            issues.append("overall coverage out of range")
+        if not (0 <= m["reverse_coverage_academic_tau_0.5"] <= 1):
+            issues.append("reverse coverage out of range")
+        per_ka = pd.read_csv(dir_path / "table_cs2023_per_ka.csv")
+        if len(per_ka) != 17:
+            issues.append(f"per-KA table has {len(per_ka)} rows")
+        if not ((per_ka["coverage_sem_tau_0.4"] >= per_ka["coverage_sem_tau_0.5"]).all()
+                and (per_ka["coverage_sem_tau_0.5"] >= per_ka["coverage_sem_tau_0.6"]).all()):
+            issues.append("per-KA coverage not monotone in tau")
     return issues
 
 

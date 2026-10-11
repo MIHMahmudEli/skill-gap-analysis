@@ -1,7 +1,7 @@
 # Experiment Report — Academic–Industry Skills Gap Project
 
-**Date:** 2026-10-10 · **Manuscript:** `paper/main.pdf` (13 pp, IEEEtran)
-**Registry:** `results/registry.json` · **All 10 experiments: `USED_IN_MANUSCRIPT`**
+**Date:** 2026-10-10 · **Manuscript:** `paper/main.pdf` (15 pp, IEEEtran)
+**Registry:** `results/registry.json` · **All 12 experiments: `USED_IN_MANUSCRIPT`**
 
 ## 1. Execution Pipeline
 
@@ -12,8 +12,9 @@ experiments/sync_to_hf.py →  https://huggingface.co/datasets/MoshinAli/skill-g
 experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
 ```
 
-- **Input bundle:** Kaggle dataset `studyhub991/skill-gap-inputs-v1` (731 MB,
-  8 CSVs, `ready`), mounted at
+- **Input bundle:** Kaggle dataset `studyhub991/skill-gap-inputs-v1` (1,404 MB,
+  9 CSVs — `job_skills.csv` (672 MB LinkedIn skills) added for ALIGN04),
+  mounted at
   `/kaggle/input/datasets/studyhub991/skill-gap-inputs-v1/`.
 - **Credentials:** 16 Kaggle workers from `.env` (never committed). All runs
   requested on `nihanshadman` where possible for user traceability; remaining
@@ -39,6 +40,8 @@ experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 (1) | 5.4 s | CPU | 57.60% vs 42.26% ⇒ **+15.34 pp**, CI [14.99, 15.73], h=0.31 (N=300k) |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 (1) | 0.1 s | CPU | India 63.17, USA 62.21, Canada 61.54, UK 60.76, Germany 59.99 (all CI ±2.1 pp) |
 | VALID01 | External gold-standard matcher validation | nihanshadman/sg-valid01-gold-a1 (1) | 215.6 s | CUDA | vs expert SkillSpan→ESCO mappings (2,907 pairs): SBERT τ=0.5 **κ=0.737** [0.711,0.760], acc 87.9%, AUC 0.961; lexical exact κ=0.112; ESCO coverage of top-100: 91%/99% semantic |
+| ALIGN04 | Cross-corpus SGI + domain gaps (LinkedIn) | tasnimjenny/sg-align04-crosscorpus-a4 (4) | 524.4 s | CUDA | N=1,294,296; lexical SGI **0.37** [0.28,0.47], semantic τ=0.5 **0.14** [0.07,0.21]; ordering/monotonicity replicate; Programming deficit 1.39 pp largest, Soft Skills 0.00 |
+| CURR01 | CS2023 curriculum anchor validation | rssiam/sg-curr01-cs2023-a2 (3) | 42.9 s | CUDA | 2,197 topics / 17 KAs; overall semantic coverage **30.4%** [28.5,32.4] @ τ=0.5 (63.1% @ 0.4); reverse 49.6%; HCI 52.9% / DM 52.5% best, AL 12.6% / MSF 10.0% worst; lexical 0–2.4% |
 
 ## 3. Corrections Applied During Verification
 
@@ -76,6 +79,22 @@ experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
    mappings at κ=0.737 (accuracy 87.9%, AUC 0.961); lexical rules barely
    agree (exact κ=0.112), independently supporting the paper's semantic-first
    framing.
+9. **Bundle update tooling:** `kaggle datasets create -u` refuses updates once
+   the dataset title exists; refreshing the bundle (adding `job_skills.csv`
+   for ALIGN04) now uses `kaggle datasets version -m ...` in
+   `stage_inputs.py`. Also fixed: `verify.py` previously reported
+   `all_verified: false` whenever any experiment had already reached
+   `USED_IN_MANUSCRIPT` (the `else` branch was attached to the wrong
+   condition), and `tab_experiments` did not escape underscores in statuses
+   (produced invalid LaTeX for `USED_IN_MANUSCRIPT`).
+10. **Cross-corpus and anchor experiments (ALIGN04/CURR01):** added for
+    top-tier defensibility—ALIGN04 replicates both SGI variants and the
+    eight-category deficit ordering on 1.29M independent LinkedIn postings;
+    CURR01 anchors the curriculum proxy to the ACM/IEEE-CS/AAAI CS2023 Body
+    of Knowledge (topics extracted from the official PDF via
+    `datasets/cs2023/extract_topics.py`, embedded in the kernel script).
+    Local CPU smoke results matched the GPU runs exactly (SGI 0.37/0.14;
+    coverage 30.4%/49.6%).
 
 ## 4. Scheduler / Infra Fixes
 
@@ -96,9 +115,9 @@ experiments/make_latex.py →  paper/tables/*.tex + paper/figures/*.pdf
 
 ## 5. Verification & Archive State
 
-- `experiments/verify.py` → `all_verified: true` for all 9 experiments.
-- HF archive `MoshinAli/skill-gap-experiments`: 9 folders, metrics.json +
+- `experiments/verify.py` → `all_verified: true` for all 12 experiments.
+- HF archive `MoshinAli/skill-gap-experiments`: 12 folders, metrics.json +
   CSV/JSON artifacts + synthesized metadata.json (kernel ref, worker,
   timestamps, code commit).
-- Manuscript build: `pdflatex → bibtex → pdflatex ×2` yields 12 pages with
+- Manuscript build: `pdflatex → bibtex → pdflatex ×2` yields 15 pages with
   **0 errors, 0 undefined citations/references, 0 overfull boxes**.

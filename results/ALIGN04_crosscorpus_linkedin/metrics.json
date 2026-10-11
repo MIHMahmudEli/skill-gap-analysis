@@ -1,0 +1,182 @@
+{
+  "experiment_id": "ALIGN04_crosscorpus_linkedin",
+  "status": "completed",
+  "runtime_sec": 524.41,
+  "seed": 42,
+  "bootstrap_n": 1000,
+  "model": "all-MiniLM-L6-v2",
+  "device": "cuda",
+  "n_postings": 1294296,
+  "n_unique_skills_linkedin": 2773202,
+  "lexical_sgi": 0.37,
+  "lexical_sgi_ci": [
+    0.28,
+    0.47
+  ],
+  "semantic_sgi_tau_0.5": 0.14,
+  "semantic_sgi_tau_0.5_ci": [
+    0.07,
+    0.21
+  ],
+  "sensitivity": [
+    {
+      "corpus": "linkedin_2024",
+      "method": "lexical_exact",
+      "tau": null,
+      "SGI": 0.37,
+      "Coverage_Rate": 0.63,
+      "CI_Lower": 0.28,
+      "CI_Upper": 0.47
+    },
+    {
+      "corpus": "linkedin_2024",
+      "method": "semantic_sbert",
+      "tau": 0.4,
+      "SGI": 0.06,
+      "Coverage_Rate": 0.94,
+      "CI_Lower": 0.02,
+      "CI_Upper": 0.11
+    },
+    {
+      "corpus": "linkedin_2024",
+      "method": "semantic_sbert",
+      "tau": 0.5,
+      "SGI": 0.14,
+      "Coverage_Rate": 0.86,
+      "CI_Lower": 0.07,
+      "CI_Upper": 0.21
+    },
+    {
+      "corpus": "linkedin_2024",
+      "method": "semantic_sbert",
+      "tau": 0.6,
+      "SGI": 0.22,
+      "Coverage_Rate": 0.78,
+      "CI_Lower": 0.14,
+      "CI_Upper": 0.29
+    },
+    {
+      "corpus": "linkedin_2024",
+      "method": "semantic_sbert",
+      "tau": 0.7,
+      "SGI": 0.28,
+      "Coverage_Rate": 0.72,
+      "CI_Lower": 0.19,
+      "CI_Upper": 0.37
+    }
+  ],
+  "domain_gaps": [
+    {
+      "category": "Programming & Development",
+      "market_demand_pp": 4.0,
+      "coverage_rate_lexical": 0.5761,
+      "deficit_pp_lexical": 1.69,
+      "deficit_lex_ci_lower": 1.68,
+      "deficit_lex_ci_upper": 1.71,
+      "coverage_rate_semantic_tau0.5": 0.6514,
+      "deficit_pp_semantic": 1.39,
+      "deficit_sem_ci_lower": 1.38,
+      "deficit_sem_ci_upper": 1.41,
+      "taxonomy_skills_in_market": 28,
+      "taxonomy_skills_total": 28
+    },
+    {
+      "category": "Data Science & Analytics",
+      "market_demand_pp": 8.08,
+      "coverage_rate_lexical": 0.8514,
+      "deficit_pp_lexical": 1.2,
+      "deficit_lex_ci_lower": 1.18,
+      "deficit_lex_ci_upper": 1.22,
+      "coverage_rate_semantic_tau0.5": 0.9343,
+      "deficit_pp_semantic": 0.53,
+      "deficit_sem_ci_lower": 0.52,
+      "deficit_sem_ci_upper": 0.55,
+      "taxonomy_skills_in_market": 20,
+      "taxonomy_skills_total": 21
+    },
+    {
+      "category": "Cloud & Infrastructure",
+      "market_demand_pp": 4.39,
+      "coverage_rate_lexical": 0.4406,
+      "deficit_pp_lexical": 2.45,
+      "deficit_lex_ci_lower": 2.43,
+      "deficit_lex_ci_upper": 2.48,
+      "coverage_rate_semantic_tau0.5": 0.7854,
+      "deficit_pp_semantic": 0.94,
+      "deficit_sem_ci_lower": 0.93,
+      "deficit_sem_ci_upper": 0.96,
+      "taxonomy_skills_in_market": 17,
+      "taxonomy_skills_total": 17
+    },
+    {
+      "category": "Soft Skills",
+      "market_demand_pp": 52.22,
+      "coverage_rate_lexical": 1.0,
+      "deficit_pp_lexical": 0.0,
+      "deficit_lex_ci_lower": 0.0,
+      "deficit_lex_ci_upper": 0.0,
+      "coverage_rate_semantic_tau0.5": 1.0,
+      "deficit_pp_semantic": 0.0,
+      "deficit_sem_ci_lower": 0.0,
+      "deficit_sem_ci_upper": 0.0,
+      "taxonomy_skills_in_market": 14,
+      "taxonomy_skills_total": 14
+    },
+    {
+      "category": "Business & Domain",
+      "market_demand_pp": 11.87,
+      "coverage_rate_lexical": 0.9029,
+      "deficit_pp_lexical": 1.15,
+      "deficit_lex_ci_lower": 1.14,
+      "deficit_lex_ci_upper": 1.17,
+      "coverage_rate_semantic_tau0.5": 1.0,
+      "deficit_pp_semantic": 0.0,
+      "deficit_sem_ci_lower": 0.0,
+      "deficit_sem_ci_upper": 0.0,
+      "taxonomy_skills_in_market": 13,
+      "taxonomy_skills_total": 13
+    },
+    {
+      "category": "Design & UX",
+      "market_demand_pp": 0.6,
+      "coverage_rate_lexical": 0.0,
+      "deficit_pp_lexical": 0.6,
+      "deficit_lex_ci_lower": 0.59,
+      "deficit_lex_ci_upper": 0.62,
+      "coverage_rate_semantic_tau0.5": 0.2307,
+      "deficit_pp_semantic": 0.46,
+      "deficit_sem_ci_lower": 0.45,
+      "deficit_sem_ci_upper": 0.47,
+      "taxonomy_skills_in_market": 10,
+      "taxonomy_skills_total": 10
+    },
+    {
+      "category": "Data Engineering",
+      "market_demand_pp": 1.02,
+      "coverage_rate_lexical": 0.318,
+      "deficit_pp_lexical": 0.7,
+      "deficit_lex_ci_lower": 0.68,
+      "deficit_lex_ci_upper": 0.71,
+      "coverage_rate_semantic_tau0.5": 0.5965,
+      "deficit_pp_semantic": 0.41,
+      "deficit_sem_ci_lower": 0.4,
+      "deficit_sem_ci_upper": 0.42,
+      "taxonomy_skills_in_market": 13,
+      "taxonomy_skills_total": 13
+    },
+    {
+      "category": "Cybersecurity",
+      "market_demand_pp": 0.62,
+      "coverage_rate_lexical": 0.0,
+      "deficit_pp_lexical": 0.62,
+      "deficit_lex_ci_lower": 0.6,
+      "deficit_lex_ci_upper": 0.63,
+      "coverage_rate_semantic_tau0.5": 0.7378,
+      "deficit_pp_semantic": 0.16,
+      "deficit_sem_ci_lower": 0.16,
+      "deficit_sem_ci_upper": 0.17,
+      "taxonomy_skills_in_market": 11,
+      "taxonomy_skills_total": 11
+    }
+  ]
+}

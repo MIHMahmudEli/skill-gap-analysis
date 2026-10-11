@@ -1,7 +1,7 @@
 # Missing Work / Outstanding Gaps
 
-*Snapshot: 2026-10-10 (post-VALID01). All 10 experiments are
-`USED_IN_MANUSCRIPT`; `paper/main.pdf` is 13 pp, clean build.*
+*Snapshot: 2026-10-10 (post ALIGN04/CURR01 + Tier-B framing). All 12 experiments are
+`USED_IN_MANUSCRIPT`; `paper/main.pdf` is 15 pp, clean build.*
 
 ## Remaining before journal submission (small)
 
@@ -19,10 +19,11 @@
    κ = 0.737, AUC = 0.961; experiment VALID01), but no independent raters
    annotated *this specific* corpus. A ~300-pair in-house double-annotation
    (2 raters, Cohen's κ) would close the last gap if a reviewer insists.
-4. **RQ3 corpus composition** — the 519K skills corpus is dominated by
-   generic/healthcare/retail competencies; deficits are conditional-on-demand.
-   Optional `ALIGN04` re-run on a CS-heavy corpus (LinkedIn 1.35M or USA
-   Job Market 316K) would serve as an appendix sensitivity check.
+4. ~~RQ3 corpus composition sensitivity~~ — **RESOLVED** by `ALIGN04`
+   (cross-corpus replication on 1.29M LinkedIn postings: lexical SGI 0.37
+   [0.28, 0.47], semantic 0.14 [0.07, 0.21]; deficits recomputed under the
+   posting-level definition — RQ2 §V-A). Residual conditioning (conservative
+   exact-keyword demand shares) disclosed in Limitations 7.
 5. **Geographic scope** — LinkedIn corpus is US/UK/CA/AU only (85.2% US);
    recorded as limitation 6.
 
@@ -45,6 +46,15 @@
    pair-level results (`pair_results.csv`, 2,907 rows).
 
 ## Resolved this session
+
+- ✅ **Cross-corpus replication** → ALIGN04 (LinkedIn, 1.29M postings;
+  both SGI variants + deficits; `sg-align04-crosscorpus-a4`).
+- ✅ **Curriculum-anchor validation** → CURR01 (ACM/IEEE-CS/AAAI CS2023
+  Body of Knowledge, 2,197 topics / 17 KAs; `sg-curr01-cs2023-a2`).
+- ✅ **Tier-B manuscript framing** — Testable Hypotheses H1–H6 (§II-E),
+  deepened related work (Khaouja/Green/Senger/CS2023), six-item
+  contributions, hypothesis-verdict table (Table XIII), limitations
+  quantified via CURR01, reproducibility updated to twelve experiments.
 
 - ✅ **Human gold-standard validation** → VALID01 (external expert standard;
   κ/accuracy/AUC + ESCO vocabulary grounding).
