@@ -255,3 +255,62 @@ Amendment:
 
 CURR02 remains blocked on the author labelling gate (§7 step 4) regardless
 of this amendment; nothing here authorises a run.
+
+### 9e. 2026-10-12 — Minimum extraction completeness: ≥ 5 phrases per unit (author instruction; fixed before any CURR02 run)
+
+**Rule:** a curriculum unit contributing fewer than **5** extracted phrases is
+excluded from every CURR02 analysis set (main and sensitivity groups); it stays
+in the manifest and corpus with `below_phrase_floor` logged. Set on
+extraction-completeness grounds, **before any SGI exists on this corpus** —
+not on any analysis output.
+
+Rationale:
+
+1. **Noise dominance.** Below 5 phrases, one dropped or mis-extracted phrase
+   moves the unit's own profile by ≥ 20%, so per-unit (descriptive) coverage
+   contributions are dominated by extraction noise rather than course content.
+2. **Page-fragment guard, not content filter.** The threshold is deliberately
+   set *below* the observed floor of demonstrably complete extractions
+   (modern minimum = 6 phrases) so that no complete extraction is excluded;
+   the only unit it ever removes is a thin landing-page fragment (see below),
+   where extraction succeeded but the source page carries almost no skill text.
+3. **No analysis-driven selection.** At registration time no CURR02 SGI,
+   coverage, or phrase-based analysis output exists; the value 5 is fixed on
+   the corpus's own extraction statistics alone.
+
+**Units below the floor (current corpus):**
+
+| unit_id | vintage | phrases | note |
+|---|---|---|---|
+| MIT-1806 (Linear Algebra, Spring 2010) | legacy | 2 | thin OCW landing page; affects vintage-sensitivity group only |
+
+MIT-6046 (5 phrases, legacy) sits exactly at the floor and passes. **All 26
+modern units pass** (minimum 6, HARV-CS50AI), so the main result under §9d is
+unaffected. Note for the author: a stricter cut of ≥ 6 would additionally
+exclude MIT-6046; registered value is ≥ 5.
+
+### 9f. 2026-10-12 — CURR02 inference design: per-institution descriptives, unreliable cluster bootstrap, bootstrap hierarchy (author instruction; supersedes the CI role in §9d(2)(i))
+
+1. **Per-institution SGI** (TU Delft / MIT / Harvard) is reported as
+   **descriptive results** — three point estimates with their resampling
+   context — not as separate hypothesis tests and not pooled into a headline.
+2. **Institution-clustered bootstrap** (§9d(2)(i), B = 1000, seed 42) is
+   retained but explicitly **labelled statistically unreliable**: with only
+   3 clusters, cluster-bootstrap intervals have essentially no coverage
+   guarantee. It is **never used as a headline CI** and may not be cited in
+   the abstract or conclusion.
+3. **Headline CIs** come from the two resampling schemes with adequate
+   resampling units, each reported with its resampling unit stated:
+   (a) **posting-level bootstrap** on the market side (same design as
+   ALIGN01/02: resample market postings, B = 1000, seed 42); and
+   (b) **phrase-level bootstrap** on the curriculum side (resample extracted
+   phrases within the analysis set, B = 1000, seed 42).
+4. **Leave-one-institution-out** (3 runs) and the **institution-weighted
+   SGI** (§9d(2)(ii)–(iii)) remain **descriptive robustness checks**,
+   reported individually.
+5. Every CURR02 result table must mark which interval is the headline CI and
+   which entries are descriptive/unreliable; headline CIs are the only ones
+   quotable as the curriculum-result uncertainty.
+
+CURR02 remains blocked on the author labelling gate (§7 step 4) regardless
+of these amendments; nothing here authorises a run.

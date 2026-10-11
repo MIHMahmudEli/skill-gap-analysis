@@ -44,3 +44,58 @@ Recorded in `datasets/curriculum/SELECTION_PROTOCOL.md` §9d (full text there):
 5. Required manuscript limitations (reaffirmed): two countries (US + NL), open-courseware material, elite-institution skew, syllabus text ≠ course content.
 
 `PRIMARY_SET.md` carries a dated banner noting the supersession (its n = 20 set is retained as the registered capped-subsampling sensitivity).
+
+---
+
+## §E — TU Delft unit listing and new pre-run amendments (2026-10-12, author instruction; no CURR02 run)
+
+### E.1 The 14 TU Delft units
+
+**One-programme flag: YES.** All 14 units come from a **single programme/source** —
+the TU Delft OpenCourseWare catalogue (`ocw.tudelft.nl`, site-wide CC BY-NC-SA 4.0,
+one platform, one license). Within it they span four subject groupings (inferred
+from course titles; MANIFEST does not record department names) and two course
+levels. Material years are page-visible years recorded at extraction.
+
+| unit_id | Course title | Subject grouping (inferred) | Level | Stratum | Material year | Phrases |
+|---|---|---|---|---|---|---|
+| TUD-ALG | Algoritmiek (Algorithms) | CS theory | upper | theory | 2023 | 11 |
+| TUD-DS | Unix Tools: Data, Software and Production Engineering | Software engineering | upper | applied | 2020+ | 23 |
+| TUD-AI1 | AI skills for engineers: Data creation and collection | AI/ML | intro | applied | 2023 | 20 |
+| TUD-AI2 | AI skills for Engineers: Supervised Machine Learning | AI/ML | intro | applied | 2023 | 29 |
+| TUD-QI | Quantum Information Processing | Quantum | upper | theory | 2023 | 17 |
+| TUD-TOC | Theory of Computation | CS theory | upper | theory | 2020+ | 15 |
+| TUD-AST | Automated Software Testing: Advanced Skills for Java Developers | Software engineering | upper | applied | 2019+ | 12 |
+| TUD-AST2 | Automated Software Testing: Practical Skills for Java Developers | Software engineering | intro | applied | 2019+ | 14 |
+| TUD-GSE | Global Software Engineering | Software engineering | upper | applied | 2020+ | 19 |
+| TUD-FP | Introduction to Functional Programming | CS theory | upper | theory | 2020+ | 21 |
+| TUD-QC | Quantum Cryptography | Quantum | upper | theory | 2023 | 26 |
+| TUD-SV | System Validation | Software engineering | upper | applied | 2023 | 15 |
+| TUD-AIP | AI in Practice: Applying AI | AI/ML | intro | applied | 2022+ | 17 |
+| TUD-AI3 | AI skills — Unsupervised, Deep and Reinforcement Learning | AI/ML | upper | applied | 2023 | 26 |
+
+Totals: 14 units / 265 phrases (61% of the modern set's 437); subject split
+software engineering 5, AI/ML 4, CS theory 3, quantum 2; level split 4 intro /
+10 upper; strata 9 applied / 5 theory. All 14 are modern (≥ 2019) and all enter
+the §9d main set (n = 26); the 6 units beyond the old ≤8 cap are back in the
+main set under §9d.
+
+**Limitation to carry to the manuscript:** the NL half of the corpus is one
+programme on one platform with a site-wide license — intra-institution
+diversity at TU Delft is course-level only (four subject groupings), not
+programme-level; this strengthens, not weakens, the §9f requirement to treat
+per-institution SGI as descriptive.
+
+### E.2 New pre-run amendments (registered in `SELECTION_PROTOCOL.md`)
+
+- **§9e — minimum phrase floor ≥ 5 phrases per unit** (extraction-completeness
+  rule, fixed before any CURR02 SGI). Below floor: MIT-1806 (2 phrases, legacy
+  landing-page fragment). MIT-6046 (5) passes at the floor; all 26 modern units
+  pass (minimum 6). A stricter ≥ 6 cut would additionally drop MIT-6046 —
+  registered value is ≥ 5.
+- **§9f — inference hierarchy:** per-institution SGI = descriptive;
+  institution-clustered bootstrap (3 clusters) = **unreliable, never headline**;
+  headline CIs = posting-level bootstrap (market side) + phrase-level bootstrap
+  (curriculum side), B = 1000, seed 42; leave-one-institution-out and
+  institution-weighted SGI = descriptive robustness checks. This supersedes the
+  "CI flagged indicative" role written in §d item 2 above.
