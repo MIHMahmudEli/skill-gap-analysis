@@ -113,6 +113,28 @@ value was computed on this corpus. Extraction scripts, skill parsers, and
 CURR02 parameters (K, P, τ grid, seed 42) are registered after the human
 precision/recall validation step required by the author.
 
+## 6b. Backup swap rule (author-approved 2026-10-11; fixed before download)
+
+A `backup_*` row may replace a `pending` row **only if** that pending row’s
+**license check or download fails**. Swap order is the fixed order already
+listed in `MANIFEST.csv` (backup rows appear after their primary peers in the
+file). Every swap is logged in `datasets/curriculum/SWAP_LOG.md` with:
+`timestamp, replaced_unit_id, backup_unit_id, reason, evidence_url`.
+
+**Forbidden:** rebalancing strata, preferring modern over legacy, or swapping
+any item based on extracted skill counts, SGI values, or any analysis output.
+
+**Primary vs vintage split (author-approved):**
+- **Primary analysis set** = courses with material year **≥ 2019**, verified
+  from the course page/syllabus (evidence URL + excerpt logged).
+- **Hard bar for primary set:** ≥ 20 courses, ≥ 3 institutions, **≤ 8 courses
+  per institution**. If primary cannot reach 20, **STOP**; do not relax the bar.
+- **Vintage-sensitivity group** = material year **&lt; 2019**. Reported separately;
+  **not** pooled into the primary SGI.
+- Region reporting uses **countries**: US, NL, UK (not “global”).
+- Manuscript limitation (required): Western open-courseware sample, skewed
+  toward elite institutions; not representative of world curricula.
+
 ## 7. Extraction and validation pipeline (post-approval)
 
 1. Download only units with `extraction_status=pending` after author approval
