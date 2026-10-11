@@ -1,0 +1,19 @@
+dataset_name,source,identifier,manifest_records,local_records,counted_in_unique_total,used_by_experiments,license_or_access,construct_role,verification_status,notes
+LinkedIn Jobs & Skills,Kaggle,asaniczka/1-3m-linkedin-jobs-and-skills-2024,1348454,1348454,1348454,GEO01,Kaggle open,market_postings,VERIFIED,manifest corrected 1348510->1348454
+HF Skill Gap Skills,HuggingFace,skill-gap-analytics/skills-corpus,519814,519814,519814,"ALIGN01,02,03",HF public,market_skills,VERIFIED,linked to jobs via job_link
+HF Skill Gap Jobs,HuggingFace,skill-gap-analytics/jobs-corpus,519814,519814,0,none,HF public,linked_pair_not_independent,VERIFIED,same job_link set as skills; excluded from unique sum
+HF Job Skill Set (academic reference),HuggingFace,skill-gap-analytics/academic-reference,1167,1167,1167,"ALIGN01-04, CURR01",HF public,academic_proxy_NOT_curriculum,VERIFIED,5 job categories; was mislabeled 13833 taxonomy
+LinkedIn job_skills subset,Kaggle,asaniczka/.../job_skills.csv,1296381,1296381,1296381,ALIGN04,Kaggle open,market_skills_subset,VERIFIED,subset of LinkedIn postings
+College Placement,Kaggle,sumedh1507/college-student-placement,10000,10000,10000,STAT01,Kaggle open,student_profiles,VERIFIED,semi-synthetic benchmark; College_ID only 100 unique
+Student Career Success,Kaggle,mobeenfatimah/student-career-success-prediction-dataset,50000,50000,50000,STAT02,Kaggle open,student_profiles,VERIFIED,external cohort A
+Global Placement,Kaggle,rakesh630/global-student-placement-2025-dataset,10000,10000,10000,"STAT02, PLAC01",Kaggle open,student_profiles,VERIFIED,external cohort B
+International Graduates,Kaggle,quackquackrp/international-graduates-employment-dataset,300000,300000,300000,INTL01,Kaggle open,graduate_outcomes,VERIFIED,
+AI Trends 2020-2026,Kaggle,shree0910/ai-and-data-science-job-market-dataset-20202026,10345,10345,10345,TRENDS01,Kaggle open,market_postings_longitudinal,VERIFIED,
+CS2023 curriculum topics,ABET/CS2023 taskforce,taskforce2024cs2023,2197,2197,2197,CURR01,public curriculum,real_curriculum_anchor,PARTIALLY_VERIFIED,metrics bit-exact; line-by-line 2197-topic extraction not hand-audited
+SkillSpan / ESCO expert gold,prior research artifact,VALID01 _upstream,,,,VALID01,research artifact,expert_gold,VERIFIED,external matcher validity
+USA Job Market Skills,Kaggle,batuhanklac/usa-job-market-skills-and-title-analysis,316279,316279,316279,none,Kaggle open,orphan_inventory,VERIFIED,not used in experiments
+Career Change Prediction,Kaggle,jahnavipaliwal/field-of-study-vs-occupation,38444,38444,38444,none,Kaggle open,orphan_inventory,VERIFIED,not used
+AI Job Market Trends,Kaggle,bismasajjad/global-ai-job-market-and-salary-trends-2025,15000,15000,15000,none,Kaggle open,orphan_inventory,VERIFIED,not used
+India Skills Intelligence,Kaggle,mansiaggarwal88/india-professional-skills-intelligence-dataset,12000,12000,12000,none,Kaggle open,synthetic_disclosed,VERIFIED,synthetic; unused in experiments
+NGESS Employment,Kaggle,philipdayo/ngess-graduate-employment-dataset,7200,7200,7200,none,Kaggle open,orphan_inventory,VERIFIED,not used
+India Fresher Market,Kaggle,shambhurajejagadale/indian-fresher-job-market-who-gets-hired-and-why,5000,5000,5000,none,Kaggle open,orphan_inventory,VERIFIED,not used

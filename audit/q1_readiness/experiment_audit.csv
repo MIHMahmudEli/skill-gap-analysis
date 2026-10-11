@@ -1,0 +1,13 @@
+experiment_id,registry_status,kernel_ref,verified_utc,metrics_json_exists,local_reproduction,reproduction_evidence,used_in_manuscript,leakage_notes
+ALIGN01_lexical_bootstrap,USED_IN_MANUSCRIPT,nihanshadman/sg-align01-lexical-a1,2026-10-10T14:38:10Z,yes,exact,audit/_sgi_sensitivity/lexical_profile_size_sweep.json; SGI 0.52 exact,yes,
+ALIGN02_semantic_sbert,USED_IN_MANUSCRIPT,nihanshadman/sg-align02-semantic-a3,2026-10-10T14:38:10Z,yes,exact,audit/_sgi_sensitivity/semantic_profile_size_sweep.json; tau-sweep exact,yes,SBERT fixed model; no train/eval leakage
+ALIGN03_domain_gap,USED_IN_MANUSCRIPT,nihanshadman/sg-align03-domaingap-a2,2026-10-10T14:38:10Z,yes,exact,manuscript tables; domain CIs match metrics.json,yes,
+ALIGN04_crosscorpus_linkedin,USED_IN_MANUSCRIPT,tasnimjenny/sg-align04-crosscorpus-a4,2026-10-10T18:21:53Z,yes,exact,audit/_sgi_sensitivity/linkedin_matched_profile.json; 0.37/0.14 exact,yes,
+CURR01_cs2023_anchor,USED_IN_MANUSCRIPT,rssiam/sg-curr01-cs2023-a2,2026-10-10T18:21:53Z,yes,exact,audit/_curr01_out/metrics.json; bit-exact,yes,
+GEO01_linkedin_shares,USED_IN_MANUSCRIPT,sadmanhasanmiraj/sg-geo01-linkedin-a1,2026-10-10T14:38:10Z,yes,exact,claim ledger C120; table shares match,yes,
+INTL01_internship_effect,USED_IN_MANUSCRIPT,afrojahaqueshornaly/sg-intl01-internship-a1,2026-10-10T14:38:10Z,yes,exact,audit/05_stat_reproduction.json; RD 15.34 exact,yes,
+PLAC01_global_by_country,USED_IN_MANUSCRIPT,abdullahalsayfan/sg-plac01-global-a1,2026-10-10T14:38:10Z,yes,exact,claim ledger country stats,yes,
+STAT01_placement_core,USED_IN_MANUSCRIPT,nihanshadman/sg-stat01-placement-a2,2026-10-10T14:38:10Z,yes,exact,audit/05_stat_reproduction.json; Welch/OR/VIF/CV exact,yes,semi-synthetic labels disclosed; RF 1.0 treated as non-generalizable
+STAT02_external_validation,USED_IN_MANUSCRIPT,leyamridha/sg-stat02-external-a1,2026-10-10T14:38:10Z,yes,exact,audit/_stat02_out/metrics.json; 0.768/0.576 AUC exact,yes,
+TRENDS01_ai_longitudinal,USED_IN_MANUSCRIPT,nishat1156/sg-trends01-ai-a1,2026-10-10T14:38:10Z,yes,exact,claim ledger; manuscript trend claims,yes,
+VALID01_esco_gold,USED_IN_MANUSCRIPT,nihanshadman/sg-valid01-gold-a1,2026-10-10T16:30:21Z,yes,exact,kappa/AUC claims in ledger; pair CSV present,yes,
