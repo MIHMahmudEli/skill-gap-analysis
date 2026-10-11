@@ -1,0 +1,56 @@
+{
+  "experiment_id": "STAT02_external_validation",
+  "status": "completed",
+  "runtime_sec": 0.47,
+  "seed": 42,
+  "protocol": "train-on-college feature-subset, zero-shot transfer; in-dataset LR as reference",
+  "feature_map_A": [
+    "CGPA",
+    "Communication_Skills",
+    "Projects_Completed",
+    "Internship_Binary"
+  ],
+  "feature_map_B": [
+    "CGPA",
+    "Communication_Skills",
+    "Internship_Binary"
+  ],
+  "results": [
+    {
+      "train": "College (features subset A)",
+      "test": "Student Career Success",
+      "n": 50000,
+      "base_rate": 0.7808,
+      "accuracy": 0.2986,
+      "f1_weighted": 0.2346,
+      "auc": 0.768
+    },
+    {
+      "train": "Student Career Success (in-sample ref.)",
+      "test": "Student Career Success",
+      "n": 50000,
+      "base_rate": 0.7808,
+      "accuracy": 0.8073,
+      "f1_weighted": 0.7763,
+      "auc": 0.7816
+    },
+    {
+      "train": "College (features subset B)",
+      "test": "Global Placement",
+      "n": 10000,
+      "base_rate": 0.6153,
+      "accuracy": 0.6153,
+      "f1_weighted": 0.4688,
+      "auc": 0.5757
+    },
+    {
+      "train": "Global Placement (in-sample ref.)",
+      "test": "Global Placement",
+      "n": 10000,
+      "base_rate": 0.6153,
+      "accuracy": 0.6846,
+      "f1_weighted": 0.6694,
+      "auc": 0.7142
+    }
+  ]
+}

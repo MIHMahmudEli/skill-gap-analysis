@@ -1,0 +1,16 @@
+{
+  "n_entries": 52,
+  "verified_doi": 35,
+  "http_404": 0,
+  "no_doi": 17,
+  "errors": 0,
+  "title_mismatch": [
+    "schlippe2023skill",
+    "korrapati2025aligning"
+  ],
+  "year_mismatch": [
+    "cuckov2022quantifying:bib=2022/cr=None",
+    "scandurra2024employability:bib=2024/cr=2023"
+  ],
+  "unresolved": []
+}

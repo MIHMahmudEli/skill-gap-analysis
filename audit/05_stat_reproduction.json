@@ -1,0 +1,189 @@
+{
+  "seed": 42,
+  "college_n": 10000,
+  "n_placed": 1659,
+  "base_rate": 0.1659,
+  "welch": {
+    "CGPA": {
+      "t": 39.37,
+      "p": 3.864363383317601e-270,
+      "d": 0.913,
+      "m1": 8.59,
+      "sd1": 1.15,
+      "m0": 7.32,
+      "sd0": 1.44
+    },
+    "IQ": {
+      "t": 28.58,
+      "p": 8.425234981724258e-154,
+      "d": 0.802,
+      "m1": 109.12,
+      "sd1": 15.21,
+      "m0": 97.55,
+      "sd0": 14.26
+    },
+    "Comm": {
+      "t": 35.79,
+      "p": 1.5205725317651737e-226,
+      "d": 0.918,
+      "m1": 7.66,
+      "sd1": 2.59,
+      "m0": 5.14,
+      "sd0": 2.78
+    },
+    "Projects": {
+      "t": 27.21,
+      "p": 5.384690440369553e-146,
+      "d": 0.599,
+      "m1": 3.35,
+      "sd1": 1.28,
+      "m0": 2.35,
+      "sd0": 1.74
+    },
+    "AcadPerf": {
+      "t": -1.48,
+      "p": 0.13860733649490242,
+      "d": -0.04,
+      "m1": 5.45,
+      "sd1": 2.9,
+      "m0": 5.57,
+      "sd0": 2.87
+    },
+    "ExtraCurr": {
+      "t": -0.47,
+      "p": 0.6382791821220902,
+      "d": -0.013,
+      "m1": 4.94,
+      "sd1": 3.19,
+      "m0": 4.98,
+      "sd0": 3.15
+    }
+  },
+  "chi2_internship": {
+    "chi2": 0.31,
+    "p": 0.5778,
+    "V": 0.006
+  },
+  "chi2_projects": {
+    "chi2": 721.47,
+    "p": 1.1190369939619475e-153,
+    "V": 0.269
+  },
+  "intern_RD_pp": -0.4442,
+  "logistic": [
+    {
+      "feature": "CGPA",
+      "coef": 1.8368,
+      "se": 0.0562,
+      "OR": 6.2765,
+      "OR_CI": [
+        5.6214,
+        7.0081
+      ],
+      "p": 6.754196030236369e-234
+    },
+    {
+      "feature": "Communication_Skills",
+      "coef": 1.879,
+      "se": 0.0564,
+      "OR": 6.5471,
+      "OR_CI": [
+        5.8615,
+        7.313
+      ],
+      "p": 5.286332222170381e-243
+    },
+    {
+      "feature": "Projects_Completed",
+      "coef": 1.1644,
+      "se": 0.0465,
+      "OR": 3.2041,
+      "OR_CI": [
+        2.9249,
+        3.5099
+      ],
+      "p": 2.4439868879902945e-138
+    },
+    {
+      "feature": "intern",
+      "coef": 0.0192,
+      "se": 0.0387,
+      "OR": 1.0194,
+      "OR_CI": [
+        0.9449,
+        1.0997
+      ],
+      "p": 0.6197289446443599
+    },
+    {
+      "feature": "IQ",
+      "coef": 1.6404,
+      "se": 0.0529,
+      "OR": 5.157,
+      "OR_CI": [
+        4.6494,
+        5.72
+      ],
+      "p": 2.1352850944456845e-211
+    },
+    {
+      "feature": "Academic_Performance",
+      "coef": -0.0207,
+      "se": 0.0383,
+      "OR": 0.9795,
+      "OR_CI": [
+        0.9086,
+        1.0559
+      ],
+      "p": 0.5883572256960219
+    }
+  ],
+  "logit_insample_acc": 0.9013,
+  "vif": {
+    "CGPA": 1.001,
+    "Communication_Skills": 1.001,
+    "Projects_Completed": 1.001,
+    "intern": 1.001,
+    "IQ": 1.0,
+    "Academic_Performance": 1.001
+  },
+  "cv_lr": {
+    "acc": 0.9011,
+    "auc": 0.9407,
+    "f1w": 0.8966
+  },
+  "cv_rf": {
+    "acc": 1.0,
+    "auc": 1.0
+  },
+  "cv_dt": {
+    "acc": 0.9997,
+    "auc": 0.9998
+  },
+  "cv_baseline_acc": 0.8341,
+  "intl_columns": [
+    "Country_of_Origin",
+    "Education_Level",
+    "Field_of_Study",
+    "Language_Proficiency",
+    "Visa_Type",
+    "Gender",
+    "University_Ranking",
+    "Region_of_Study",
+    "Age",
+    "Years_Since_Graduation",
+    "GPA",
+    "Internship_Experience",
+    "Employment_Status",
+    "Salary",
+    "Job_Sector"
+  ],
+  "intl": {
+    "n": 300000,
+    "emp_with": 57.6,
+    "emp_without": 42.26,
+    "rd_pp": 15.34,
+    "emp_col": "Employment_Status",
+    "intern_col": "Internship_Experience"
+  }
+}
