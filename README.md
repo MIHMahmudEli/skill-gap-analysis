@@ -6,9 +6,11 @@ industry skill requirements using NLP, statistics, and machine learning — with
 
 ## Overview
 
-The project analyzes 15 publicly available open datasets (2.64M unique records;
-raw file row-sum 3.18M includes a linked HF posting–skill pair counted once)
-from LinkedIn, Kaggle, and HuggingFace and answers five research questions (RQ1–RQ5):
+The project analyzes 15 publicly available open datasets (**3,163,517 raw rows**,
+which de-duplicate to **2,643,703 unique records**: the HuggingFace jobs and
+skills tables share an identical set of 519,814 `job_link` identifiers and are
+counted once as a linked posting–skill pair) from LinkedIn, Kaggle, and
+HuggingFace and answers five research questions (RQ1–RQ5):
 
 - **RQ1** — market skill topography and 2020–2026 trends
 - **RQ2** — lexical vs. semantic (Sentence-BERT) curriculum alignment (SGI)

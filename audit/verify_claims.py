@@ -241,8 +241,9 @@ add("C112", "Cohen h = 0.31", 0.31, round(i1["cohens_h"], 2), "same",
 add("C113", "N=300,000", 300000, i1["n_total"], "same")
 
 # --- GEO01 ---
+_g1r = [round(c["share_pct"] + 1e-9, 1) for c in g1["top_countries"]]
 add("C120", "US 85.2% UK 8.4% CA 4.2% AU 2.2%", [85.2, 8.4, 4.2, 2.2],
-    [85.23, 8.41, 4.15, 2.2], "same (rounded 1dp)",
+    _g1r, "same (rounded 1dp)",
     "raw: " + ", ".join("%s=%.2f" % (c["country"], c["share_pct"]) for c in g1["top_countries"]))
 
 # --- PLAC01 ---
@@ -262,12 +263,13 @@ add("C141", "SQL 48.2-51.9%", [48.2, 51.9], [round(min(sq), 1), round(max(sq), 1
 ml = [r["ml_share_pct"] for r in t1["yearly_shares"]]
 add("C142", "ML 48.8-53.5%", [48.8, 53.5], [round(min(ml), 1), round(max(ml), 1)], "same")
 cl = [r["cloud_share_pct"] for r in t1["yearly_shares"]]
-add("C143", "Cloud 47.1-53.9%", [47.1, 53.9], [round(min(cl), 1), round(max(cl), 1)], "same")
+add("C143", "Cloud 47.1-53.9%", [47.1, 53.9],
+    [round(min(cl) + 1e-9, 1), round(max(cl) + 1e-9, 1)], "same")
 
 # --- text presence checks (numbers appear in tex) ---
 presence = [
-    ("C150", "raw sum 3,176,266 retained as inventory note (unique 2.64M primary)",
-     ("3,176,266" in TEX) and ("2,643,703" in TEX)),
+    ("C150", "raw sum 3,163,517 retained as inventory note (unique 2.64M primary)",
+     ("3,163,517" in TEX) and ("2,643,703" in TEX) and ("3,176,266" not in TEX)),
     ("C151", "148,765 communication postings (RQ1)", "148,765" in TEX),
     ("C152", "H6 states RD -0.44 pp (college cohort, corrected; +0.08 may appear only in revision log)",
      ("$-0.44$" in TEX or "-0.44 pp" in TEX) and ("univariate internship risk difference is $-0.44$" in TEX)),
