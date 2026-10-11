@@ -1,20 +1,20 @@
 # FINAL READINESS REPORT — Q1 Journal Submission
 
-*Date: 2026-10-11 · Branch: `q1-readiness-package` · Updated after independent
-adversarial review (see `FINAL_ADVERSARIAL_REVIEW.md`). Manuscript:
-`paper/main.tex` / `paper/main.pdf` (**15 pp** after removing internal Revision Log).*
+*Date: 2026-10-11 · Branch: `main` @ `db3d2b6` (= origin/main, origin/q1-readiness-package; clean tree before this pass) · Updated after independent adversarial review and final repository reconciliation (H5 construct fix, proxy disclosure, CS2023 characterization). Manuscript: `paper/main.tex` / `paper/main.pdf` (**16 pp**; Revision Log absent).*
 
 ---
 
 ## 1. Final readiness verdict
 
-**CONDITIONALLY READY** (verdict **B** — independent adversarial review).
+**CONDITIONALLY READY** (verdict **B**).
 
 Scientific blockers that previously made submission unsafe (contradicted H6,
 corpus count inflation, profile-size confound misattribution, weak citation,
-internal revision log in PDF, residual “syllabus” mislabels) are resolved with
-artifact evidence. Remaining gaps are **design limitations** (proxy academic
-profile), **venue conversion**, and **human proofread** — not hidden defects.
+internal revision log in PDF, residual “syllabus” mislabels, **H5 misattribution
+of the INTL01 internship association as a domestic training premium**) are
+resolved with artifact evidence. Remaining gaps are **design limitations**
+(proxy academic profile, CS2023 computational-only anchor), **venue
+conversion**, and **human proofread** — not hidden defects.
 
 Do not treat this as an acceptance prediction.
 
@@ -22,17 +22,20 @@ Gate checklist:
 
 | Criterion | Status |
 |---|---|
-| Every RQ has evidence-backed answer | YES (H1–H6 mapped in ledger) |
-| Major claims → evidence matrix | YES (108 rows) |
+| Every RQ has evidence-backed answer | YES (H1–H6 mapped; H5 now PLAC01 = not supported) |
+| Major claims → evidence matrix | YES (108 rows + F-1 correction recorded) |
 | Primary results reproducible or marked unverified | YES (12/12 exact local or GPU-verified) |
-| Dataset provenance audited | YES (18-row `dataset_audit.csv`) |
+| Dataset provenance audited | YES (18-row `dataset_audit.csv`; manifest sum 3,163,517 / unique 2,643,703) |
 | Leakage / independence investigated | YES (STAT01/02, SGI protocol) |
-| Measurement validity described | YES (VALID01 + limitations; residual C-1/R-5) |
-| References verified with statuses | YES (52 rows) |
-| LaTeX synced; figures/tables verified | YES |
-| PDF compiles | YES (pdflatex+bibtex, 0 errors; **15 pp** post-adversarial edits) |
+| Measurement validity described | YES (VALID01 expert κ=0.737 + CURR01 computational anchor, labeled as such; residual C-1/R-5) |
+| References verified with statuses | YES (52 rows; 0 unresolved) |
+| LaTeX synced; figures/tables verified | YES (TikZ figures; hand-audited crosscorpus table preserved) |
+| PDF compiles | YES (pdflatex+bibtex, 0 errors / 0 undefined / 0 overfull; **16 pp**) |
 | No internal audit clutter in submission PDF | YES (Revision Log removed 2026-10-11 adversarial pass) |
 | Independent critical review of strongest claims | YES (Phase 3/F + this package) |
+| Claim checker green after edits | YES (**103/103** `audit/verify_claims.py`) |
+| Tests green after edits | YES (**13/13** pytest) |
+| Local reproduction gate | YES (`reproduce_local.py` env/checksums/verify/claims/citations ok; stats skipped this pass) |
 
 **Do not treat “conditionally ready” as acceptance prediction.** Q1 acceptance
 depends on reviewers, editor fit, and authorship decisions outside this audit.
@@ -65,7 +68,8 @@ depends on reviewers, editor fit, and authorship decisions outside this audit.
 | Claim | Pre-audit | Artifact truth | Resolution |
 |---|---|---|---|
 | Internship RD (H6) | +0.08 pp | **−0.44 pp** (STAT01) | Manuscript fixed |
-| Corpus size | 3,176,266 analyzed | **≈2,643,703 unique** | Fixed + inventory note |
+| H5 credential locality | “Supported (INTL01) +15.3 pp domestic premium” | **Not supported** — INTL01 is an internship association (+15.34 pp, international cohort); PLAC01 placement rates similar across countries (India 63.2% … Germany 60.0%, overlapping CIs) | Retargeted H5 to PLAC01; verdict flipped; INTL01 kept only as descriptive context (F-1) |
+| Corpus size | 3,176,266 analyzed | **≈2,643,703 unique** (manifest sum 3,163,517 − 519,814 linked pair) | Fixed + inventory note |
 | LinkedIn postings | 1,348,510 | 1,348,454 | Fixed |
 | HF jobs row count | 519,841 | 519,814 (linked pair) | Fixed; unique total counts once |
 | Academic ref | 13,833 taxonomy | **1,167 postings** | Fixed Table I + construct text |
@@ -110,10 +114,11 @@ scope fit. Re-verify quartiles and APCs on live pages at submission time.
 ## 6. Validation commands executed (this package)
 
 ```
-python audit/q1_readiness/build_package.py
-python -m pytest tests/ -q          # 13 passed (on main; re-run after merge)
-python reproduce_local.py           # all stages ok (on main)
-# PDF: pdflatex + bibtex + pdflatex ×2  (0 errors; on main)
+python audit/verify_claims.py       # checks=103; matched=103; mismatched=0
+python -m pytest tests/ -q          # 13 passed
+python reproduce_local.py --skip stats   # env/checksums/verify/claims/citations ok
+python experiments/verify.py        # all_verified: true
+# PDF: pdflatex + bibtex + pdflatex ×2  (0 errors / 0 undefined / 0 overfull; 16 pp)
 ```
 
 See `REPRODUCIBILITY_REPORT.md` for the full command log summary.
@@ -122,12 +127,14 @@ See `REPRODUCIBILITY_REPORT.md` for the full command log summary.
 
 ## 7. Unresolved items before submission
 
-1. Author venue choice + template conversion (R-9)
-2. Human proofread (R-10)
-3. Optional: multiplicity note (R-3); calibration/PR-AUC (R-4);
-   employer-cluster bootstrap (R-7); CS2023 line audit (R-6)
-4. Live re-check of quartile/APC (unverified dynamic data)
-5. Merge/push of this package branch only with explicit authorization
+1. Author venue choice + template conversion (R-9 / A-6 BJET word budget)
+2. Author/journal metadata: names redacted placeholder; owner decision (F-6)
+3. Human proofread (R-10)
+4. Optional strengtheners: multiplicity note (R-3); calibration/PR-AUC (R-4);
+   employer-cluster bootstrap (R-7); CS2023 human line audit (R-6, now
+   labeled computational-only — do not claim audit exists)
+5. Live re-check of quartile/APC (unverified dynamic data)
+6. Merge/push of this package only with explicit authorization
 
 ---
 

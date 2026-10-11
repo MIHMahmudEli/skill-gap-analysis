@@ -1054,6 +1054,46 @@
     "note": ""
   },
   {
+    "id": "C158",
+    "claim": "H5 credential locality reported NOT supported via PLAC01 (not INTL01 internship)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C159",
+    "claim": "CS2023 anchor described as computational, not human line-by-line audit",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C160",
+    "claim": "abstract discloses employer-derived occupational reference profile (1,167 postings)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C161",
+    "claim": "H5 PLAC01 rates similar across countries (max-min ~3.2 pp, overlapping CIs)",
+    "ms_value": "similar across countries",
+    "artifact_value": {
+      "min": 59.99,
+      "max": 63.17,
+      "spread_pp": 3.18
+    },
+    "match": true,
+    "evidence": "results/PLAC01_global_by_country/metrics.json by_country",
+    "note": "Reclassifies H5 from INTL01 (internship) to PLAC01 (cross-country); prior 'Supported (INTL01)' was a misattribution"
+  },
+  {
     "id": "C152b",
     "claim": "H6 college RD -0.44 pp is artifact-supported (audit Phase 5)",
     "ms_value": -0.44,

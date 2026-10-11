@@ -283,11 +283,32 @@ presence = [
      "matched-profile" in TEX and "Profile-size sensitivity" in TEX),
     ("C157", "academic reference 1,167 stated (not 13,833 as taxonomy)",
      "1,167" in TEX and "13,833-row taxonomy" in TEX),
+    ("C158", "H5 credential locality reported NOT supported via PLAC01 (not INTL01 internship)",
+     ("H5 (credential locality) is not supported" in TEX)
+     and ("Not supported (PLAC01" in TEX)
+     and ("domestic training premium" not in TEX)),
+    ("C159", "CS2023 anchor described as computational, not human line-by-line audit",
+     ("computational---not human-validated---anchor" in TEX)
+     and ("no human line-by-line topic audit was performed" in TEX)),
+    ("C160", "abstract discloses employer-derived occupational reference profile (1,167 postings)",
+     "employer-derived occupational reference profile (1,167 job postings" in TEX),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
                    "artifact_value": val, "match": bool(val) if isinstance(val, bool) else None,
                    "evidence": "paper/main.tex / metrics", "note": ""})
+
+# H5 correction: PLAC01 cross-country rates similar (overlapping CIs) -> not supported
+plac = load_metrics("PLAC01_global_by_country")
+_rates = [c["placement_rate_pct"] for c in plac["by_country"]]
+checks.append({
+    "id": "C161", "claim": "H5 PLAC01 rates similar across countries (max-min ~3.2 pp, overlapping CIs)",
+    "ms_value": "similar across countries",
+    "artifact_value": {"min": min(_rates), "max": max(_rates), "spread_pp": round(max(_rates) - min(_rates), 2)},
+    "match": (max(_rates) - min(_rates)) < 5.0,
+    "evidence": "results/PLAC01_global_by_country/metrics.json by_country",
+    "note": "Reclassifies H5 from INTL01 (internship) to PLAC01 (cross-country); prior 'Supported (INTL01)' was a misattribution",
+})
 
 # H6 corrected: verify -0.44 pp RD against STAT01-adjacent computation already in ledger
 checks.append({

@@ -1,8 +1,10 @@
 # Skill Gap Analysis
 
-A data-driven framework for quantifying the gap between academic curricula and
-industry skill requirements using NLP, statistics, and machine learning — with
-**every reported number traceable to a registered, GPU-executed experiment**.
+A data-driven framework for quantifying the gap between employer skill
+requirements and an employer-derived academic reference profile (a proxy for
+curricula, not institutionally collected syllabi) using NLP, statistics, and
+machine learning — with **every reported number traceable to a registered,
+GPU-executed experiment**.
 
 ## Overview
 
@@ -13,7 +15,7 @@ counted once as a linked posting–skill pair) from LinkedIn, Kaggle, and
 HuggingFace and answers five research questions (RQ1–RQ5):
 
 - **RQ1** — market skill topography and 2020–2026 trends
-- **RQ2** — lexical vs. semantic (Sentence-BERT) curriculum alignment (SGI)
+- **RQ2** — lexical vs. semantic (Sentence-BERT) reference-profile alignment (SGI)
 - **RQ3** — eight-category domain-level skill gaps with bootstrap CIs
 - **RQ4** — graduate placement determinants, CV benchmarks, tree-rule audit,
   external validation
@@ -90,8 +92,8 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
 | VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
-| ALIGN04 | Cross-corpus SGI replication (LinkedIn, 1.29M postings) | tasnimjenny/sg-align04-crosscorpus-a4 | VERIFIED |
-| CURR01 | CS2023 curriculum anchor validation (2,197 topics) | rssiam/sg-curr01-cs2023-a2 | VERIFIED |
+| ALIGN04 | Cross-corpus SGI replication (LinkedIn, 1.29M postings) | tasnimjenny/sg-align04-crosscorpus-a4 | USED_IN_MANUSCRIPT |
+| CURR01 | CS2023 curriculum anchor (computational embedding coverage; 2,197 topics) | rssiam/sg-curr01-cs2023-a2 | USED_IN_MANUSCRIPT |
 
 ## Usage
 
@@ -133,8 +135,12 @@ local smoke tests; on Kaggle they read the mounted bundle
   (all p < 0.001); CV accuracy 90.11% ± 0.74%, ROC-AUC 0.9406
 - **External validation**: ROC-AUC 0.768 (Student Career Success, N = 50k),
   0.576 (Global Placement)
-- **Internship effect**: +15.34 pp employment (95% CI [14.99, 15.73]),
-  N = 300,000
+- **Internship association** (international-graduate cohort, N = 300,000):
+  +15.34 pp employment (95% CI [14.99, 15.73]); in the separate college cohort
+  (N = 10,000) the internship risk difference is **−0.44 pp** (null; OR 1.02,
+  p = 0.62). These are different populations and estimands.
+- **Credential locality (H5)**: not supported — placement rates are similar
+  across countries (India 63.2% … Germany 60.0%; PLAC01)
 - **Geographic**: USA 85.2%, UK 8.4%, Canada 4.2%, Australia 2.2% (N = 1.35M)
 - **Matcher validity** (VALID01 vs expert SkillSpan→ESCO mappings, 2,907
   pairs): SBERT τ = 0.5 agreement **κ = 0.737** [0.711, 0.760], accuracy
@@ -143,16 +149,17 @@ local smoke tests; on Kaggle they read the mounted bundle
   **0.37** [0.28, 0.47], semantic SGI **0.14** [0.07, 0.21] — both intervals
   exclude zero; lexical > semantic ordering and τ-monotonicity reproduce the
   primary corpus exactly
-- **CS2023 anchor** (CURR01, 2,197 topics / 17 knowledge areas): academic
-  profile covers **30.4%** [28.5, 32.4] of the curricular Body of Knowledge
-  at τ = 0.5 (HCI/DM best ≥ 52%; Algorithmic Foundations 12.6%, Math 10.0%),
-  with 49.6% of profile skills grounded in the guidelines
+- **CS2023 anchor** (CURR01, computational embedding coverage of 2,197 topics /
+  17 knowledge areas; no human line-by-line audit): the academic profile covers
+  **30.4%** [28.5, 32.4] of the curricular Body of Knowledge at τ = 0.5
+  (HCI/DM best ≥ 52%; Algorithmic Foundations 12.6%, Math 10.0%), with 49.6%
+  of profile skills grounded in the guidelines
 
 ## Data & Artifact Archives
 
 - **Input bundle (Kaggle)**: https://www.kaggle.com/datasets/studyhub991/skill-gap-inputs-v1
 - **Experiment outputs (HuggingFace)**: https://huggingface.co/datasets/MoshinAli/skill-gap-experiments
-- **Manuscript**: `paper/main.pdf` (15 pp, IEEEtran)
+- **Manuscript**: `paper/main.pdf` (16 pp, IEEEtran; anonymized for double-blind review)
 
 Large source datasets (>10 MB) are not committed; see
 `datasets/DATASET_MANIFEST.csv` and `datasets/download_kaggle.py`.
