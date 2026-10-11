@@ -20,18 +20,28 @@ sys.path.insert(0, str(ROOT / "experiments"))
 REGISTRY = ROOT / "results" / "registry.json"
 
 # Experiments that are registered and VERIFIED but not yet cited in the
-# manuscript (their manuscript integration task is still pending).
+# manuscript (their manuscript integration task is still pending), plus
+# experiments deliberately excluded from the manuscript.
 #
 # The end-state invariant the test below enforces is "every registered
-# experiment is USED_IN_MANUSCRIPT"; while a revision adds new experiments,
-# staged ones are allowed *only* in COMPLETED/VERIFIED state, must exist in
-# the registry, and are counted explicitly. Remove an ID from this list in
-# the same commit that (a) cites the experiment in paper/main.tex and
-# (b) flips its registry status to USED_IN_MANUSCRIPT.
+# experiment is either USED_IN_MANUSCRIPT, staged for integration, or
+# explicitly marked not-used with a recorded reason"; while a revision adds
+# new experiments, staged ones are allowed *only* in COMPLETED/VERIFIED
+# state, and not-used ones *only* in VERIFIED state with a
+# `manuscript_use_reason`, must exist in the registry, and are counted
+# explicitly. Remove an ID from this list in the same commit that (a) cites
+# the experiment in paper/main.tex and (b) flips its registry status to
+# USED_IN_MANUSCRIPT.
 #
 # SENS01: staged for the Phase-2 revision (P2-3 abstract/sensitivity
 # rewrite, `reports/Q1_REVISION_PLAN.md`); verified 2026-10-11.
 PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity"}
+# TRENDS01: excluded from the manuscript 2026-10-12 (author instruction):
+# RQ1-trend claims, Fig. 6b and the "spanning 2020 through 2026" phrasing
+# were removed because the corpus is apparently synthetic (generator-
+# signature evidence). Registry entry and artifacts retained; reason
+# recorded in results/registry.json under `manuscript_use_reason`.
+NOT_USED_IN_MANUSCRIPT = {"TRENDS01_ai_longitudinal"}
 
 
 def _load_registry():
@@ -51,12 +61,21 @@ def test_registry_all_used_in_manuscript():
         statuses = [e.get("status") for e in exps]
     assert statuses, "empty registry"
     staged = PENDING_MANUSCRIPT_INTEGRATION
-    unknown = staged - set(ids)
+    not_used = NOT_USED_IN_MANUSCRIPT
+    unknown = (staged | not_used) - set(ids)
     assert not unknown, f"staging list references missing experiments: {unknown}"
     for exp_id, status in zip(ids, statuses):
         if exp_id in staged:
             assert status in ("COMPLETED", "VERIFIED"), (
                 f"{exp_id} is staged for integration but not verified: {status}")
+        elif exp_id in not_used:
+            assert status == "VERIFIED", (
+                f"{exp_id} is marked not-used-in-manuscript but status is {status}")
+            entry = (exps[exp_id] if isinstance(exps, dict)
+                     else next(e for e in exps if e["experiment_id"] == exp_id))
+            assert entry.get("manuscript_use") == "not_used_in_manuscript", exp_id
+            assert entry.get("manuscript_use_reason"), (
+                f"{exp_id} is marked not-used but carries no manuscript_use_reason")
         else:
             assert status == "USED_IN_MANUSCRIPT", (exp_id, status)
     assert len(statuses) == 12 + len(staged), statuses

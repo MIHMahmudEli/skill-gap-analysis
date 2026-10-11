@@ -1,0 +1,123 @@
+"""Unit tests for the generator-signature checkers in datasets/synthetic_checks.py,
+plus a structural check of the committed artifact datasets/synthetic_checks_output.json
+(author instruction 2026-10-12, step 2)."""
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "datasets"))
+from synthetic_checks import (  # noqa: E402
+    binary_balance,
+    cramers_v,
+    id_sequence,
+    missingness_pattern,
+    uniformity_chi2,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_uniformity_flags_uniform_draw():
+    rng = np.random.default_rng(42)
+    s = pd.Series(rng.choice(list("ABCD"), size=12000))
+    r = uniformity_chi2(s)
+    assert r["applicable"] and r["uniform_draw_consistent"]
+    assert r["n_categories"] == 4 and r["df"] == 3
+
+
+def test_uniformity_rejects_skewed_distribution():
+    rng = np.random.default_rng(42)
+    # zipf-like: strongly non-uniform categorical
+    s = pd.Series(rng.choice(list("ABCD"), size=12000, p=[0.7, 0.2, 0.07, 0.03]))
+    r = uniformity_chi2(s)
+    assert r["applicable"] and not r["uniform_draw_consistent"]
+    assert r["balance_ratio_max_min"] > 1.10
+
+
+def test_uniformity_not_applicable_outside_cardinality_window():
+    s = pd.Series(["only-one-category"] * 50)
+    assert not uniformity_chi2(s)["applicable"]
+    s2 = pd.Series([f"c{i}" for i in range(30)]) * 5   # > max_categories
+    assert not uniformity_chi2(s2)["applicable"]
+
+
+def test_binary_balance():
+    rng = np.random.default_rng(42)
+    assert binary_balance(pd.Series(rng.integers(0, 2, size=20000)))["coin_flip_consistent"]
+    skewed = pd.Series(np.where(np.arange(10000) < 7000, 1, 0))
+    r = binary_balance(skewed)
+    assert r["applicable"] and not r["coin_flip_consistent"]
+    assert abs(r["share_positive"] - 0.7) < 0.01
+    # non 0/1 content -> not applicable
+    assert not binary_balance(pd.Series(["yes", "no"] * 10))["applicable"]
+
+
+def test_coupling_detects_deterministic_mapping():
+    rng = np.random.default_rng(42)
+    a = pd.Series(rng.choice(["x", "y", "z"], size=6000))
+    b = a.map({"x": "u", "y": "v", "z": "w"})          # perfect 1:1
+    r = cramers_v(a, b)
+    assert r["applicable"] and r["near_deterministic_coupling"]
+    assert r["cramers_v"] > 0.95
+
+
+def test_coupling_flags_independence_as_low_v():
+    rng = np.random.default_rng(42)
+    a = pd.Series(rng.choice(["x", "y", "z"], size=6000))
+    b = pd.Series(rng.choice(["u", "v", "w"], size=6000))
+    r = cramers_v(a, b)
+    assert r["applicable"] and not r["near_deterministic_coupling"]
+    assert r["cramers_v"] < 0.1
+
+
+def test_id_sequence_integer_and_templated():
+    assert id_sequence(pd.Series(range(1, 501)))["sequential_id_consistent"]
+    templ = [f"AI{i:05d}" for i in range(1, 501)]
+    r = id_sequence(pd.Series(templ))
+    assert r["sequential_id_consistent"] and r["counter_contiguous"]
+    assert r["template"] == "AI<counter>"
+    # gapped / random identifiers -> not sequential
+    rng = np.random.default_rng(42)
+    assert not id_sequence(pd.Series(rng.integers(1, 10**6, size=500)))["sequential_id_consistent"]
+    assert not id_sequence(pd.Series([f"ID{v:06d}" for v in rng.integers(0, 10**6, size=500)]))["sequential_id_consistent"]
+
+
+def test_missingness_equal_class_signature():
+    # 3 classes + blanked column: missing behaves as the 4th uniform class
+    rng = np.random.default_rng(42)
+    draw = rng.choice(["High", "Medium", "Low", "GONE"], size=10000)
+    s = pd.Series(draw).replace({"GONE": np.nan})
+    comp = pd.Series(rng.choice(list("pqrs"), size=10000))  # independent companion
+    r = missingness_pattern(s, comp)
+    assert r["applicable"] and r["missing_as_equal_class_consistent"]
+    assert abs(r["missing_share"] - 0.25) < 0.02
+
+
+def test_missingness_not_equal_class_when_share_wrong():
+    rng = np.random.default_rng(42)
+    draw = rng.choice(["A"] * 9 + ["GONE"], size=10000)   # 9 classes + missing
+    s = pd.Series(draw).replace({"GONE": np.nan})
+    r = missingness_pattern(s, None)
+    assert r["applicable"] and not r["missing_as_equal_class_consistent"]
+
+
+def test_committed_output_artifact_structure():
+    p = ROOT / "datasets" / "synthetic_checks_output.json"
+    assert p.exists(), "run: python datasets/synthetic_checks.py"
+    d = json.loads(p.read_text(encoding="utf-8"))
+    assert d["generated_by"] == "datasets/synthetic_checks.py"
+    assert len(d["datasets"]) >= 10
+    for entry in d["datasets"].values():
+        assert entry["basis"] in ("declared_synthetic_source_readme", "apparently_synthetic")
+        assert entry["rows"] > 0 and entry["checks"], "every audited dataset must carry >=1 check"
+        assert "signature_families_triggered" in entry
+    # the one declared-synthetic source must be the India Skills dataset
+    declared = [k for k, v in d["datasets"].items() if v["basis"] == "declared_synthetic_source_readme"]
+    assert declared == ["India Skills Intelligence (12,000)"]
+    # the corrected record: experience_level~remote_type must NOT be flagged as
+    # near-deterministic (an earlier informal note claimed 1:1; checks say independent)
+    ai = d["datasets"]["AI Trends 2020-2026"]["checks"]["coupling::experience_level~remote_type"]
+    assert not ai["near_deterministic_coupling"] and ai["cramers_v"] < 0.1

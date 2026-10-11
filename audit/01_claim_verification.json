@@ -55,7 +55,7 @@
   },
   {
     "id": "C04",
-    "claim": "AI trends N=10,345",
+    "claim": "AI trends N=10,345 (artifact/registry only; trends claims removed from manuscript 2026-10-12)",
     "ms_value": 10345,
     "artifact_value": 10345,
     "match": true,
@@ -923,7 +923,7 @@
   },
   {
     "id": "C140",
-    "claim": "Python 47.5-52.2%",
+    "claim": "Python 47.5-52.2% (artifact only; removed from manuscript 2026-10-12)",
     "ms_value": [
       47.5,
       52.2
@@ -938,7 +938,7 @@
   },
   {
     "id": "C141",
-    "claim": "SQL 48.2-51.9%",
+    "claim": "SQL 48.2-51.9% (artifact only; removed from manuscript 2026-10-12)",
     "ms_value": [
       48.2,
       51.9
@@ -953,7 +953,7 @@
   },
   {
     "id": "C142",
-    "claim": "ML 48.8-53.5%",
+    "claim": "ML 48.8-53.5% (artifact only; removed from manuscript 2026-10-12)",
     "ms_value": [
       48.8,
       53.5
@@ -968,7 +968,7 @@
   },
   {
     "id": "C143",
-    "claim": "Cloud 47.1-53.9%",
+    "claim": "Cloud 47.1-53.9% (artifact only; removed from manuscript 2026-10-12)",
     "ms_value": [
       47.1,
       53.9
@@ -1055,7 +1055,7 @@
   },
   {
     "id": "C158",
-    "claim": "H5 credential locality reported NOT supported via PLAC01 (not INTL01 internship)",
+    "claim": "H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12)",
     "ms_value": null,
     "artifact_value": true,
     "match": true,

@@ -14,10 +14,19 @@ Generator-sign tests applied (each returns a flagged string when triggered):
   2. binary balance: |p - 0.5| for 0/1 columns (near-0.5 => coin flip).
   3. year balance: max/min count across observed years (near-equal => the
      "longitudinal" series is a balanced draw, not a time process).
-  4. coupled-column identity: two categoricals mapping ~1:1 (impossible
-     independence-breaking regularity in real data).
+  4. coupled-column identity: two categoricals mapping ~1:1 (checked; note the
+     AI-trends experience_level<->remote_type pair is INDEPENDENT, V=0.015 --
+     an earlier informal note claiming a 1:1 map was wrong, corrected 2026-10-12).
   5. sequential/synthetic ID: job_id or profile_id of the form AI00001/IN-PROF-.
   6. generator tell: 16 near-generic company_name values across 15,000 rows.
+
+Columns:
+  classification      REAL / UNVERIFIED / SYNTHETIC (unchanged vocabulary)
+  synthetic_basis     declared (source states it) | inferred (generator
+                      signatures) | n/a  -- author instruction 2026-10-12:
+                      never assert certainty for the inferred group.
+  signature_checks    datasets/synthetic_checks_output.json for rows whose
+                      signs are backed by the executable checker suite.
 
 Writes datasets/REAL_VS_SYNTHETIC.csv. No download; no manuscript edit here.
 """
@@ -60,9 +69,13 @@ add(dataset="AI Trends 2020-2026", path=str(p.relative_to(ROOT)), rows=len(d),
     dataset_card="no local card; manifest label 'Longitudinal AI/data science job postings'",
     generator_signs=(f"6 titles ~1,700 each (ratio {r_t:.2f}); 7 countries ~1,480 each (ratio {r_c:.2f}); "
                      f"7 years ~1,470 each (ratio {r_y:.2f}); binary skills ~coin-flip ({binary_balance(d,['skills_python','skills_sql','skills_ml','skills_deep_learning','skills_cloud'])}); "
-                     f"experience_level<->remote_type map 1:1 ({coupled:.3f} of rows on the diagonal); "
-                     "job_id = 1..10345; 9901 distinct salaries in a 10345-row file"),
-    classification="SYNTHETIC",
+                     f"job_id = 1..10345 (sequential); 9901 distinct salaries in a 10345-row file; "
+                     f"experience_level and remote_type are INDEPENDENT (crosstab modal share {coupled:.2f}; "
+                     "executable chi2/Cramer's V check = 0.015 -- an earlier informal note claiming a "
+                     "1:1 map was wrong, corrected 2026-10-12)"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="YES - Table I calls it 'Longitudinal AI/data science job postings'; abstract & Sec III-A cite 'multi-year AI job market series (2020-2026)'; Fig.6b 'AI skill demand trajectories'")
 
 # ---------------------------------------------------------------- AI 15,000 (bundled)
@@ -74,9 +87,11 @@ add(dataset="AI Job Market & Salary Trends (15,000)", path=str(p.relative_to(ROO
     feeds_experiment="none executed (sibling file only)",
     dataset_card="no local card",
     generator_signs=(f"16 generic company_name values across 15,000 rows (ratio {r_cm:.2f}; e.g. 'TechCorp Inc','Smart Analytics'); "
-                     f"20 countries ~750 each (ratio {r_loc:.2f}); experience_level/employment_type/company_size/remote_ratio all ~equal 4-way/3-way splits; "
-                     "job_id = AI00001..; 95 of 15,000 deadlines land exactly 20 days after posting"),
-    classification="SYNTHETIC",
+                     f"20 countries ~750 each (ratio {r_loc:.2f}); experience_level/employment_type/company_size uniform-consistent "
+                     "(chi2 p=0.90/0.63/0.99); job_id = sequential AI<counter>; 95 of 15,000 deadlines land exactly 20 days after posting"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="NO - not in Table I as postings (manifest discloses it as unused sibling)")
 
 # ---------------------------------------------------------------- India Skills
@@ -88,9 +103,13 @@ add(dataset="India Skills Intelligence (12,000)", path=str(p.relative_to(ROOT)),
     dataset_card=("PRESENT locally: 'This dataset contains 12,000 synthetic professional profiles... Every value in "
                   "this dataset is generated, not collected from any real person or any real platform'; calibrated to "
                   "India Skills Report 2026 (Wheebox/CII/AICTE/AIU) and NASSCOM"),
-    generator_signs=("profile_id = IN-PROF-######; seniority/skills/company_size/work_mode near-uniform; "
-                     "uses_generative_ai_tools = 88% Yes (calibrated to a headline figure); card states generation"),
-    classification="SYNTHETIC (by explicit card)",
+    generator_signs=("DECLARED by bundled README (see dataset_card); corroborating checks: profile_id = "
+                     "sequential IN-PROF-###### (contiguous 12,000); uses_generative_ai_tools = 88% Yes "
+                     "(calibrated to a headline figure); categorical columns NOT uniform-consistent "
+                     "(calibrated distributions, chi2 p=0.00), consistent with a calibrated rather than flat generator"),
+    classification="SYNTHETIC (declared by source)",
+    synthetic_basis="declared (source states it)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - Table I already says 'Synthetic profiles calibrated on India Skills Report 2026' (good), but Sec III-A groups it under 'open datasets acquired from Kaggle' without marking it synthetic in prose")
 
 # ---------------------------------------------------------------- placement benchmarks
@@ -100,9 +119,13 @@ add(dataset="College Student Placement (10,000)", path=str(p.relative_to(ROOT)),
     unit_type="synthetic student row",
     feeds_experiment="STAT01 (H6/H7); STAT02",
     dataset_card="no local card",
-    generator_signs=("100 College_IDs x 100 students each (uniform cluster); Academic_Performance & Communication_Skills ~uniform 1-10; "
-                     "Projects_Completed ~uniform 0-5; Placement 16.6% with a hard label boundary (STAT01 records ROC-AUC 0.9406)"),
-    classification="SYNTHETIC",
+    generator_signs=("36 College_IDs with 75-133 students each (uneven cluster, an earlier informal note claiming "
+                     "'100 IDs x 100 students' was wrong, corrected 2026-10-12); Academic_Performance & "
+                     "Projects_Completed uniform-consistent (chi2 p=0.77/0.48); Communication_Skills borderline "
+                     "(p=0.044); Placement 16.6% with a hard label boundary (STAT01 records ROC-AUC 0.9406)"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - limitation 1 calls Tier 2 'semi-deterministic decision boundaries' but they are presented as placement/graduate outcomes")
 
 p = K / "global-student-placement-2025-dataset" / "global_placement.csv"
@@ -114,7 +137,9 @@ add(dataset="Global Student Placement (10,000)", path=str(p.relative_to(ROOT)), 
     dataset_card="no local card",
     generator_signs=(f"5 countries ~2,000 each (ratio {r_co:.2f}); 5 specializations ~2,000 each (ratio {r_sp:.2f}); "
                      f"6 industries ~1,670 each (ratio {r_in:.2f}); cgpa/communication/salary to 15 decimal places"),
-    classification="SYNTHETIC",
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - PLAC01 reports 'placement rates by country (India 63.2% ... Germany 60.0%)' as if country observations")
 
 p = K / "student-career-success-prediction-dataset" / "student_career_success_dataset.csv"
@@ -123,9 +148,12 @@ add(dataset="Student Career Success (50,000)", path=str(p.relative_to(ROOT)), ro
     unit_type="synthetic student row",
     feeds_experiment="STAT02 (external cohort)",
     dataset_card="no local card",
-    generator_signs=("Student_ID = ST######; 8 majors ~uneven but templated; Gender near-exact 50/50; "
-                     "Placement_Status 78% with Company_Tier/Placement_Mode templated; Starting_Salary_USD = 0 for all 10,960 not-placed"),
-    classification="SYNTHETIC",
+    generator_signs=("Student_ID = ST###### (sequential zero-padded); Gender M/F near-equal 24,533/24,465 "
+                     "(Other 1,002); Major non-uniform (CS 12,407 down to EE 2,548); Company_Tier heavily "
+                     "skewed (max/min 271); Starting_Salary_USD = 0 for all 10,960 not-placed (deterministic rule)"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - used as an 'external validation cohort' in STAT02")
 
 p = K / "international-graduates-employment-dataset" / "dataset.csv"
@@ -135,9 +163,13 @@ add(dataset="International Graduates (300,000)", path=str(p.relative_to(ROOT)), 
     unit_type="synthetic alumni row",
     feeds_experiment="INTL01 (internship->employment)",
     dataset_card="no local card",
-    generator_signs=(f"8 origin countries ~37,500 each (ratio {r_g:.2f}); Gender near-exact split 143,890/143,850/12,260; "
-                     f"6 fields ~50,000 each (ratio {r_f:.2f}); 4 languages ~exactly 90,1xx/59,8xx; Years_Since_Graduation ~uniform 0-9"),
-    classification="SYNTHETIC",
+    generator_signs=(f"8 origin countries ~37,500 each (uniform-consistent, chi2 p=0.53, ratio {d['Country_of_Origin'].value_counts().max()/d['Country_of_Origin'].value_counts().min():.2f}); "
+                     "Gender 143,890/143,850/12,260 (max/min 11.7); "
+                     f"6 fields ~50,000 each (uniform-consistent, ratio {r_f:.2f}); 4 languages ~exactly 90,1xx/59,8xx; "
+                     "Years_Since_Graduation near-uniform but rejected (p=0.014)"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - INTL01 reports internship->employment odds ratio (1.48x) as a graduate-outcome finding")
 
 p = K / "ngess-graduate-employment-dataset" / "NGESS Graduate Employment Dataset.csv"
@@ -146,9 +178,13 @@ add(dataset="NGESS Graduate Employment (7,200)", path=str(p.relative_to(ROOT)), 
     unit_type="synthetic survey respondent",
     feeds_experiment="none executed",
     dataset_card="no local card",
-    generator_signs=("6 survey years ~uneven but 2023 max; Religion ~exact 3,413/3,404 Islam/Christianity split; "
-                     "Gender near-50/50; NYSC_Status Nigeria-specific templated categories"),
-    classification="SYNTHETIC (plausible survey-like template)",
+    generator_signs=("sequential templated Respondent_ID NGR00001..NGR07200 (contiguous); survey-like schema "
+                     "with Nigeria-specific templated categories (NYSC_Status, Religion); uniformity "
+                     "signatures NOT detected (Gender 3,893/3,232/75, Religion 3,413/3,404/297 and "
+                     "Survey_Year uneven all reject uniformity) -- evidence weak, inference low-confidence"),
+    classification="SYNTHETIC (inferred; low confidence)",
+    synthetic_basis="inferred (generator signatures; low confidence)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="NO in results (not run) but listed in Table I among placement benchmarks")
 
 # ---------------------------------------------------------------- posting family (real)
@@ -161,6 +197,8 @@ add(dataset="LinkedIn Jobs & Skills (1,348,454)", path=str(p.relative_to(ROOT)),
     generator_signs=("none detected: 584,544 distinct titles with a realistic long tail (top title 'LEAD SALES ASSOCIATE-FT' 0.54%); "
                      "messy casing, typos, employer-specific strings - consistent with organic scrape"),
     classification="REAL (web-scraped)",
+    synthetic_basis="n/a",
+    signature_checks="",
     paper_treats_as_real="YES - treated as real throughout (correct)")
 
 add(dataset="HF Skill Gap Jobs+Skills (519,814 linked pair)", path="datasets/hf_skill_gap_jobs.csv + hf_skill_gap_skills.csv",
@@ -170,6 +208,8 @@ add(dataset="HF Skill Gap Jobs+Skills (519,814 linked pair)", path="datasets/hf_
     generator_signs=("none detected: 266,917 distinct titles, long tail identical in shape to LinkedIn "
                      "(same top titles - it is a strict subset of the LinkedIn scrape, OVERLAP_AUDIT.csv)"),
     classification="REAL (web-scraped; subset of LinkedIn)",
+    synthetic_basis="n/a",
+    signature_checks="",
     paper_treats_as_real="YES (correct)")
 
 add(dataset="HF Job Skill Set academic reference (1,167)", path="datasets/hf_job_skill_set.csv", rows=1167,
@@ -178,6 +218,8 @@ add(dataset="HF Job Skill Set academic reference (1,167)", path="datasets/hf_job
     dataset_card="HuggingFace skill-gap-analytics (CC-BY 4.0)",
     generator_signs="no generation; a 1,167-posting subsample of the same real scrape, not a taxonomy",
     classification="REAL (posting-derived reference)",
+    synthetic_basis="n/a",
+    signature_checks="",
     paper_treats_as_real="YES (correct)")
 
 # ---------------------------------------------------------------- Tier 2 (remaining)
@@ -188,10 +230,15 @@ add(dataset="Career Change Prediction (38,444)", path=str(p.relative_to(ROOT)), 
     unit_type="synthetic student/alumni row",
     feeds_experiment="none executed (Tier 2 inventory; counts toward headline only)",
     dataset_card="no local card",
-    generator_signs=(f"10 fields of study ~3,850 each (ratio {r_fs:.2f}); 10 occupations ~3,890 each (ratio {r_oc:.2f}); "
-                     "Gender near-exact split 19,299/19,145; 1-10 rating columns ~uniform (~3,850 per level); "
-                     "Family Influence missingness itself uniform (nan 9,632 vs ~9,600 per class)"),
-    classification="SYNTHETIC",
+    generator_signs=(f"10 fields of study ~3,850 each (uniform-consistent, ratio {r_fs:.2f}, chi2 p=0.051); "
+                     f"10 occupations ~3,890 each (uniform-consistent, ratio {r_oc:.2f}); "
+                     "Gender near-exact split 19,299/19,145; Education Level uniform-consistent; "
+                     "deliberate class weights (Career Change Interest 20.0%, Mentorship 30.0%, not coin flips); "
+                     "Family Influence missingness = 0.2505 vs 1/(3+1)=0.25 expected, independent of Field of Study "
+                     "(p=0.455) -- missing drawn as one more uniform class, then blanked"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="OVERSTATED - Table I lists it as 'Field of study vs. occupation transition records' (Tier 2)")
 
 p = (K / "indian-fresher-job-market-who-gets-hired-and-why" / "fresher_hiring_india_dataset.csv")
@@ -201,10 +248,13 @@ add(dataset="India Fresher Market (5,000)", path=str(p.relative_to(ROOT)), rows=
     unit_type="synthetic candidate row (fabricated names)",
     feeds_experiment="none executed (Tier 2 inventory; counts toward headline only)",
     dataset_card="no local card",
-    generator_signs=(f"backlogs ~uniform 0-3 (ratio {r_bk:.2f}); degree ~uniform 10 values (ratio {r_deg:.2f}); "
-                     "age near-uniform 8 values; projects_count ~uniform 0-6; candidate_id = 1..5000; "
-                     "4,315 distinct full_name values drawn from a name pool"),
-    classification="SYNTHETIC",
+    generator_signs=(f"backlogs ~uniform 0-3 (uniform-consistent, ratio {r_bk:.2f}, chi2 p=0.996); "
+                     f"graduation_year uniform-consistent (p=0.973); degree/age NOT uniform-consistent "
+                     f"(ratios {r_deg:.2f}/1.16); candidate_id = sequential 1..5000; "
+                     "4,315 distinct full_name values drawn from a name pool (fabricated identities)"),
+    classification="SYNTHETIC (inferred)",
+    synthetic_basis="inferred (generator signatures)",
+    signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="OVERSTATED - Table I lists it as 'Entry-level engineering recruitment outcomes' (Tier 2)")
 
 # ---------------------------------------------------------------- aggregate / unverified
@@ -217,9 +267,11 @@ add(dataset="USA Job Market Skills (316,279)", path=str(p.relative_to(ROOT)), ro
     generator_signs=("not individual postings: aggregate triples; source scrape unverifiable; "
                      "all 6,328 titles also occur in the LinkedIn scrape (title-string overlap only)"),
     classification="AGGREGATE / UNVERIFIED provenance",
+    synthetic_basis="n/a (provenance unverified, not classified synthetic)",
+    signature_checks="",
     paper_treats_as_real="OVERSTATED - Tier 1 says '316K records ... direct observations of employer skill specifications' (reads as postings)")
 
 out = pd.DataFrame(rows)
 out.to_csv(OUT, index=False)
 print(f"wrote {OUT} rows={len(out)}")
-print(out[["dataset", "classification", "feeds_experiment"]].to_string(index=False))
+print(out[["dataset", "classification", "synthetic_basis", "feeds_experiment"]].to_string(index=False))

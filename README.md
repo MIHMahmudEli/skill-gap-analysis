@@ -34,7 +34,7 @@ the real posting family; `reports/REAL_VS_SYNTHETIC_FINDINGS.md` lists which
 RQ1/RQ4/RQ5 elements currently run on synthetic benchmarks and the proposed
 changes (pending author approval).
 
-- **RQ1** — market skill topography and 2020–2026 trends
+- **RQ1** — market skill topography
 - **RQ2** — lexical vs. semantic (Sentence-BERT) reference-profile alignment (SGI)
 - **RQ3** — eight-category domain-level skill gaps with bootstrap CIs
 - **RQ4** — graduate placement determinants, CV benchmarks, tree-rule audit,
@@ -108,7 +108,7 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | STAT01 | Placement statistics + CV | nihanshadman/sg-stat01-placement-a2 | USED_IN_MANUSCRIPT |
 | STAT02 | External validation | leyamridha/sg-stat02-external-a1 | USED_IN_MANUSCRIPT |
 | GEO01 | Geographic shares | sadmanhasanmiraj/sg-geo01-linkedin-a1 | USED_IN_MANUSCRIPT |
-| TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | USED_IN_MANUSCRIPT |
+| TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | VERIFIED (registry; not used in manuscript — apparently synthetic corpus) |
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
 | VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |

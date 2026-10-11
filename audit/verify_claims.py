@@ -100,7 +100,7 @@ add("C02b", "GEO01 n_rows = LinkedIn postings processed", 1348454, g1["n_rows"],
 add("C03", "Tier-2 total 420,644", 420644,
     10000 + 7200 + 10000 + 50000 + 300000 + 38444 + 5000,
     "manuscript tier composition arithmetic")
-add("C04", "AI trends N=10,345", 10345, t1["n_postings"],
+add("C04", "AI trends N=10,345 (artifact/registry only; trends claims removed from manuscript 2026-10-12)", 10345, t1["n_postings"],
     "results/TRENDS01_ai_longitudinal/metrics.json")
 add("C05", "academic reference n=1,167 (corrected; was 13,833)", 1167,
     int(next(r["records"] for r in manifest if "HF Job Skill Set" in r["dataset_name"])),
@@ -276,16 +276,18 @@ add("C130", "Placement rates India 63.17 USA 62.21 CA 61.54 UK 60.76 DE 59.99",
      pl["Canada"]["placement_rate_pct"], pl["UK"]["placement_rate_pct"],
      pl["Germany"]["placement_rate_pct"]], "same")
 
-# --- TRENDS ---
+# --- TRENDS --- (claims removed from manuscript 2026-10-12: TRENDS01 is
+# apparently synthetic; checks retained against the artifact so the registry
+# result stays verified even though no manuscript text consumes it)
 py = [r["python_share_pct"] for r in t1["yearly_shares"]]
-add("C140", "Python 47.5-52.2%", [47.5, 52.2], [round(min(py), 1), round(max(py), 1)], "same",
+add("C140", "Python 47.5-52.2% (artifact only; removed from manuscript 2026-10-12)", [47.5, 52.2], [round(min(py), 1), round(max(py), 1)], "same",
     "raw min/max = %.2f/%.2f" % (min(py), max(py)))
 sq = [r["sql_share_pct"] for r in t1["yearly_shares"]]
-add("C141", "SQL 48.2-51.9%", [48.2, 51.9], [round(min(sq), 1), round(max(sq), 1)], "same")
+add("C141", "SQL 48.2-51.9% (artifact only; removed from manuscript 2026-10-12)", [48.2, 51.9], [round(min(sq), 1), round(max(sq), 1)], "same")
 ml = [r["ml_share_pct"] for r in t1["yearly_shares"]]
-add("C142", "ML 48.8-53.5%", [48.8, 53.5], [round(min(ml), 1), round(max(ml), 1)], "same")
+add("C142", "ML 48.8-53.5% (artifact only; removed from manuscript 2026-10-12)", [48.8, 53.5], [round(min(ml), 1), round(max(ml), 1)], "same")
 cl = [r["cloud_share_pct"] for r in t1["yearly_shares"]]
-add("C143", "Cloud 47.1-53.9%", [47.1, 53.9],
+add("C143", "Cloud 47.1-53.9% (artifact only; removed from manuscript 2026-10-12)", [47.1, 53.9],
     [round(min(cl) + 1e-9, 1), round(max(cl) + 1e-9, 1)], "same")
 
 # --- text presence checks (numbers appear in tex) ---
@@ -306,9 +308,11 @@ presence = [
      "matched-profile" in TEX and "Profile-size sensitivity" in TEX),
     ("C157", "academic reference 1,167 stated (not 13,833 as taxonomy)",
      "1,167" in TEX and "13,833-row taxonomy" in TEX),
-    ("C158", "H5 credential locality reported NOT supported via PLAC01 (not INTL01 internship)",
-     ("H5 (credential locality) is not supported" in TEX)
-     and ("Not supported (PLAC01" in TEX)
+    ("C158", "H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12)",
+     ("H5 (credential locality) is untested" in TEX)
+     and ("Untested (PLAC01" in TEX)
+     and ("H5 (credential locality) is not supported" not in TEX)
+     and ("Not supported (PLAC01" not in TEX)
      and ("domestic training premium" not in TEX)),
     ("C159", "CS2023 anchor described as computational, not human line-by-line audit",
      ("computational---not human-validated---anchor" in TEX)

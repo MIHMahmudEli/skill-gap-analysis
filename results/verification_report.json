@@ -52,7 +52,7 @@
     "SENS01_sgi_sensitivity": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "COMPLETED",
+      "registry_status": "VERIFIED",
       "verified": true
     },
     "STAT01_placement_core": {
@@ -70,7 +70,7 @@
     "TRENDS01_ai_longitudinal": {
       "issues": [],
       "missing_files": [],
-      "registry_status": "USED_IN_MANUSCRIPT",
+      "registry_status": "VERIFIED",
       "verified": true
     },
     "VALID01_esco_gold": {
@@ -80,5 +80,5 @@
       "verified": true
     }
   },
-  "verified_utc": "2026-10-11T14:42:51Z"
+  "verified_utc": "2026-10-11T21:37:28Z"
 }

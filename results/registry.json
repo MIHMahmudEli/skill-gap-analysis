@@ -557,13 +557,21 @@
           "event": "used_in_manuscript",
           "manuscript": "paper/main.pdf",
           "ts": "2026-10-10"
+        },
+        {
+          "event": "manuscript_use_removed",
+          "manuscript": "paper/main.tex",
+          "reason": "RQ1-trend claims, Fig. 6b and 'spanning 2020 through 2026' phrasing removed 2026-10-12: the corpus is apparently synthetic (generator-signature evidence, datasets/synthetic_checks_output.json); experiment result retained in registry",
+          "ts": "2026-10-12"
         }
       ],
       "kernel_ref": "nishat1156/sg-trends01-ai-a1",
       "last_state": "complete",
+      "manuscript_use": "not_used_in_manuscript",
+      "manuscript_use_reason": "Apparently synthetic corpus (generator-signature evidence): trend claims would rest on generated rows; registry entry retained, artifacts intact",
       "pushed_utc": "2026-10-10T12:35:43Z",
       "slug": "sg-trends01-ai",
-      "status": "USED_IN_MANUSCRIPT",
+      "status": "VERIFIED",
       "status_errors": 0,
       "verified_utc": "2026-10-10T14:38:10Z",
       "worker": "nishat1156"

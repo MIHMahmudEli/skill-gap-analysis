@@ -15,24 +15,34 @@ Of the 15 manifest datasets (14 audit rows; the HF jobs+skills pair is one linke
 - **UNVERIFIED provenance: 1 unit.** USA Job Market Skills — 316,279 rows are *aggregate*
   (title × skill keyword × count) triples over only 6,328 titles; the underlying scrape
   source is unstated and unverifiable.
-- **SYNTHETIC: 10 units, 430,989 rows** — every student/placement/graduate benchmark
+- **SYNTHETIC: 10 units, 457,989 rows** — every student/placement/graduate benchmark
   (college 10,000; global placement 10,000; career success 50,000; international graduates
   300,000; career change 38,444; NGESS 7,200; fresher 5,000; = 420,644 student rows) plus
   the AI market series (10,345), the AI salary file (15,000), and India Skills (12,000,
   whose own local README states: "12,000 **synthetic** professional profiles… Every value
   in this dataset is **generated, not collected**").
 
-Generator evidence (per-file detail in the CSV): near-perfect uniform draws on every
-categorical (ratios 1.00–1.06), coin-flip binary columns, balanced pseudo-longitudinal
-years (7 years × ~1,470), a 1:1 mapping between `experience_level` and `remote_type`
-(99.5% of rows), sequential IDs (`AI00001`, `IN-PROF-######`, `ST######`), 16 generic
-company names over 15,000 rows, uniform *missingness*, and fabricated name pools.
+Generator evidence (per-file detail in the CSV, now backed by the executable checker
+suite `datasets/synthetic_checks.py` → `datasets/synthetic_checks_output.json`):
+uniform-consistent draws on *many* low-cardinality categoricals (ratios 1.00–1.07 —
+not all: e.g. SCS `Company_Tier` and NGESS `Gender`/`Religion` reject uniformity),
+coin-flip binary columns, balanced pseudo-longitudinal years (7 years × ~1,470),
+sequential IDs (`AI00001`, `IN-PROF-######`, `ST######`, `NGR######`), 16 generic
+company names over 15,000 rows, missing-as-equal-class blanking in the career-change
+file, and fabricated name pools. **Corrections (2026-10-12, after making the checks
+executable):** the earlier informal note of a "1:1 mapping between `experience_level`
+and `remote_type` (99.5% of rows)" is **refuted** (Cramér's V = 0.015, independent);
+"100 College_IDs × 100 students" is **refuted** (36 IDs, 75–133 students each); the
+India file's categories are **not** uniform (calibrated, consistent with its declared
+provenance); and fresher `degree`/`age` are not uniform draws. The inferred
+classification therefore rests on the surviving families only, and NGESS is marked
+**low confidence** (sequential ID + template schema only).
 
 **Paper treatment today:** only India Skills is labelled synthetic anywhere (Table I).
 Everywhere else the paper treats these as real postings, real graduate cohorts, or a
 "longitudinal" series.
 
-## 2. Claims that must change (listed, NOT edited — awaiting author OK)
+## 2. Claims that must change (applied 2026-10-12 — author OK'd the list; see §6 addendum)
 
 ### A. RQ1 trends — computed on a synthetic generator → **remove or demote to "generator behaviour"**
 
@@ -94,3 +104,41 @@ PLAC01 country cells, and INTL01.
    unverifiable-provenance label.
 4. Abstract/conclusion get the unit-typed corpus description (step 3) plus one explicit
    synthetic-data disclosure sentence.
+
+## 6. Execution addendum (2026-10-12, batch-2 step 2)
+
+Applied under the author's "APPLY the synthetic removal/demotion list" ruling:
+
+1. **Declared vs inferred.** `datasets/REAL_VS_SYNTHETIC.csv` gained `synthetic_basis`
+   (`declared (source states it)` / `inferred (generator signatures)` / `n/a`) and
+   `signature_checks` columns; classifications now read `SYNTHETIC (inferred)`,
+   `SYNTHETIC (declared by source)`, `SYNTHETIC (inferred; low confidence)` for NGESS.
+   No certainty is asserted for the inferred group.
+2. **Executable checks.** `datasets/synthetic_checks.py` implements the five
+   generator-signature families (categorical uniformity chi-square, binary balance,
+   cross-field Cramér's-V coupling, ID-sequence templating, missing-as-equal-class);
+   outputs saved to `datasets/synthetic_checks_output.json` and cited in the claim
+   ledger (row M10) and in §III-A/Table I of `paper/main.tex`.
+   `tests/test_synthetic_checks.py` (10 tests) guards the checker logic and the
+   artifact. Four informal claims above were refuted/corrected by these checks.
+3. **H5 = untested.** Verdict sentence and hypotheses-table row now read
+   "untested / Untested (PLAC01 benchmark apparently synthetic; no verdict)";
+   `verify_claims` C158 repointed to the new strings.
+4. **RQ1 trends removed.** Deleted: the longitudinal paragraph (old `main.tex:342`),
+   Fig. 6b panel (`\FigTrends` subfigure + caption + macro), the RQ1 "and Trends"
+   title halves (bullet + subsection), the "Adaptive Curriculum Guidelines"
+   trend-evidence attribution, and every "spanning 2020 through 2026" phrasing
+   (abstract, contribution, §III-A, conclusion). RQ1 is topography only.
+5. **TRENDS01 marked not-used.** Registry entry: `status: VERIFIED`,
+   `manuscript_use: not_used_in_manuscript` + reason, history event appended;
+   `tests/test_reproducibility.py` gained a `NOT_USED_IN_MANUSCRIPT` set requiring
+   a recorded reason; README + `paper/tables/tab_experiments.tex` updated;
+   ledger M07 rewritten; `verify_claims` C04/C140–C143 relabelled
+   "(artifact only; removed from manuscript 2026-10-12)".
+6. **Declared/inferred wording in main.tex.** §III-A accounting, contribution 1,
+   Tier-2 bullet, Table I caption + section headers + rows now say
+   "apparently synthetic" with the declared/inferred split (445,989 inferred +
+   12,000 declared) spelled out; "Eight of the 15 sources" → "Seven".
+7. **Deferred to step 4 (Phase 4 split):** H4/H6 verdict reframing, INTL01/STAT01/STAT02
+   sentences, PLAC01 country cells, and the Table I synthetic rows → appendix
+   (they move to `paper_placement/` under the benchmark-audit reframing, rulings D2/D3).

@@ -1,0 +1,718 @@
+{
+ "generated_by": "datasets/synthetic_checks.py",
+ "alpha": 0.05,
+ "coupling_v_threshold": 0.95,
+ "note": "Flags mean 'consistent with a generator signature', never 'synthetic'. Declared-vs-inferred classification lives in datasets/REAL_VS_SYNTHETIC.csv.",
+ "datasets": {
+  "AI Trends 2020-2026": {
+   "file": "datasets\\kaggle\\ai-and-data-science-job-market-dataset-20202026\\AI Job Market Dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 10345,
+   "checks": {
+    "uniformity::job_title": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 3.419,
+     "df": 5,
+     "p_value": 0.6357,
+     "balance_ratio_max_min": 1.058,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::country": {
+     "applicable": true,
+     "n_categories": 7,
+     "chi2": 1.114,
+     "df": 6,
+     "p_value": 0.9809,
+     "balance_ratio_max_min": 1.03,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::company_industry": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 4.442,
+     "df": 5,
+     "p_value": 0.4877,
+     "balance_ratio_max_min": 1.069,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::remote_type": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 1.828,
+     "df": 2,
+     "p_value": 0.4009,
+     "balance_ratio_max_min": 1.03,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::experience_level": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 1.828,
+     "df": 2,
+     "p_value": 0.4009,
+     "balance_ratio_max_min": 1.03,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::job_posting_year": {
+     "applicable": true,
+     "n_categories": 7,
+     "chi2": 1.127,
+     "df": 6,
+     "p_value": 0.9804,
+     "balance_ratio_max_min": 1.033,
+     "uniform_draw_consistent": true
+    },
+    "binary::skills_python": {
+     "applicable": true,
+     "n": 10345,
+     "share_positive": 0.4931,
+     "coin_flip_consistent": true
+    },
+    "binary::skills_sql": {
+     "applicable": true,
+     "n": 10345,
+     "share_positive": 0.503,
+     "coin_flip_consistent": true
+    },
+    "binary::skills_ml": {
+     "applicable": true,
+     "n": 10345,
+     "share_positive": 0.5079,
+     "coin_flip_consistent": true
+    },
+    "binary::skills_deep_learning": {
+     "applicable": true,
+     "n": 10345,
+     "share_positive": 0.498,
+     "coin_flip_consistent": true
+    },
+    "binary::skills_cloud": {
+     "applicable": true,
+     "n": 10345,
+     "share_positive": 0.5115,
+     "coin_flip_consistent": true
+    },
+    "coupling::experience_level~remote_type": {
+     "applicable": true,
+     "table_shape": [
+      3,
+      3
+     ],
+     "cramers_v": 0.015,
+     "independence_p": 0.327247,
+     "row_modal_share": 0.3419,
+     "col_modal_share": 0.3415,
+     "near_deterministic_coupling": false
+    },
+    "ids::job_id": {
+     "applicable": true,
+     "n": 10345,
+     "n_unique": 10345,
+     "integer_sequence": true,
+     "template": "<counter>",
+     "zero_padded_uniform_width": false,
+     "counter_contiguous": true,
+     "sequential_id_consistent": true
+    }
+   },
+   "signatures_consistent_count": 12,
+   "signature_families_triggered": [
+    "binary",
+    "ids",
+    "uniformity"
+   ]
+  },
+  "AI Job Market & Salary Trends (15,000)": {
+   "file": "datasets\\kaggle\\global-ai-job-market-and-salary-trends-2025\\ai_job_dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 15000,
+   "checks": {
+    "uniformity::company_name": {
+     "applicable": true,
+     "n_categories": 16,
+     "chi2": 12.663,
+     "df": 15,
+     "p_value": 0.6283,
+     "balance_ratio_max_min": 1.107,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::company_location": {
+     "applicable": true,
+     "n_categories": 20,
+     "chi2": 13.645,
+     "df": 19,
+     "p_value": 0.804,
+     "balance_ratio_max_min": 1.129,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::experience_level": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 0.578,
+     "df": 3,
+     "p_value": 0.9015,
+     "balance_ratio_max_min": 1.017,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::employment_type": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 1.715,
+     "df": 3,
+     "p_value": 0.6337,
+     "balance_ratio_max_min": 1.028,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::company_size": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 0.016,
+     "df": 2,
+     "p_value": 0.9922,
+     "balance_ratio_max_min": 1.002,
+     "uniform_draw_consistent": true
+    },
+    "ids::job_id": {
+     "applicable": true,
+     "n": 15000,
+     "n_unique": 15000,
+     "template": "AI<counter>",
+     "zero_padded_uniform_width": true,
+     "counter_contiguous": true,
+     "sequential_id_consistent": true
+    }
+   },
+   "signatures_consistent_count": 4,
+   "signature_families_triggered": [
+    "ids",
+    "uniformity"
+   ]
+  },
+  "India Skills Intelligence (12,000)": {
+   "file": "datasets\\kaggle\\india-professional-skills-intelligence-dataset\\india_professional_skills_intelligence.csv",
+   "basis": "declared_synthetic_source_readme",
+   "rows": 12000,
+   "checks": {
+    "uniformity::seniority_level": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 3021.826,
+     "df": 5,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 6.939,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::company_size": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 178.313,
+     "df": 3,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 1.411,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::work_mode": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 1849.704,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 2.993,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::employment_type": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 19796.277,
+     "df": 3,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 26.319,
+     "uniform_draw_consistent": false
+    },
+    "binary::uses_generative_ai_tools": {
+     "applicable": false
+    },
+    "ids::profile_id": {
+     "applicable": true,
+     "n": 12000,
+     "n_unique": 12000,
+     "template": "IN-PROF-<counter>",
+     "zero_padded_uniform_width": true,
+     "counter_contiguous": true,
+     "sequential_id_consistent": true
+    }
+   },
+   "signatures_consistent_count": 1,
+   "signature_families_triggered": [
+    "ids"
+   ]
+  },
+  "College Student Placement (10,000)": {
+   "file": "datasets\\kaggle\\college-student-placement\\college_student_placement_dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 10000,
+   "checks": {
+    "uniformity::Academic_Performance": {
+     "applicable": true,
+     "n_categories": 10,
+     "chi2": 5.726,
+     "df": 9,
+     "p_value": 0.767,
+     "balance_ratio_max_min": 1.084,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Communication_Skills": {
+     "applicable": true,
+     "n_categories": 10,
+     "chi2": 17.288,
+     "df": 9,
+     "p_value": 0.0444,
+     "balance_ratio_max_min": 1.171,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Projects_Completed": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 4.501,
+     "df": 5,
+     "p_value": 0.4798,
+     "balance_ratio_max_min": 1.058,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Internship_Experience": {
+     "applicable": true,
+     "n_categories": 2,
+     "chi2": 429.318,
+     "df": 1,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 1.523,
+     "uniform_draw_consistent": false
+    },
+    "binary::Internship_Experience": {
+     "applicable": false
+    },
+    "ids::College_ID": {
+     "applicable": true,
+     "n": 10000,
+     "n_unique": 100,
+     "template": "CLG<counter>",
+     "zero_padded_uniform_width": true,
+     "counter_contiguous": false,
+     "sequential_id_consistent": false
+    }
+   },
+   "signatures_consistent_count": 2,
+   "signature_families_triggered": [
+    "uniformity"
+   ]
+  },
+  "Global Student Placement (10,000)": {
+   "file": "datasets\\kaggle\\global-student-placement-2025-dataset\\global_placement.csv",
+   "basis": "apparently_synthetic",
+   "rows": 10000,
+   "checks": {
+    "uniformity::country": {
+     "applicable": true,
+     "n_categories": 5,
+     "chi2": 4.507,
+     "df": 4,
+     "p_value": 0.3417,
+     "balance_ratio_max_min": 1.059,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::specialization": {
+     "applicable": true,
+     "n_categories": 5,
+     "chi2": 1.083,
+     "df": 4,
+     "p_value": 0.897,
+     "balance_ratio_max_min": 1.031,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::industry": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 5.014,
+     "df": 5,
+     "p_value": 0.4141,
+     "balance_ratio_max_min": 1.067,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::college_tier": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 196.38,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 1.343,
+     "uniform_draw_consistent": false
+    }
+   },
+   "signatures_consistent_count": 3,
+   "signature_families_triggered": [
+    "uniformity"
+   ]
+  },
+  "Student Career Success (50,000)": {
+   "file": "datasets\\kaggle\\student-career-success-prediction-dataset\\student_career_success_dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 50000,
+   "checks": {
+    "uniformity::Gender": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 22084.499,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 24.484,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Major": {
+     "applicable": true,
+     "n_categories": 8,
+     "chi2": 10109.261,
+     "df": 7,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 4.869,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Placement_Status": {
+     "applicable": true,
+     "n_categories": 2,
+     "chi2": 15769.728,
+     "df": 1,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 3.562,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Company_Tier": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 70278.198,
+     "df": 3,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 271.182,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Placement_Mode": {
+     "applicable": true,
+     "n_categories": 5,
+     "chi2": 14046.743,
+     "df": 4,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 4.992,
+     "uniform_draw_consistent": false
+    },
+    "binary::GitHub_Profile": {
+     "applicable": false
+    },
+    "binary::LinkedIn_Profile": {
+     "applicable": false
+    },
+    "ids::Student_ID": {
+     "applicable": true,
+     "n": 50000,
+     "n_unique": 50000,
+     "template": "ST<counter>",
+     "zero_padded_uniform_width": true,
+     "counter_contiguous": true,
+     "sequential_id_consistent": true
+    }
+   },
+   "signatures_consistent_count": 1,
+   "signature_families_triggered": [
+    "ids"
+   ]
+  },
+  "International Graduates (300,000)": {
+   "file": "datasets\\kaggle\\international-graduates-employment-dataset\\dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 300000,
+   "checks": {
+    "uniformity::Gender": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 115474.622,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 11.737,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Field_of_Study": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 1.661,
+     "df": 5,
+     "p_value": 0.8937,
+     "balance_ratio_max_min": 1.007,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Employment_Status": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 48300.895,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 2.279,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Country_of_Origin": {
+     "applicable": true,
+     "n_categories": 8,
+     "chi2": 6.045,
+     "df": 7,
+     "p_value": 0.5345,
+     "balance_ratio_max_min": 1.015,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Language_Proficiency": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 12195.997,
+     "df": 3,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 1.505,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Years_Since_Graduation": {
+     "applicable": true,
+     "n_categories": 10,
+     "chi2": 20.69,
+     "df": 9,
+     "p_value": 0.0141,
+     "balance_ratio_max_min": 1.029,
+     "uniform_draw_consistent": false
+    },
+    "binary::Internship_Experience": {
+     "applicable": false
+    }
+   },
+   "signatures_consistent_count": 2,
+   "signature_families_triggered": [
+    "uniformity"
+   ]
+  },
+  "NGESS Graduate Employment (7,200)": {
+   "file": "datasets\\kaggle\\ngess-graduate-employment-dataset\\NGESS Graduate Employment Dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 7200,
+   "checks": {
+    "uniformity::Survey_Year": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 300.418,
+     "df": 5,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 1.761,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Gender": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 3469.541,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 51.907,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Religion": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 2721.814,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 11.492,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::NYSC_Status": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 12530.227,
+     "df": 3,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 20.24,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Employment_Status": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 2666.488,
+     "df": 3,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 5.081,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::Field_of_Study": {
+     "applicable": true,
+     "n_categories": 20,
+     "chi2": 1204.283,
+     "df": 19,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 3.881,
+     "uniform_draw_consistent": false
+    },
+    "binary::Internship_Completed": {
+     "applicable": false
+    },
+    "binary::Student_Loan": {
+     "applicable": false
+    },
+    "ids::Respondent_ID": {
+     "applicable": true,
+     "n": 7200,
+     "n_unique": 7200,
+     "template": "NGR<counter>",
+     "zero_padded_uniform_width": true,
+     "counter_contiguous": true,
+     "sequential_id_consistent": true
+    }
+   },
+   "signatures_consistent_count": 1,
+   "signature_families_triggered": [
+    "ids"
+   ]
+  },
+  "Career Change Prediction (38,444)": {
+   "file": "datasets\\kaggle\\field-of-study-vs-occupation\\career_change_prediction_dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 38444,
+   "checks": {
+    "uniformity::Field of Study": {
+     "applicable": true,
+     "n_categories": 10,
+     "chi2": 16.831,
+     "df": 9,
+     "p_value": 0.0514,
+     "balance_ratio_max_min": 1.068,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Current Occupation": {
+     "applicable": true,
+     "n_categories": 10,
+     "chi2": 6.443,
+     "df": 9,
+     "p_value": 0.6949,
+     "balance_ratio_max_min": 1.033,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Education Level": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 5.701,
+     "df": 3,
+     "p_value": 0.1271,
+     "balance_ratio_max_min": 1.035,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::Industry Growth Rate": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 6.079,
+     "df": 2,
+     "p_value": 0.0479,
+     "balance_ratio_max_min": 1.03,
+     "uniform_draw_consistent": false
+    },
+    "binary::Career Change Interest": {
+     "applicable": true,
+     "n": 38444,
+     "share_positive": 0.1999,
+     "coin_flip_consistent": false
+    },
+    "binary::Mentorship Available": {
+     "applicable": true,
+     "n": 38444,
+     "share_positive": 0.2999,
+     "coin_flip_consistent": false
+    },
+    "missingness::Family Influence|Field of Study": {
+     "applicable": true,
+     "missing_share": 0.2505,
+     "nonmissing_classes": 3,
+     "uniform_class_expected_share": 0.25,
+     "share_matches_equal_class": true,
+     "independence_chi2": 8.805,
+     "independence_p": 0.4554,
+     "missing_independent_of_companion": true,
+     "missing_as_equal_class_consistent": true
+    }
+   },
+   "signatures_consistent_count": 4,
+   "signature_families_triggered": [
+    "missingness",
+    "uniformity"
+   ]
+  },
+  "India Fresher Market (5,000)": {
+   "file": "datasets\\kaggle\\indian-fresher-job-market-who-gets-hired-and-why\\fresher_hiring_india_dataset.csv",
+   "basis": "apparently_synthetic",
+   "rows": 5000,
+   "checks": {
+    "uniformity::backlogs": {
+     "applicable": true,
+     "n_categories": 4,
+     "chi2": 0.062,
+     "df": 3,
+     "p_value": 0.9959,
+     "balance_ratio_max_min": 1.01,
+     "uniform_draw_consistent": true
+    },
+    "uniformity::degree": {
+     "applicable": true,
+     "n_categories": 10,
+     "chi2": 21.896,
+     "df": 9,
+     "p_value": 0.0092,
+     "balance_ratio_max_min": 1.267,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::age": {
+     "applicable": true,
+     "n_categories": 8,
+     "chi2": 9.232,
+     "df": 7,
+     "p_value": 0.2364,
+     "balance_ratio_max_min": 1.162,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::gender": {
+     "applicable": true,
+     "n_categories": 3,
+     "chi2": 2166.519,
+     "df": 2,
+     "p_value": 0.0,
+     "balance_ratio_max_min": 18.755,
+     "uniform_draw_consistent": false
+    },
+    "uniformity::graduation_year": {
+     "applicable": true,
+     "n_categories": 6,
+     "chi2": 0.863,
+     "df": 5,
+     "p_value": 0.9728,
+     "balance_ratio_max_min": 1.038,
+     "uniform_draw_consistent": true
+    },
+    "binary::prior_internship": {
+     "applicable": false
+    },
+    "ids::candidate_id": {
+     "applicable": true,
+     "n": 5000,
+     "n_unique": 5000,
+     "integer_sequence": true,
+     "template": "<counter>",
+     "zero_padded_uniform_width": false,
+     "counter_contiguous": true,
+     "sequential_id_consistent": true
+    }
+   },
+   "signatures_consistent_count": 3,
+   "signature_families_triggered": [
+    "ids",
+    "uniformity"
+   ]
+  }
+ }
+}

@@ -180,45 +180,6 @@
 }
 
 % ============================================================
-% FIG 3b — AI skill shares 2020–2026 (TRENDS01)
-% ============================================================
-\newcommand{\FigTrends}{%
-\resizebox{0.98\linewidth}{!}{%
-\begin{tikzpicture}
-\begin{axis}[
-  sg axis,
-  width=0.98\linewidth,
-  height=0.78\linewidth,
-  xmin=2019.6, xmax=2026.4,
-  ymin=44, ymax=57,
-  xlabel={Year},
-  ylabel={Share of AI postings (\%)},
-  xtick={2020,2021,2022,2023,2024,2025,2026},
-  legend pos=south west,
-  legend columns=2,
-]
-\addplot[very thick, mark=o, mark size=2.2pt, sgBlue] coordinates {
-  (2020,47.48)(2021,49.66)(2022,47.59)(2023,52.20)(2024,48.80)(2025,51.11)(2026,48.36)
-};
-\addlegendentry{Python}
-\addplot[very thick, mark=square*, mark size=2.0pt, sgRed] coordinates {
-  (2020,51.91)(2021,50.47)(2022,51.41)(2023,49.79)(2024,50.40)(2025,49.90)(2026,48.23)
-};
-\addlegendentry{SQL}
-\addplot[very thick, mark=triangle*, mark size=2.4pt, sgGreen] coordinates {
-  (2020,48.84)(2021,51.01)(2022,49.73)(2023,53.51)(2024,51.00)(2025,52.26)(2026,49.18)
-};
-\addlegendentry{Machine Learning}
-\addplot[very thick, mark=diamond*, mark size=2.6pt, sgOrange] coordinates {
-  (2020,52.04)(2021,53.85)(2022,47.05)(2023,51.38)(2024,50.73)(2025,51.11)(2026,51.91)
-};
-\addlegendentry{Cloud}
-\end{axis}
-\end{tikzpicture}%
-}%
-}
-
-% ============================================================
 % FIG 4a — Cohen's d (STAT01)
 % ============================================================
 \newcommand{\FigEffectSizes}{%
