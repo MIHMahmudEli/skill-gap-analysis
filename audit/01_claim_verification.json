@@ -1,0 +1,1029 @@
+[
+  {
+    "id": "C01",
+    "claim": "15 datasets totaling 3,176,266 records",
+    "ms_value": 3176266,
+    "artifact_value": 3176266,
+    "match": true,
+    "evidence": "datasets/DATASET_MANIFEST.csv column 'records' sum",
+    "note": "n_manifest_rows=15"
+  },
+  {
+    "id": "C01b",
+    "claim": "15 datasets claimed",
+    "ms_value": 15,
+    "artifact_value": 15,
+    "match": true,
+    "evidence": "datasets/DATASET_MANIFEST.csv row count",
+    "note": ""
+  },
+  {
+    "id": "C02",
+    "claim": "LinkedIn records 1,348,510 (Table I)",
+    "ms_value": 1348510,
+    "artifact_value": 1348510,
+    "match": true,
+    "evidence": "manifest",
+    "note": ""
+  },
+  {
+    "id": "C02b",
+    "claim": "GEO01 n_rows = LinkedIn postings processed",
+    "ms_value": 1348454,
+    "artifact_value": 1348454,
+    "match": true,
+    "evidence": "results/GEO01_linkedin_shares/metrics.json",
+    "note": "DISCREPANCY vs manifest 1,348,510 (delta=56): GEO01 used linkedin_job_postings.csv row count"
+  },
+  {
+    "id": "C03",
+    "claim": "Tier-2 total 420,644",
+    "ms_value": 420644,
+    "artifact_value": 420644,
+    "match": true,
+    "evidence": "manuscript tier composition arithmetic",
+    "note": ""
+  },
+  {
+    "id": "C04",
+    "claim": "AI trends N=10,345",
+    "ms_value": 10345,
+    "artifact_value": 10345,
+    "match": true,
+    "evidence": "results/TRENDS01_ai_longitudinal/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C10",
+    "claim": "Lexical SGI = 52.0%",
+    "ms_value": 0.52,
+    "artifact_value": 0.52,
+    "match": true,
+    "evidence": "results/ALIGN01_lexical_bootstrap/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C10b",
+    "claim": "Lexical coverage 48/100",
+    "ms_value": 48,
+    "artifact_value": 48,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C10c",
+    "claim": "Lexical SGI CI [0.42, 0.63]",
+    "ms_value": [
+      0.42,
+      0.63
+    ],
+    "artifact_value": [
+      0.42,
+      0.63
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C11",
+    "claim": "Semantic SGI tau=0.5 = 32.0%",
+    "ms_value": 0.32,
+    "artifact_value": 0.32,
+    "match": true,
+    "evidence": "results/ALIGN02_semantic_sbert/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C11b",
+    "claim": "Semantic CI tau=0.5 [0.23, 0.41]",
+    "ms_value": [
+      0.23,
+      0.41
+    ],
+    "artifact_value": [
+      0.23,
+      0.41
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C12",
+    "claim": "SGI tau=0.7 = 46.0%",
+    "ms_value": 0.46,
+    "artifact_value": 0.46,
+    "match": true,
+    "evidence": "ALIGN02 sensitivity",
+    "note": ""
+  },
+  {
+    "id": "C12b",
+    "claim": "SGI tau=0.7 CI [0.37, 0.56]",
+    "ms_value": [
+      0.37,
+      0.56
+    ],
+    "artifact_value": [
+      0.37,
+      0.56
+    ],
+    "match": true,
+    "evidence": "ALIGN02 sensitivity",
+    "note": ""
+  },
+  {
+    "id": "C12c",
+    "claim": "SGI tau=0.4 = 20.0%",
+    "ms_value": 0.2,
+    "artifact_value": 0.2,
+    "match": true,
+    "evidence": "ALIGN02 sensitivity",
+    "note": ""
+  },
+  {
+    "id": "C20",
+    "claim": "Cloud deficit lexical 2.45 pp",
+    "ms_value": 2.45,
+    "artifact_value": 2.45,
+    "match": true,
+    "evidence": "results/ALIGN03_domain_gap/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C20b",
+    "claim": "Cloud deficit semantic 0.94 pp",
+    "ms_value": 0.94,
+    "artifact_value": 0.94,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C21",
+    "claim": "Programming deficit lexical 1.69 pp",
+    "ms_value": 1.69,
+    "artifact_value": 1.69,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C22",
+    "claim": "Soft Skills deficit 0.00",
+    "ms_value": 0.0,
+    "artifact_value": 0.0,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C23",
+    "claim": "Data Science deficit 1.20 pp",
+    "ms_value": 1.2,
+    "artifact_value": 1.2,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C24",
+    "claim": "Business deficit 1.16 pp",
+    "ms_value": 1.16,
+    "artifact_value": 1.16,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C25",
+    "claim": "Programming demand 3.97% (limitations)",
+    "ms_value": 3.97,
+    "artifact_value": 3.97,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C26",
+    "claim": "Soft demand 52.3%",
+    "ms_value": 52.3,
+    "artifact_value": 52.3,
+    "match": true,
+    "evidence": "same (rounded)",
+    "note": ""
+  },
+  {
+    "id": "C30",
+    "claim": "ALIGN04 N=1,294,296",
+    "ms_value": 1294296,
+    "artifact_value": 1294296,
+    "match": true,
+    "evidence": "results/ALIGN04.../metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C31",
+    "claim": "ALIGN04 lexical SGI 0.37",
+    "ms_value": 0.37,
+    "artifact_value": 0.37,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C31b",
+    "claim": "ALIGN04 lexical CI [0.28,0.47]",
+    "ms_value": [
+      0.28,
+      0.47
+    ],
+    "artifact_value": [
+      0.28,
+      0.47
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C32",
+    "claim": "ALIGN04 semantic SGI 0.14",
+    "ms_value": 0.14,
+    "artifact_value": 0.14,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C32b",
+    "claim": "ALIGN04 semantic CI [0.07,0.21]",
+    "ms_value": [
+      0.07,
+      0.21
+    ],
+    "artifact_value": [
+      0.07,
+      0.21
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C40",
+    "claim": "CURR01 topics 2,197",
+    "ms_value": 2197,
+    "artifact_value": 2197,
+    "match": true,
+    "evidence": "results/CURR01.../metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C40b",
+    "claim": "CURR01 KAs 17",
+    "ms_value": 17,
+    "artifact_value": 17,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C41",
+    "claim": "Overall coverage tau=0.5 = 30.4%",
+    "ms_value": 0.3041,
+    "artifact_value": 0.3041,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C41b",
+    "claim": "Coverage CI [0.2845, 0.3241] -> [28.5,32.4]",
+    "ms_value": 0.2845,
+    "artifact_value": 0.2845,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C42",
+    "claim": "Reverse coverage 49.6%",
+    "ms_value": 0.496,
+    "artifact_value": 0.496,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C43",
+    "claim": "Coverage tau=0.4 = 63.1%",
+    "ms_value": 0.6313,
+    "artifact_value": 0.6313,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C44",
+    "claim": "HCI 52.9%",
+    "ms_value": 0.5294,
+    "artifact_value": 0.5294,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C45",
+    "claim": "DM 52.5%",
+    "ms_value": 0.5255,
+    "artifact_value": 0.5255,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C46",
+    "claim": "AL 12.6%",
+    "ms_value": 0.1262,
+    "artifact_value": 0.1262,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C47",
+    "claim": "MSF 10.0%",
+    "ms_value": 0.1,
+    "artifact_value": 0.1,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C48",
+    "claim": "GIT 11.6%",
+    "ms_value": 0.1159,
+    "artifact_value": 0.1159,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C49",
+    "claim": "Lexical coverage max 2.4%",
+    "ms_value": 0.024,
+    "artifact_value": 0.024,
+    "match": true,
+    "evidence": "same",
+    "note": "actual max=0.0235 (HCI)"
+  },
+  {
+    "id": "C50",
+    "claim": "VALID01 kappa tau=0.5",
+    "ms_value": 0.737,
+    "artifact_value": 0.737,
+    "match": true,
+    "evidence": "results/VALID01_esco_gold/metrics.json",
+    "note": "raw=0.7368"
+  },
+  {
+    "id": "C50b",
+    "claim": "kappa CI [0.711, 0.760]",
+    "ms_value": [
+      0.711,
+      0.76
+    ],
+    "artifact_value": [
+      0.711,
+      0.76
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C51",
+    "claim": "Accuracy 87.9%",
+    "ms_value": 0.879,
+    "artifact_value": 0.879,
+    "match": true,
+    "evidence": "same",
+    "note": "raw=0.8786"
+  },
+  {
+    "id": "C52",
+    "claim": "AUC 0.961",
+    "ms_value": 0.961,
+    "artifact_value": 0.961,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C53",
+    "claim": "Lexical exact kappa 0.112",
+    "ms_value": 0.112,
+    "artifact_value": 0.112,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C54",
+    "claim": "Containment kappa 0.263",
+    "ms_value": 0.263,
+    "artifact_value": 0.263,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C55",
+    "claim": "n_pairs 2,907",
+    "ms_value": 2907,
+    "artifact_value": 2907,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C55b",
+    "claim": "n_mentions 1,062",
+    "ms_value": 1062,
+    "artifact_value": 1062,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C55c",
+    "claim": "n_positive 1,138 / n_negative 1,769",
+    "ms_value": [
+      1138,
+      1769
+    ],
+    "artifact_value": [
+      1138,
+      1769
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C56",
+    "claim": "ESCO inventory 13,896",
+    "ms_value": 13896,
+    "artifact_value": 13896,
+    "match": true,
+    "evidence": "results/VALID01_esco_gold/_upstream/skills_en_label.txt line count",
+    "note": "confirmed separately: file has 13,896 lines"
+  },
+  {
+    "id": "C57",
+    "claim": "Market top-100 ESCO semantic 91%",
+    "ms_value": 0.91,
+    "artifact_value": 0.91,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C58",
+    "claim": "Academic top-100 ESCO semantic 99%",
+    "ms_value": 0.99,
+    "artifact_value": 0.99,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C59",
+    "claim": "kappa tau=0.4 ~0.79",
+    "ms_value": 0.79,
+    "artifact_value": 0.79,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C60",
+    "claim": "kappa tau=0.7 ~0.44",
+    "ms_value": 0.44,
+    "artifact_value": 0.44,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C61",
+    "claim": "precision 91.9% recall 75.7%",
+    "ms_value": [
+      0.919,
+      0.757
+    ],
+    "artifact_value": [
+      0.919,
+      0.757
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C70",
+    "claim": "N=10,000; placed 1,659",
+    "ms_value": [
+      10000,
+      1659
+    ],
+    "artifact_value": [
+      10000,
+      1659
+    ],
+    "match": true,
+    "evidence": "results/STAT01_placement_core/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C71",
+    "claim": "Comm OR 6.55 CI [5.86,7.31]",
+    "ms_value": 6.55,
+    "artifact_value": 6.55,
+    "match": true,
+    "evidence": "table4_logistic.csv",
+    "note": "raw OR=6.5471 CI[5.8615,7.3130]"
+  },
+  {
+    "id": "C72",
+    "claim": "CGPA OR 6.28",
+    "ms_value": 6.28,
+    "artifact_value": 6.28,
+    "match": true,
+    "evidence": "same",
+    "note": "raw=6.2765"
+  },
+  {
+    "id": "C73",
+    "claim": "Projects OR 3.20",
+    "ms_value": 3.2,
+    "artifact_value": 3.2,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C74",
+    "claim": "IQ OR 5.16",
+    "ms_value": 5.16,
+    "artifact_value": 5.16,
+    "match": true,
+    "evidence": "same",
+    "note": "raw=5.1570"
+  },
+  {
+    "id": "C75",
+    "claim": "Internship OR 1.02 p=0.620 ns",
+    "ms_value": [
+      1.02,
+      0.62
+    ],
+    "artifact_value": [
+      1.02,
+      0.62
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": "raw OR=1.0194 p=0.6197"
+  },
+  {
+    "id": "C76",
+    "claim": "AcadPerf OR 0.98 p=0.588 ns",
+    "ms_value": [
+      0.98,
+      0.588
+    ],
+    "artifact_value": [
+      0.98,
+      0.588
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C77",
+    "claim": "LR CV acc 90.11% AUC 0.9406",
+    "ms_value": [
+      0.9011,
+      0.9406
+    ],
+    "artifact_value": [
+      0.9011,
+      0.9406
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C78",
+    "claim": "RF 99.99%",
+    "ms_value": 0.9999,
+    "artifact_value": 0.9999,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C79",
+    "claim": "DT 99.97%",
+    "ms_value": 0.9997,
+    "artifact_value": 0.9997,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C80",
+    "claim": "SVM seed42 95.72%",
+    "ms_value": 0.9572,
+    "artifact_value": 0.9572,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C81",
+    "claim": "Majority baseline 83.41%",
+    "ms_value": 0.8341,
+    "artifact_value": 0.8341,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C82",
+    "claim": "k-of-n agreement 99.92%",
+    "ms_value": 0.9992,
+    "artifact_value": 0.9992,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C83",
+    "claim": "multiseed LR 90.12% +/- 0.04%",
+    "ms_value": [
+      0.9012,
+      0.0004
+    ],
+    "artifact_value": [
+      0.9012,
+      0.0004
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C84",
+    "claim": "multiseed SVM 95.76% +/- 0.07%",
+    "ms_value": [
+      0.9576,
+      0.0007
+    ],
+    "artifact_value": [
+      0.9576,
+      0.0007
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C85",
+    "claim": "chi2 internship 0.31 p=0.578 V=0.006",
+    "ms_value": [
+      0.31,
+      0.578,
+      0.006
+    ],
+    "artifact_value": [
+      0.31,
+      0.578,
+      0.006
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C86",
+    "claim": "chi2 projects 719.82 V=0.268",
+    "ms_value": [
+      719.82,
+      0.268
+    ],
+    "artifact_value": [
+      719.82,
+      0.268
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C87",
+    "claim": "All VIF <= 1.001",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/tables/tab_vif.tex",
+    "note": "max VIF=1.001"
+  },
+  {
+    "id": "C88",
+    "claim": "CGPA 8.59+/-1.15 vs 7.32+/-1.44 t=39.37 d=0.913",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "results/STAT01.../table1_descriptive.csv via tab_descriptive.tex",
+    "note": ""
+  },
+  {
+    "id": "C89",
+    "claim": "Comm 7.66+/-2.59 vs 5.14+/-2.78 t=35.79 d=0.918",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C90",
+    "claim": "AcadPerf p=0.1386; ExtraCur p=0.6383",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C100",
+    "claim": "External SCS AUC 0.768 acc 29.9% base 78.08%",
+    "ms_value": [
+      0.768,
+      0.299,
+      0.7808
+    ],
+    "artifact_value": [
+      0.768,
+      0.299,
+      0.7808
+    ],
+    "match": true,
+    "evidence": "results/STAT02_external_validation/metrics.json",
+    "note": "raw acc=0.2986"
+  },
+  {
+    "id": "C101",
+    "claim": "External Global Placement AUC 0.576",
+    "ms_value": 0.576,
+    "artifact_value": 0.576,
+    "match": true,
+    "evidence": "same",
+    "note": "raw=0.5757"
+  },
+  {
+    "id": "C102",
+    "claim": "In-sample refs 0.782 / 0.714",
+    "ms_value": [
+      0.782,
+      0.714
+    ],
+    "artifact_value": [
+      0.782,
+      0.714
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C110",
+    "claim": "Internship RD 15.34 pp CI [14.99,15.73]",
+    "ms_value": [
+      15.34,
+      14.99,
+      15.73
+    ],
+    "artifact_value": [
+      15.34,
+      14.99,
+      15.73
+    ],
+    "match": true,
+    "evidence": "results/INTL01_internship_effect/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C111",
+    "claim": "Rates 57.60% vs 42.26%",
+    "ms_value": [
+      57.6,
+      42.26
+    ],
+    "artifact_value": [
+      57.6,
+      42.26
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C112",
+    "claim": "Cohen h = 0.31",
+    "ms_value": 0.31,
+    "artifact_value": 0.31,
+    "match": true,
+    "evidence": "same",
+    "note": "raw=0.308"
+  },
+  {
+    "id": "C113",
+    "claim": "N=300,000",
+    "ms_value": 300000,
+    "artifact_value": 300000,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C120",
+    "claim": "US 85.2% UK 8.4% CA 4.2% AU 2.2%",
+    "ms_value": [
+      85.2,
+      8.4,
+      4.2,
+      2.2
+    ],
+    "artifact_value": [
+      85.23,
+      8.41,
+      4.15,
+      2.2
+    ],
+    "match": false,
+    "evidence": "same (rounded 1dp)",
+    "note": "raw: United States=85.23, United Kingdom=8.41, Canada=4.15, Australia=2.20"
+  },
+  {
+    "id": "C130",
+    "claim": "Placement rates India 63.17 USA 62.21 CA 61.54 UK 60.76 DE 59.99",
+    "ms_value": [
+      63.17,
+      62.21,
+      61.54,
+      60.76,
+      59.99
+    ],
+    "artifact_value": [
+      63.17,
+      62.21,
+      61.54,
+      60.76,
+      59.99
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C140",
+    "claim": "Python 47.5-52.2%",
+    "ms_value": [
+      47.5,
+      52.2
+    ],
+    "artifact_value": [
+      47.5,
+      52.2
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": "raw min/max = 47.48/52.20"
+  },
+  {
+    "id": "C141",
+    "claim": "SQL 48.2-51.9%",
+    "ms_value": [
+      48.2,
+      51.9
+    ],
+    "artifact_value": [
+      48.2,
+      51.9
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C142",
+    "claim": "ML 48.8-53.5%",
+    "ms_value": [
+      48.8,
+      53.5
+    ],
+    "artifact_value": [
+      48.8,
+      53.5
+    ],
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C143",
+    "claim": "Cloud 47.1-53.9%",
+    "ms_value": [
+      47.1,
+      53.9
+    ],
+    "artifact_value": [
+      47.0,
+      53.9
+    ],
+    "match": false,
+    "evidence": "same",
+    "note": ""
+  },
+  {
+    "id": "C150",
+    "claim": "3,176,266 appears in tex",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": null,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C151",
+    "claim": "148,765 communication postings (RQ1)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": null,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C152",
+    "claim": "H6 +0.08 pp risk difference stated",
+    "ms_value": null,
+    "artifact_value": false,
+    "match": null,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C153",
+    "claim": "tab:hypotheses cites INTL01 for H6 p=0.62",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": null,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C154",
+    "claim": "519,814 skill requirements (RQ1)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": null,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C155",
+    "claim": "ALIGN03 n_postings 518,953 vs 519,814",
+    "ms_value": null,
+    "artifact_value": false,
+    "match": null,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C152b",
+    "claim": "H6 risk difference +0.08 pp has artifact support",
+    "ms_value": 0.08,
+    "artifact_value": null,
+    "match": false,
+    "evidence": "no metrics.json/CSV found containing internship risk difference 0.08pp",
+    "note": "SUSPECTED DEFECT: number appears only in manuscript prose (line 592)"
+  }
+]
