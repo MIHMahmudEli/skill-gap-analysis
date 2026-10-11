@@ -36,13 +36,19 @@ inputs. Companion tables: `reports/sens01_market_profile_overlap.csv` (A2),
    script (anchors appear only as expected-value checks that *assert*, never as
    computation inputs).
 
-**Conclusion:** a one-off, non-deterministic state divergence in that single
-execution (most plausibly resource contention with the concurrent killed run —
-that run's phase timings show severe CPU starvation), not a defect in the grid
-computation, the loaders, or pandas. **Fix shipped:** the script now re-reads
-its own written CSVs and hard-fails if reported aggregates disagree with them
-(`sens01_sgi_sensitivity.py`, self-consistency guard); the run was discarded
-and re-executed from scratch; the committed artifacts pass the guard.
+**Conclusion (revised 2026-10-12 per author instruction):** the cause of the
+first-run divergence is **UNRESOLVED**. The forensic search excludes the
+committed inputs, the visible columns of the true grid, and any hard-coded
+value in the script; three further full re-executions under varying CPU load
+(`reports/SENS01_DETERMINISM.md`) are byte-identical to the committed
+artifacts, which shows the current pipeline is deterministic but does not
+identify what corrupted that single execution. Resource contention with the
+concurrent killed run remains a *hypothesis*, not a finding. **Mitigation in
+place:** the script re-reads its own written CSVs and hard-fails if reported
+aggregates disagree with them (`sens01_sgi_sensitivity.py`, self-consistency
+guard); the run was discarded and re-executed from scratch; the committed
+artifacts pass the guard. If the divergence recurs, the guard converts silent
+corruption into a failed run.
 
 **Blast radius (ALIGN01–04 + SENS01):** re-derived every experiment's headline
 values from its own on-disk tables and checked arithmetic invariants
