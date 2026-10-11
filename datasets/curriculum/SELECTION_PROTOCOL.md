@@ -156,3 +156,46 @@ any item based on extracted skill counts, SGI values, or any analysis output.
 - Skewed toward well-known / elite institutions with mature OCW programs.
 - Syllabus/outcome text ≠ full course content; skill extraction is approximate.
 - Vintage mix (especially SEE) requires sensitivity reporting.
+
+## 9. Amendments (dated, author-approved; CURR02 registration-time)
+
+All amendments below were decided **after extraction but before any CURR02
+computation** (no SGI value exists on this corpus), and are logged here rather
+than silently editing the frozen sections.
+
+### 9a. 2026-10-11 — Region bar waived (author decision)
+
+The corpus reaches only **2 regions** (North America, Europe) against the §4
+bar of ≥ 3. Root cause: the approved-institution list (§5) never contained a
+license-eligible source outside NA/Europe — NPTEL/SWAYAM (India) and
+Helsinki/MinnaLearn were license-excluded at plan stage, and Open University
+(UK) 403'd at retrieval (Europe in any case). The bar was therefore
+unattainable from the frozen frame; this was surfaced by the pre-CURR02 bar
+check in `PRIMARY_SET.md`, not after seeing results.
+
+**Author ruling:** waive to ≥ 2 regions. CURR02 proceeds on the 20-course
+primary set. Required manuscript statement: the corpus is two-region
+(US + NL) open courseware, and the absent third region is **license-blocked,
+not overlooked**; region composition listed in limitations.
+
+### 9b. 2026-10-11 — Primary-set cap rule confirmed (author decision)
+
+The ≤ 8/institution hard bar (§6b) required trimming TU Delft's 14 modern
+units to 8. Deterministic rule confirmed by the author: **first 8 rows in
+MANIFEST file order** (same pre-download convention as the §6b swap order).
+Resulting primary set: 20 courses (MIT 6 / TU Delft 8 / Harvard 6), strata
+6 theory / 14 applied. The deviation from the ~ 50/50 stratified target is
+a frame property (Harvard CS50 is entirely applied; ceiling = 8/20 theory)
+and is reported as a limitation (`PRIMARY_SET.md` §7), not corrected by
+post-freeze discretion.
+
+### 9c. 2026-10-11 — Recall-sample design fixed (pre-labelling)
+
+Recall validation sample uses **equal allocation** across
+(vintage_group × drop_reason) cells over the full drop population
+(N = 699; cell sizes in `extracted/extraction_summary.json::
+recall_design.stratum_population_sizes`), so every drop rule receives
+validation coverage. Design-weighted recall is computable from the CSV plus
+cell sizes alone. Precision sample stays proportional over
+(vintage_group × stratum) cells. Both seeded with SEED = 42; sampling
+design was fixed before any rater label existed.
