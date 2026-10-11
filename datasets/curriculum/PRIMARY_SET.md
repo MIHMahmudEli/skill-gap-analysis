@@ -1,5 +1,13 @@
 # Primary Analysis Set Determination (CURR02)
 
+> **Superseded in part, 2026-10-12 (protocol amendment §9d):** the *main*
+> CURR02 result uses **all 26 modern units** with institution-aware inference
+> (institution-clustered bootstrap, institution-weighted SGI,
+> leave-one-institution-out). The n = 20 capped set below is retained as the
+> pre-registered **≤8/institution subsample sensitivity analysis**
+> (deterministic manifest-order rule). Counts and bar checks below are
+> unchanged historical record.
+
 *Computed 2026-10-11 · Branch `q1-revision` · Before any SGI value was computed
 on this corpus. Rule fixed at extraction time; no analysis output exists yet.*
 

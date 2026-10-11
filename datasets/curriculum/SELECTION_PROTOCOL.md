@@ -199,3 +199,59 @@ validation coverage. Design-weighted recall is computable from the CSV plus
 cell sizes alone. Precision sample stays proportional over
 (vintage_group × stratum) cells. Both seeded with SEED = 42; sampling
 design was fixed before any rater label existed.
+
+### 9d. 2026-10-12 — Main-result design: modern-only primary, no subsampling, matched P (author instruction; supersedes the §6b/§9b role of the cap)
+
+Disclosures preceding this amendment (honest record, full report in
+`reports/CURRICULUM_COMPLIANCE.md`):
+
+- Legacy units were **never** pooled into any primary designation (§6b,
+  `PRIMARY_SET.md` §2/§6); the 41-unit figure that circulated is the full
+  extracted corpus (MIT 15 / TU Delft 14 / Stanford 6 / Harvard 6), not the
+  primary set.
+- The ≤8/institution bar bounded the *analysis set* (TU Delft trimmed
+  14 → 8, §9b), not the corpus.
+- The corpus reaches **2 countries** (US, NL) only; region bar waived §9a
+  with the required limitation statement.
+- Extraction of all 41 units occurred **before** the author reviewed counts
+  (same day 2026-10-11; rulings §9a/9b followed extraction). No SGI or
+  phrase-based analysis output existed at any point before the author's
+  rulings, and CURR02 has still not run.
+
+Amendment:
+
+1. **Primary set = all modern (material year ≥ 2019) extracted units:
+   n = 26** — TU Delft 14 / MIT 6 / Harvard 6; strata applied 18 / theory 8;
+   countries US 12 / NL 14. Legacy (15 units: MIT 9, Stanford 6) remains the
+   vintage-sensitivity group, reported separately, never pooled.
+2. **No post-hoc subsampling for the main result.** The main CURR02
+   comparison uses every modern unit. Institution-aware inference replaces
+   the cap as the diversity safeguard:
+   (i) **institution-clustered bootstrap** (resample the 3 institutions with
+   replacement, taking all their units; B = 1000, seed 42; CIs flagged as
+   indicative because 3 clusters are few);
+   (ii) **institution-weighted SGI** (each institution equal weight,
+   reported alongside the course-weighted SGI);
+   (iii) **leave-one-institution-out** (3 runs, reported individually).
+3. **Capped subsample = sensitivity analysis only.** The ≤8/institution
+   subsample is registered now, rule frozen: *first 8 modern units per
+   institution in MANIFEST file order* (deterministic; no RNG — seed 42
+   covers all CURR02 resampling). Resulting n = 20 (MIT 6 / TU Delft 8 /
+   Harvard 6, the current `PRIMARY_SET.md`). It no longer bounds the main
+   result; the §6b hard bar "≤ 8 per institution" is superseded by the
+   ≥20-courses-across-≥3-institutions bar on the modern set (met: 26/3).
+4. **Matched covering-set size P (added to the CURR02 design).** The
+   curriculum-vs-proxy comparison must use the **same P for both covering
+   sets**: P = min(curriculum-profile size, proxy-profile size), capped at
+   500, with sensitivity at P ∈ {100, 500} to mirror ALIGN01/02 (P = 100)
+   and ALIGN03/04 (P = 500). CURR02 must report phrase counts per course
+   (registered from the extraction: 437 phrases / 424 distinct; min 6 /
+   median 14 / max 63 / mean 16.8 across 26 modern units) and state the
+   exact P used in the results table.
+5. **Required manuscript limitations** (reaffirmed): two countries (US +
+   NL); open-courseware material (OCW/SEE/CS50 course pages, not
+   institutionally collected syllabi); elite-institution skew; syllabus and
+   outcome text ≠ full course content.
+
+CURR02 remains blocked on the author labelling gate (§7 step 4) regardless
+of this amendment; nothing here authorises a run.
