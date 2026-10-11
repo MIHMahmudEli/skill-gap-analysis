@@ -44,10 +44,34 @@ Manuscript: `paper/main.tex` / `paper/main.pdf`*
 
 | ID | Task | Status |
 |---|---|---|
-| P2-1 | Experiment **SENS01**: SGI grid K∈{50,100,200,500} × P∈{100,250,500,1000} × τ∈{0.4,0.5,0.6,0.7} × lexical/semantic × HF + LinkedIn; seed 42 | Pending |
-| P2-2 | Dual bootstrap: skill-list resample **and** posting resample; report both CIs with interpretation | Pending |
-| P2-3 | Heatmap/surface figure + sensitivity table; replace abstract "52%→32%" with range + SENS01 result | Pending |
-| P2-4 | Register in `results/registry.json`; extend `experiments/verify.py` | Pending |
+| P2-1 | Experiment **SENS01**: SGI grid K∈{50,100,200,500} × P∈{100,250,500,1000} × τ∈{0.4,0.5,0.6,0.7} × lexical/semantic × HF + LinkedIn; seed 42 | Script written (`experiments/exp_scripts/sens01_sgi_sensitivity.py`); smoke validating, full run pending |
+| P2-2 | Dual bootstrap: skill-list resample **and** posting resample; report both CIs with interpretation | Implemented in script (B_SKILL=1000, B_POST=500; posting CI = joint market-P + academic-1167 resample; NaN at P=all anchors) |
+| P2-3 | Heatmap/surface figure + sensitivity table; replace abstract "52%→32%" with range + SENS01 result | Script emits figure + tables; abstract rewrite pending full-run numbers |
+| P2-4 | Register in `results/registry.json`; extend `experiments/verify.py` | verify.py SENS01 checks written (held uncommitted until results exist, so the baseline gate stays green); registry entry lands with the run |
+
+**Finding (2026-10-11, surfaced by SENS01's anchor check):** the published
+experiments do not share one definition of the academic reference profile.
+ALIGN01/ALIGN02 compare market top-100 against academic **top-100**
+(symmetric — this is the headline "52% → 32%" instrument), but ALIGN04's
+LinkedIn replication compares market top-100 against academic **top-500**
+(`most_common(PROFILE_N)` with no `.head(TOP_N)` — asymmetric). Under the
+symmetric instrument LinkedIn lexical SGI@K=100 is **0.52**, not the
+published 0.37; the 0.37 reproduces exactly only under ALIGN04's asymmetric
+definition (coverage 0.63 vs 0.48). Consequences:
+
+1. SENS01's grid is symmetric (K vs K) — internally consistent, matching the
+   headline instrument; its LinkedIn column is a fresh consistent-instrument
+   result, **not** a failed reproduction of 0.37/0.14.
+2. The script validates both paths: HF anchors must reproduce 0.52/0.32
+   (symmetric), and a dedicated `align04_asymmetric_replication` block must
+   reproduce 0.37/0.14 (asymmetric) — both are hard assertions.
+3. **Author decision at P2-3 manuscript edit:** the cross-corpus claim
+   ("replicates on LinkedIn: 0.37/0.14") is partly an artifact of the larger
+   academic profile. Options: (a) report both definitions in ALIGN04's row
+   with a footnote, (b) restate the cross-corpus claim on the symmetric
+   instrument (HF 0.52 vs LinkedIn 0.52 lexical — a *stronger* consistency
+   result, τ-dependent for semantic), or (c) leave ALIGN04 as-is and add the
+   definition discrepancy to limitations. Not decided yet.
 
 ---
 
