@@ -1,0 +1,61 @@
+dataset_a,dataset_b,key_type,scope,n_a,n_b,n_overlap,pct_of_a,pct_of_b,note
+linkedin_job_postings,,job_link,within,1348454,,0,0.0,,within-file duplicate job_link rows (n_overlap = dup rows)
+linkedin_job_skills,,job_link,within,1296381,,0,0.0,,within-file duplicate job_link rows (n_overlap = dup rows)
+hf_jobs,,job_link,within,519814,,0,0.0,,within-file duplicate job_link rows (n_overlap = dup rows)
+hf_skills,,job_link,within,519814,,0,0.0,,within-file duplicate job_link rows (n_overlap = dup rows)
+ds_job_postings,,job_link,within,12217,,0,0.0,,within-file duplicate job_link rows (n_overlap = dup rows)
+linkedin_job_postings,linkedin_job_skills,job_link,pairwise,1348454,1296381,1296381,96.138,100.0,B subset of A
+linkedin_job_postings,hf_jobs,job_link,pairwise,1348454,519814,519814,38.549,100.0,B subset of A
+linkedin_job_postings,hf_skills,job_link,pairwise,1348454,519814,519814,38.549,100.0,B subset of A
+linkedin_job_postings,ds_job_postings,job_link,pairwise,1348454,12217,12217,0.906,100.0,B subset of A
+linkedin_job_skills,hf_jobs,job_link,pairwise,1296381,519814,519814,40.097,100.0,B subset of A
+linkedin_job_skills,hf_skills,job_link,pairwise,1296381,519814,519814,40.097,100.0,B subset of A
+linkedin_job_skills,ds_job_postings,job_link,pairwise,1296381,12217,12217,0.942,100.0,B subset of A
+hf_jobs,hf_skills,job_link,pairwise,519814,519814,519814,100.0,100.0,identical
+hf_jobs,ds_job_postings,job_link,pairwise,519814,12217,4806,0.925,39.339,partial
+hf_skills,ds_job_postings,job_link,pairwise,519814,12217,4806,0.925,39.339,partial
+ai_job_dataset,,composite,within,15000,,708,4.72,,"within-file duplicate composite keys; cols=['job_id', 'job_title', 'salary_usd', 'salary_currency', 'experience_level', 'employment_type', 'company_location', 'company_size', 'employee_residence', 'remote_ratio', 'required_skills', 'education_required', 'years_experience', 'industry', 'posting_date', 'application_deadline', 'job_description_length', 'benefits_score', 'company_name']"
+ai_job_dataset1,,composite,within,15000,,701,4.673,,"within-file duplicate composite keys; cols=['job_id', 'job_title', 'salary_usd', 'salary_currency', 'salary_local', 'experience_level', 'employment_type', 'company_location', 'company_size', 'employee_residence', 'remote_ratio', 'required_skills', 'education_required', 'years_experience', 'industry', 'posting_date', 'application_deadline', 'job_description_length', 'benefits_score', 'company_name']"
+ai_ds_2020_2026,,composite,within,10345,,10339,99.942,,"within-file duplicate composite keys; cols=['job_id', 'job_title', 'company_size', 'company_industry', 'country', 'remote_type', 'experience_level', 'years_experience', 'education_level', 'skills_python', 'skills_sql', 'skills_ml', 'skills_deep_learning', 'skills_cloud', 'salary', 'job_posting_month', 'job_posting_year', 'hiring_urgency', 'job_openings']"
+ai_job_dataset,ai_job_dataset1,composite,pairwise,14292,14299,1353,9.467,9.462,partial
+ai_job_dataset,ai_ds_2020_2026,composite,pairwise,14292,6,0,0.0,0.0,partial
+ai_job_dataset1,ai_ds_2020_2026,composite,pairwise,14299,6,0,0.0,0.0,partial
+ai_job_dataset,ai_job_dataset1,full-row(shared cols),pairwise,15000,15000,0,0.0,0.0,"shared cols=['job_id', 'job_title', 'salary_usd', 'salary_currency', 'experience_level', 'employment_type', 'company_location', 'company_size', 'employee_residence', 'remote_ratio', 'required_skills', 'education_required', 'years_experience', 'industry', 'posting_date', 'application_deadline', 'job_description_length', 'benefits_score', 'company_name']; only-in-B cols=['salary_local']"
+usa_job_market,,title,within,316279,,309951,97.999,,aggregate title x skill rows; unique titles=6328
+usa_job_market,linkedin_job_postings,title,pairwise,6328,578496,6328,100.0,1.094,generic title strings; NOT record identity (no company/date on USA side)
+college_placement,,full-row,within,10000,,0,0.0,,"exact duplicate rows; cols=['College_ID', 'IQ', 'Prev_Sem_Result', 'CGPA', 'Academic_Performance', 'Internship_Experience', 'Extra_Curricular_Score', 'Communication_Skills', 'Projects_Completed', 'Placement']"
+global_placement,,full-row,within,10000,,0,0.0,,"exact duplicate rows; cols=['cgpa', 'backlogs', 'college_tier', 'country', 'university_ranking_band', 'internship_count', 'aptitude_score', 'communication_score', 'specialization', 'industry', 'internship_quality_score', 'placement_status', 'salary']"
+intl_graduates,,full-row,within,300000,,3,0.001,,"exact duplicate rows; cols=['Country_of_Origin', 'Education_Level', 'Field_of_Study', 'Language_Proficiency', 'Visa_Type', 'Gender', 'University_Ranking', 'Region_of_Study', 'Age', 'Years_Since_Graduation', 'GPA', 'Internship_Experience', 'Employment_Status', 'Salary', 'Job_Sector']"
+ngess,,full-row,within,7200,,0,0.0,,"exact duplicate rows; cols=['Respondent_ID', 'Survey_Year', 'State_of_Origin', 'Geopolitical_Zone', 'Gender', 'Age', 'Religion', 'Ethnicity', 'Disability_Status', 'Residential_Setting', 'University_Attended', 'University_Type', 'Study_Mode', 'Field_of_Study', 'Year_of_Graduation', 'CGPA', 'Class_of_Degree', 'Internship_Completed', 'Extracurricular_Score', 'Prof_Certs_Count', 'NYSC_Status', 'Additional_Qualification', 'Scholarship_Received', 'Student_Loan', 'Parental_Education', 'Parental_Monthly_Income_Bracket', 'SES_Index', 'Employment_Status', 'Employment_Sector', 'Relocated_for_Work', 'Months_to_First_Job', 'Monthly_Salary_000', 'Years_Work_Experience', 'Job_Satisfaction', 'Skills_Job_Match']"
+student_career_success,,full-row,within,50000,,0,0.0,,"exact duplicate rows; cols=['Student_ID', 'Age', 'Gender', 'University_Year', 'Major', 'Attendance_Percentage', 'Study_Hours_Per_Week', 'CGPA', 'Academic_Performance', 'Programming_Skill', 'Projects_Completed', 'Certifications', 'Hackathons', 'GitHub_Profile', 'Internships', 'Leadership_Experience', 'LinkedIn_Profile', 'Resume_Score', 'Communication_Skills', 'Teamwork', 'Problem_Solving', 'English_Proficiency', 'Interview_Score', 'Employability_Score', 'Placement_Status', 'Company_Tier', 'Career_Field', 'Placement_Mode', 'Starting_Salary_USD']"
+career_change,,full-row,within,38444,,0,0.0,,"exact duplicate rows; cols=['Field of Study', 'Current Occupation', 'Age', 'Gender', 'Years of Experience', 'Education Level', 'Industry Growth Rate', 'Job Satisfaction', 'Work-Life Balance', 'Job Opportunities', 'Salary', 'Job Security', 'Career Change Interest', 'Skills Gap', 'Family Influence', 'Mentorship Available', 'Certifications', 'Freelancing Experience', 'Geographic Mobility', 'Professional Networks', 'Career Change Events', 'Technology Adoption', 'Likely to Change Occupation']"
+fresher_india,,full-row,within,5000,,0,0.0,,"exact duplicate rows; cols=['candidate_id', 'full_name', 'gender', 'age', 'graduation_year', 'college', 'degree', 'branch', 'cgpa', 'backlogs', 'gap_year', 'prior_internship', 'projects_count', 'certifications_count', 'top_skills', 'platform', 'company_applied', 'sector', 'job_role', 'work_type', 'job_location', 'application_date', 'hiring_stage', 'interview_rounds', 'response_time_days', 'offered_salary_inr', 'linkedin_connections', 'profile_completion_pct', 'linkedin_premium', 'referral_applied']"
+india_skills_profiles,,full-row,within,12000,,0,0.0,,"exact duplicate rows; cols=['profile_id', 'current_job_title', 'seniority_level', 'industry', 'primary_skill_domain', 'top_skills', 'skill_count', 'years_experience', 'education_level', 'degree_field', 'city', 'state', 'company_size', 'employment_type', 'work_mode', 'is_gig_worker', 'uses_generative_ai_tools', 'certifications_count', 'endorsement_count', 'connections_tier', 'profile_completeness_pct', 'open_to_work', 'last_profile_update', 'estimated_annual_salary_lpa', 'employability_score', 'in_demand_skill_flag']"
+college_placement,global_placement,none,pairwise,10000,10000,,,,disjoint schemas; no shared identifying column
+college_placement,intl_graduates,none,pairwise,10000,300000,,,,disjoint schemas; no shared identifying column
+college_placement,ngess,none,pairwise,10000,7200,,,,disjoint schemas; no shared identifying column
+college_placement,student_career_success,none,pairwise,10000,50000,,,,disjoint schemas; no shared identifying column
+college_placement,career_change,none,pairwise,10000,38444,,,,disjoint schemas; no shared identifying column
+college_placement,fresher_india,none,pairwise,10000,5000,,,,disjoint schemas; no shared identifying column
+college_placement,india_skills_profiles,none,pairwise,10000,12000,,,,disjoint schemas; no shared identifying column
+global_placement,intl_graduates,none,pairwise,10000,300000,,,,disjoint schemas; no shared identifying column
+global_placement,ngess,none,pairwise,10000,7200,,,,disjoint schemas; no shared identifying column
+global_placement,student_career_success,none,pairwise,10000,50000,,,,disjoint schemas; no shared identifying column
+global_placement,career_change,none,pairwise,10000,38444,,,,disjoint schemas; no shared identifying column
+global_placement,fresher_india,none,pairwise,10000,5000,,,,disjoint schemas; no shared identifying column
+global_placement,india_skills_profiles,none,pairwise,10000,12000,,,,disjoint schemas; no shared identifying column
+intl_graduates,ngess,none,pairwise,300000,7200,,,,disjoint schemas; no shared identifying column
+intl_graduates,student_career_success,none,pairwise,300000,50000,,,,disjoint schemas; no shared identifying column
+intl_graduates,career_change,none,pairwise,300000,38444,,,,disjoint schemas; no shared identifying column
+intl_graduates,fresher_india,none,pairwise,300000,5000,,,,disjoint schemas; no shared identifying column
+intl_graduates,india_skills_profiles,none,pairwise,300000,12000,,,,disjoint schemas; no shared identifying column
+ngess,student_career_success,none,pairwise,7200,50000,,,,disjoint schemas; no shared identifying column
+ngess,career_change,none,pairwise,7200,38444,,,,disjoint schemas; no shared identifying column
+ngess,fresher_india,none,pairwise,7200,5000,,,,disjoint schemas; no shared identifying column
+ngess,india_skills_profiles,none,pairwise,7200,12000,,,,disjoint schemas; no shared identifying column
+student_career_success,career_change,none,pairwise,50000,38444,,,,disjoint schemas; no shared identifying column
+student_career_success,fresher_india,none,pairwise,50000,5000,,,,disjoint schemas; no shared identifying column
+student_career_success,india_skills_profiles,none,pairwise,50000,12000,,,,disjoint schemas; no shared identifying column
+career_change,fresher_india,none,pairwise,38444,5000,,,,disjoint schemas; no shared identifying column
+career_change,india_skills_profiles,none,pairwise,38444,12000,,,,disjoint schemas; no shared identifying column
+fresher_india,india_skills_profiles,none,pairwise,5000,12000,,,,disjoint schemas; no shared identifying column

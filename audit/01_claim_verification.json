@@ -10,12 +10,12 @@
   },
   {
     "id": "C01a",
-    "claim": "unique records 2,643,703 claimed after linked-pair dedup",
-    "ms_value": 2643703,
-    "artifact_value": 2643703,
+    "claim": "unique records 2,123,889 claimed after linked-pair + nested-corpus dedup",
+    "ms_value": 2123889,
+    "artifact_value": 2123889,
     "match": true,
-    "evidence": "manifest sum minus HF jobs row count (linked pair)",
-    "note": ""
+    "evidence": "manifest sum minus nested HF Skill Gap pair (OVERLAP_AUDIT.csv: hf_jobs subset of LinkedIn postings; hf_skills identical to hf_jobs)",
+    "note": "nested_files=['hf_jobs', 'hf_skills']"
   },
   {
     "id": "C01b",
@@ -983,7 +983,7 @@
   },
   {
     "id": "C150",
-    "claim": "raw sum 3,163,517 retained as inventory note (unique 2.64M primary)",
+    "claim": "raw sum 3,163,517 retained as inventory note (unique 2.12M primary)",
     "ms_value": null,
     "artifact_value": true,
     "match": true,

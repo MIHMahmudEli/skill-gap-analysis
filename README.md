@@ -9,10 +9,12 @@ GPU-executed experiment**.
 ## Overview
 
 The project analyzes 15 publicly available open datasets (**3,163,517 raw rows**,
-which de-duplicate to **2,643,703 unique records**: the HuggingFace jobs and
-skills tables share an identical set of 519,814 `job_link` identifiers and are
-counted once as a linked posting–skill pair) from LinkedIn, Kaggle, and
-HuggingFace and answers five research questions (RQ1–RQ5):
+which de-duplicate to **2,123,889 unique records**: the HuggingFace jobs and
+skills tables share an identical set of 519,814 `job_link` identifiers (a linked
+posting–skill pair, counted once), and that entire pair is a strict subset of the
+LinkedIn 2024 postings table — verified pairwise in `datasets/OVERLAP_AUDIT.csv`)
+from LinkedIn, Kaggle, and HuggingFace and answers five research questions
+(RQ1–RQ5):
 
 - **RQ1** — market skill topography and 2020–2026 trends
 - **RQ2** — lexical vs. semantic (Sentence-BERT) reference-profile alignment (SGI)
@@ -92,7 +94,7 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
 | VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
-| ALIGN04 | Cross-corpus SGI replication (LinkedIn, 1.29M postings) | tasnimjenny/sg-align04-crosscorpus-a4 | USED_IN_MANUSCRIPT |
+| ALIGN04 | Nested-superset SGI robustness check (LinkedIn, 1.29M postings) | tasnimjenny/sg-align04-crosscorpus-a4 | USED_IN_MANUSCRIPT |
 | CURR01 | CS2023 curriculum anchor (computational embedding coverage; 2,197 topics) | rssiam/sg-curr01-cs2023-a2 | USED_IN_MANUSCRIPT |
 
 ## Usage
@@ -145,10 +147,11 @@ local smoke tests; on Kaggle they read the mounted bundle
 - **Matcher validity** (VALID01 vs expert SkillSpan→ESCO mappings, 2,907
   pairs): SBERT τ = 0.5 agreement **κ = 0.737** [0.711, 0.760], accuracy
   87.9%, ROC-AUC 0.961; lexical exact-match κ = 0.112
-- **Cross-corpus replication** (ALIGN04, LinkedIn N = 1.29M): lexical SGI
-  **0.37** [0.28, 0.47], semantic SGI **0.14** [0.07, 0.21] — both intervals
-  exclude zero; lexical > semantic ordering and τ-monotonicity reproduce the
-  primary corpus exactly
+- **Nested-superset robustness check** (ALIGN04, LinkedIn N = 1.29M — a strict
+  superset of the primary 519K corpus, same scrape family; not an independent
+  replication): lexical SGI **0.37** [0.28, 0.47], semantic SGI **0.14**
+  [0.07, 0.21] — both intervals exclude zero; lexical > semantic ordering and
+  τ-monotonicity reproduce the primary corpus exactly
 - **CS2023 anchor** (CURR01, computational embedding coverage of 2,197 topics /
   17 knowledge areas; no human line-by-line audit): the academic profile covers
   **30.4%** [28.5, 32.4] of the curricular Body of Knowledge at τ = 0.5

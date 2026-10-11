@@ -59,14 +59,36 @@ v1 = load_metrics("VALID01_esco_gold")
 # --- corpus counts ---
 manifest = list(csv.DictReader((ROOT / "datasets" / "DATASET_MANIFEST.csv").open(encoding="utf-8")))
 manifest_n = sum(int(r["records"]) for r in manifest)
-hf_jobs = int(next(r["records"] for r in manifest if r["dataset_name"] == "HF Skill Gap Jobs"))
-unique_n = manifest_n - hf_jobs  # linked HF jobs≡skills counted once
+# nested-corpus corrections derived from datasets/OVERLAP_AUDIT.csv (2026-10-12):
+# hf_jobs job_link set is a strict subset of linkedin_job_postings (100%),
+# hf_skills is identical to hf_jobs (linked pair) and inside linkedin_job_skills.
+FILE_TO_DS = {
+    "linkedin_job_postings": "LinkedIn Jobs & Skills",
+    "linkedin_job_skills": "LinkedIn Jobs & Skills",
+    "hf_jobs": "HF Skill Gap Jobs",
+    "hf_skills": "HF Skill Gap Skills",
+    # ds_job_postings is NOT one of the 15 manifest datasets (on-disk, unused)
+}
+ov = list(csv.DictReader((ROOT / "datasets" / "OVERLAP_AUDIT.csv").open(encoding="utf-8")))
+nested_files = set()
+for r in ov:
+    if r["scope"] != "pairwise" or r["key_type"] != "job_link" or r["note"] not in ("B subset of A", "identical"):
+        continue
+    a, b = r["dataset_a"], r["dataset_b"]
+    smaller, larger = (b, a) if r["note"] == "B subset of A" else ((b, a) if int(r["n_b"]) <= int(r["n_a"]) else (a, b))
+    if FILE_TO_DS.get(smaller) and FILE_TO_DS.get(larger, "") != FILE_TO_DS[smaller]:
+        nested_files.add(smaller)
+unique_n = manifest_n - sum(
+    int(r["records"]) for r in manifest
+    if any(FILE_TO_DS.get(f) == r["dataset_name"] for f in nested_files))
 add("C01", "raw inventory sum vs unique-record accounting",
     3163517, manifest_n,
     "datasets/DATASET_MANIFEST.csv (audit-corrected) column 'records' sum",
     "pre-audit raw sum was 3,176,266 with three wrong counts; corrected sum=%d" % manifest_n)
-add("C01a", "unique records 2,643,703 claimed after linked-pair dedup",
-    2643703, unique_n, "manifest sum minus HF jobs row count (linked pair)")
+add("C01a", "unique records 2,123,889 claimed after linked-pair + nested-corpus dedup",
+    2123889, unique_n,
+    "manifest sum minus nested HF Skill Gap pair (OVERLAP_AUDIT.csv: hf_jobs subset of LinkedIn postings; hf_skills identical to hf_jobs)",
+    "nested_files=%s" % sorted(nested_files))
 add("C01b", "15 datasets claimed", 15, len(manifest),
     "datasets/DATASET_MANIFEST.csv row count")
 add("C02", "LinkedIn records 1,348,454 (Table I, corrected)", 1348454,
@@ -268,8 +290,9 @@ add("C143", "Cloud 47.1-53.9%", [47.1, 53.9],
 
 # --- text presence checks (numbers appear in tex) ---
 presence = [
-    ("C150", "raw sum 3,163,517 retained as inventory note (unique 2.64M primary)",
-     ("3,163,517" in TEX) and ("2,643,703" in TEX) and ("3,176,266" not in TEX)),
+    ("C150", "raw sum 3,163,517 retained as inventory note (unique 2.12M primary)",
+     ("3,163,517" in TEX) and ("2,123,889" in TEX) and ("3,176,266" not in TEX)
+     and ("2,643,703" not in TEX)),
     ("C151", "148,765 communication postings (RQ1)", "148,765" in TEX),
     ("C152", "H6 states RD -0.44 pp (college cohort, corrected; +0.08 may appear only in revision log)",
      ("$-0.44$" in TEX or "-0.44 pp" in TEX) and ("univariate internship risk difference is $-0.44$" in TEX)),

@@ -48,6 +48,7 @@ datasets/research_summary_report.txt
 # Top-level CSVs (large, derived) - keep only derived_matrices/
 datasets/*.csv
 !datasets/DATASET_MANIFEST.csv
+!datasets/OVERLAP_AUDIT.csv
 !datasets/derived_matrices/
 
 # Experiment staging areas (large/hardlinked inputs, kernel build dirs)
