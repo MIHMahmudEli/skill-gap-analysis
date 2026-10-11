@@ -1,0 +1,55 @@
+{
+  "version": "v1",
+  "date": "2026-10-12",
+  "purpose": "Title-only job-family rules for ALIGN05 tech-occupation stratification and primary mapping. Skills text is NEVER an input (circularity firewall).",
+  "soc_reference": "SOC 2018 detailed codes; O*NET-SOC 2019 crosswalk to be re-verified against the O*NET release at run time (O*NET database is public domain).",
+  "primary_tech_definition": "Computing/IT occupations: O*NET-SOC 15-12xx computer occupations + data scientists + selected IT management. Exact codes:",
+  "primary_tech_soc_codes": {
+    "15-1211": "Computer Systems Analysts",
+    "15-1212": "Information Security Analysts",
+    "15-1213": "Computer Network Support Specialists",
+    "15-1216": "Database Administrators",
+    "15-1221": "Computer and Information Research Scientists",
+    "15-1231": "Computer Network Architects",
+    "15-1241": "Network and Computer Systems Administrators",
+    "15-1244": "Network and Communications Analysts",
+    "15-1251": "Computer Programmers",
+    "15-1252": "Software Developers",
+    "15-1253": "Software Quality Assurance Analysts and Testers",
+    "15-1254": "Web Developers",
+    "15-1255": "Web and Digital Interface Designers",
+    "15-1256": "Computer Occupations, All Other",
+    "15-2051": "Data Scientists",
+    "11-3021": "Computer and Information Systems Managers"
+  },
+  "secondary_robustness_definition": "Broad STEM: O*NET-SOC major groups 15 (Computer & Mathematical), 17 (Engineering & Architecture), 19 (Life, Physical, & Social Science). Used only as a secondary robustness mapping, never as the headline.",
+  "matching": {
+    "input": "normalized job title (lowercase, whitespace collapsed)",
+    "order": "negations first (force non-tech), then rules R01.. in listed order (first match wins), then default non-tech",
+    "case_insensitive": true
+  },
+  "negations": [
+    "\\b(sales|business development|account executive|account manager|marketing|recruiter|talent acquisition|human resources|content writer|technical writer)\\b",
+    "\\b(product|project|program|scrum|release|operations) (manager|director|lead|owner)\\b"
+  ],
+  "rules": [
+    {"id": "R01", "soc": "15-1252", "pattern": "\\b(software|application|applications|frontend|front-end|back-end|backend|full[- ]?stack|mobile|ios|android|embedded)\\w*\\s+\\w{0,30}\\s*(engineer|developer|programmer|architect)s?\\b"},
+    {"id": "R02", "soc": "15-1252", "pattern": "\\b(senior|junior|lead|principal|staff)?\\s*(engineer|developer|programmer)s?\\b[^|]{0,40}\\b(software|application|frontend|front-end|back-end|backend|full[- ]?stack)\\w*\\b"},
+    {"id": "R03", "soc": "15-1253", "pattern": "\\b(quality assurance|qa|sdet|software test\\w*|test engineer|test analyst)\\b"},
+    {"id": "R04", "soc": "15-1254", "pattern": "\\bweb\\s*developer\\b"},
+    {"id": "R05", "soc": "15-1255", "pattern": "\\b(ui|ux|web|digital interface)\\s*designer\\b"},
+    {"id": "R06", "soc": "15-1251", "pattern": "\\bprogrammer\\b"},
+    {"id": "R07", "soc": "15-1216", "pattern": "\\b(dba|database administrator|database architect|database engineer)\\b"},
+    {"id": "R08", "soc": "15-1241", "pattern": "\\b(devops|site reliability|sre|systems? administrator|sysadmin|systems? engineer|cloud engineer|infrastructure engineer|it administrator)\\b"},
+    {"id": "R09", "soc": "15-1231", "pattern": "\\b(network (architect|engineer)|cloud architect|telecom architect)\\b"},
+    {"id": "R10", "soc": "15-1213", "pattern": "\\b(help ?desk|it support|technical support|desktop support|it technician|it specialist)\\b"},
+    {"id": "R11", "soc": "15-1212", "pattern": "\\b(information security|cyber ?security|security (engineer|analyst|architect|consultant)|soc analyst|security operations)\\b"},
+    {"id": "R12", "soc": "15-1211", "pattern": "\\b(systems? analyst|it analyst|business systems analyst)\\b"},
+    {"id": "R13", "soc": "15-1221", "pattern": "\\b(computer scientist|computer research scientist|machine learning scientist|research scientist (in )?(computing|machine learning|ai|nlp))\\b"},
+    {"id": "R14", "soc": "15-2051", "pattern": "\\bdata scientist\\b"},
+    {"id": "R15", "soc": "15-2051", "pattern": "\\b(machine learning|ml|ai|artificial intelligence|nlp|deep learning|data)\\s*(engineer|scientist|architect|developer|analyst)s?\\b"},
+    {"id": "R16", "soc": "15-2051", "pattern": "\\b(analytics engineer|mlops engineer|data platform engineer|applied scientist)\\b"},
+    {"id": "R17", "soc": "11-3021", "pattern": "\\b(cto|chief technology officer|chief information officer|cio|it (director|manager|head)|head of (it|engineering|technology)|director of (it|engineering|technology)|vp of engineering|vice president of engineering)\\b"},
+    {"id": "R18", "soc": "15-1256", "pattern": "\\b(computer engineer|hardware engineer|embedded systems engineer)\\b"}
+  ]
+}

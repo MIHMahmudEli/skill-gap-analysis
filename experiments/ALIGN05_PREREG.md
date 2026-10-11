@@ -45,7 +45,7 @@ corpus composition rather than by curricular coverage.
 
 ## 4. Job-family classifier (primary: external standard)
 
-**Primary standard: O\*NET-SOC major groups** (US Department of Labor
+**Primary standard: O\*NET-SOC detailed occupations** (US Department of Labor
 occupational classification framework). *License record:* O*NET-SOC content is in the
 **public domain** (US Government work; O*NET center, `onetcenter.org`). The
 exact framework release (e.g., O*NET-SOC 2019) and source URL are recorded in
@@ -53,18 +53,50 @@ exact framework release (e.g., O*NET-SOC 2019) and source URL are recorded in
 
 **Mapping mechanism:** a transparent, versioned keyword rule set
 (`experiments/align05_title_rules_v1.json`) mapping `job_title` strings to
-O*NET-SOC major groups via ordered, documented patterns (case-folded substring
-/ regex; first-match-wins; explicit `unmatched` bucket). Every rule carries a
-one-line rationale. The rule file hash (SHA-256) is recorded in
-`metrics.json`; rule changes require a version bump and are listed as
-amendments.
+O\*NET-SOC **detailed** codes via ordered, documented patterns (case-folded
+regex; negations first; first-match-wins; explicit `unmatched`/default
+bucket). The file is frozen at **SHA-256
+`09bc778e67c884ece38edec81b57df70123ebe331f932d9441d6a12dbfcb7e36`**
+(version `v1`, 2026-10-12). Rule changes require a version bump and are listed
+as amendments.
 
-**Tech definition (pre-registered):** *tech* = titles mapping to O*NET-SOC
-major groups **15 (Computer and Mathematical), 17 (Engineering and
-Architecture), 19 (Life, Physical, and Social Science)**; *non-tech* = all
-other mapped groups; *unmatched* = no rule fires. Unmatched postings are
-**excluded from the tech-only stratum** (they cannot be asserted tech) and
-**kept in the full-corpus stratum**; the unmatched share is reported.
+**Tech definition (amended 2026-10-12; supersedes the major-group definition
+below):** *tech* = titles mapping to **computing/IT occupations — O\*NET-SOC
+15-12xx computer occupations, data scientists, and selected IT management**.
+Exact SOC 2018 detailed codes (crosswalk to the recorded O\*NET-SOC release
+re-verified at run time):
+
+| Code | Occupation |
+|---|---|
+| 15-1211 | Computer Systems Analysts |
+| 15-1212 | Information Security Analysts |
+| 15-1213 | Computer Network Support Specialists |
+| 15-1216 | Database Administrators |
+| 15-1221 | Computer and Information Research Scientists |
+| 15-1231 | Computer Network Architects |
+| 15-1241 | Network and Computer Systems Administrators |
+| 15-1244 | Network and Communications Analysts |
+| 15-1251 | Computer Programmers |
+| 15-1252 | Software Developers |
+| 15-1253 | Software Quality Assurance Analysts and Testers |
+| 15-1254 | Web Developers |
+| 15-1255 | Web and Digital Interface Designers |
+| 15-1256 | Computer Occupations, All Other |
+| 15-2051 | Data Scientists |
+| 11-3021 | Computer and Information Systems Managers |
+
+*non-tech* = every other mapped code or default; *unmatched* = no rule fires.
+Unmatched postings are **excluded from the tech-only stratum** (they cannot be
+asserted tech) and **kept in the full-corpus stratum**; the unmatched share is
+reported.
+
+**Superseded definition (kept for the record, demoted to secondary robustness
+mapping):** the broad O\*NET-SOC major-group definition — *tech* = major groups
+**15 (Computer and Mathematical), 17 (Engineering and Architecture), 19
+(Life, Physical, and Social Science)** — is run as a *secondary robustness
+mapping only* (same pipeline, reported alongside, never the headline). The
+broad definition inflates the tech stratum with non-computing engineering and
+science roles, which dilutes the very composition effect ALIGN05 tests.
 
 **Secondary robustness mapping:** the dataset's own nearest-to-category field,
 `search_position` (the search query that surfaced the posting). It is not an
@@ -75,20 +107,40 @@ correlation of category deficit vectors under the two mappings). The
 
 ## 5. Validation gate (blocking — ALIGN05 may not run before this passes)
 
-1. Draw a **simple random sample of 200 postings** from the primary corpus's
-   distinct titles (seed 42), saved as
-   `datasets/align05_validation/title_validation_sample_200.csv`
-   (columns: `sample_id, job_title, search_position, predicted_family,
-   predicted_tech`; prediction columns filled from the frozen v1 rule set;
-   a blank `author_label` column for hand-labelling; labelling brief alongside
-   defining tech/non-tech per §4).
-2. The author hand-labels all 200 rows (`author_label ∈ {tech, non-tech}`).
+1. *(amended 2026-10-12 — stratified design; supersedes simple random
+   sampling)* Draw a **stratified sample of 200 distinct titles**: 100 from the
+   rule set's predicted-tech stratum and 100 from predicted-non-tech (frame:
+   264,516 distinct normalized titles in `datasets/hf_skill_gap_jobs.csv`;
+   N_tech = 9,237 / N_nontech = 255,279 under frozen rules v1; SRS without
+   replacement per stratum, seed 42, deterministic sorted frame order).
+   Saved as **`labelling/align05_titles_200.csv`** (moved from
+   `datasets/align05_validation/` to the unified labelling package; columns:
+   `sample_id, stratum, sampling_weight, job_title, rule_matched,
+   predicted_soc, predicted_tech, author_label` — prediction columns filled
+   from frozen rules v1; `author_label` left blank). **Sampling weight per
+   row:** `w_h = N_h / n_h` (92.37 for predicted-tech, 2,552.79 for
+   predicted-non-tech), making design-weighted precision *and* recall
+   estimable from the labelled sample (the SRS design could not identify
+   recall, since true tech outside the predicted-tech stratum was never
+   sampled).
+2. The author hand-labels all 200 rows (`author_label ∈ {tech, non-tech}`,
+   judged per §4's occupational definition: does the *title* denote a
+   computing/IT role in the SOC list above).
 3. Report **precision, recall, F1 for the tech class** (author label as gold)
-   with 95% Wilson CIs, plus the confusion matrix and every disagreement row.
-4. **Pass criterion:** tech-class precision ≥ 0.90 **and** recall ≥ 0.90.
-   On failure: revise the rule set (version bump, amendment note listing every
-   changed rule), re-validate on a **fresh** 200-posting sample; at most two
-   revisions, then the author decides (waive with disclosure or defer ALIGN05).
+   with 95% CIs, plus the confusion matrix and every disagreement row.
+   *Estimators (fixed now):* precision = design-weighted TP / design-weighted
+   predicted-positive = plain mean over the predicted-tech stratum (SRS
+   within stratum); recall via the two-stratum design-weighted estimator
+   `recall = (w_T·TP̂_T) / (w_T·TP̂_T + w_N·FP̂_N)` where `TP̂_T` = # labelled
+   tech in the predicted-tech stratum and `FP̂_N` = # labelled tech in the
+   predicted-non-tech stratum (each × its weight); CIs by stratified
+   bootstrap over the 200 labelled titles (B = 1,000, seed 42). Wilson CIs
+   retained for the stratum-conditional precision as a cross-check.
+4. **Pass criterion (unchanged):** design-weighted tech-class precision ≥
+   0.90 **and** recall ≥ 0.90. On failure: revise the rule set (version bump,
+   amendment note listing every changed rule), re-validate on a **fresh**
+   stratified 200-title sample; at most two revisions, then the author
+   decides (waive with disclosure or defer ALIGN05).
 5. A waived gate is recorded in `metrics.json` (`validation_waived: true`)
    with the author's dated instruction quoted.
 
@@ -138,3 +190,35 @@ MiniLM-L6-v2 embeddings cached from ALIGN03/04 (no re-embedding).
 No re-tuning of the taxonomy, covering set, τ, or embedding model. No
 per-cell significance testing (single pre-registered contrast per category).
 No claims of corpus independence (§3). No placement/outcome data involved.
+
+## 9. Amendments (dated blocks; appended, never silent)
+
+### A1 — 2026-10-12 (author instruction; pre-run, sampling only)
+
+1. **Primary tech definition narrowed** from broad major groups 15/17/19 to
+   *computing/IT occupations*: O\*NET-SOC 15-12xx computer occupations + data
+   scientists (15-2051) + IT management (11-3021); exact SOC 2018 detailed
+   codes recorded in §4. The broad 15/17/19 definition is demoted to a
+   *secondary robustness mapping* (same pipeline; never headline).
+2. **Rule set frozen:** `experiments/align05_title_rules_v1.json` v1,
+   SHA-256 `09bc778e67c884ece38edec81b57df70123ebe331f932d9441d6a12dbfcb7e36`
+   (negations first — sales/marketing/recruiter/product-project-program
+   management force non-tech; 18 ordered rules; default non-tech). Written to
+   *enable* the stratified sampling; it is the candidate classifier whose
+   precision/recall the §5 gate must still establish. Classification stats on
+   the frame (title-level): predicted-tech 9,237 of 264,516 distinct titles
+   (3.5%).
+3. **Validation sample stratified** (replaces SRS): 100 predicted-tech +
+   100 predicted-non-tech distinct titles, seed 42, weights
+   `w_h = N_h/n_h` = 92.37 / 2,552.79, design-weighted precision *and*
+   recall estimators with stratified-bootstrap CIs fixed in §5.3. Gate
+   threshold (≥ 0.90 both) and ≤ 2 revision rule unchanged.
+4. **Sample generated (sampling only; no ALIGN05 run, no deficit computed):**
+   `labelling/align05_titles_200.csv` (200 rows; `author_label` blank;
+   builder `experiments/build_align05_validation_sample.py`). Path changed
+   from `datasets/align05_validation/` to the unified `labelling/` package
+   (author instruction, same date).
+5. §2 firewall unchanged: title-only input; skills/taxonomy never enter the
+   classifier; the taxonomy-intersection verification step (§2.2) remains
+   binding at run time (rule *patterns* are occupational-title terms, not
+   taxonomy skills; the check is still executed and recorded).
