@@ -47,9 +47,13 @@ Question per row: *Does this **job title** denote a computing/IT occupation?*
   without a computing role, business/sales/marketing, healthcare, etc.
 
 Judge **the title only** — skills text is off-limits by the pre-registration
-firewall (`experiments/ALIGN05_PREREG.md` §2). `rule_matched` /
-`predicted_soc` / `predicted_tech` show what the frozen v1 rule set predicted;
-ignore them as evidence, label the title yourself. Fill `author_label`.
+firewall (`experiments/ALIGN05_PREREG.md` §2). This file is **blinded**: it
+carries only `sample_id`, `job_title`, `author_label` — no predicted class,
+rule id, SOC code, stratum, or weight — and its row order is randomized
+(seed 42). The frozen v1 rule set's predictions are sealed in
+`experiments/align05_titles_200_key.csv`; **do not open that key until you
+have finished labelling** (the scorer reads it for you afterwards). Fill
+`author_label` with `tech` or `non-tech`.
 
 ---
 

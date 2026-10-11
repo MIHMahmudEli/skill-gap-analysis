@@ -113,6 +113,9 @@ correlation of category deficit vectors under the two mappings). The
    264,516 distinct normalized titles in `datasets/hf_skill_gap_jobs.csv`;
    N_tech = 9,237 / N_nontech = 255,279 under frozen rules v1; SRS without
    replacement per stratum, seed 42, deterministic sorted frame order).
+   *(column layout amended 2026-10-12, A2: labelling CSV blinded to
+   `sample_id, job_title, author_label` only, row order shuffled seed 42;
+   design columns sealed in `experiments/align05_titles_200_key.csv`.)*
    Saved as **`labelling/align05_titles_200.csv`** (moved from
    `datasets/align05_validation/` to the unified labelling package; columns:
    `sample_id, stratum, sampling_weight, job_title, rule_matched,
@@ -222,3 +225,24 @@ No claims of corpus independence (§3). No placement/outcome data involved.
    classifier; the taxonomy-intersection verification step (§2.2) remains
    binding at run time (rule *patterns* are occupational-title terms, not
    taxonomy skills; the check is still executed and recorded).
+
+### A2 — 2026-10-12 (author instruction; pre-run, labelling-package hygiene)
+
+1. **The author-facing validation CSV is blinded.**
+   `labelling/align05_titles_200.csv` now carries exactly three columns —
+   `sample_id, job_title, author_label` — with `author_label` blank. All
+   prediction/design columns (`stratum, sampling_weight, rule_matched,
+   predicted_soc, predicted_tech`) moved to a sealed key file,
+   `experiments/align05_titles_200_key.csv`, which the author must not open
+   until labelling is finished. This supersedes the §5.1 column list.
+2. **Row order randomized** with a fresh seed-42 draw, and `sample_id`s
+   assigned *in the shuffled order* (A5T001…A5T200), so neither column set
+   nor ID ranges reveal stratum membership.
+3. **Sampling design unchanged:** same 100+100 SRS per stratum, same frame,
+   same weights (92.37 / 2,552.79), same frozen rule set v1 (SHA-256
+   `09bc778e…7e36`), same estimators, same gate (≥ 0.90 precision AND
+   recall), same ≤ 2 revision rule. Only the presentation of the sample to
+   the rater changed; `experiments/build_align05_validation_sample.py`
+   regenerates both files deterministically (both seeded with 42).
+4. `labelling/score_labels.py` joins the blinded CSV to the key on
+   `sample_id` at scoring time; nothing about the estimators changed.

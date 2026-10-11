@@ -1,11 +1,15 @@
 """Score the hand-labelling package once labels are filled. SAMPLING/SCORING
 ONLY — this never runs CURR02 or ALIGN05 and never computes an SGI.
 
-Files (all under labelling/):
+Files (labelling/ = author-facing; key = sealed, do not open before finishing):
   curriculum_precision_100.csv  rater_label, rater2_label in {yes,no}
   curriculum_recall_100.csv     rater_label in {yes_keep,no_drop}
-  align05_titles_200.csv        author_label in {tech,non-tech} (stratified,
-                                sampling_weight = N_h/n_h per ALIGN05_PREREG 5)
+  align05_titles_200.csv        author_label in {tech,non-tech} — BLINDED file
+                                (sample_id, job_title, author_label only; row
+                                order shuffled seed 42)
+  experiments/align05_titles_200_key.csv   sealed key (sample_id -> stratum,
+                                sampling_weight, rule_matched, predicted_soc,
+                                predicted_tech); read here only, never shown
 
 Reported per file:
   * curriculum precision   = share yes (proportional allocation -> unweighted
@@ -46,6 +50,8 @@ ROOT = Path(__file__).resolve().parents[1]
 # copies; normal runs always read the committed labelling/ files.
 import os  # noqa: E402
 LAB = Path(os.environ.get("LABELLING_DIR", ROOT / "labelling"))
+# A5_KEY exists only so the scorer can be smoke-tested against scratch copies.
+A5_KEY = Path(os.environ.get("A5_KEY", ROOT / "experiments" / "align05_titles_200_key.csv"))
 PREC_CSV = LAB / "curriculum_precision_100.csv"
 RECALL_CSV = LAB / "curriculum_recall_100.csv"
 A5_CSV = LAB / "align05_titles_200.csv"
@@ -177,6 +183,9 @@ else:
 # ---------------------------------------------------------------- ALIGN05 gate
 a = pd.read_csv(A5_CSV)
 a["lab"] = a["author_label"].map(norm_label)
+key = pd.read_csv(A5_KEY)  # sealed design columns (stratum/weights/predictions)
+a = a.merge(key, on="sample_id", how="left", validate="one_to_one")
+assert a["stratum"].notna().all(), "every sample_id must exist in the sealed key"
 n_filled = int(a.lab.notna().sum())
 print(f"\n[3] ALIGN05 title gate ({A5_CSV.name}): {n_filled}/{len(a)} author_label filled")
 partial_warn(n_filled, len(a), "ALIGN05")

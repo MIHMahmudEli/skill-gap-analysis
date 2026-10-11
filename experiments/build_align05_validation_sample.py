@@ -11,8 +11,15 @@ pre-registration (amendment 2026-10-12):
   frame order (titles sorted)
 - weights: w_h = N_h / n_h (stratum population / stratum sample) so that
   design-weighted precision AND recall are estimable from the labelled CSV
+- blinding (author instruction 2026-10-12): the labelling CSV carries ONLY
+  sample_id, job_title, author_label — no predicted class, rule id, SOC code,
+  stratum, or weight — and its row order is shuffled (fresh seed-42 draw).
+  sample_ids are assigned in the shuffled order, so ID ranges carry no
+  stratum information either. The design columns live in a separate key file
+  that the author must not open until labelling is finished.
 
-Output: labelling/align05_titles_200.csv (author_label left blank).
+Output: labelling/align05_titles_200.csv (author_label left blank, blinded)
+     + experiments/align05_titles_200_key.csv (DO NOT OPEN until finished).
 Do NOT fill any labels here. Do NOT run ALIGN05 before the >=0.90 gate passes.
 """
 from __future__ import annotations
@@ -76,13 +83,25 @@ for h, n_h in [("predicted_tech", N_tech), ("predicted_nontech", N_non)]:
     part["sampling_weight"] = n_h / N_PER_STRATUM
     pieces.append(part)
 out = pd.concat(pieces).sort_values(["stratum", "job_title"]).reset_index(drop=True)
+
+# --- blinding step: shuffle row order (fresh seed-42 draw), assign sample_ids
+# in the shuffled order so the ID ranges reveal nothing about strata.
+rng_shuf = np.random.RandomState(SEED)
+out = out.iloc[rng_shuf.permutation(len(out))].reset_index(drop=True)
 out.insert(0, "sample_id", [f"A5T{i:03d}" for i in range(1, len(out) + 1)])
-out["author_label"] = ""  # LEFT BLANK — author fills (1 = tech/occupational computing role, 0 = not)
+out["author_label"] = ""  # LEFT BLANK — author fills (tech / non-tech)
+
+KEY = ROOT / "experiments" / "align05_titles_200_key.csv"  # DO NOT OPEN until labelling is finished
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
-out.to_csv(OUT, index=False)
+blinded = out[["sample_id", "job_title", "author_label"]]
+key = out[["sample_id", "stratum", "sampling_weight", "rule_matched",
+           "predicted_soc", "predicted_tech"]]
+blinded.to_csv(OUT, index=False)
+key.to_csv(KEY, index=False)
 
-print(f"wrote {OUT} rows={len(out)}")
+print(f"wrote {OUT} rows={len(blinded)} (blinded: {list(blinded.columns)})")
+print(f"wrote {KEY} rows={len(key)} (sealed key; do not open before labelling is finished)")
 print("weights:", {h: float(g.sampling_weight.iloc[0]) for h, g in out.groupby('stratum')})
 print("rule usage in sample:", out.rule_matched.value_counts().to_dict())
 print("rules_sha256:", hashlib.sha256(RULES.read_bytes()).hexdigest())
