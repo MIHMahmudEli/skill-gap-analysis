@@ -551,8 +551,8 @@
     }
   ],
   "human_validation_gate": {
-    "precision_sample": "validation_precision_100.csv",
-    "recall_sample": "validation_recall_100.csv",
+    "precision_sample": "labelling/curriculum_precision_100.csv",
+    "recall_sample": "labelling/curriculum_recall_100.csv",
     "status": "AWAITING_AUTHOR_LABELLING_OR_WAIVER",
     "note": "CURR02 must not run until these are labelled or waived (SELECTION_PROTOCOL.md section 7, step 4)"
   }

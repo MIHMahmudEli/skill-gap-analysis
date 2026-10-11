@@ -6,8 +6,14 @@ committed, phrase-level artifacts under ``datasets/curriculum/extracted/``:
 
   curriculum_phrases.csv      kept skill/content phrases per unit
   extraction_summary.json     per-unit counts + drop reasons + taxonomy hits
-  validation_precision_100.csv  100-item stratified precision sample (seed 42)
-  validation_recall_100.csv     100-item complementary recall sample (seed 42)
+
+The two human-validation samples are written to the unified labelling
+package (2026-10-12, author instruction), NOT under extracted/:
+
+  ../../labelling/curriculum_precision_100.csv  100-item stratified precision
+                                                sample (seed 42, + rater2 col)
+  ../../labelling/curriculum_recall_100.csv     100-item complementary recall
+                                                sample (seed 42)
 
 Design rules (frozen before any SGI is computed on this corpus):
   * Extraction is rule-based and content-region aware (per source template).
@@ -41,6 +47,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CURR = ROOT / "datasets" / "curriculum"
 RAW = CURR / "raw"
 OUT = CURR / "extracted"
+LAB = ROOT / "labelling"  # unified hand-labelling package (see module docstring)
 MANIFEST = CURR / "MANIFEST.csv"
 TAXONOMY_JSON = CURR / "taxonomy8.json"
 ALIGN03 = ROOT / "experiments" / "exp_scripts" / "align03_domain_gap.py"
@@ -553,8 +560,10 @@ def main() -> int:
 
     prec = stratified_sample(all_kept, PRECISION_N, strata_prec, SEED)
     prec_fields = ["item_id", "unit_id", "institution", "vintage_group", "stratum",
-                   "section", "phrase", "taxonomy_hits", "rater_label", "rater_notes"]
-    with (OUT / "validation_precision_100.csv").open("w", encoding="utf-8", newline="") as f:
+                   "section", "phrase", "taxonomy_hits", "rater_label", "rater_notes",
+                   "rater2_label"]
+    LAB.mkdir(parents=True, exist_ok=True)
+    with (LAB / "curriculum_precision_100.csv").open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=prec_fields)
         w.writeheader()
         for i, it in enumerate(prec, 1):
@@ -563,7 +572,7 @@ def main() -> int:
                 "institution": it["institution"], "vintage_group": it["vintage_group"],
                 "stratum": it["stratum"], "section": it["section"],
                 "phrase": it["phrase"], "taxonomy_hits": it["taxonomy_hits"],
-                "rater_label": "", "rater_notes": "",
+                "rater_label": "", "rater_notes": "", "rater2_label": "",
             })
 
     # recall: complementary sample = sentences the filters dropped. Design:
@@ -598,7 +607,7 @@ def main() -> int:
     rec_fields = ["item_id", "unit_id", "institution", "vintage_group",
                   "section", "phrase", "drop_reason", "is_extracted",
                   "rater_label", "rater_notes"]
-    with (OUT / "validation_recall_100.csv").open("w", encoding="utf-8", newline="") as f:
+    with (LAB / "curriculum_recall_100.csv").open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=rec_fields)
         w.writeheader()
         for i, p in enumerate(recall, 1):
@@ -634,11 +643,12 @@ def main() -> int:
         "taxonomy_source": "experiments/exp_scripts/align03_domain_gap.py::SKILL_CATEGORIES",
         "units": summary_units,
         "human_validation_gate": {
-            "precision_sample": "validation_precision_100.csv",
-            "recall_sample": "validation_recall_100.csv",
+            "precision_sample": "labelling/curriculum_precision_100.csv",
+            "recall_sample": "labelling/curriculum_recall_100.csv",
             "status": "AWAITING_AUTHOR_LABELLING_OR_WAIVER",
             "note": "CURR02 must not run until these are labelled or waived "
-                    "(SELECTION_PROTOCOL.md section 7, step 4)",
+                    "(SELECTION_PROTOCOL.md section 7, step 4); scoring: "
+                    "labelling/score_labels.py",
         },
     }
     (OUT / "extraction_summary.json").write_text(

@@ -3,10 +3,22 @@
 *2 files, 200 short decisions, ~25–35 minutes. Fill only the `rater_label`
 column (and `rater_notes` when unsure). Leave the files' row order untouched.*
 
-Both files are in `datasets/curriculum/extracted/`. No analysis is computed
+*`labelling/curriculum_precision_100.csv` additionally carries a blank
+`rater2_label` column (added 2026-10-12): if a second rater is available,
+they fill `rater2_label` **independently and blind** to `rater_label` using
+the same File-1 rules; `labelling/score_labels.py` then reports Cohen's
+kappa between the two raters. If no second rater is available, leave the
+column blank — nothing is blocked on it.*
+
+Both files now live in the unified hand-labelling package
+`labelling/` (moved 2026-10-12): `labelling/curriculum_precision_100.csv`
+and `labelling/curriculum_recall_100.csv`. See `labelling/INSTRUCTIONS.md`
+for the one-page cover sheet covering all three labelling files (these two
+plus the ALIGN05 title sample). Scoring is computed by
+`labelling/score_labels.py` once labels are filled. No analysis is computed
 until you finish or explicitly waive; CURR02 stays blocked either way.
 
-## File 1 — `validation_precision_100.csv` (extracted phrases)
+## File 1 — `labelling/curriculum_precision_100.csv` (extracted phrases)
 
 Question per row: **"Is this phrase genuine curriculum skill/content text
 from the course (a topic, learning outcome, prerequisite skill, or syllabus
@@ -22,7 +34,7 @@ Notes:
 - Prerequisite sentences ("Prospective students should know C++") → `yes` (deliberately kept: they carry skill content).
 - Phrases starting with `Topics:` are recovered Stanford lists → judge the list, not the marker.
 
-## File 2 — `validation_recall_100.csv` (dropped sentences)
+## File 2 — `labelling/curriculum_recall_100.csv` (dropped sentences)
 
 Question per row: **"Should the extractor have kept this sentence as curriculum
 content?"** (i.e., did a filter wrongly drop real content?)
