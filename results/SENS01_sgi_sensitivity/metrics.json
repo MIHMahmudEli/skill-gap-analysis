@@ -1,0 +1,173 @@
+{
+  "experiment_id": "SENS01_sgi_sensitivity",
+  "status": "completed",
+  "runtime_sec": 187.77,
+  "seed": 42,
+  "bootstrap_n_skill": 1000,
+  "bootstrap_n_post": 500,
+  "smoke": false,
+  "grid": {
+    "K": [
+      50,
+      100,
+      200,
+      500
+    ],
+    "P": [
+      100,
+      250,
+      500,
+      1000
+    ],
+    "tau": [
+      0.4,
+      0.5,
+      0.6,
+      0.7
+    ],
+    "match": [
+      "lexical",
+      "semantic"
+    ],
+    "corpora": [
+      "hf_2024",
+      "linkedin_2024"
+    ]
+  },
+  "n_table_rows": 200,
+  "n_postings": {
+    "hf_2024": 518953,
+    "linkedin_2024": 1294296
+  },
+  "academic_rows": 1167,
+  "sbert_model": "all-MiniLM-L6-v2",
+  "device": "cpu",
+  "distinct_profile_skills_embedded": 23456,
+  "anchor_reproduction": {
+    "hf_2024_lexical_K100": {
+      "expected_published": 0.52,
+      "got": 0.52,
+      "ok": true
+    },
+    "hf_2024_semantic_K100_tau0.5": {
+      "expected_published": 0.32,
+      "got": 0.32,
+      "ok": true
+    }
+  },
+  "matched_profile_replication": {
+    "hf_2024": {
+      "P100_symmetric_lexical": 0.52,
+      "P100_symmetric_semantic_tau0.5": 0.32,
+      "P500_asymmetric_lexical": 0.37,
+      "P500_asymmetric_semantic_tau0.5": 0.14
+    },
+    "linkedin_2024": {
+      "P100_symmetric_lexical": 0.52,
+      "P100_symmetric_semantic_tau0.5": 0.32,
+      "P500_asymmetric_lexical": 0.37,
+      "P500_asymmetric_semantic_tau0.5": 0.14
+    }
+  },
+  "align04_asymmetric_replication": {
+    "linkedin_2024_lexical_K100": {
+      "expected_published": 0.37,
+      "got": 0.37,
+      "ok": true
+    },
+    "linkedin_2024_semantic_K100_tau0.5": {
+      "expected_published": 0.14,
+      "got": 0.14,
+      "ok": true
+    }
+  },
+  "manuscript_claim_checks": {
+    "hf_2024_P100_symmetric_lexical": {
+      "expected_manuscript": 0.52,
+      "got": 0.52,
+      "ok": true
+    },
+    "hf_2024_P100_symmetric_semantic_tau0.5": {
+      "expected_manuscript": 0.32,
+      "got": 0.32,
+      "ok": true
+    },
+    "hf_2024_P500_asymmetric_lexical": {
+      "expected_manuscript": 0.37,
+      "got": 0.37,
+      "ok": true
+    },
+    "hf_2024_P500_asymmetric_semantic_tau0.5": {
+      "expected_manuscript": 0.14,
+      "got": 0.14,
+      "ok": true
+    },
+    "linkedin_2024_P100_symmetric_lexical": {
+      "expected_manuscript": 0.52,
+      "got": 0.52,
+      "ok": true
+    },
+    "linkedin_2024_P100_symmetric_semantic_tau0.5": {
+      "expected_manuscript": 0.32,
+      "got": 0.32,
+      "ok": true
+    },
+    "linkedin_2024_P500_asymmetric_lexical": {
+      "expected_manuscript": 0.37,
+      "got": 0.37,
+      "ok": true
+    },
+    "linkedin_2024_P500_asymmetric_semantic_tau0.5": {
+      "expected_manuscript": 0.14,
+      "got": 0.14,
+      "ok": true
+    }
+  },
+  "sgi_ranges_over_KP_grid": {
+    "hf_2024": {
+      "lexical": {
+        "min": 0.52,
+        "max": 0.728
+      },
+      "semantic_tau_0.4": {
+        "min": 0.094,
+        "max": 0.24
+      },
+      "semantic_tau_0.5": {
+        "min": 0.26,
+        "max": 0.42
+      },
+      "semantic_tau_0.6": {
+        "min": 0.32,
+        "max": 0.53
+      },
+      "semantic_tau_0.7": {
+        "min": 0.44,
+        "max": 0.605
+      }
+    },
+    "linkedin_2024": {
+      "lexical": {
+        "min": 0.53,
+        "max": 0.736
+      },
+      "semantic_tau_0.4": {
+        "min": 0.094,
+        "max": 0.25
+      },
+      "semantic_tau_0.5": {
+        "min": 0.258,
+        "max": 0.38
+      },
+      "semantic_tau_0.6": {
+        "min": 0.34,
+        "max": 0.48
+      },
+      "semantic_tau_0.7": {
+        "min": 0.45,
+        "max": 0.58
+      }
+    }
+  },
+  "figure_written": true
+}

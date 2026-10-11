@@ -41,6 +41,9 @@ REQUIRED = {
     "CURR01_cs2023_anchor": ["metrics.json", "table_cs2023_per_ka.csv",
                              "table_cs2023_sensitivity.csv",
                              "cs2023_topic_matches.csv"],
+    "SENS01_sgi_sensitivity": ["metrics.json", "table_sensitivity_grid.csv",
+                               "table_sensitivity_summary.csv",
+                               "figure_sensitivity_heatmap.png"],
 }
 
 
@@ -161,6 +164,49 @@ def check_numeric_sanity(exp_id: str, dir_path: Path) -> list[str]:
         if not ((per_ka["coverage_sem_tau_0.4"] >= per_ka["coverage_sem_tau_0.5"]).all()
                 and (per_ka["coverage_sem_tau_0.5"] >= per_ka["coverage_sem_tau_0.6"]).all()):
             issues.append("per-KA coverage not monotone in tau")
+    elif exp_id == "SENS01_sgi_sensitivity":
+        if m.get("smoke"):
+            issues.append("smoke run committed instead of full run")
+        if not all(a["ok"] for a in m["anchor_reproduction"].values()):
+            issues.append("anchor reproduction failed: "
+                          + str({k: v for k, v in m["anchor_reproduction"].items()
+                                 if not v["ok"]}))
+        a4 = m.get("align04_asymmetric_replication", {})
+        if not a4 or not all(a["ok"] for a in a4.values()):
+            issues.append("ALIGN04 asymmetric replication failed: "
+                          + str({k: v for k, v in a4.items() if not v["ok"]}))
+        claims = m.get("manuscript_claim_checks", {})
+        bad = {k: v for k, v in claims.items() if not v["ok"]}
+        if bad:
+            issues.append("matched-profile manuscript claim not reproduced "
+                          "(paper/main.tex 'Profile-size sensitivity' needs "
+                          "correction): " + str(bad))
+        grid = pd.read_csv(dir_path / "table_sensitivity_grid.csv")
+        if len(grid) != 200:
+            issues.append(f"expected 200 grid rows, got {len(grid)}")
+        if not ((0 <= grid.SGI) & (grid.SGI <= 1)).all():
+            issues.append("SGI out of [0,1]")
+        has_skill = grid.CI_skill_lo.notna()
+        if not (grid.loc[has_skill, "CI_skill_lo"]
+                <= grid.loc[has_skill, "CI_skill_hi"]).all():
+            issues.append("inverted skill CI")
+        # skill CI is centered on its own profile: point must lie inside
+        out = grid[has_skill & ((grid.SGI < grid.CI_skill_lo)
+                                | (grid.SGI > grid.CI_skill_hi))]
+        if len(out):
+            issues.append(f"{len(out)} rows with SGI outside their skill CI")
+        post = grid.CI_post_lo.notna()
+        if not (grid.loc[post, "CI_post_lo"] <= grid.loc[post, "CI_post_hi"]).all():
+            issues.append("inverted posting CI")
+        # semantic SGI must be monotone non-decreasing in tau per (corpus,P,K)
+        sem = grid[grid.match == "semantic"]
+        for _, grp in sem.groupby(["corpus", "P", "K"]):
+            if not grp.sort_values("tau").SGI.is_monotonic_increasing:
+                issues.append("semantic SGI not monotone in tau")
+                break
+        summ = pd.read_csv(dir_path / "table_sensitivity_summary.csv")
+        if not (summ.SGI_min <= summ.SGI_max).all():
+            issues.append("summary min > max")
     return issues
 
 

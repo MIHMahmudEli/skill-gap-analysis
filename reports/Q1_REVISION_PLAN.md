@@ -44,34 +44,87 @@ Manuscript: `paper/main.tex` / `paper/main.pdf`*
 
 | ID | Task | Status |
 |---|---|---|
-| P2-1 | Experiment **SENS01**: SGI grid K∈{50,100,200,500} × P∈{100,250,500,1000} × τ∈{0.4,0.5,0.6,0.7} × lexical/semantic × HF + LinkedIn; seed 42 | Script written (`experiments/exp_scripts/sens01_sgi_sensitivity.py`); smoke validating, full run pending |
-| P2-2 | Dual bootstrap: skill-list resample **and** posting resample; report both CIs with interpretation | Implemented in script (B_SKILL=1000, B_POST=500; posting CI = joint market-P + academic-1167 resample; NaN at P=all anchors) |
-| P2-3 | Heatmap/surface figure + sensitivity table; replace abstract "52%→32%" with range + SENS01 result | Script emits figure + tables; abstract rewrite pending full-run numbers |
-| P2-4 | Register in `results/registry.json`; extend `experiments/verify.py` | verify.py SENS01 checks written (held uncommitted until results exist, so the baseline gate stays green); registry entry lands with the run |
+| P2-1 | Experiment **SENS01**: SGI grid K∈{50,100,200,500} × P∈{100,250,500,1000} × τ∈{0.4,0.5,0.6,0.7} × lexical/semantic × HF + LinkedIn; seed 42 | **Done (2026-10-11).** Full run (188 s CPU, 200 grid rows) in `results/SENS01_sgi_sensitivity/`; registry VERIFIED |
+| P2-2 | Dual bootstrap: skill-list resample **and** posting resample; report both CIs with interpretation | **Done.** B_SKILL=1000, B_POST=500 per cell; posting CI = joint market-P + academic-1167 resample; NaN posting CI at P=all anchor rows by design (reported, not an error) |
+| P2-3 | Heatmap/surface figure + sensitivity table; replace abstract "52%→32%" with range + SENS01 result | Figure + `table_sensitivity_grid.csv` + `table_sensitivity_summary.csv` emitted; **abstract replacement drafted below — awaiting author review**. Figure polish TODO at manuscript time: bottom-row x-labels collide with subplot titles (data are final; layout only) |
+| P2-4 | Register in `results/registry.json`; extend `experiments/verify.py` | **Done.** SENS01 entry VERIFIED (run_mode local, seed 42); `verify.py` gained REQUIRED files + sanity checks (grid shape 200, SGI∈[0,1], skill-CI contains point, τ-monotonicity, no smoke runs, HF anchors, ALIGN04 replication, matched-profile manuscript claims). Gates: pytest 13/13, verify_claims 103/103, verify.py 13/13 all_verified |
+
+**Headline ranges (SENS01, both corpora, over the finite-P grid; anchors in
+parens):** lexical SGI HF [0.52, 0.73] (anchor 0.52), LinkedIn [0.53, 0.74]
+(anchor 0.52); semantic @τ=0.5 HF [0.26, 0.42] (anchor 0.32), LinkedIn
+[0.26, 0.38] (anchor 0.32). SGI is strictly positive in all 200 cells
+(min 0.094 @ τ=0.4); the lexical-above-semantic ordering holds at every cell
+for τ ≤ 0.5, but **not** at τ = 0.7 (semantic max 0.605 > lexical min 0.52) —
+wording in any robustness claim must stay τ-specific.
 
 **Finding (2026-10-11, surfaced by SENS01's anchor check):** the published
 experiments do not share one definition of the academic reference profile.
 ALIGN01/ALIGN02 compare market top-100 against academic **top-100**
-(symmetric — this is the headline "52% → 32%" instrument), but ALIGN04's
-LinkedIn replication compares market top-100 against academic **top-500**
+(symmetric — the headline "52% → 32%" instrument), but ALIGN04's LinkedIn
+replication compares market top-100 against academic **top-500**
 (`most_common(PROFILE_N)` with no `.head(TOP_N)` — asymmetric). Under the
 symmetric instrument LinkedIn lexical SGI@K=100 is **0.52**, not the
 published 0.37; the 0.37 reproduces exactly only under ALIGN04's asymmetric
-definition (coverage 0.63 vs 0.48). Consequences:
+definition (coverage 0.63 vs 0.48).
 
-1. SENS01's grid is symmetric (K vs K) — internally consistent, matching the
-   headline instrument; its LinkedIn column is a fresh consistent-instrument
-   result, **not** a failed reproduction of 0.37/0.14.
-2. The script validates both paths: HF anchors must reproduce 0.52/0.32
-   (symmetric), and a dedicated `align04_asymmetric_replication` block must
-   reproduce 0.37/0.14 (asymmetric) — both are hard assertions.
-3. **Author decision at P2-3 manuscript edit:** the cross-corpus claim
-   ("replicates on LinkedIn: 0.37/0.14") is partly an artifact of the larger
-   academic profile. Options: (a) report both definitions in ALIGN04's row
-   with a footnote, (b) restate the cross-corpus claim on the symmetric
-   instrument (HF 0.52 vs LinkedIn 0.52 lexical — a *stronger* consistency
-   result, τ-dependent for semantic), or (c) leave ALIGN04 as-is and add the
-   definition discrepancy to limitations. Not decided yet.
+**Resolved by the full run:** the manuscript already acknowledges this — the
+"Profile-size sensitivity" paragraph (`paper/main.tex` §Results) claims that
+at matched academic covering-set size **both** corpora give 0.52/0.32 (P=100)
+and 0.37/0.14 (P=500). What was missing is a registered artifact backing the
+full claim: ALIGN04's `table_crosscorpus_sgi.csv` contains only the LinkedIn
+P=500 rows. SENS01 closes this:
+
+1. `metrics.json::matched_profile_replication` holds all four cells
+   (corpus × {P=100 symmetric, P=500 asymmetric} × {lexical, semantic@0.5});
+   both corpora land on **identical** values 0.52/0.32 and 0.37/0.14, exactly
+   as line 411 states. The LinkedIn P=500 cells are hard-asserted against the
+   published ALIGN04 numbers; all eight cells are recorded as
+   `manuscript_claim_checks` (all ok) and `verify.py` fails the gate if any
+   is not reproduced, so a manuscript/artifact mismatch forces a correction
+   rather than shipping a contradicted number.
+2. SENS01's own grid stays symmetric (K vs K, the headline instrument) and
+   internally consistent; its LinkedIn column is a fresh
+   consistent-instrument result, **not** a failed reproduction of 0.37/0.14.
+
+**Execution incident (for the record):** the first full run's
+`metrics.json`/summary turned out to disagree with its own
+`table_sensitivity_grid.csv` (reported hf lexical range [0.42, 0.71] vs the
+grid's actual [0.52, 0.73]; a summary anchor of 0.32 at τ=0.4 vs the grid's
+0.20). The grid itself was sound (τ-monotone per cell, anchors exact,
+bit-identical SGI across four independent runs). The run was discarded before
+committing, a **self-consistency guard** was added to
+`sens01_sgi_sensitivity.py` (re-reads the written CSVs and asserts the
+reported ranges/anchors equal what is on disk), and the experiment was
+re-executed from scratch; the committed artifacts pass the guard and an
+independent re-derivation of every range and anchor from the grid CSV.
+
+**P2-3 draft — proposed abstract replacement (author review):** the current
+abstract reports the point estimate "52.0% → 32.0%"; replace the sentence
+
+> Exact string matching yields an apparent Skill Gap Index (SGI) of 52.0\%.
+> Dense vector alignment reduces this estimated gap to 32.0\% at baseline
+> threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]), rising to
+> 46.0\% ... ($\tau = 0.7$).
+
+with (draft):
+
+> At the headline configuration (market top-$K{=}100$ vs.\ academic covering
+> set $P{=}100$), exact string matching yields an apparent Skill Gap Index
+> (SGI) of 52.0\%, which dense vector alignment reduces to 32.0\% at baseline
+> threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]); under a
+> stricter criterion ($\tau = 0.7$) the gap rises to 46.0\%. A pre-registered
+> $(K, P, \tau)$ sensitivity grid over two independent posting corpora (200
+> configuration cells) shows these values are not artifacts of one
+> configuration: the lexical SGI stays within $[0.52, 0.74]$ and the semantic
+> SGI at $\tau = 0.5$ within $[0.26, 0.42]$ across all profile sizes and
+> top-$K$ choices, every cell remains strictly positive, and the instrument
+> reproduces identically on LinkedIn at matched academic covering-set size.
+
+Notes for the author: (a) the τ=0.7 CI sentence can stay as-is (the anchor
+0.46 is confirmed by SENS01's grid); (b) limitations §L693 should gain one
+clause pointing at SENS01 as the registered sensitivity artifact; (c) H3's
+"invariant lexical-above-semantic ordering" (§607) is grid-true only for
+τ ≤ 0.5 — suggest "at the baseline threshold" be added there.
 
 ---
 

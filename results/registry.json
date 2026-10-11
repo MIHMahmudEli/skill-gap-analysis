@@ -413,6 +413,36 @@
       "verified_utc": "2026-10-10T14:38:10Z",
       "worker": "abdullahalsayfan"
     },
+    "SENS01_sgi_sensitivity": {
+      "attempts": 1,
+      "completed_utc": "2026-10-11T14:42:50Z",
+      "deps": [
+        "ALIGN01_lexical_bootstrap",
+        "ALIGN02_semantic_sbert",
+        "ALIGN04_crosscorpus_linkedin"
+      ],
+      "history": [
+        {
+          "event": "local_run",
+          "run_mode": "local",
+          "script": "experiments/exp_scripts/sens01_sgi_sensitivity.py",
+          "seed": 42,
+          "ts": "2026-10-11T14:42:50Z"
+        },
+        {
+          "event": "completed",
+          "exit_code": 0,
+          "runtime_sec": 584.35,
+          "ts": "2026-10-11T14:42:50Z"
+        }
+      ],
+      "run_mode": "local",
+      "seed": 42,
+      "slug": "sens01-sgi-sensitivity",
+      "status": "VERIFIED",
+      "status_errors": 0,
+      "verified_utc": "2026-10-11T14:42:51Z"
+    },
     "STAT01_placement_core": {
       "attempts": 2,
       "completed_utc": "2026-10-10T14:35:31Z",

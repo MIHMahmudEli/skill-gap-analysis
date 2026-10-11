@@ -49,6 +49,12 @@
       "registry_status": "USED_IN_MANUSCRIPT",
       "verified": true
     },
+    "SENS01_sgi_sensitivity": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "COMPLETED",
+      "verified": true
+    },
     "STAT01_placement_core": {
       "issues": [],
       "missing_files": [],
@@ -74,5 +80,5 @@
       "verified": true
     }
   },
-  "verified_utc": "2026-10-11T12:39:33Z"
+  "verified_utc": "2026-10-11T14:42:51Z"
 }

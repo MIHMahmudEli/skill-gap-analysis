@@ -19,6 +19,20 @@ sys.path.insert(0, str(ROOT / "experiments"))
 
 REGISTRY = ROOT / "results" / "registry.json"
 
+# Experiments that are registered and VERIFIED but not yet cited in the
+# manuscript (their manuscript integration task is still pending).
+#
+# The end-state invariant the test below enforces is "every registered
+# experiment is USED_IN_MANUSCRIPT"; while a revision adds new experiments,
+# staged ones are allowed *only* in COMPLETED/VERIFIED state, must exist in
+# the registry, and are counted explicitly. Remove an ID from this list in
+# the same commit that (a) cites the experiment in paper/main.tex and
+# (b) flips its registry status to USED_IN_MANUSCRIPT.
+#
+# SENS01: staged for the Phase-2 revision (P2-3 abstract/sensitivity
+# rewrite, `reports/Q1_REVISION_PLAN.md`); verified 2026-10-11.
+PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity"}
+
 
 def _load_registry():
     if not REGISTRY.exists():
@@ -30,12 +44,22 @@ def test_registry_all_used_in_manuscript():
     reg = _load_registry()
     exps = reg["experiments"] if isinstance(reg, dict) and "experiments" in reg else reg
     if isinstance(exps, dict):
+        ids = list(exps.keys())
         statuses = [v.get("status") for v in exps.values()]
     else:
+        ids = [e["experiment_id"] for e in exps]
         statuses = [e.get("status") for e in exps]
     assert statuses, "empty registry"
-    assert all(s == "USED_IN_MANUSCRIPT" for s in statuses), statuses
-    assert len(statuses) == 12
+    staged = PENDING_MANUSCRIPT_INTEGRATION
+    unknown = staged - set(ids)
+    assert not unknown, f"staging list references missing experiments: {unknown}"
+    for exp_id, status in zip(ids, statuses):
+        if exp_id in staged:
+            assert status in ("COMPLETED", "VERIFIED"), (
+                f"{exp_id} is staged for integration but not verified: {status}")
+        else:
+            assert status == "USED_IN_MANUSCRIPT", (exp_id, status)
+    assert len(statuses) == 12 + len(staged), statuses
 
 
 def test_registry_metrics_files_exist_and_complete():

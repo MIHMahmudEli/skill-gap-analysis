@@ -1,0 +1,11 @@
+corpus,match,tau,SGI_min,SGI_max,SGI_median,anchor_SGI_K100
+hf_2024,lexical,,0.52,0.728,0.625,0.52
+hf_2024,semantic,0.4,0.094,0.24,0.185,0.2
+hf_2024,semantic,0.5,0.26,0.42,0.3175,0.32
+hf_2024,semantic,0.6,0.32,0.53,0.42,0.39
+hf_2024,semantic,0.7,0.44,0.605,0.515,0.46
+linkedin_2024,lexical,,0.53,0.736,0.6,0.52
+linkedin_2024,semantic,0.4,0.094,0.25,0.1725,0.2
+linkedin_2024,semantic,0.5,0.258,0.38,0.315,0.32
+linkedin_2024,semantic,0.6,0.34,0.48,0.43,0.39
+linkedin_2024,semantic,0.7,0.45,0.58,0.51,0.46
