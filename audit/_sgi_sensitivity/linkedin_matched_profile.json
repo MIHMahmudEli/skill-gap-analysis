@@ -1,0 +1,101 @@
+{
+  "corpus": "linkedin_2024_job_skills (1,296,381 rows; 2,773,202 unique tokens)",
+  "method": "audit reanalysis, identical tokenizers+model+seed+bootstrap as ALIGN01/02/04",
+  "matched_profile_results": {
+    "academic_top100": {
+      "lexical": {
+        "SGI": 0.52,
+        "CI": [
+          0.42,
+          0.62
+        ]
+      },
+      "semantic": {
+        "0.4": {
+          "SGI": 0.2,
+          "CI": [
+            0.13,
+            0.28
+          ]
+        },
+        "0.5": {
+          "SGI": 0.32,
+          "CI": [
+            0.23,
+            0.42
+          ]
+        },
+        "0.6": {
+          "SGI": 0.39,
+          "CI": [
+            0.29,
+            0.49
+          ]
+        },
+        "0.7": {
+          "SGI": 0.46,
+          "CI": [
+            0.36,
+            0.56
+          ]
+        }
+      }
+    },
+    "academic_top500": {
+      "lexical": {
+        "SGI": 0.37,
+        "CI": [
+          0.28,
+          0.47
+        ]
+      },
+      "semantic": {
+        "0.4": {
+          "SGI": 0.06,
+          "CI": [
+            0.02,
+            0.11
+          ]
+        },
+        "0.5": {
+          "SGI": 0.14,
+          "CI": [
+            0.08,
+            0.2102
+          ]
+        },
+        "0.6": {
+          "SGI": 0.22,
+          "CI": [
+            0.15,
+            0.3
+          ]
+        },
+        "0.7": {
+          "SGI": 0.28,
+          "CI": [
+            0.19,
+            0.37
+          ]
+        }
+      }
+    }
+  },
+  "published": {
+    "ALIGN01_HF_acad100_lex": 0.52,
+    "ALIGN02_HF_acad100_sem0.5": 0.32,
+    "ALIGN04_LI_acad500_lex": 0.37,
+    "ALIGN04_LI_acad500_sem0.5": 0.14
+  },
+  "HF_corpus_audit": {
+    "acad100": {
+      "lex": 0.52,
+      "sem0.5": 0.32
+    },
+    "acad500": {
+      "lex": 0.37,
+      "sem0.5": 0.14
+    }
+  },
+  "finding": "SGI levels are governed by academic-profile size (100 vs 500), not by market corpus. At matched profile size the two corpora produce identical SGI (0.52/0.32 at top-100; 0.37/0.14 at top-500). Published ALIGN01-vs-ALIGN04 contrast (0.52 vs 0.37) is therefore a profile-size artifact, not corpus difference."
+}
