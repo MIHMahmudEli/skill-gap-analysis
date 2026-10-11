@@ -1,0 +1,11 @@
+# SHA-256 checksums of canonical experiment inputs (audit Phase 8, 2026-10-11)
+# Verify with: python -c "import hashlib,pathlib,sys; ..." or sha256sum -c
+8ea59ec3789c544bdf0e30a92215729c37095687c99d366671300a1b0c2b32fe  datasets/hf_skill_gap_skills.csv  (market_skills)
+2ae32298328bbfc1f36a1bdeea9fddee1a566a3022a256f9d24fa57d177a168e  datasets/hf_job_skill_set.csv  (academic_skills)
+db1ed84eefbafcded7771ad2de04eecd38ec815a726b3c61ae544d65d3707f46  datasets/kaggle/1-3m-linkedin-jobs-and-skills-2024/linkedin_job_postings.csv  (linkedin_postings)
+409530fdf61e42f4ecc0dd90f6c2264c7bdc45750e98ac61cd718d5e1bc7246f  datasets/kaggle/1-3m-linkedin-jobs-and-skills-2024/job_skills.csv  (linkedin_skills)
+fe80d1ba8735ff13c2c9a1f89735a4bbf80f63b6a40150e0310190ba066b15e0  datasets/kaggle/college-student-placement/college_student_placement_dataset.csv  (college_placement)
+b235b3e0acef6a990d2906214f23fb4e4cb78907ae9ecdea62a32bdaac5fc8c0  datasets/kaggle/student-career-success-prediction-dataset/student_career_success_dataset.csv  (student_career)
+88988174c5da75d8fb991e879cf4cb38bf4a8b6381233588974d2ce5bc8ac7bb  datasets/kaggle/global-student-placement-2025-dataset/global_placement.csv  (global_placement)
+6fa823c10f00de13ad9953f93e0aaedecad320259c6ecd3869267b865b7241f0  datasets/kaggle/ai-and-data-science-job-market-dataset-20202026/AI Job Market Dataset.csv  (ai_trends)
+7329561671a5eac968582b2fe41a63e9daf443dc086da623be02bfb2a626b039  datasets/kaggle/international-graduates-employment-dataset/dataset.csv  (international_grads)

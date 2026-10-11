@@ -1,0 +1,37 @@
+# Continuous integration for the skill-gap reproducibility package.
+# Runs unit tests + claim-ledger reproduction + (network) citation check.
+# Raw datasets are gitignored; data-dependent tests skip automatically.
+name: ci
+
+on:
+  push:
+    branches: [main, q1-readiness-audit]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Unit tests
+        run: python -m pytest tests/ -q --tb=short
+
+      - name: Claim-ledger reproduction
+        run: python audit/verify_claims.py
+
+      - name: Citation Crossref check (network)
+        run: python audit/verify_citations.py
+        continue-on-error: true
