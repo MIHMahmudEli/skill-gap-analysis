@@ -100,10 +100,11 @@ author decision needed):** the HF skill-gap corpus is a **strict subset of the
 Kaggle LinkedIn corpus** (all 519,814 `job_link`s present in both; 99.9% of
 sampled skill strings byte-identical). The two market top-K profiles are
 therefore identical skills at K ≤ 200 (100% shared; 496/500 at K=500), which
-is why the matched cells agree exactly. ALIGN04's numbers all stand, but the
-manuscript's "independent corpus" framing (lines 92, 140, 406–409, 459, 692,
-707) must be reworded to subset/robustness language or disclosed in
-limitations — options listed in the follow-up report; not yet applied.
+is why the matched cells agree exactly. ALIGN04's numbers all stand; the
+manuscript's "independent corpus" framing has been **reworded to
+nested-superset robustness language** (Step 1, 2026-10-12 — all edits listed
+in `reports/PROVENANCE_AUDIT.md` §C; corpus counts recomputed to 2,123,889
+unique records and eight feeding sources there too).
 
 **Execution incident (for the record):** the first full run's
 `metrics.json`/summary turned out to disagree with its own
@@ -125,23 +126,23 @@ abstract reports the point estimate "52.0% → 32.0%"; replace the sentence
 > threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]), rising to
 > 46.0\% ... ($\tau = 0.7$).
 
-with (draft, revised 2026-10-11 per author checks A2–A4):
+with (draft, revised 2026-10-12 per author checks A2–A4 + determinism + by-construction steps):
 
 > At the headline configuration (market top-$K{=}100$ vs.\ academic covering
 > set $P{=}100$), exact string matching yields an apparent Skill Gap Index
 > (SGI) of 52.0\%, which dense vector alignment reduces to 32.0\% at baseline
 > threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]); under a
-> stricter criterion ($\tau = 0.7$) the gap rises to 46.0\%. A pre-registered
+> stricter criterion ($\tau = 0.7$) the gap rises to 46.0\%. A pre-specified
 > $(K, P, \tau)$ sensitivity surface over the headline instrument (200 grid
 > cells spanning all combinations of profile size, covering-set size, and
 > threshold on two posting corpora, the second a nested superset of the
 > first) shows these values are not artifacts of one configuration: the
-> lexical SGI stays within $[0.52, 0.74]$ and the semantic SGI at
-> $\tau = 0.5$ within $[0.26, 0.42]$ across the surface, every cell remains
-> strictly positive, and the instrument reproduces identically on the
-> superset corpus at matched academic covering-set size.
+> lexical SGI stays within [0.52, 0.74] and the semantic SGI at
+> $\tau = 0.5$ within [0.26, 0.42] across the surface, every cell remains
+> strictly positive, and the reduction persists on the nested superset at
+> matched academic covering-set size.
 
-Notes for the author (updated 2026-10-11): (a) the τ=0.7 CI sentence can stay
+Notes for the author (updated 2026-10-12): (a) the τ=0.7 CI sentence can stay
 as-is (the anchor 0.46 is confirmed by SENS01's grid); (b) limitations §L693
 should gain one clause pointing at SENS01 as the registered sensitivity
 artifact; (c) ~~H3 needs "at the baseline threshold"~~ → ~~ordering claim
@@ -155,8 +156,16 @@ claims stay at the baseline threshold (margin narrows 0.32→0.04 as τ:
 0.4→0.7). Reframed draft H3 wording in the follow-up report §A3; (d) the
 grid is described as **one sensitivity surface**, never as 200 independent
 tests — no per-cell significance language anywhere; (e) "independent
-corpora" language removed per the corpus-nesting finding above —
-"two posting corpora, the second a nested superset of the first".
+corpora" language **removed from main.tex, README, and manifest on
+2026-10-12** (Step 1, all 19+3+4 edits listed in
+`reports/PROVENANCE_AUDIT.md` §C) — "nested-superset robustness check on one
+scrape family"; (f) "pre-specified", not "pre-registered": the surface was
+repository-timestamped *after* the headline values were known, so
+"pre-specified" is the accurate term; (g) range notation fixed to
+[0.52, 0.74] / [0.26, 0.42]; (h) "reproduces identically on the superset
+corpus" removed — the surviving claim is persistence of the reduction at
+matched covering-set size (the identical matched values themselves stay in
+the ALIGN04 body text, where the P-matched design is stated).
 
 ---
 
