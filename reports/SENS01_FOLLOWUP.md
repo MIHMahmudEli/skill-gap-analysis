@@ -143,15 +143,23 @@ cells vs lexical min over all cells — rather than paired cells; the paired
 comparison is the correct test for H3 and supersedes it). The plan's
 cross-grid range comparison has been replaced accordingly.
 
-**Draft H3 wording (tau-specific, for author review):**
+**Draft H3 wording — superseded 2026-10-12 by the by-construction check
+(`reports/H2H3_BY_CONSTRUCTION.md`):** the lexical-above-semantic *ordering*
+is guaranteed by the matcher definitions (every exact string match is also a
+cosine-1.0 match at τ ≤ 0.7), so it carries no evidential weight and is not
+part of H3. The reframed wording, for author review:
 
-> H3 (supported, tau-specific form): At the baseline threshold τ = 0.5 the
-> lexical-above-semantic ordering holds at every cell of the pre-registered
-> (K, P, τ) sensitivity grid (40/40 paired cells across both corpora), with a
-> minimum paired margin of 0.16. The ordering remains universal at stricter
-> thresholds but the margin narrows monotonically with τ (min margin 0.32,
-> 0.16, 0.10, 0.04 at τ = 0.4, 0.5, 0.6, 0.7), so claims of *magnitude*
-> separation should stay at the baseline threshold.
+> H3 (reframed): Both SGI variants remain strictly positive and the
+> **magnitude** of the semantic reduction persists across the pre-specified
+> (K, P, τ) surface (lexical HF [0.52, 0.73] → semantic@τ0.5 [0.26, 0.42];
+> LinkedIn [0.53, 0.74] → [0.26, 0.38]; minimum paired reduction 0.16 at
+> τ = 0.5) and on the nested LinkedIn superset at matched profile sizes
+> (identical 0.52/0.32 at P = 100, identical 0.37/0.14 at P = 500 in both
+> corpora), and the additional matches admitted by semantic alignment are
+> predominantly valid (VALID01 precision 0.92 at τ = 0.5, ≥ 0.86 at every τ).
+> The ordering itself is a construction property, recorded only as a sanity
+> check: 160/160 paired cells satisfy it (minimum margin 0.04 at τ = 0.7;
+> `reports/sens01_paired_h3_test.csv`).
 
 ## A4. Manuscript phrasing guidance (recorded, not applied)
 

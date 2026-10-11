@@ -53,13 +53,17 @@ Manuscript: `paper/main.tex` / `paper/main.pdf`*
 parens):** lexical SGI HF [0.52, 0.73] (anchor 0.52), LinkedIn [0.53, 0.74]
 (anchor 0.52); semantic @τ=0.5 HF [0.26, 0.42] (anchor 0.32), LinkedIn
 [0.26, 0.38] (anchor 0.32). SGI is strictly positive in all 200 cells
-(min 0.094 @ τ=0.4). The lexical-above-semantic ordering is established by
-the **paired cell-by-cell test** (`reports/SENS01_FOLLOWUP.md` §A3,
-`reports/sens01_paired_h3_test.csv`): lexical SGI > semantic SGI at **all 40
-paired cells at every τ** (min paired margin 0.32/0.16/0.10/0.04 at
-τ=0.4/0.5/0.6/0.7). This supersedes the earlier cross-grid range comparison
-(which suggested a τ=0.7 exception by comparing unpaired extrema); the margin
-narrows monotonically with τ, so magnitude claims stay at the baseline
+(min 0.094 @ τ=0.4). **Ordering is by construction, not a finding**
+(2026-10-12, `reports/H2H3_BY_CONSTRUCTION.md`): every exact string match is
+also a cosine-1.0 match at τ ≤ 0.7, so lexical coverage ⊆ semantic coverage at
+every cell by the matcher definitions; H2/H3 are reframed as (i) *magnitude*
+of the reduction with CIs and (ii) *validity* of the added matches (VALID01
+precision 0.86–0.98 at every τ). The paired cell-by-cell test
+(`reports/SENS01_FOLLOWUP.md` §A3, `reports/sens01_paired_h3_test.csv`) is
+retained only as a sanity check: lexical SGI > semantic SGI at all 160 paired
+cells (min margin 0.32/0.16/0.10/0.04 at τ=0.4/0.5/0.6/0.7). The earlier
+cross-grid range comparison (which suggested a τ=0.7 exception by comparing
+unpaired extrema) remains superseded; magnitude claims stay at the baseline
 threshold.
 
 **Finding (2026-10-11, surfaced by SENS01's anchor check):** the published
@@ -140,11 +144,15 @@ with (draft, revised 2026-10-11 per author checks A2–A4):
 Notes for the author (updated 2026-10-11): (a) the τ=0.7 CI sentence can stay
 as-is (the anchor 0.46 is confirmed by SENS01's grid); (b) limitations §L693
 should gain one clause pointing at SENS01 as the registered sensitivity
-artifact; (c) ~~H3 needs "at the baseline threshold"~~ **superseded**: the
-paired cell-by-cell test (SENS01_FOLLOWUP §A3) shows lexical > semantic at
-all 40 cells at *every* τ, so H3's ordering claim stands unqualified; only
-*magnitude*-separation claims stay at the baseline threshold (margin narrows
-0.32→0.04 as τ: 0.4→0.7). Draft H3 wording in the follow-up report; (d) the
+artifact; (c) ~~H3 needs "at the baseline threshold"~~ → ~~ordering claim
+stands unqualified~~ **superseded twice**: the paired test removed the τ=0.7
+caveat, then the by-construction check (2026-10-12,
+`reports/H2H3_BY_CONSTRUCTION.md`) showed the ordering is guaranteed by the
+matcher definitions (exact match ⇒ cosine 1.0 ≥ τ), so H2/H3 now concern
+magnitude-of-reduction + validity of added matches, not ordering; main.tex H2
+and H3 were rewritten accordingly in the same pass. Magnitude-separation
+claims stay at the baseline threshold (margin narrows 0.32→0.04 as τ:
+0.4→0.7). Reframed draft H3 wording in the follow-up report §A3; (d) the
 grid is described as **one sensitivity surface**, never as 200 independent
 tests — no per-cell significance language anywhere; (e) "independent
 corpora" language removed per the corpus-nesting finding above —
