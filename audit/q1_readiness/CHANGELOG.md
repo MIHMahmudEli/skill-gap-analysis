@@ -19,6 +19,7 @@ Package branch: `q1-readiness-package`.
 | 2026-10-11 | **Manuscript hygiene:** removed internal Revision Log from `main.tex` (PDF 16→15 pp) | Phase 7 submission rule |
 | 2026-10-11 | **Construct wording:** Algorithm/embedding/RQ2/Discussion “syllabus” → reference-profile; contribution corpus bullet fixed; curriculum-adaptation claim narrowed | Adversarial V-2…V-4 |
 | 2026-10-11 | Independent re-run of H6 from raw CSV: RD −0.4442 pp matches STAT01 | `college_student_placement_dataset.csv` |
+| 2026-10-11 | **TikZ figures:** replaced all 7 matplotlib PDF figures with print-safe TikZ/pgfplots macros (`paper/figures/tikz_figs.tex`); data re-read from ALIGN01/03, GEO01, TRENDS01, STAT01, INTL01 artifacts only | Clean pdflatex: 0 errors/0 overfull/0 undefined refs; 13/13 tests pass |
 
 **Invariants:** no raw data edits; no experiment metric edits; no silent
 estimand changes; no fabricated citations; audit notes kept out of

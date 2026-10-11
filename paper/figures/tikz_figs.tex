@@ -1,0 +1,311 @@
+% Professional TikZ figures — data from verified experiment artifacts
+% ALIGN01/03, GEO01, TRENDS01, STAT01, INTL01 (no fabricated values)
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots,statistics}
+\usetikzlibrary{patterns,positioning,calc}
+
+% ---- shared style (print-safe IEEE palette) ----
+\definecolor{sgBlue}{RGB}{31,78,121}
+\definecolor{sgTeal}{RGB}{0,124,132}
+\definecolor{sgOrange}{RGB}{202,112,40}
+\definecolor{sgRed}{RGB}{176,54,54}
+\definecolor{sgGreen}{RGB}{56,128,72}
+\definecolor{sgGrey}{RGB}{110,110,110}
+\definecolor{sgLight}{RGB}{230,230,230}
+
+\pgfplotsset{
+  sg axis/.style={
+    axis line style={sgGrey, line width=0.4pt},
+    tick style={sgGrey, line width=0.4pt},
+    label style={font=\footnotesize, color=black!80},
+    tick label style={font=\scriptsize, color=black!75},
+    legend style={
+      font=\scriptsize,
+      draw=sgGrey!50,
+      fill=white,
+      fill opacity=0.92,
+      text opacity=1,
+      inner sep=2.5pt,
+      cells={anchor=west},
+    },
+    ymin=0,
+    ymajorgrids=true,
+    grid style={sgLight, line width=0.3pt},
+    width=0.98\linewidth,
+    height=0.72\linewidth,
+    scale only axis,
+  },
+}
+\tikzset{
+  sg bar/.style={
+    fill=#1,
+    draw=#1!70!black,
+    line width=0.3pt,
+  },
+}
+
+% ============================================================
+% FIG 1 — Top-10 market skill tokens (ALIGN01 market_top500)
+% ============================================================
+\newcommand{\FigTopSkills}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  ybar,
+  bar width=10pt,
+  width=0.98\linewidth,
+  height=0.62\linewidth,
+  symbolic x coords={Comm,CustSvc,Teamwork,CommSk,Lead,ProbSolv,TimeMgmt,AttDet,ProbSlv,ProjMgmt},
+  xtick=data,
+  xticklabels={comm,custsvc,teamwork,commsk,lead,probsolv,timemgmt,attdet,probslv,projmgmt},
+  x tick label style={rotate=35, anchor=east, font=\scriptsize},
+  ymin=0, ymax=175000,
+  ylabel={Number of postings},
+  enlarge x limits=0.08,
+  nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
+  every node near coord/.append style={font=\scriptsize, color=black!70, rotate=90, anchor=west, yshift=0pt, xshift=1pt},
+]
+\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt] coordinates {
+  (Comm,148765)(CustSvc,111342)(Teamwork,91559)(CommSk,78182)(Lead,74517)(ProbSolv,59713)(TimeMgmt,57352)(AttDet,53873)(ProbSlv,51903)(ProjMgmt,48656)
+};
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+% ============================================================
+% FIG 2 — Domain demand / coverage / deficit (ALIGN03)
+% ============================================================
+\newcommand{\FigGapDemand}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  width=0.98\linewidth,
+  height=0.78\linewidth,
+  symbolic x coords={Prog,DataSci,Cloud,Soft,Bus,Design,DataEng,Cyber},
+  xtick=data,
+  x tick label style={rotate=32, anchor=east, font=\scriptsize},
+  enlarge x limits=0.10,
+  ymin=0, ymax=110,
+  ylabel={Percent},
+  legend pos=north east,
+]
+\addplot[sg bar=sgBlue, forget plot] coordinates {
+  (Prog,3.97)(DataSci,8.04)(Cloud,4.39)(Soft,52.26)(Bus,11.81)(Design,0.60)(DataEng,1.02)(Cyber,0.62)
+};
+\addplot[sg bar=sgTeal, forget plot] coordinates {
+  (Prog,57.47)(DataSci,85.10)(Cloud,44.06)(Soft,100)(Bus,90.22)(Design,0)(DataEng,31.28)(Cyber,0)
+};
+\addplot[sg bar=sgGreen] coordinates {
+  (Prog,65.05)(DataSci,93.36)(Cloud,78.67)(Soft,100)(Bus,100)(Design,24.07)(DataEng,59.50)(Cyber,73.71)
+};
+\legend{Demand, Coverage (lex.), Coverage (sem.)}
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+\newcommand{\FigGapDeficit}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  width=0.96\linewidth,
+  height=0.78\linewidth,
+  symbolic x coords={Prog,DataSci,Cloud,Soft,Bus,Design,DataEng,Cyber},
+  xtick=data,
+  x tick label style={font=\scriptsize},
+  enlarge x limits=0.12,
+  ymin=0, ymax=3.2,
+  ylabel={Deficit (pp)},
+  legend pos=north east,
+  bar width=8pt,
+  ybar,
+]
+\addplot[fill=sgOrange, draw=sgOrange!70!black, line width=0.3pt] coordinates {
+  (Prog,1.69)(DataSci,1.20)(Cloud,2.45)(Soft,0.00)(Bus,1.16)(Design,0.60)(DataEng,0.70)(Cyber,0.62)
+};
+\addlegendentry{Lexical deficit}
+\addplot[fill=sgRed, draw=sgRed!70!black, line width=0.3pt] coordinates {
+  (Prog,1.39)(DataSci,0.53)(Cloud,0.94)(Soft,0.00)(Bus,0.00)(Design,0.46)(DataEng,0.41)(Cyber,0.16)
+};
+\addlegendentry{Semantic deficit}
+% error bars as thin caps (lexical CI half-widths, ALIGN03)
+\draw[sgGrey, line width=0.5pt] (axis cs:Prog,1.66) -- (axis cs:Prog,1.72);
+\draw[sgGrey, line width=0.5pt] (axis cs:DataSci,1.16) -- (axis cs:DataSci,1.24);
+\draw[sgGrey, line width=0.5pt] (axis cs:Cloud,2.42) -- (axis cs:Cloud,2.49);
+\draw[sgGrey, line width=0.5pt] (axis cs:Bus,1.13) -- (axis cs:Bus,1.18);
+\draw[sgGrey, line width=0.5pt] (axis cs:Design,0.58) -- (axis cs:Design,0.63);
+\draw[sgGrey, line width=0.5pt] (axis cs:DataEng,0.68) -- (axis cs:DataEng,0.72);
+\draw[sgGrey, line width=0.5pt] (axis cs:Cyber,0.60) -- (axis cs:Cyber,0.64);
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+% ============================================================
+% FIG 3a — Geographic shares (GEO01)
+% ============================================================
+\newcommand{\FigGeo}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  ybar,
+  bar width=16pt,
+  width=0.96\linewidth,
+  height=0.78\linewidth,
+  symbolic x coords={USA,UK,Canada,Australia},
+  xtick=data,
+  ymin=0, ymax=100,
+  ylabel={Share of postings (\%)},
+  enlarge x limits=0.18,
+  nodes near coords={\pgfmathprintnumber\pgfplotspointmeta\%},
+  every node near coord/.append style={font=\scriptsize, color=black!75, yshift=2pt},
+]
+\addplot[sg bar=sgTeal] coordinates {
+  (USA,85.23)(UK,8.41)(Canada,4.15)(Australia,2.20)
+};
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+% ============================================================
+% FIG 3b — AI skill shares 2020–2026 (TRENDS01)
+% ============================================================
+\newcommand{\FigTrends}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  width=0.98\linewidth,
+  height=0.78\linewidth,
+  xmin=2019.6, xmax=2026.4,
+  ymin=44, ymax=57,
+  xlabel={Year},
+  ylabel={Share of AI postings (\%)},
+  xtick={2020,2021,2022,2023,2024,2025,2026},
+  legend pos=south west,
+  legend columns=2,
+]
+\addplot[very thick, mark=o, mark size=2.2pt, sgBlue] coordinates {
+  (2020,47.48)(2021,49.66)(2022,47.59)(2023,52.20)(2024,48.80)(2025,51.11)(2026,48.36)
+};
+\addlegendentry{Python}
+\addplot[very thick, mark=square*, mark size=2.0pt, sgRed] coordinates {
+  (2020,51.91)(2021,50.47)(2022,51.41)(2023,49.79)(2024,50.40)(2025,49.90)(2026,48.23)
+};
+\addlegendentry{SQL}
+\addplot[very thick, mark=triangle*, mark size=2.4pt, sgGreen] coordinates {
+  (2020,48.84)(2021,51.01)(2022,49.73)(2023,53.51)(2024,51.00)(2025,52.26)(2026,49.18)
+};
+\addlegendentry{Machine Learning}
+\addplot[very thick, mark=diamond*, mark size=2.6pt, sgOrange] coordinates {
+  (2020,52.04)(2021,53.85)(2022,47.05)(2023,51.38)(2024,50.73)(2025,51.11)(2026,51.91)
+};
+\addlegendentry{Cloud}
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+% ============================================================
+% FIG 4a — Cohen's d (STAT01)
+% ============================================================
+\newcommand{\FigEffectSizes}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  ybar,
+  bar width=11pt,
+  width=0.96\linewidth,
+  height=0.70\linewidth,
+  symbolic x coords={ExtraCurr,AcadPerf,Projects,PrevSem,CGPA,CommSk,IQ},
+  xtick=data,
+  xticklabels={ExtraCurr,AcadPerf,Projects,PrevSem,CGPA,CommSk,IQ},
+  x tick label style={rotate=35, anchor=east, font=\scriptsize},
+  ymin=-0.2, ymax=1.15,
+  ylabel={Cohen's $d$},
+  enlarge x limits=0.10,
+  nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
+  every node near coord/.append style={font=\scriptsize, color=black!70, rotate=90, anchor=west, xshift=1pt},
+]
+\addplot[fill=sgGrey, draw=sgGrey!70!black, line width=0.3pt] coordinates {
+  (ExtraCurr,-0.013)(AcadPerf,-0.040)
+};
+\addplot[fill=sgBlue, draw=sgBlue!70!black, line width=0.3pt] coordinates {
+  (Projects,0.599)(PrevSem,0.901)(IQ,0.802)(CGPA,0.913)(CommSk,0.918)
+};
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+% ============================================================
+% FIG 4b — Group means (STAT01)
+% ============================================================
+\newcommand{\FigMeans}{%
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  ybar,
+  bar width=11pt,
+  width=0.98\linewidth,
+  height=0.72\linewidth,
+  symbolic x coords={CGPA,Comm,Projects},
+  xtick=data,
+  xticklabels={CGPA,Comm,Projects},
+  ymin=0, ymax=10.5,
+  ylabel={Mean score},
+  enlarge x limits=0.22,
+  legend pos=north east,
+  nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
+  every node near coord/.append style={font=\scriptsize, color=black!70, yshift=2pt},
+]
+\addplot[sg bar=sgTeal] coordinates {(CGPA,8.59)(Comm,7.66)(Projects,3.35)};
+\addlegendentry{Placed}
+\addplot[sg bar=sgRed] coordinates {(CGPA,7.32)(Comm,5.14)(Projects,2.35)};
+\addlegendentry{Not placed}
+\end{axis}
+\end{tikzpicture}%
+}%
+}
+
+% ============================================================
+% FIG 5 — Internship employment rates (INTL01)
+% ============================================================
+\newcommand{\FigInternship}{%
+\resizebox{0.88\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{axis}[
+  sg axis,
+  ybar,
+  bar width=18pt,
+  width=0.90\linewidth,
+  height=0.78\linewidth,
+  symbolic x coords={With,Without},
+  xtick={With,Without},
+  xticklabels={With internship, Without internship},
+  x tick label style={font=\scriptsize},
+  ymin=0, ymax=80,
+  ylabel={Employment rate (\%)},
+  enlarge x limits=0.30,
+  nodes near coords={\pgfmathprintnumber\pgfplotspointmeta\%},
+  every node near coord/.append style={font=\footnotesize, color=black!80, yshift=2pt},
+]
+\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt] coordinates {
+  (With,57.60)(Without,42.26)
+};
+\end{axis}
+\node[font=\scriptsize, text=black!75, anchor=south, align=center]
+  at (current axis.north east) [yshift=1mm]
+  {$+15.34$ pp (95\% CI 14.99--15.73)};
+\end{tikzpicture}%
+}%
+}

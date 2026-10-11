@@ -19,6 +19,7 @@
 \usepackage{cite}
 \usepackage{stfloats}
 \usepackage{placeins}
+\input{figures/tikz_figs}
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1em}
 
@@ -324,8 +325,8 @@ Among the 519,814 skill-annotated postings in the HuggingFace corpus, communicat
 
 \begin{figure*}[!htbp]
     \centering
-    \includegraphics[width=0.86\textwidth]{figures/fig1_top_skills.pdf}
-    \caption{Top 10 Most In-Demand Exact Skill Tokens Across Global Postings ($N = 519{,}814$ postings; counts are postings containing the exact token).}
+    \FigTopSkills
+    \caption{Top 10 most in-demand exact skill tokens across global postings ($N = 519{,}814$ postings; counts are postings containing the exact token; experiment ALIGN01).}
     \label{fig:top_skills}
 \end{figure*}
 
@@ -459,8 +460,20 @@ The directional structure of H1 replicates on the independent LinkedIn corpus (A
 
 \begin{figure*}[!htbp]
     \centering
-    \includegraphics[width=0.94\textwidth]{figures/fig2_skill_gap.pdf}
-    \caption{Skill gap analysis across taxonomy categories: (a) market demand versus curriculum coverage (lexical and dense semantic at $\tau = 0.5$); (b) deficit magnitude in percentage points of postings with 95\% bootstrap confidence intervals. Cloud Infrastructure is the only Critical deficit under the relative-to-median severity rule.}
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \FigGapDemand
+        \caption{Market demand vs.\ reference-profile coverage}
+        \label{fig:skill_gap_a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \FigGapDeficit
+        \caption{Deficit magnitude (pp) with 95\% CI}
+        \label{fig:skill_gap_b}
+    \end{subfigure}
+    \caption{Skill-gap analysis across taxonomy categories (ALIGN03). (a) Market demand versus coverage by the academic reference profile (lexical and dense semantic at $\tau = 0.5$). (b) Deficit in percentage points of postings with 95\% bootstrap confidence intervals. Cloud Infrastructure is the only Critical deficit under the relative-to-median severity rule.}
     \label{fig:skill_gap}
 \end{figure*}
 
@@ -484,18 +497,18 @@ Bivariate chi-square tests confirm that placement is strongly associated with pr
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/fig4a_placement_effect_sizes.pdf}
+        \FigEffectSizes
         \caption{Standardized effect sizes (Cohen's $d$)}
         \label{fig:placement_a}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/fig4b_placement_means.pdf}
+        \FigMeans
         \caption{Group means for key predictors}
         \label{fig:placement_b}
     \end{subfigure}
-    \caption{Key predictors for placed versus non-placed graduates ($N = 10{,}000$). (a) Cohen's $d$ for all seven audited variables; Academic Performance and Extra-Curricular Score are negligible. (b) Group means (all differences in (b) significant at $p < 0.001$, Welch $t$-tests).}
+    \caption{Key predictors for placed versus non-placed graduates ($N = 10{,}000$; STAT01). (a) Cohen's $d$ for all seven audited variables; Academic Performance and Extra-Curricular Score are negligible. (b) Group means (all differences in (b) significant at $p < 0.001$, Welch $t$-tests).}
     \label{fig:placement}
 \end{figure*}
 
@@ -557,20 +570,20 @@ Regional parsing of 1.35M LinkedIn records (Figure~\ref{fig:geographic}a) reveal
 
 \begin{figure*}[!htbp]
     \centering
-    \begin{subfigure}[t]{0.42\textwidth}
+    \begin{subfigure}[t]{0.40\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/fig3a_geo_shares.pdf}
-        \caption{Geographic distribution (LinkedIn)}
+        \FigGeo
+        \caption{Geographic distribution (LinkedIn; GEO01)}
         \label{fig:geo_a}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[t]{0.55\textwidth}
+    \begin{subfigure}[t]{0.56\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/fig3b_ai_trends.pdf}
-        \caption{AI skill demand trajectories (2020--2026)}
+        \FigTrends
+        \caption{AI skill demand trajectories, 2020--2026 (TRENDS01)}
         \label{fig:geo_b}
     \end{subfigure}
-    \caption{(a) Geographic concentration of 1.35M job postings (GEO01). (b) Longitudinal share of AI/data-science postings requiring core technologies, 2020--2026 (TRENDS01; $N = 10{,}345$).}
+    \caption{(a) Geographic concentration of 1.35M job postings. (b) Longitudinal share of AI/data-science postings requiring core technologies, 2020--2026 ($N = 10{,}345$).}
     \label{fig:geographic}
 \end{figure*}
 
@@ -578,7 +591,7 @@ In the cohort of 300,000 international graduates (Figure~\ref{fig:international}
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.72\columnwidth]{figures/fig5_internship.pdf}
+    \FigInternship
     \caption{Impact of practical internship experience on international graduate employment ($N = 300{,}000$; INTL01).}
     \label{fig:international}
 \end{figure}
