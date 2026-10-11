@@ -53,9 +53,14 @@ Manuscript: `paper/main.tex` / `paper/main.pdf`*
 parens):** lexical SGI HF [0.52, 0.73] (anchor 0.52), LinkedIn [0.53, 0.74]
 (anchor 0.52); semantic @τ=0.5 HF [0.26, 0.42] (anchor 0.32), LinkedIn
 [0.26, 0.38] (anchor 0.32). SGI is strictly positive in all 200 cells
-(min 0.094 @ τ=0.4); the lexical-above-semantic ordering holds at every cell
-for τ ≤ 0.5, but **not** at τ = 0.7 (semantic max 0.605 > lexical min 0.52) —
-wording in any robustness claim must stay τ-specific.
+(min 0.094 @ τ=0.4). The lexical-above-semantic ordering is established by
+the **paired cell-by-cell test** (`reports/SENS01_FOLLOWUP.md` §A3,
+`reports/sens01_paired_h3_test.csv`): lexical SGI > semantic SGI at **all 40
+paired cells at every τ** (min paired margin 0.32/0.16/0.10/0.04 at
+τ=0.4/0.5/0.6/0.7). This supersedes the earlier cross-grid range comparison
+(which suggested a τ=0.7 exception by comparing unpaired extrema); the margin
+narrows monotonically with τ, so magnitude claims stay at the baseline
+threshold.
 
 **Finding (2026-10-11, surfaced by SENS01's anchor check):** the published
 experiments do not share one definition of the academic reference profile.
@@ -86,6 +91,16 @@ P=500 rows. SENS01 closes this:
    internally consistent; its LinkedIn column is a fresh
    consistent-instrument result, **not** a failed reproduction of 0.37/0.14.
 
+**Corpus-independence finding (2026-10-11, `reports/SENS01_FOLLOWUP.md` §A2 —
+author decision needed):** the HF skill-gap corpus is a **strict subset of the
+Kaggle LinkedIn corpus** (all 519,814 `job_link`s present in both; 99.9% of
+sampled skill strings byte-identical). The two market top-K profiles are
+therefore identical skills at K ≤ 200 (100% shared; 496/500 at K=500), which
+is why the matched cells agree exactly. ALIGN04's numbers all stand, but the
+manuscript's "independent corpus" framing (lines 92, 140, 406–409, 459, 692,
+707) must be reworded to subset/robustness language or disclosed in
+limitations — options listed in the follow-up report; not yet applied.
+
 **Execution incident (for the record):** the first full run's
 `metrics.json`/summary turned out to disagree with its own
 `table_sensitivity_grid.csv` (reported hf lexical range [0.42, 0.71] vs the
@@ -106,25 +121,34 @@ abstract reports the point estimate "52.0% → 32.0%"; replace the sentence
 > threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]), rising to
 > 46.0\% ... ($\tau = 0.7$).
 
-with (draft):
+with (draft, revised 2026-10-11 per author checks A2–A4):
 
 > At the headline configuration (market top-$K{=}100$ vs.\ academic covering
 > set $P{=}100$), exact string matching yields an apparent Skill Gap Index
 > (SGI) of 52.0\%, which dense vector alignment reduces to 32.0\% at baseline
 > threshold $\tau = 0.5$ (95\% bootstrap CI: [23.0\%, 41.0\%]); under a
 > stricter criterion ($\tau = 0.7$) the gap rises to 46.0\%. A pre-registered
-> $(K, P, \tau)$ sensitivity grid over two independent posting corpora (200
-> configuration cells) shows these values are not artifacts of one
-> configuration: the lexical SGI stays within $[0.52, 0.74]$ and the semantic
-> SGI at $\tau = 0.5$ within $[0.26, 0.42]$ across all profile sizes and
-> top-$K$ choices, every cell remains strictly positive, and the instrument
-> reproduces identically on LinkedIn at matched academic covering-set size.
+> $(K, P, \tau)$ sensitivity surface over the headline instrument (200 grid
+> cells spanning all combinations of profile size, covering-set size, and
+> threshold on two posting corpora, the second a nested superset of the
+> first) shows these values are not artifacts of one configuration: the
+> lexical SGI stays within $[0.52, 0.74]$ and the semantic SGI at
+> $\tau = 0.5$ within $[0.26, 0.42]$ across the surface, every cell remains
+> strictly positive, and the instrument reproduces identically on the
+> superset corpus at matched academic covering-set size.
 
-Notes for the author: (a) the τ=0.7 CI sentence can stay as-is (the anchor
-0.46 is confirmed by SENS01's grid); (b) limitations §L693 should gain one
-clause pointing at SENS01 as the registered sensitivity artifact; (c) H3's
-"invariant lexical-above-semantic ordering" (§607) is grid-true only for
-τ ≤ 0.5 — suggest "at the baseline threshold" be added there.
+Notes for the author (updated 2026-10-11): (a) the τ=0.7 CI sentence can stay
+as-is (the anchor 0.46 is confirmed by SENS01's grid); (b) limitations §L693
+should gain one clause pointing at SENS01 as the registered sensitivity
+artifact; (c) ~~H3 needs "at the baseline threshold"~~ **superseded**: the
+paired cell-by-cell test (SENS01_FOLLOWUP §A3) shows lexical > semantic at
+all 40 cells at *every* τ, so H3's ordering claim stands unqualified; only
+*magnitude*-separation claims stay at the baseline threshold (margin narrows
+0.32→0.04 as τ: 0.4→0.7). Draft H3 wording in the follow-up report; (d) the
+grid is described as **one sensitivity surface**, never as 200 independent
+tests — no per-cell significance language anywhere; (e) "independent
+corpora" language removed per the corpus-nesting finding above —
+"two posting corpora, the second a nested superset of the first".
 
 ---
 
@@ -132,8 +156,8 @@ clause pointing at SENS01 as the registered sensitivity artifact; (c) H3's
 
 | ID | Task | Status |
 |---|---|---|
-| P3-1 | Experiment **ALIGN05**: stratify/filter postings by occupation family (tech vs non-tech); rerun domain deficits on tech-relevant subset | Pending |
-| P3-2 | Drop or externally anchor Critical/Moderate/Mild labels; report effect sizes + CIs | Pending |
+| P3-1 | Experiment **ALIGN05**: stratify/filter postings by occupation family (tech vs non-tech); rerun domain deficits on tech-relevant subset | **Pre-registered (2026-10-11).** `experiments/ALIGN05_PREREG.md` committed before any run. Binding constraints: job family from `job_title`/occupation fields only (circularity firewall + taxonomy-intersection check); primary mapping O*NET-SOC major groups 15/17/19 via versioned keyword rule set (license recorded: US DOL public domain); secondary robustness = dataset's own `search_position` field; **blocking validation gate** — author hand-labels a 200-posting title sample (precision & recall ≥ 0.90 to proceed); both full-corpus and tech-only deficits reported, tech-only explicitly larger-by-construction and not the headline; posting-level bootstrap, seed 42, registered in `results/registry.json` before execution |
+| P3-2 | Drop or externally anchor Critical/Moderate/Mild labels; report effect sizes + CIs | **Design fixed in prereg §6.** Primary reporting = deficit pp + 95% posting-bootstrap CIs + paired tech-vs-full effect sizes; if labels are retained anywhere they are full-corpus-only under the pre-registered CI-anchored rule |
 
 ---
 

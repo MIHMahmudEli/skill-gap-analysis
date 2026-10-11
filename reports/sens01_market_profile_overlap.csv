@@ -1,0 +1,5 @@
+K,n_shared,shared_fraction,jaccard,lex_coverage_hf,lex_coverage_linkedin,sgi_hf,sgi_linkedin,only_hf_covered_by_academic,only_linkedin_covered_by_academic
+50,50,1.0,1.0,0.82,0.82,0.18,0.18,0/0,0/0
+100,100,1.0,1.0,0.71,0.71,0.29,0.29,0/0,0/0
+200,200,1.0,1.0,0.615,0.615,0.385,0.385,0/0,0/0
+500,496,0.992,0.9841,0.562,0.56,0.438,0.44,2/4,1/4

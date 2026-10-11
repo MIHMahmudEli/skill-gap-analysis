@@ -1,0 +1,5 @@
+tau,n_cells,semantic_gt_lexical,equal,fraction,min_gap_lex_minus_sem
+0.4,40,0,0,0.0,0.32
+0.5,40,0,0,0.0,0.16
+0.6,40,0,0,0.0,0.1
+0.7,40,0,0,0.0,0.04
