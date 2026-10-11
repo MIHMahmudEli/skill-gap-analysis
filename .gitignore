@@ -55,3 +55,7 @@ results/_staging/
 results/_kernels/
 results/*_attempt*/
 
+
+datasets/curriculum/raw/
+datasets/curriculum/license_snapshots/*.html
+datasets/curriculum/license_snapshots/*.txt
