@@ -84,12 +84,8 @@ def test_manifest_counts_match_local_files_when_present():
 
 
 def test_audit_claim_ledger_reproduces():
-    """verify_claims.py must exit 0 and report zero CONTRADICTED *after* Phase 9 fixes.
-
-    During the audit window (before manuscript fixes) this test only checks
-    that the script runs and produces a ledger; contradictions are allowed and
-    counted separately.
-    """
+    """verify_claims.py must exit 0; ledger must have ZERO contradicted claims
+    (Phase 9 manuscript fixes are on this branch)."""
     script = ROOT / "audit" / "verify_claims.py"
     if not script.exists():
         pytest.skip("audit script absent")
@@ -102,8 +98,11 @@ def test_audit_claim_ledger_reproduces():
     assert ledger.exists()
     rows = list(csv.DictReader(ledger.open(encoding="utf-8")))
     assert len(rows) >= 90
-    # structural check only: verdict column exists
-    assert any("verdict" in k.lower() or "status" in k.lower() for k in rows[0])
+    vc = next(k for k in rows[0] if "verdict" in k.lower() or "status" in k.lower())
+    from collections import Counter
+    counts = Counter(r[vc] for r in rows)
+    assert counts.get("contradicted", 0) == 0, f"contradicted claims remain: {counts}"
+    assert counts.get("reproduced", 0) >= 90, counts
 
 
 def test_input_checksums_file_lists_nine_bundles():

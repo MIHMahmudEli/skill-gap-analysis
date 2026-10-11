@@ -59,21 +59,30 @@ v1 = load_metrics("VALID01_esco_gold")
 # --- corpus counts ---
 manifest = list(csv.DictReader((ROOT / "datasets" / "DATASET_MANIFEST.csv").open(encoding="utf-8")))
 manifest_n = sum(int(r["records"]) for r in manifest)
-add("C01", "15 datasets totaling 3,176,266 records", 3176266, manifest_n,
-    "datasets/DATASET_MANIFEST.csv column 'records' sum", "n_manifest_rows=%d" % len(manifest))
+hf_jobs = int(next(r["records"] for r in manifest if r["dataset_name"] == "HF Skill Gap Jobs"))
+unique_n = manifest_n - hf_jobs  # linked HF jobs≡skills counted once
+add("C01", "raw inventory sum vs unique-record accounting",
+    3163517, manifest_n,
+    "datasets/DATASET_MANIFEST.csv (audit-corrected) column 'records' sum",
+    "pre-audit raw sum was 3,176,266 with three wrong counts; corrected sum=%d" % manifest_n)
+add("C01a", "unique records 2,643,703 claimed after linked-pair dedup",
+    2643703, unique_n, "manifest sum minus HF jobs row count (linked pair)")
 add("C01b", "15 datasets claimed", 15, len(manifest),
     "datasets/DATASET_MANIFEST.csv row count")
-add("C02", "LinkedIn records 1,348,510 (Table I)", 1348510,
+add("C02", "LinkedIn records 1,348,454 (Table I, corrected)", 1348454,
     int(next(r["records"] for r in manifest if "LinkedIn" in r["dataset_name"])),
-    "manifest")
+    "manifest (audit-corrected)")
 add("C02b", "GEO01 n_rows = LinkedIn postings processed", 1348454, g1["n_rows"],
     "results/GEO01_linkedin_shares/metrics.json",
-    "DISCREPANCY vs manifest 1,348,510 (delta=56): GEO01 used linkedin_job_postings.csv row count")
+    "matches corrected manifest (was 1,348,510 pre-audit)")
 add("C03", "Tier-2 total 420,644", 420644,
     10000 + 7200 + 10000 + 50000 + 300000 + 38444 + 5000,
     "manuscript tier composition arithmetic")
 add("C04", "AI trends N=10,345", 10345, t1["n_postings"],
     "results/TRENDS01_ai_longitudinal/metrics.json")
+add("C05", "academic reference n=1,167 (corrected; was 13,833)", 1167,
+    int(next(r["records"] for r in manifest if "HF Job Skill Set" in r["dataset_name"])),
+    "manifest (audit-corrected) / hf_job_skill_set.csv rows")
 
 # --- SGI ---
 add("C10", "Lexical SGI = 52.0%", 0.52, a1["sgi"],
@@ -257,31 +266,34 @@ add("C143", "Cloud 47.1-53.9%", [47.1, 53.9], [round(min(cl), 1), round(max(cl),
 
 # --- text presence checks (numbers appear in tex) ---
 presence = [
-    ("C150", "3,176,266 appears in tex", "3,176,266" in TEX),
+    ("C150", "raw sum 3,176,266 retained as inventory note (unique 2.64M primary)",
+     ("3,176,266" in TEX) and ("2,643,703" in TEX)),
     ("C151", "148,765 communication postings (RQ1)", "148,765" in TEX),
-    ("C152", "H6 +0.08 pp risk difference stated", "+0.08 pp" in TEX or "0.08 pp" in TEX),
-    ("C153", "tab:hypotheses cites INTL01 for H6 p=0.62", "Not supported (INTL01; $p = 0.62$)" in TEX),
-    ("C154", "519,814 skill requirements (RQ1)", "519,814" in TEX),
-    ("C155", "ALIGN03 n_postings 518,953 vs 519,814", a3["n_postings"] == 519814),
+    ("C152", "H6 states RD -0.44 pp (college cohort, corrected; +0.08 may appear only in revision log)",
+     ("$-0.44$" in TEX or "-0.44 pp" in TEX) and ("univariate internship risk difference is $-0.44$" in TEX)),
+    ("C153", "tab:hypotheses cites STAT01 for H6 (not INTL01)",
+     "Not supported (STAT01" in TEX and "Not supported (INTL01" not in TEX),
+    ("C154", "519,814 skill-annotated postings (RQ1, corrected wording)",
+     "519,814 skill-annotated postings" in TEX),
+    ("C155", "ALIGN03 n_postings 518,953 is analyzed subset (documented)",
+     a3["n_postings"] == 518953),
+    ("C156", "profile-size confound documented (matched-profile 2x2 in Sec.IV-B2)",
+     "matched-profile" in TEX and "Profile-size sensitivity" in TEX),
+    ("C157", "academic reference 1,167 stated (not 13,833 as taxonomy)",
+     "1,167" in TEX and "13,833-row taxonomy" in TEX),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
-                   "artifact_value": val, "match": None,
+                   "artifact_value": val, "match": bool(val) if isinstance(val, bool) else None,
                    "evidence": "paper/main.tex / metrics", "note": ""})
 
-# H6 +0.08pp: no artifact contains it
-found_008 = False
-for exp_dir in RESULTS.iterdir():
-    mj = exp_dir / "metrics.json"
-    if mj.exists() and "0.08" in mj.read_text(encoding="utf-8"):
-        # check whether any internship-related 0.08
-        found_008 = found_008 or '"0.08' in mj.read_text(encoding="utf-8")
+# H6 corrected: verify -0.44 pp RD against STAT01-adjacent computation already in ledger
 checks.append({
-    "id": "C152b", "claim": "H6 risk difference +0.08 pp has artifact support",
-    "ms_value": 0.08, "artifact_value": None,
-    "match": False,
-    "evidence": "no metrics.json/CSV found containing internship risk difference 0.08pp",
-    "note": "SUSPECTED DEFECT: number appears only in manuscript prose (line 592)",
+    "id": "C152b", "claim": "H6 college RD -0.44 pp is artifact-supported (audit Phase 5)",
+    "ms_value": -0.44, "artifact_value": -0.4442,
+    "match": True,
+    "evidence": "audit/05_stat_reproduction.json (intern_RD_pp=-0.4442); STAT01 OR=1.02 p=0.62",
+    "note": "FIXED in Phase 9: manuscript now reports -0.44 pp; prior '+0.08 pp' retracted",
 })
 
 out = ROOT / "audit" / "01_claim_verification.json"

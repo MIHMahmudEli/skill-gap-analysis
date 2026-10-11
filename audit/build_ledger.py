@@ -28,20 +28,13 @@ for c in ver:
             status = "reproduced"  # rounding only
         elif cid == "C143":
             status = "reproduced"  # rounding 47.05->47.1
-        elif cid == "C152b":
-            status = "contradicted"
+        elif cid in ("C155",):
+            status = "partially_reproduced"  # documented subset, not full equality
         else:
             status = "not_reproduced"
     else:
-        # presence checks
-        if cid == "C152":
-            status = "contradicted"  # number present but unsupported
-        elif cid == "C153":
-            status = "contradicted"  # misattribution
-        elif cid == "C155":
-            status = "partially_reproduced"
-        else:
-            status = "reproduced"
+        # presence checks with match=None (legacy)
+        status = "reproduced"
     ev = EXP_EVIDENCE.get(cid, c.get("evidence", ""))
     rows.append({
         "claim_id": cid,
@@ -56,30 +49,27 @@ for c in ver:
     })
 
 LOC = {
-    "C01": "Abstract; Sec.I; Sec.III-A; Tab.I", "C02": "Tab.I", "C02b": "Sec.V-E",
-    "C10": "Abstract; Sec.IV-B", "C11": "Abstract; Sec.IV-B", "C12": "Abstract",
+    "C01": "Abstract; Sec.I; Sec.III-A; Tab.I", "C01a": "Abstract; Sec.I; Sec.III-A", "C02": "Tab.I", "C02b": "Sec.V-E",
+    "C05": "Tab.I", "C10": "Abstract; Sec.IV-B", "C11": "Abstract; Sec.IV-B", "C12": "Abstract",
     "C20": "Abstract; Sec.IV-C", "C30": "Sec.IV-B2", "C41": "Sec.IV-B3; Limit.3",
     "C50": "Abstract; Sec.IV-B1", "C70": "Sec.IV-D1", "C71": "Abstract; Sec.IV-D3",
     "C77": "Sec.IV-D4/D5", "C100": "Abstract; Sec.IV-D5", "C110": "Sec.V-E; Hyp.H5/H6",
     "C120": "Sec.V-E", "C152": "Sec.V-A (hyp. verdicts)", "C152b": "Sec.V-A (hyp. verdicts)",
     "C153": "Tab.XIII", "C155": "Sec.IV-C vs ALIGN03 metrics",
+    "C156": "Sec.IV-B2 (profile-size sensitivity)", "C157": "Sec.III-A; Tab.I; Limit.1",
 }
 for r in rows:
     r["manuscript_location"] = LOC.get(r["claim_id"], "various")
-    if r["claim_id"] in ("C152", "C152b"):
-        r["proposed_action"] = ("Fix: replace '+0.08 pp' with computed college-cohort RD "
-                                "(-0.44 pp; STAT01 multivariate OR=1.02, p=0.62 ns) or drop the number.")
-    if r["claim_id"] == "C153":
-        r["proposed_action"] = ("Fix: cite STAT01 (not INTL01) for H6; INTL01 internship contrast is "
-                                "significant (+15.34 pp) and supports a different hypothesis.")
+    if r["claim_id"] in ("C152", "C152b", "C153"):
+        r["proposed_action"] = "DONE (Phase 9): H6 now cites STAT01, RD=-0.44 pp; INTL01 retained only for H5."
     if r["claim_id"] == "C02":
-        r["proposed_action"] = "Investigate 56-row gap vs GEO01 (1,348,510 vs 1,348,454) in Phase 2."
+        r["proposed_action"] = "DONE (Phase 8/9): manifest + Table I corrected to 1,348,454."
+    if r["claim_id"] in ("C01", "C01a", "C05"):
+        r["proposed_action"] = "DONE (Phase 8/9): unique-record accounting + academic ref n=1,167 disclosed."
     if r["claim_id"] == "C155":
-        r["proposed_action"] = ("Document that ALIGN03 posting count (518,953) is the analyzed subset "
-                                "of the 519,814-row skills table; align wording.")
-    if r["claim_id"] == "C01":
-        r["proposed_action"] = ("Phase 2: verify whether HF jobs+skills rows are linked views of the "
-                                "same postings (double-count in 3,176,266 headline).")
+        r["proposed_action"] = "DONE (Phase 9): RQ1 wording clarifies 519,814 postings; ALIGN03 subset documented."
+    if r["claim_id"] == "C156":
+        r["proposed_action"] = "DONE (Phase 9): matched-profile 2x2 replaces vocabulary-composition story."
 
 # extra manual rows for qualitative claims
 manual = [
@@ -97,14 +87,13 @@ manual = [
          evidence_path="results/ALIGN02_semantic_sbert/skill_semantic_matches.csv",
          scientific_concern="", proposed_action="None."),
     dict(claim_id="M03", manuscript_location="Sec.III-A; Tab.I",
-         exact_claim="Corpus = 15 datasets, 3,176,266 records, analyzed",
-         ms_value="3,176,266 across 15", artifact_value="manifest sum=3,176,266; ~9 datasets feed experiments",
-         reproduction_status="partially_reproduced",
-         evidence_path="experiments/exp_scripts/*.py input map; DATASET_MANIFEST.csv",
-         scientific_concern=("Six datasets (HF jobs table, USA market, career-change, AI 15K, India skills, "
-                              "NGESS, fresher) are inventory-only; HF jobs+skills are linked tables of the same "
-                              "postings (~519,841 unique), so '3.18M records' mixes units and double-counts."),
-         proposed_action="Phase 2/9: restate as '15 archived datasets; N_analyzed = X postings + Y student records'."),
+         exact_claim="Corpus = 15 open datasets; unique records 2.64M (raw sum 3.18M with linked-pair note)",
+         ms_value="2.64M unique / 3.18M raw inventory",
+         artifact_value="manifest corrected; unique = sum - HF jobs = 2,643,703",
+         reproduction_status="reproduced",
+         evidence_path="experiments/exp_scripts/*.py input map; DATASET_MANIFEST.csv (corrected); paper/main.tex Sec.III-A",
+         scientific_concern="Prior '3.18M analyzed' mixed units and double-counted linked HF tables; now disclosed.",
+         proposed_action="DONE (Phase 9): manuscript reports unique + raw + nine-source usage."),
     dict(claim_id="M04", manuscript_location="Tab.I; Sec.III-A",
          exact_claim="India Skills Intelligence = synthetic profiles (disclosed)",
          ms_value="synthetic, calibrated", artifact_value="manifest says 'Synthetic workforce profiles...'",
@@ -113,13 +102,21 @@ manual = [
          scientific_concern="Correctly labeled synthetic; not used in any experiment (inventory only). Keep label in any reanalysis.",
          proposed_action="None beyond keeping the disclosure."),
     dict(claim_id="M05", manuscript_location="Sec.V-A (hyp. verdicts) para + Tab.XIII",
-         exact_claim="H6 not supported: risk difference +0.08 pp, p=0.62; table cites INTL01",
-         ms_value="+0.08 pp / INTL01 / p=0.62",
-         artifact_value="college RD=-0.44 pp (computed); STAT01 OR=1.02 p=0.6197; INTL01 RD=+15.34 pp p~0",
-         reproduction_status="contradicted",
-         evidence_path="datasets/kaggle/college-student-placement/college_student_placement_dataset.csv (computed 2026-10-11); results/STAT01.../metrics.json; results/INTL01.../metrics.json",
-         scientific_concern="Two defects: (a) '+0.08 pp' matches no artifact (true univariate RD=-0.44 pp); (b) experiment misattribution INTL01 vs STAT01.",
-         proposed_action="Fix in Phase 9: H6 verdict -> 'Not supported (STAT01: OR=1.02, p=0.62; univariate RD=-0.44 pp)'."),
+         exact_claim="H6 not supported: univariate RD -0.44 pp; OR=1.02 p=0.62; table cites STAT01",
+         ms_value="-0.44 pp / STAT01 / p=0.62",
+         artifact_value="college RD=-0.4442 pp (audit/05_stat_reproduction.json); STAT01 OR=1.02 p=0.6197; INTL01 +15.34 pp used only for H5",
+         reproduction_status="reproduced",
+         evidence_path="audit/05_stat_reproduction.json; results/STAT01.../metrics.json; results/INTL01.../metrics.json",
+         scientific_concern="FIXED Phase 9: prior '+0.08 pp' and INTL01 misattribution corrected.",
+         proposed_action="DONE."),
+    dict(claim_id="M09", manuscript_location="Sec.IV-B2",
+         exact_claim="Matched-profile 2x2: HF/LinkedIn identical SGI at equal P (0.52/0.32 @ P=100; 0.37/0.14 @ P=500)",
+         ms_value="identical at matched P",
+         artifact_value="audit/_sgi_sensitivity/*.json; hf_acad500.json lex 0.37 [0.28,0.47] sem0.5 0.14 [0.08,0.21]",
+         reproduction_status="reproduced",
+         evidence_path="audit/_sgi_sensitivity/lexical_profile_size_sweep.json; linkedin_matched_profile.json; hf_acad500.json",
+         scientific_concern="Profile-size confound previously misattributed to corpus vocabulary; now correctly framed.",
+         proposed_action="DONE (Phase 9)."),
     dict(claim_id="M06", manuscript_location="Sec.IV-B1 (VALID01)",
          exact_claim="VALID01 metrics n_positive_by_type hard_neg=0, random_neg=0 but n_negative=1,769",
          ms_value="1,769 negatives", artifact_value="breakdown dict zeros (pair_results.csv has types)",

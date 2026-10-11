@@ -1,12 +1,21 @@
 [
   {
     "id": "C01",
-    "claim": "15 datasets totaling 3,176,266 records",
-    "ms_value": 3176266,
-    "artifact_value": 3176266,
+    "claim": "raw inventory sum vs unique-record accounting",
+    "ms_value": 3163517,
+    "artifact_value": 3163517,
     "match": true,
-    "evidence": "datasets/DATASET_MANIFEST.csv column 'records' sum",
-    "note": "n_manifest_rows=15"
+    "evidence": "datasets/DATASET_MANIFEST.csv (audit-corrected) column 'records' sum",
+    "note": "pre-audit raw sum was 3,176,266 with three wrong counts; corrected sum=3163517"
+  },
+  {
+    "id": "C01a",
+    "claim": "unique records 2,643,703 claimed after linked-pair dedup",
+    "ms_value": 2643703,
+    "artifact_value": 2643703,
+    "match": true,
+    "evidence": "manifest sum minus HF jobs row count (linked pair)",
+    "note": ""
   },
   {
     "id": "C01b",
@@ -19,11 +28,11 @@
   },
   {
     "id": "C02",
-    "claim": "LinkedIn records 1,348,510 (Table I)",
-    "ms_value": 1348510,
-    "artifact_value": 1348510,
+    "claim": "LinkedIn records 1,348,454 (Table I, corrected)",
+    "ms_value": 1348454,
+    "artifact_value": 1348454,
     "match": true,
-    "evidence": "manifest",
+    "evidence": "manifest (audit-corrected)",
     "note": ""
   },
   {
@@ -33,7 +42,7 @@
     "artifact_value": 1348454,
     "match": true,
     "evidence": "results/GEO01_linkedin_shares/metrics.json",
-    "note": "DISCREPANCY vs manifest 1,348,510 (delta=56): GEO01 used linkedin_job_postings.csv row count"
+    "note": "matches corrected manifest (was 1,348,510 pre-audit)"
   },
   {
     "id": "C03",
@@ -51,6 +60,15 @@
     "artifact_value": 10345,
     "match": true,
     "evidence": "results/TRENDS01_ai_longitudinal/metrics.json",
+    "note": ""
+  },
+  {
+    "id": "C05",
+    "claim": "academic reference n=1,167 (corrected; was 13,833)",
+    "ms_value": 1167,
+    "artifact_value": 1167,
+    "match": true,
+    "evidence": "manifest (audit-corrected) / hf_job_skill_set.csv rows",
     "note": ""
   },
   {
@@ -965,10 +983,10 @@
   },
   {
     "id": "C150",
-    "claim": "3,176,266 appears in tex",
+    "claim": "raw sum 3,176,266 retained as inventory note (unique 2.64M primary)",
     "ms_value": null,
     "artifact_value": true,
-    "match": null,
+    "match": true,
     "evidence": "paper/main.tex / metrics",
     "note": ""
   },
@@ -977,53 +995,71 @@
     "claim": "148,765 communication postings (RQ1)",
     "ms_value": null,
     "artifact_value": true,
-    "match": null,
+    "match": true,
     "evidence": "paper/main.tex / metrics",
     "note": ""
   },
   {
     "id": "C152",
-    "claim": "H6 +0.08 pp risk difference stated",
+    "claim": "H6 states RD -0.44 pp (college cohort, corrected; +0.08 may appear only in revision log)",
     "ms_value": null,
-    "artifact_value": false,
-    "match": null,
+    "artifact_value": true,
+    "match": true,
     "evidence": "paper/main.tex / metrics",
     "note": ""
   },
   {
     "id": "C153",
-    "claim": "tab:hypotheses cites INTL01 for H6 p=0.62",
+    "claim": "tab:hypotheses cites STAT01 for H6 (not INTL01)",
     "ms_value": null,
     "artifact_value": true,
-    "match": null,
+    "match": true,
     "evidence": "paper/main.tex / metrics",
     "note": ""
   },
   {
     "id": "C154",
-    "claim": "519,814 skill requirements (RQ1)",
+    "claim": "519,814 skill-annotated postings (RQ1, corrected wording)",
     "ms_value": null,
     "artifact_value": true,
-    "match": null,
+    "match": true,
     "evidence": "paper/main.tex / metrics",
     "note": ""
   },
   {
     "id": "C155",
-    "claim": "ALIGN03 n_postings 518,953 vs 519,814",
+    "claim": "ALIGN03 n_postings 518,953 is analyzed subset (documented)",
     "ms_value": null,
-    "artifact_value": false,
-    "match": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C156",
+    "claim": "profile-size confound documented (matched-profile 2x2 in Sec.IV-B2)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C157",
+    "claim": "academic reference 1,167 stated (not 13,833 as taxonomy)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
     "evidence": "paper/main.tex / metrics",
     "note": ""
   },
   {
     "id": "C152b",
-    "claim": "H6 risk difference +0.08 pp has artifact support",
-    "ms_value": 0.08,
-    "artifact_value": null,
-    "match": false,
-    "evidence": "no metrics.json/CSV found containing internship risk difference 0.08pp",
-    "note": "SUSPECTED DEFECT: number appears only in manuscript prose (line 592)"
+    "claim": "H6 college RD -0.44 pp is artifact-supported (audit Phase 5)",
+    "ms_value": -0.44,
+    "artifact_value": -0.4442,
+    "match": true,
+    "evidence": "audit/05_stat_reproduction.json (intern_RD_pp=-0.4442); STAT01 OR=1.02 p=0.62",
+    "note": "FIXED in Phase 9: manuscript now reports -0.44 pp; prior '+0.08 pp' retracted"
   }
 ]
