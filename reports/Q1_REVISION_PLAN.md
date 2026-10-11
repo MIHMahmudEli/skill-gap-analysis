@@ -167,6 +167,32 @@ corpus" removed — the surviving claim is persistence of the reduction at
 matched covering-set size (the identical matched values themselves stay in
 the ALIGN04 body text, where the P-matched design is stated).
 
+**P2-3b draft — proposed abstract corpus-sentence replacement (author review,
+2026-10-12):** the current abstract's opening corpus claim
+
+> We examine academic--industry alignment using 15 open datasets (2.12M unique
+> records after removing linked-table and nested-corpus duplication) collected
+> from LinkedIn, HuggingFace, and public benchmark repositories spanning 2020
+> through 2026.
+
+is the last remaining single all-purpose record count in the abstract
+(`paper/main.tex` body, contributions, conclusion, Table I, and README were
+replaced with the unit-typed breakdown in this step). Replace with (draft):
+
+> We examine academic--industry alignment using 15 open datasets spanning
+> 2020 through 2026: 1.35M real web-mined job postings from a single LinkedIn
+> scrape family (with a posting-derived academic reference profile of 1,167
+> postings from the same family), 316K aggregated title--skill count rows of
+> unverifiable provenance, and 458K synthetic benchmark rows (including 421K
+> generated student records used only for the methods-audit analyses). All
+> gap-measurement results rest on the real posting family alone.
+
+and the methodological clause "(4) 5-fold stratified cross-validation …
+accompanied by decision-boundary diagnostics and independent external
+validation" should drop "independent" (external cohorts are synthetic
+benchmarks of the same generative family — `reports/REAL_VS_SYNTHETIC_
+FINDINGS.md` §C). Nothing applied until author approval.
+
 ---
 
 ## Phase 3 — Domain-gap credibility (ALIGN05)

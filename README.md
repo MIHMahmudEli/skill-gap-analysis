@@ -9,12 +9,30 @@ GPU-executed experiment**.
 ## Overview
 
 The project analyzes 15 publicly available open datasets (**3,163,517 raw rows**,
-which de-duplicate to **2,123,889 unique records**: the HuggingFace jobs and
-skills tables share an identical set of 519,814 `job_link` identifiers (a linked
-posting–skill pair, counted once), and that entire pair is a strict subset of the
-LinkedIn 2024 postings table — verified pairwise in `datasets/OVERLAP_AUDIT.csv`)
-from LinkedIn, Kaggle, and HuggingFace and answers five research questions
+de-duplicating to **2,123,889 unique rows** — a row total that pools four
+incompatible row units, not an all-purpose record count), acquired from
+LinkedIn, Kaggle, and HuggingFace and answers five research questions
 (RQ1–RQ5):
+
+- **1,349,621 real web-scraped posting rows** — the LinkedIn 2024 scrape
+  (1,348,454; root of the scrape family) plus a 1,167-posting posting-derived
+  academic reference. The HuggingFace jobs and skills tables share an identical
+  set of 519,814 `job_link` identifiers (a linked posting–skill pair, counted
+  once), and that entire pair is a strict subset of the LinkedIn 2024 postings
+  table — verified pairwise in `datasets/OVERLAP_AUDIT.csv` — so it contributes
+  **0** new postings (its 519,814 skill-pair rows vanish on de-duplication).
+- **316,279 aggregated title × skill count rows** — the USA job-market file,
+  whose source scrape is **unverifiable** (aggregate rows, not postings).
+- **457,989 synthetic rows** — the AI job series (10,345), the AI salary file
+  (15,000), India skills profiles (12,000; its own README states "generated,
+  not collected"), and **420,644 generated student/alumni records** (all seven
+  placement/graduate benchmarks; generator evidence in
+  `datasets/REAL_VS_SYNTHETIC.csv`).
+
+The headline gap-measurement results (RQ2/RQ3: SGI 52% → 32%) rest entirely on
+the real posting family; `reports/REAL_VS_SYNTHETIC_FINDINGS.md` lists which
+RQ1/RQ4/RQ5 elements currently run on synthetic benchmarks and the proposed
+changes (pending author approval).
 
 - **RQ1** — market skill topography and 2020–2026 trends
 - **RQ2** — lexical vs. semantic (Sentence-BERT) reference-profile alignment (SGI)
