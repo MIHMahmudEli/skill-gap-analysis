@@ -1,16 +1,22 @@
 # FINAL READINESS REPORT — Q1 Journal Submission
 
-*Date: 2026-10-11 · Branch: `q1-readiness-package` · Manuscript: `paper/main.tex` / `paper/main.pdf` (16 pp).*
+*Date: 2026-10-11 · Branch: `q1-readiness-package` · Updated after independent
+adversarial review (see `FINAL_ADVERSARIAL_REVIEW.md`). Manuscript:
+`paper/main.tex` / `paper/main.pdf` (**15 pp** after removing internal Revision Log).*
 
 ---
 
 ## 1. Final readiness verdict
 
-**CONDITIONALLY READY.** Scientific blockers that previously made submission
-unsafe (contradicted H6, corpus count inflation, profile-size confound
-misattribution, weak citation) are resolved with artifact evidence. Remaining
-gaps are **design limitations** (proxy academic profile), **recommended
-hardening**, and **venue conversion** — not hidden defects.
+**CONDITIONALLY READY** (verdict **B** — independent adversarial review).
+
+Scientific blockers that previously made submission unsafe (contradicted H6,
+corpus count inflation, profile-size confound misattribution, weak citation,
+internal revision log in PDF, residual “syllabus” mislabels) are resolved with
+artifact evidence. Remaining gaps are **design limitations** (proxy academic
+profile), **venue conversion**, and **human proofread** — not hidden defects.
+
+Do not treat this as an acceptance prediction.
 
 Gate checklist:
 
@@ -24,8 +30,8 @@ Gate checklist:
 | Measurement validity described | YES (VALID01 + limitations; residual C-1/R-5) |
 | References verified with statuses | YES (52 rows) |
 | LaTeX synced; figures/tables verified | YES |
-| PDF compiles | YES (pdflatex+bibtex, 0 errors) |
-| No internal audit clutter in submission PDF | YES (audit lives under `audit/`) |
+| PDF compiles | YES (pdflatex+bibtex, 0 errors; **15 pp** post-adversarial edits) |
+| No internal audit clutter in submission PDF | YES (Revision Log removed 2026-10-11 adversarial pass) |
 | Independent critical review of strongest claims | YES (Phase 3/F + this package) |
 
 **Do not treat “conditionally ready” as acceptance prediction.** Q1 acceptance

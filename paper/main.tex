@@ -86,7 +86,7 @@ To address these questions, we analyze 15 open datasets (2.64M unique records; n
 
 \textbf{Contributions:} This work makes six contributions:
 \begin{enumerate}
-    \item \textbf{Harmonized Multi-Source Corpus:} We assemble 15 open datasets (2.64M unique records), combining online job postings, curriculum descriptors, and graduate placement cohorts covering 2020 through 2026.
+    \item \textbf{Harmonized Multi-Source Corpus:} We assemble 15 open datasets (2.64M unique records), combining online job postings, a job-derived academic reference profile, and graduate placement cohorts covering 2020 through 2026.
     \item \textbf{Dual Lexical--Semantic Analysis:} Using Sentence-BERT (\texttt{all-MiniLM-L6-v2}) alongside exact string matching, we show that exact matching yields a 52.0\% gap, whereas semantic vector alignment reduces this estimate to 32.0\% at $\tau = 0.5$.
     \item \textbf{Externally Validated Measurement Instrument:} Beyond in-sample estimates, we validate the matcher against expert ESCO gold mappings ($\kappa = 0.737$), replicate both gap indices on an independent 1.29M-posting corpus, and anchor the academic reference profile to the CS2023 curricular Body of Knowledge---three complementary forms of criterion validity.
     \item \textbf{Threshold Sensitivity Estimation:} We compute 1,000-fold bootstrap confidence intervals across four similarity thresholds ($\tau \in \{0.4, 0.5, 0.6, 0.7\}$) to evaluate how threshold selection affects gap measurement.
@@ -207,7 +207,7 @@ Skill extraction from text is conducted using regularized n-gram tokenization ma
 \caption{Semantic Skill Extraction and Embedding Alignment}
 \label{alg:skill_extract}
 \begin{algorithmic}[1]
-\REQUIRE Market text corpus $\mathcal{D}_M$, Academic syllabus corpus $\mathcal{D}_A$, Taxonomy $\mathcal{C}$, Sentence-BERT model $\mathcal{E}$, Threshold $\tau$
+\REQUIRE Market text corpus $\mathcal{D}_M$, Academic reference-profile corpus $\mathcal{D}_A$, Taxonomy $\mathcal{C}$, Sentence-BERT model $\mathcal{E}$, Threshold $\tau$
 \ENSURE Market skill set $\mathcal{M}$, Academic skill set $\mathcal{A}$, Similarity matrix $\mathbf{S}$, Gap Index $\text{SGI}(\tau)$
 \STATE $\mathcal{M} \leftarrow \emptyset, \mathcal{A} \leftarrow \emptyset$
 \FORALL{$d \in \mathcal{D}_M$}
@@ -215,7 +215,7 @@ Skill extraction from text is conducted using regularized n-gram tokenization ma
     \STATE $\mathcal{M} \leftarrow \mathcal{M} \cup T_d$
 \ENDFOR
 \FORALL{$d \in \mathcal{D}_A$}
-    \STATE Extract normalized syllabus tokens $T_a \leftarrow \text{Tokenize}(d, \mathcal{C})$
+    \STATE Extract normalized reference-profile tokens $T_a \leftarrow \text{Tokenize}(d, \mathcal{C})$
     \STATE $\mathcal{A} \leftarrow \mathcal{A} \cup T_a$
 \ENDFOR
 \STATE Filter $\mathcal{M}_{\text{top}} \leftarrow \text{Top-}K(\mathcal{M}), \mathcal{A}_{\text{top}} \leftarrow \text{Top-}P(\mathcal{A})$ \COMMENT{$K{=}100$; $P{\in}\{100,500\}$ by experiment (Sec.~III)} 
@@ -235,7 +235,7 @@ Skill extraction from text is conducted using regularized n-gram tokenization ma
 
 Exact string matching can overestimate curriculum gaps when academic descriptions and job postings use different wording for equivalent skills (for example, ``interpersonal communication'' versus ``client communication skills''). To account for semantic similarity, we use the Sentence-BERT model (\texttt{all-MiniLM-L6-v2}) \cite{reimers2019sentence}.
 
-Let $\mathbf{e}_s \in \mathbb{R}^{384}$ denote the normalized dense vector embedding of market skill $s \in \mathcal{M}$, and let $\mathbf{e}_{s'} \in \mathbb{R}^{384}$ denote the embedding of academic syllabus descriptor $s' \in \mathcal{A}$. The semantic alignment score is given by:
+Let $\mathbf{e}_s \in \mathbb{R}^{384}$ denote the normalized dense vector embedding of market skill $s \in \mathcal{M}$, and let $\mathbf{e}_{s'} \in \mathbb{R}^{384}$ denote the embedding of academic reference-profile descriptor $s' \in \mathcal{A}$. The semantic alignment score is given by:
 \begin{equation}
 \text{sim}(s, s') = \frac{\mathbf{e}_s \cdot \mathbf{e}_{s'}}{\|\mathbf{e}_s\|_2 \|\mathbf{e}_{s'}\|_2}
 \label{eq:cosine}
@@ -333,7 +333,7 @@ Longitudinal tracking across 10,345 AI and data science postings from 2020 throu
 
 \subsection{RQ2: Lexical vs. Semantic Curriculum Alignment}
 
-Comparing exact string matching with semantic vector alignment illustrates the effect of phrasing on measured alignment. Under exact string matching, 48 of the Top 100 market skills match the Top 100 academic syllabus descriptors, corresponding to a nominal Skill Gap Index of 52.0\% (Coverage Rate $= 48.0\%$). Inspection of non-matching terms indicates that several disparities stem from synonymous wording (e.g., ``communication skills'' versus ``interpersonal skills'').
+Comparing exact string matching with semantic vector alignment illustrates the effect of phrasing on measured alignment. Under exact string matching, 48 of the Top 100 market skills match the Top 100 academic reference-profile descriptors, corresponding to a nominal Skill Gap Index of 52.0\% (Coverage Rate $= 48.0\%$). Inspection of non-matching terms indicates that several disparities stem from synonymous wording (e.g., ``communication skills'' versus ``interpersonal skills'').
 
 When evaluated using Sentence-BERT embeddings (\texttt{all-MiniLM-L6-v2}), semantic alignment yields lower gap estimates (Table~\ref{tab:sensitivity}). At baseline threshold $\tau = 0.5$, the estimated Skill Gap Index is 32.0\% (Coverage Rate $= 68.0\%$, 95\% bootstrap CI: [23.0\%, 41.0\%]).
 
@@ -614,13 +614,13 @@ H6 & Human capital (intern.) & Not supported (STAT01; RD $-0.44$ pp, OR $p=0.62$
 }
 \end{table}
 
-\textbf{1) Terminology Divergence and Semantic Alignment:} Studies evaluating curriculum alignment through exact keyword matching often report misalignment rates exceeding 50\% \cite{baral2026analyzing}. Our findings qualify this observation. While exact string matching yields an apparent gap of 52.0\%, dense vector embeddings reduce the estimated deficit to 32.0\% at $\tau = 0.5$ (95\% CI: [23.0\%, 41.0\%]). This divergence indicates that a portion of the measured gap arises from vocabulary differences: academic syllabi often describe learning outcomes using conceptual terms (e.g., interpersonal communication or database principles), whereas job postings emphasize specific tool names or operational tasks. That expert-annotated lexical agreement is near chance ($\kappa = 0.112$; VALID01) while semantic agreement is substantial ($\kappa = 0.737$) shows this is a measurement property of keyword methods, not a modeling preference.
+\textbf{1) Terminology Divergence and Semantic Alignment:} Studies evaluating curriculum alignment through exact keyword matching often report misalignment rates exceeding 50\% \cite{baral2026analyzing}. Our findings qualify this observation. While exact string matching yields an apparent gap of 52.0\%, dense vector embeddings reduce the estimated deficit to 32.0\% at $\tau = 0.5$ (95\% CI: [23.0\%, 41.0\%]). This divergence indicates that a portion of the measured gap arises from vocabulary differences: academic reference profiles and curricular descriptors often use conceptual terms (e.g., interpersonal communication or database principles), whereas job postings emphasize specific tool names or operational tasks. That expert-annotated lexical agreement is near chance ($\kappa = 0.112$; VALID01) while semantic agreement is substantial ($\kappa = 0.737$) shows this is a measurement property of keyword methods, not a modeling preference.
 
 \textbf{2) Complementary Signals in Graduate Placement:} The statistical associations observed for Communication Skills ($\text{OR} = 6.55$), CGPA ($\text{OR} = 6.28$), and Project Experience ($\text{OR} = 3.20$) illustrate how general and applied competencies interact in hiring outcomes. In terms of Signaling Theory \cite{spence1973job}, CGPA provides an initial screening signal of academic ability. However, completed projects provide concrete evidence of applied capability, reducing hiring uncertainty regarding technical execution. Communication proficiency represents a shared requirement across collaborative technical roles.
 
 \subsection{Institutional Factors in Curriculum Adaptation}
 
-The persistent 32.0\% semantic deficit, and the domain-level deficits concentrated in Cloud Infrastructure (2.45 pp lexical; 0.94 pp semantic) and Programming \& Development (1.69 pp lexical), reflect institutional constraints in curriculum adaptation \cite{biggs1996enhancing}:
+The persistent 32.0\% semantic deficit, and the domain-level deficits concentrated in Cloud Infrastructure (2.45 pp lexical; 0.94 pp semantic) and Programming \& Development (1.69 pp lexical), are consistent with---though do not by themselves establish---institutional constraints in curriculum adaptation \cite{biggs1996enhancing}:
 \begin{enumerate}
     \item \textbf{Curriculum Governance and Accreditation:} Formal degree reviews and accreditation bodies operate on multi-year cycles (typically 3 to 6 years). Modifying course requirements or introducing new technical electives requires administrative and faculty committee approvals that lag industry tool adoption.
     \item \textbf{Faculty Development Latency:} Teaching rapidly evolving frameworks (e.g., container orchestration, distributed cloud platforms, specific ML toolchains) requires ongoing technical training, which institutional development budgets rarely prioritize over core research obligations.
@@ -694,32 +694,6 @@ Several methodological constraints should be considered when interpreting these 
 Across 15 open datasets (2.64M unique records) spanning 2020 through 2026, this empirical investigation demonstrates that curriculum--market misalignment is twofold. A substantial share of the apparent deficit reflects vocabulary divergence between academic descriptors and recruitment postings (the SGI falls from 52\% to 32\% under semantic alignment, and several domain deficits shrink by more than half), while substantive residual gaps remain concentrated in rapidly evolving technical areas, specifically Cloud Infrastructure and Programming \& Development. The instrument supporting this claim is itself tested three ways: expert-gold agreement ($\kappa = 0.737$), cross-corpus replication on 1.29M independent postings (both indices strictly positive with invariant ordering; identical SGI at matched academic covering-set size), and anchoring to the CS2023 curricular guidelines (validity concentrated in applied knowledge areas). Methodologically, the analysis cautions against relying on in-distribution benchmark evaluations alone: near-perfect classification scores can mask synthetic threshold rules that degrade under domain shift on external cohorts. In practical terms, addressing this divide does not necessitate wholesale curriculum redesign. Integrating modular credentials into established courses, requiring verifiable applied project portfolios, and adopting semantic matching in hiring workflows offer feasible steps toward aligning academic preparation with contemporary workforce demands.
 
 \FloatBarrier
-
-% ============================================================
-% REVISION LOG (Q1-readiness audit, 2026-10-11; branch q1-readiness-audit)
-% ============================================================
-\section*{Revision Log}
-\label{sec:revision-log}
-\noindent
-This version incorporates corrections from a full claim/data/statistics
-reproducibility audit (ledger: 103 claims; scripts under \texttt{audit/}):
-(i) corpus accounting now reports 2.64M unique records (raw row-sum
-3.18M double-counts the linked HF jobs--skills pair) and the academic
-reference as $n = 1{,}167$ postings, not a 13,833-row taxonomy;
-(ii) Table~\ref{tab:datasets} record counts corrected for LinkedIn
-(1,348,454) and HF jobs (519,814);
-(iii) RQ1 wording clarified (519,814 skill-\emph{annotated postings});
-(iv) Section~\ref{sec:align04} rewritten: the prior ``identical
-procedures'' / vocabulary-composition explanation is replaced by a
-matched-profile $2 \times 2$ sensitivity showing SGI is governed by
-academic covering-set size ($P \in \{100, 500\}$), not market corpus;
-(v) H6 verdict corrected: college-cohort internship risk difference is
-$-0.44$ pp (not $+0.08$), test attribution moved from INTL01 to STAT01;
-(vi) weak citation at the curriculum-profile sentence replaced with a
-methods-accurate phrasing; (vii) bibliography DOIs completed for five
-entries and one year corrected (Crossref-verified). Full defect register:
-\texttt{audit/01\_claim\_evidence\_ledger.csv} and
-\texttt{audit/12\_final\_readiness\_report.md}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

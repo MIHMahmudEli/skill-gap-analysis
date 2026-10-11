@@ -15,7 +15,11 @@ Package branch: `q1-readiness-package`.
 | 2026-10-10–11 | Journal format constraints (ToE/BJET/IJETHE) | `audit/11_journal_format.md`; live author pages |
 | 2026-10-11 | **This package:** `audit/q1_readiness/*` deliverables generated from verified artifacts | `build_package.py`; SCImago snapshot for quartiles |
 | 2026-10-11 | `reference_audit.csv` (52), `dataset_audit.csv` (18), `experiment_audit.csv` (12), `claim_evidence_matrix.csv` (108) | Built from prior-audit CSVs/JSON; no new fabricated rows |
+| 2026-10-11 | **Adversarial re-verification:** branch/commit/tests/12 artifacts/H6 raw recompute/PDF rebuild | `FINAL_ADVERSARIAL_REVIEW.md` |
+| 2026-10-11 | **Manuscript hygiene:** removed internal Revision Log from `main.tex` (PDF 16→15 pp) | Phase 7 submission rule |
+| 2026-10-11 | **Construct wording:** Algorithm/embedding/RQ2/Discussion “syllabus” → reference-profile; contribution corpus bullet fixed; curriculum-adaptation claim narrowed | Adversarial V-2…V-4 |
+| 2026-10-11 | Independent re-run of H6 from raw CSV: RD −0.4442 pp matches STAT01 | `college_student_placement_dataset.csv` |
 
 **Invariants:** no raw data edits; no experiment metric edits; no silent
 estimand changes; no fabricated citations; audit notes kept out of
-`paper/main.tex` body (anonymized Revision Log only).
+`paper/main.tex` body.

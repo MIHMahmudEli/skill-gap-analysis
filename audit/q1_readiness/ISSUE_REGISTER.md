@@ -39,3 +39,9 @@ not wording alone (wording-only resolutions marked as such).
 | R-11 | LOW | Phase 11 | `make_latex.py` can clobber crosscorpus table | Prefer hand table or update generator | **OPEN** |
 | G-1 | MEDIUM | Phase 1 inventory | Orphan datasets in repo | Document unused; no claim of use | **RESOLVED** (documented) |
 | G-2 | LOW | Phase 2 | ai_job_dataset vs ai_job_dataset1 duplicate copies | Inventory flag | **OPEN (inventory)** |
+| A-1 | HIGH | Adversarial V-1 | Internal Revision Log in submission PDF | Remove from `main.tex` | **RESOLVED** 2026-10-11 |
+| A-2 | MEDIUM | Adversarial V-2 | Residual “syllabus” labels on job-derived profile | Replace with reference-profile wording | **RESOLVED** 2026-10-11 |
+| A-3 | MEDIUM | Adversarial V-3 | Contribution “curriculum descriptors” | → job-derived academic reference profile | **RESOLVED** 2026-10-11 |
+| A-4 | MEDIUM | Adversarial V-4 | Deficits “reflect” curriculum adaptation (causal tone) | Narrow to “consistent with… do not by themselves establish” | **RESOLVED** 2026-10-11 |
+| A-5 | LOW | Adversarial V-5/V-6 | C120/C143 1-dp rounding | Accept as display rounding | **ACCEPTED** |
+| A-6 | MEDIUM | Adversarial Phase 7 | BJET word budget (~6.6k body vs ~6k) | Venue conversion after owner choice | **OPEN (author)** |

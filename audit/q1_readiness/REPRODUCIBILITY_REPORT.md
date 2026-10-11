@@ -25,8 +25,10 @@
 | `python audit/verify_citations.py` | 52 entries; 35 DOI verified; 0 unresolved; 17 no-DOI justified |
 | `python reproduce_local.py` | stages: env, checksums (9/9), verify (12/12), claims, stats, citations — **all ok** |
 | `python -m pytest tests/ -q` | **13 passed** |
-| pdflatex + bibtex + pdflatex ×2 (`paper/`) | **16 pp; 0 errors / 0 undefined / 0 overfull** (prior session; PDF tracked) |
+| pdflatex + bibtex + pdflatex ×2 (`paper/`) | **15 pp; 0 errors / 0 undefined / 0 overfull** (post-adversarial rebuild; Revision Log removed) |
 | `python audit/q1_readiness/build_package.py` | wrote reference (52), experiment (12), claim (108), dataset (18) CSVs |
+| Independent H6 recompute (raw CSV) | RD −0.4442 pp; rates 16.32%/16.77% — matches STAT01 |
+| `pytest` re-run after manuscript edits | **13 passed** |
 
 ## 3. Tests
 
