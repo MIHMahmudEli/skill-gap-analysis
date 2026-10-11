@@ -91,7 +91,7 @@ python reproduce_local.py           # full local gate (skippable stages via --sk
 # PDF: cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 
-Kaggle GPU re-runs: see `experiments/scheduler.py` and `reports/EXPERIMENT_REPORT.md`.
+Kaggle GPU re-runs: see `experiments/scheduler.py` and `archive/EXPERIMENT_REPORT.md` (superseded pre-audit record).
 
 ## Experiment Lifecycle
 

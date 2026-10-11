@@ -70,7 +70,7 @@ threshold.
 experiments do not share one definition of the academic reference profile.
 ALIGN01/ALIGN02 compare market top-100 against academic **top-100**
 (symmetric — the headline "52% → 32%" instrument), but ALIGN04's LinkedIn
-replication compares market top-100 against academic **top-500**
+nested-superset check compares market top-100 against academic **top-500**
 (`most_common(PROFILE_N)` with no `.head(TOP_N)` — asymmetric). Under the
 symmetric instrument LinkedIn lexical SGI@K=100 is **0.52**, not the
 published 0.37; the 0.37 reproduces exactly only under ALIGN04's asymmetric
