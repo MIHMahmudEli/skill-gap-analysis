@@ -1,0 +1,559 @@
+{
+  "generated_utc": "2026-10-11T12:39:UTC",
+  "seed": 42,
+  "min_chars": 40,
+  "max_chars": 500,
+  "units_extracted": 41,
+  "phrases_kept_total": 799,
+  "phrases_with_taxonomy_hit": 170,
+  "drop_reasons_total": {
+    "too_short": 400,
+    "metadata_section": 145,
+    "duplicate": 68,
+    "assessment_logistics": 47,
+    "enrollment_logistics": 39
+  },
+  "precision_design": {
+    "allocation": "proportional across (vintage_group, stratum) cells",
+    "seed": 42,
+    "sample_n": 100,
+    "population_n": 799
+  },
+  "recall_design": {
+    "allocation": "equal across (vintage_group, drop_reason) cells",
+    "seed": 42,
+    "population_n": 699,
+    "sample_n": 100,
+    "stratum_population_sizes": {
+      "legacy|assessment_logistics": 18,
+      "legacy|duplicate": 66,
+      "legacy|metadata_section": 132,
+      "legacy|too_short": 302,
+      "modern|assessment_logistics": 29,
+      "modern|duplicate": 2,
+      "modern|enrollment_logistics": 39,
+      "modern|metadata_section": 13,
+      "modern|too_short": 98
+    },
+    "weighting_note": "design-weighted recall = 1 - sum_c (N_c/N) * (wrong_c / n_c); N_c from stratum_population_sizes, n_c = sampled count per cell in this CSV"
+  },
+  "modern_candidate_units": 26,
+  "modern_by_institution": {
+    "MIT": 6,
+    "TU Delft": 14,
+    "Harvard": 6
+  },
+  "taxonomy_source": "experiments/exp_scripts/align03_domain_gap.py::SKILL_CATEGORIES",
+  "units": [
+    {
+      "unit_id": "MIT-60001",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 10,
+      "phrases_kept": 7,
+      "phrases_with_taxonomy_hit": 4,
+      "dropped": {
+        "too_short": 1,
+        "metadata_section": 6
+      }
+    },
+    {
+      "unit_id": "MIT-60002",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 10,
+      "phrases_kept": 6,
+      "phrases_with_taxonomy_hit": 4,
+      "dropped": {
+        "duplicate": 2,
+        "too_short": 1,
+        "metadata_section": 7
+      }
+    },
+    {
+      "unit_id": "MIT-6006",
+      "institution": "MIT",
+      "vintage_group": "modern",
+      "blocks": 15,
+      "phrases_kept": 9,
+      "phrases_with_taxonomy_hit": 1,
+      "dropped": {
+        "metadata_section": 2,
+        "assessment_logistics": 5,
+        "too_short": 7
+      }
+    },
+    {
+      "unit_id": "MIT-6034",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 9,
+      "phrases_kept": 6,
+      "phrases_with_taxonomy_hit": 4,
+      "dropped": {
+        "duplicate": 2,
+        "too_short": 1,
+        "metadata_section": 4
+      }
+    },
+    {
+      "unit_id": "MIT-6036",
+      "institution": "MIT",
+      "vintage_group": "modern",
+      "blocks": 15,
+      "phrases_kept": 8,
+      "phrases_with_taxonomy_hit": 5,
+      "dropped": {
+        "enrollment_logistics": 2,
+        "too_short": 2,
+        "metadata_section": 7
+      }
+    },
+    {
+      "unit_id": "MIT-6042",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 12,
+      "phrases_kept": 8,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "duplicate": 5,
+        "too_short": 1,
+        "metadata_section": 7
+      }
+    },
+    {
+      "unit_id": "MIT-1806",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 6,
+      "phrases_kept": 2,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "duplicate": 1,
+        "metadata_section": 3
+      }
+    },
+    {
+      "unit_id": "MIT-6046",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 14,
+      "phrases_kept": 5,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "duplicate": 1,
+        "metadata_section": 8
+      }
+    },
+    {
+      "unit_id": "TUD-ALG",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 19,
+      "phrases_kept": 11,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "too_short": 12,
+        "duplicate": 1
+      }
+    },
+    {
+      "unit_id": "MIT-6824",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 8,
+      "phrases_kept": 8,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "duplicate": 2,
+        "too_short": 1,
+        "metadata_section": 4
+      }
+    },
+    {
+      "unit_id": "MIT-6828",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 8,
+      "phrases_kept": 8,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "duplicate": 1,
+        "too_short": 1,
+        "metadata_section": 4
+      }
+    },
+    {
+      "unit_id": "STAN-CS107",
+      "institution": "Stanford",
+      "vintage_group": "legacy",
+      "blocks": 95,
+      "phrases_kept": 89,
+      "phrases_with_taxonomy_hit": 22,
+      "dropped": {
+        "too_short": 57,
+        "duplicate": 7,
+        "metadata_section": 2,
+        "assessment_logistics": 4
+      }
+    },
+    {
+      "unit_id": "STAN-CS229",
+      "institution": "Stanford",
+      "vintage_group": "legacy",
+      "blocks": 74,
+      "phrases_kept": 31,
+      "phrases_with_taxonomy_hit": 7,
+      "dropped": {
+        "too_short": 43,
+        "duplicate": 5,
+        "metadata_section": 18,
+        "assessment_logistics": 1
+      }
+    },
+    {
+      "unit_id": "STAN-EE263",
+      "institution": "Stanford",
+      "vintage_group": "legacy",
+      "blocks": 82,
+      "phrases_kept": 38,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "too_short": 47,
+        "duplicate": 11,
+        "metadata_section": 16,
+        "assessment_logistics": 4
+      }
+    },
+    {
+      "unit_id": "STAN-EE364A",
+      "institution": "Stanford",
+      "vintage_group": "legacy",
+      "blocks": 79,
+      "phrases_kept": 39,
+      "phrases_with_taxonomy_hit": 5,
+      "dropped": {
+        "too_short": 41,
+        "duplicate": 9,
+        "metadata_section": 16,
+        "assessment_logistics": 5
+      }
+    },
+    {
+      "unit_id": "STAN-EE364B",
+      "institution": "Stanford",
+      "vintage_group": "legacy",
+      "blocks": 81,
+      "phrases_kept": 54,
+      "phrases_with_taxonomy_hit": 7,
+      "dropped": {
+        "too_short": 44,
+        "duplicate": 10,
+        "metadata_section": 31,
+        "assessment_logistics": 1
+      }
+    },
+    {
+      "unit_id": "STAN-EE261",
+      "institution": "Stanford",
+      "vintage_group": "legacy",
+      "blocks": 102,
+      "phrases_kept": 53,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "too_short": 63,
+        "duplicate": 10,
+        "metadata_section": 2,
+        "assessment_logistics": 3
+      }
+    },
+    {
+      "unit_id": "HARV-CS50",
+      "institution": "Harvard",
+      "vintage_group": "modern",
+      "blocks": 14,
+      "phrases_kept": 9,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "assessment_logistics": 3,
+        "too_short": 1,
+        "enrollment_logistics": 9
+      }
+    },
+    {
+      "unit_id": "TUD-DS",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 22,
+      "phrases_kept": 23,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-AI1",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 17,
+      "phrases_kept": 20,
+      "phrases_with_taxonomy_hit": 8,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-AI2",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 31,
+      "phrases_kept": 29,
+      "phrases_with_taxonomy_hit": 10,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-QI",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 31,
+      "phrases_kept": 17,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "too_short": 14
+      }
+    },
+    {
+      "unit_id": "HARV-CS50AI",
+      "institution": "Harvard",
+      "vintage_group": "modern",
+      "blocks": 12,
+      "phrases_kept": 6,
+      "phrases_with_taxonomy_hit": 4,
+      "dropped": {
+        "too_short": 2,
+        "enrollment_logistics": 6
+      }
+    },
+    {
+      "unit_id": "HARV-CS50PY",
+      "institution": "Harvard",
+      "vintage_group": "modern",
+      "blocks": 10,
+      "phrases_kept": 11,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "too_short": 1,
+        "enrollment_logistics": 3,
+        "assessment_logistics": 2
+      }
+    },
+    {
+      "unit_id": "HARV-CS50SQL",
+      "institution": "Harvard",
+      "vintage_group": "modern",
+      "blocks": 11,
+      "phrases_kept": 12,
+      "phrases_with_taxonomy_hit": 4,
+      "dropped": {
+        "too_short": 1,
+        "enrollment_logistics": 4,
+        "assessment_logistics": 2
+      }
+    },
+    {
+      "unit_id": "HARV-CS50WEB",
+      "institution": "Harvard",
+      "vintage_group": "modern",
+      "blocks": 13,
+      "phrases_kept": 8,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "too_short": 2,
+        "enrollment_logistics": 6
+      }
+    },
+    {
+      "unit_id": "HARV-CS50CYB",
+      "institution": "Harvard",
+      "vintage_group": "modern",
+      "blocks": 10,
+      "phrases_kept": 9,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "too_short": 2,
+        "enrollment_logistics": 5
+      }
+    },
+    {
+      "unit_id": "TUD-TOC",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 19,
+      "phrases_kept": 15,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "too_short": 7
+      }
+    },
+    {
+      "unit_id": "TUD-AST",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 15,
+      "phrases_kept": 12,
+      "phrases_with_taxonomy_hit": 1,
+      "dropped": {
+        "too_short": 2,
+        "enrollment_logistics": 1
+      }
+    },
+    {
+      "unit_id": "TUD-AST2",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 16,
+      "phrases_kept": 14,
+      "phrases_with_taxonomy_hit": 1,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-GSE",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 22,
+      "phrases_kept": 19,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "too_short": 3
+      }
+    },
+    {
+      "unit_id": "TUD-FP",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 23,
+      "phrases_kept": 21,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-QC",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 28,
+      "phrases_kept": 26,
+      "phrases_with_taxonomy_hit": 8,
+      "dropped": {
+        "too_short": 4,
+        "enrollment_logistics": 2
+      }
+    },
+    {
+      "unit_id": "TUD-SV",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 17,
+      "phrases_kept": 15,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-AIP",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 19,
+      "phrases_kept": 17,
+      "phrases_with_taxonomy_hit": 16,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "TUD-AI3",
+      "institution": "TU Delft",
+      "vintage_group": "modern",
+      "blocks": 25,
+      "phrases_kept": 26,
+      "phrases_with_taxonomy_hit": 11,
+      "dropped": {
+        "too_short": 2
+      }
+    },
+    {
+      "unit_id": "MIT-6100L",
+      "institution": "MIT",
+      "vintage_group": "modern",
+      "blocks": 7,
+      "phrases_kept": 7,
+      "phrases_with_taxonomy_hit": 2,
+      "dropped": {
+        "duplicate": 1,
+        "too_short": 1,
+        "metadata_section": 4
+      }
+    },
+    {
+      "unit_id": "MIT-6033",
+      "institution": "MIT",
+      "vintage_group": "legacy",
+      "blocks": 10,
+      "phrases_kept": 8,
+      "phrases_with_taxonomy_hit": 3,
+      "dropped": {
+        "too_short": 1,
+        "metadata_section": 4
+      }
+    },
+    {
+      "unit_id": "MIT-18404J",
+      "institution": "MIT",
+      "vintage_group": "modern",
+      "blocks": 26,
+      "phrases_kept": 17,
+      "phrases_with_taxonomy_hit": 0,
+      "dropped": {
+        "assessment_logistics": 4,
+        "too_short": 8
+      }
+    },
+    {
+      "unit_id": "MIT-18S191",
+      "institution": "MIT",
+      "vintage_group": "modern",
+      "blocks": 17,
+      "phrases_kept": 13,
+      "phrases_with_taxonomy_hit": 1,
+      "dropped": {
+        "assessment_logistics": 4
+      }
+    },
+    {
+      "unit_id": "MIT-1805",
+      "institution": "MIT",
+      "vintage_group": "modern",
+      "blocks": 86,
+      "phrases_kept": 63,
+      "phrases_with_taxonomy_hit": 12,
+      "dropped": {
+        "too_short": 13,
+        "assessment_logistics": 9,
+        "enrollment_logistics": 1
+      }
+    }
+  ],
+  "human_validation_gate": {
+    "precision_sample": "validation_precision_100.csv",
+    "recall_sample": "validation_recall_100.csv",
+    "status": "AWAITING_AUTHOR_LABELLING_OR_WAIVER",
+    "note": "CURR02 must not run until these are labelled or waived (SELECTION_PROTOCOL.md section 7, step 4)"
+  }
+}
