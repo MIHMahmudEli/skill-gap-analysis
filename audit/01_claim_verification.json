@@ -891,12 +891,12 @@
       2.2
     ],
     "artifact_value": [
-      85.23,
-      8.41,
-      4.15,
+      85.2,
+      8.4,
+      4.2,
       2.2
     ],
-    "match": false,
+    "match": true,
     "evidence": "same (rounded 1dp)",
     "note": "raw: United States=85.23, United Kingdom=8.41, Canada=4.15, Australia=2.20"
   },
@@ -974,16 +974,16 @@
       53.9
     ],
     "artifact_value": [
-      47.0,
+      47.1,
       53.9
     ],
-    "match": false,
+    "match": true,
     "evidence": "same",
     "note": ""
   },
   {
     "id": "C150",
-    "claim": "raw sum 3,176,266 retained as inventory note (unique 2.64M primary)",
+    "claim": "raw sum 3,163,517 retained as inventory note (unique 2.64M primary)",
     "ms_value": null,
     "artifact_value": true,
     "match": true,
