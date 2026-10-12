@@ -321,3 +321,138 @@ If those four lines hold, the clean-room run is a pass at level L1.
 | ALIGN06 (O\*NET/BLS external demand profile) | pre-registered only; Â§9 license checklist must be signed before any download | `experiments/ALIGN06_PREREG.md` |
 | SENS01 first-run byte identity | unresolved determinism question; results are still reported with their recorded seeds | `reports/SENS01_DETERMINISM.md` |
 | Raw curriculum corpus (`datasets/curriculum/raw/`) | gitignored; needed only for CURR02 | `datasets/curriculum/SELECTION_PROTOCOL.md` |
+
+
+---
+
+## 13. Running the 5 Sentence-BERT experiments on a machine where `torch` loads
+
+`reports/CPU_VS_COMMITTED.md` records that 8 of 13 experiments were re-executed on
+CPU and reproduced all 288 compared numeric fields exactly, but that **5 experiments
+could not be re-run on the author's laptop**: `ALIGN02_semantic_sbert`,
+`ALIGN03_domain_gap`, `ALIGN04_crosscorpus_linkedin`, `CURR01_cs2023_anchor` and
+`VALID01_esco_gold` each `import torch`, and that import fails there with
+`ImportError: DLL load failed while importing _C: An Application Control policy has
+blocked this file` — the same local policy that blocks `statsmodels` in
+`reproduce_stats.py`. Their committed values are reported as **unchanged but
+unverified on CPU**, not as agreeing.
+
+This section closes that gap on any machine where `torch` loads (Linux or cloud;
+the author's Windows laptop is not one of them). Nothing here changes a committed
+artifact: outputs go to a separate directory, and the manuscript and
+`results/registry.json` are not touched.
+
+### 13.1 Prerequisites
+
+- Linux (Ubuntu 22.04/24.04 or similar) with Python 3.12 or 3.14.
+- ~6 GB free disk (the input bundle is 1.4 GB; embeddings dominate the rest).
+- No GPU required — these runs are CPU-only and single-threaded by design.
+- Network only for staging inputs and the model; go offline afterwards.
+
+### 13.2 Stage the environment
+
+```bash
+git clone https://github.com/MIHMahmudEli/skill-gap-analysis.git
+cd skill-gap-analysis
+python -m venv .venv && source .venv/bin/activate
+pip install --require-hashes -r requirements.txt   # or: pip install -r requirements.txt
+python -c "import torch, sentence_transformers; print(torch.__version__)"
+# must print a version, not ImportError. If it fails, fix the environment first.
+```
+
+### 13.3 Stage the raw inputs
+
+Route A (frozen bundle, §4) is what the committed artifacts were produced from:
+
+```bash
+export KAGGLE_USERNAME=... KAGGLE_KEY=...
+kaggle datasets download -d studyhub991/skill-gap-inputs-v1 -p _bundle --unzip
+export SKILLGAP_INPUT_DIR="$PWD/_bundle"
+sha256sum -c datasets/input_checksums.sha256
+```
+
+### 13.4 Re-run the 5 experiments, offline, single-threaded
+
+`scripts/run_cpu_rerun.py` pins every BLAS thread to 1, forces `PYTHONHASHSEED=42`,
+and routes each experiment's output to `results_cpu/<EXPERIMENT_ID>` via
+`SKILLGAP_OUTPUT_DIR`, so nothing under `results/` is written.
+
+```bash
+# go offline now: no further network is needed or used
+python scripts/run_cpu_rerun.py --only \
+  ALIGN02_semantic_sbert ALIGN03_domain_gap ALIGN04_crosscorpus_linkedin \
+  CURR01_cs2023_anchor VALID01_esco_gold
+```
+
+Each of the 5 prints `OK <seconds>` and writes `results_cpu/<ID>/metrics.json`.
+To a different tree (recommended, so this run cannot be confused with the
+author's), set the output root by copying the runner's output dir afterwards, or
+run from a clone and keep its `results_cpu/`.
+
+Expected wall time on 1 CPU core: ALIGN02 ~10 min, CURR01 ~10 min, VALID01 ~20 min,
+ALIGN03 ~45 min, ALIGN04 ~2--4 h (it embeds ~1.29M postings). Total ~3--5 h.
+
+### 13.5 Compare against the committed artifacts
+
+```bash
+python scripts/compare_cpu_results.py \
+  --cpu-dir results_cpu --ref-dir results \
+  --report reports/LINUX_VS_COMMITTED.md
+echo "exit=$?"     # 0 = every field within tolerance
+```
+
+The comparison walks every numeric leaf of each `metrics.json` recursively, with
+`max(1e-9, 1e-6 * |value|)` tolerance. Fields that legitimately vary between a GPU
+and a CPU run are excluded by construction (`runtime_sec`, `device`, seeds,
+statuses, timestamps, kernel slug, package versions) — they carry no claim.
+
+**What to expect, and why it is not necessarily zero.** For the 8 experiments that
+already re-ran on the author's CPU, every difference was exactly `0`: those use
+integer counts, rounded proportions and seeded-bootstrap percentiles that do not
+depend on the arithmetic's order. The 5 embedding experiments are different in
+kind — `SentenceTransformer.encode` accumulates float32 dot products in an order
+that depends on BLAS threading and the SIMD code path, so a GPU encoding and a CPU
+encoding of the same string can differ in the last bits, and those bits propagate
+into cosine similarities and hence into threshold decisions at $\tau$.
+
+Therefore:
+
+- A **small number of fields differing within $10^{-6}$ relative** (cosine
+  similarities, SGI at a threshold, bootstrap percentiles) is the expected and
+  acceptable outcome, and is exactly what `--report` quantifies. Record it; do not
+  hide it, and do not round it away.
+- A **headline SGI differing beyond $1e-6$ relative** is a stop condition. Report
+  it with both values, the diff, and the threshold at which the divergence
+  appears, and do not update the manuscript or the registry — the author decides
+  whether the divergence is a tolerance artefact or a genuine non-determinism
+  finding.
+- **Structural fields must not differ at all**: `n_rows`, token/vocabulary counts,
+  the number of pairs above threshold at every $\tau$, and any integer count.
+  A difference there is a bug in the re-run or a changed input, not float noise.
+
+To attribute a divergence to threading rather than to the data, re-run one
+experiment twice with a different thread count and compare those two runs to each
+other first:
+
+```bash
+OMP_NUM_THREADS=1  python scripts/run_cpu_rerun.py --only ALIGN02_semantic_sbert
+mv results_cpu/ALIGN02_semantic_sbert results_cpu_t1/ALIGN02_semantic_sbert
+OMP_NUM_THREADS=4  python scripts/run_cpu_rerun.py --only ALIGN02_semantic_sbert
+python scripts/compare_cpu_results.py --cpu-dir results_cpu_t1 --ref-dir results_cpu
+```
+
+If the two CPU runs already differ from each other beyond tolerance, the cause is
+BLAS threading, and the committed GPU values remain the reported ones with the
+divergence disclosed.
+
+### 13.6 What to do with the result
+
+- If all 5 are within tolerance: the manuscript sentence in
+  §Reproducibility and Data Availability may be strengthened from "not claimed
+  here as verified" to name the completed CPU verification. That edit is the
+  author's to make and requires a commit; it is not automatic.
+- If any headline metric exceeds tolerance: stop, write the comparison into
+  `reports/`, and escalate. Do not silently adopt the CPU value.
+- Either way, do not overwrite anything under `results/`, and do not regenerate
+  `results/verification_report.json` as a side effect — `experiments/verify.py`
+  writes it, so run it only if you intend to.
