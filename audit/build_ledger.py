@@ -19,6 +19,22 @@ EXP_EVIDENCE = {
 }
 
 rows = []
+# Phase 4 placement split: claims asserted only in the companion benchmark-audit
+# paper (paper_placement/main.tex).  C51/C52 are VALID01 and stay in the main
+# paper; C02b/C120 (geography) and C113 (Table I inventory row) stay in main.
+PLACEMENT = {
+    "C70", "C71", "C72", "C73", "C74", "C75", "C76", "C77", "C78", "C79",
+    "C80", "C81", "C82", "C83", "C84", "C85", "C86", "C87", "C88", "C89",
+    "C90", "C100", "C101", "C102", "C130", "C152", "C152b", "C153",
+    "C161", "M05", "M08",
+}
+# Claims asserted in both papers (e.g., inventory facts repeated in the
+# companion's corpus section).
+BOTH = {"C113"}
+# D3 (Phase 4): internship-effect claim dropped from both manuscripts; the
+# artifact stays archived.  Reproduction status is unchanged (the numbers are
+# still reproducible); only the assertion was withdrawn.
+DROPPED = {"C110", "C111", "C112"}
 for c in ver:
     cid = c["id"]
     if c["match"] is True:
@@ -36,8 +52,17 @@ for c in ver:
         # presence checks with match=None (legacy)
         status = "reproduced"
     ev = EXP_EVIDENCE.get(cid, c.get("evidence", ""))
+    if cid in DROPPED:
+        paper = "none (artifact retained)"
+    elif cid in BOTH:
+        paper = "main+placement"
+    elif cid in PLACEMENT:
+        paper = "placement"
+    else:
+        paper = "main"
     rows.append({
         "claim_id": cid,
+        "paper": paper,
         "manuscript_location": "",  # filled for key rows below
         "exact_claim": c["claim"],
         "ms_value": json.dumps(c["ms_value"]) if not isinstance(c["ms_value"], str) else c["ms_value"],
@@ -49,12 +74,12 @@ for c in ver:
     })
 
 LOC = {
-    "C01": "Abstract; Sec.I; Sec.III-A; Tab.I", "C01a": "Abstract; Sec.I; Sec.III-A", "C02": "Tab.I", "C02b": "Sec.V-E",
+    "C01": "Abstract; Sec.I; Sec.III-A; Tab.I", "C01a": "Abstract; Sec.I; Sec.III-A", "C02": "Tab.I", "C02b": "Sec.IV-A (RQ1 geography; GEO01)",
     "C05": "Tab.I", "C10": "Abstract; Sec.IV-B", "C11": "Abstract; Sec.IV-B", "C12": "Abstract",
     "C20": "Abstract; Sec.IV-C", "C30": "Sec.IV-B2", "C41": "Sec.IV-B3; Limit.3",
     "C50": "Abstract; Sec.IV-B1", "C70": "Sec.IV-D1", "C71": "Abstract; Sec.IV-D3",
     "C77": "Sec.IV-D4/D5", "C100": "Abstract; Sec.IV-D5", "C110": "Sec.V-E; Hyp.H5/H6",
-    "C120": "Sec.V-E", "C152": "Sec.V-A (hyp. verdicts)", "C152b": "Sec.V-A (hyp. verdicts)",
+    "C120": "Sec.IV-A (RQ1 geography; GEO01)", "C152": "Sec.V-A (hyp. verdicts)", "C152b": "Sec.V-A (hyp. verdicts)",
     "C153": "Tab.XIII", "C155": "Sec.IV-C vs ALIGN03 metrics",
     "C156": "Sec.IV-B2 (profile-size sensitivity)", "C157": "Sec.III-A; Tab.I; Limit.1",
 }
@@ -124,9 +149,9 @@ manual = [
          evidence_path="results/VALID01_esco_gold/metrics.json",
          scientific_concern="Metrics metadata bug (type counts not populated); pair-level CSV is fine; not manuscript-facing.",
          proposed_action="Optional cleanup in sync/verify; no manuscript change."),
-    dict(claim_id="M07", manuscript_location="Sec.I; contributions",
-         exact_claim="12 registered experiments; TRENDS01 retained in the registry but not used in the manuscript (RQ1-trend claims removed: benchmark is apparently synthetic)",
-         ms_value="twelve registered, eleven cited",
+    dict(claim_id="M07", manuscript_location="Sec.I; contributions (main); companion reproducibility table",
+         exact_claim="Registry holds 12 registered experiments; TRENDS01 retained in the registry but not used in either manuscript (RQ1-trend claims removed: benchmark is apparently synthetic); after the Phase 4 split no paper asserts a total count (main cites 8 registry rows incl. retained-unused TRENDS01, companion cites 4 placement experiments)",
+         ms_value="no total asserted (Phase 4); count-free wording",
          artifact_value="registry.json 12 entries; TRENDS01_ai_longitudinal.manuscript_use = not_used_in_manuscript",
          reproduction_status="reproduced",
          evidence_path="results/registry.json; experiments/verify.py",
@@ -150,8 +175,54 @@ manual = [
 ]
 
 all_rows = rows + manual
+
+# Phase 4 placement-split overrides (applied last, authoritative).
+LOC_P = {
+    "C70": "paper_placement Sec.IV-A (was main Sec.IV-D1)",
+    "C71": "paper_placement Sec.IV-A tab:logistic",
+    "C72": "paper_placement Sec.IV-A tab:logistic",
+    "C73": "paper_placement Sec.IV-A tab:logistic",
+    "C74": "paper_placement Sec.IV-A tab:logistic",
+    "C75": "paper_placement Sec.IV-A tab:logistic",
+    "C76": "paper_placement Sec.IV-A tab:logistic",
+    "C77": "paper_placement Sec.IV-D/E (CV + diagnostic audit)",
+    "C78": "paper_placement Sec.IV-E (diagnostic audit)",
+    "C79": "paper_placement Sec.IV-E (diagnostic audit)",
+    "C80": "paper_placement Sec.IV-D tab:model_comparison",
+    "C81": "paper_placement Sec.IV-D tab:model_comparison",
+    "C82": "paper_placement Sec.IV-E (k-of-n audit)",
+    "C83": "paper_placement Sec.IV-D tab:multiseed",
+    "C84": "paper_placement Sec.IV-D tab:multiseed",
+    "C85": "paper_placement Sec.IV-A (chi-square)",
+    "C86": "paper_placement Sec.IV-A (chi-square)",
+    "C87": "paper_placement tab:vif (was main tab:vif)",
+    "C88": "paper_placement tab:descriptive",
+    "C89": "paper_placement tab:descriptive",
+    "C90": "paper_placement tab:descriptive",
+    "C100": "paper_placement Sec.IV-E (external generalization; was main Sec.IV-D5)",
+    "C101": "paper_placement Sec.IV-E (external generalization)",
+    "C102": "paper_placement Sec.IV-E (external generalization)",
+    "C113": "main Tab.I; paper_placement Sec.III-A (corpus)",
+    "C130": "paper_placement Sec.IV-B (RQ5 cross-country; was main Sec.V-E)",
+    "C152": "paper_placement Sec.V-A (hyp. verdicts)",
+    "C152b": "paper_placement Sec.V-A (hyp. verdicts)",
+    "C153": "paper_placement tab:hypotheses",
+    "C161": "paper_placement Sec.V-A (hyp. verdicts)",
+    "M05": "paper_placement Sec.V-A (hyp. verdicts) para + tab:hypotheses",
+    "M08": "paper_placement Sec.IV-E (external generalization)",
+}
+for r in all_rows:
+    if "paper" not in r:  # manual rows
+        r["paper"] = "placement" if r["claim_id"] in PLACEMENT else "main"
+    if r["claim_id"] in LOC_P:
+        r["manuscript_location"] = LOC_P[r["claim_id"]]
+    if r["claim_id"] in DROPPED:
+        r["manuscript_location"] = ("removed from both manuscripts 2026-10-12 "
+                                    "(Phase 4 D3: internship-effect claim dropped; artifact retained)")
+        r["proposed_action"] = "DONE (Phase 4 D3): claim dropped from main and companion; INTL01 artifact archived."
+
 out = ROOT / "audit" / "01_claim_evidence_ledger.csv"
-fields = ["claim_id", "manuscript_location", "exact_claim", "ms_value", "artifact_value",
+fields = ["claim_id", "paper", "manuscript_location", "exact_claim", "ms_value", "artifact_value",
           "reproduction_status", "evidence_path", "scientific_concern", "proposed_action"]
 with out.open("w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=fields)

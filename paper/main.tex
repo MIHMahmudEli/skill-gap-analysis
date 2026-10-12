@@ -76,26 +76,25 @@ Prior empirical research on curriculum--market alignment exhibits four main limi
     \item \textbf{Limited Theoretical Grounding:} Computational employability models are frequently reported without reference to economic or educational frameworks that explain curriculum lag \cite{schlippe2023skill, eimer2023employability}.
 \end{enumerate}
 
-To address these questions, we analyze 15 open datasets (2.12M unique records; eight sources feed the experiments reported below) from LinkedIn, HuggingFace, and public benchmark repositories across five research questions:
+To address these questions, we analyze 15 open datasets (2.12M unique records; seven sources feed the experiments reported here) from LinkedIn, HuggingFace, and public benchmark repositories across three research questions:
 \begin{itemize}
     \item \textbf{RQ1 (Market Topography):} What are the most frequent skill requirements in online job postings?
     \item \textbf{RQ2 (Lexical versus Semantic Alignment):} To what degree do academic reference-profile descriptors align with market requirements when evaluated using exact string matching versus dense semantic vector embeddings?
     \item \textbf{RQ3 (Domain-Specific Deficits):} What is the magnitude of the skill deficit across distinct subject areas (Programming, Data Science, Cloud Infrastructure, Soft Skills, Cybersecurity)?
-    \item \textbf{RQ4 (Employability Determinants):} Which academic and behavioral features best predict graduate placement, and how do linear probabilistic models compare with tree ensembles under diagnostic cross-validation?
-    \item \textbf{RQ5 (Geographic Distribution and Cohort Differences):} How are posting demands distributed across international regions, and how do employment outcomes vary across distinct student cohorts?
 \end{itemize}
 
-\textbf{Contributions:} This work makes six contributions:
+The former RQ4/RQ5 placement analyses (employability determinants and cross-cohort placement dynamics; experiments STAT01, STAT02, PLAC01, INTL01) are reported in the companion benchmark-audit article (\texttt{paper\_placement/}); the geographic distribution of postings (GEO01) is reported within RQ1 above.
+
+\textbf{Contributions:} This work makes five contributions:
 \begin{enumerate}
     \item \textbf{Harmonized Multi-Source Corpus:} We assemble 15 open datasets---1.35M real web-mined job postings, a posting-derived academic reference profile (1,167 postings), 316K unverified aggregated title--skill rows, and 458K apparently synthetic benchmark rows (including 421K generated student records; generator-signature evidence).
     \item \textbf{Dual Lexical--Semantic Analysis:} Using Sentence-BERT (\texttt{all-MiniLM-L6-v2}) alongside exact string matching, we show that exact matching yields a 52.0\% gap, whereas semantic vector alignment reduces this estimate to 32.0\% at $\tau = 0.5$.
     \item \textbf{Externally Validated Measurement Instrument:} Beyond in-sample estimates, we validate the matcher against published expert ESCO gold mappings ($\kappa = 0.737$) and re-check both gap indices on a nested-superset robustness sample of 1.29M postings from the same scrape family (a sample-size extension, not an independent replication); a separate computational anchor (embedding coverage, not human audit) relates the academic reference profile to the CS2023 curricular Body of Knowledge.
     \item \textbf{Threshold Sensitivity Estimation:} We compute 1,000-fold bootstrap confidence intervals across four similarity thresholds ($\tau \in \{0.4, 0.5, 0.6, 0.7\}$) to evaluate how threshold selection affects gap measurement.
-    \item \textbf{Model Validation and Diagnostic Audit:} We evaluate five classifier paradigms using 5-fold stratified cross-validation, verify low multicollinearity ($\text{VIF} \le 1.001$), diagnose the deterministic threshold rules behind near-perfect tree-ensemble scores, and test generalization on an external 50,000-student cohort ($\text{ROC-AUC} = 0.768$).
     \item \textbf{Theory-Informed Recommendations:} Drawing on Human Capital Theory, Signaling Theory, and Constructive Alignment, we outline practical adjustments for course design, project evaluation, and recruitment screening, accompanied by explicit documentation of dataset provenance and limitations.
 \end{enumerate}
 
-The remainder of this article is organized as follows: Section~\ref{sec:related_work} reviews related work and outlines the theoretical framework. Section~\ref{sec:methodology} describes the datasets, text processing pipeline, statistical methods, and predictive modeling protocols. Section~\ref{sec:results} presents the empirical results for RQ1--RQ5. Section~\ref{sec:discussion} discusses theoretical and institutional implications, practical recommendations, reproducibility, and threats to validity. Section~\ref{sec:conclusion} concludes the study.
+The remainder of this article is organized as follows: Section~\ref{sec:related_work} reviews related work and outlines the theoretical framework. Section~\ref{sec:methodology} describes the datasets, text processing pipeline, and statistical methods. Section~\ref{sec:results} presents the empirical results for RQ1--RQ3. Section~\ref{sec:discussion} discusses theoretical and institutional implications, practical recommendations, reproducibility, and threats to validity. Section~\ref{sec:conclusion} concludes the study. The placement-model experiments (STAT01, STAT02, PLAC01, INTL01) are audited in a companion article (\texttt{paper\_placement/}).
 
 % ============================================================
 % SECTION 2: RELATED WORK & THEORETICAL FRAMEWORK
@@ -116,7 +115,7 @@ Four theoretical perspectives inform the interpretation of these empirical obser
 
 \textbf{1) Human Capital Theory (HCT):} Formulated by Becker \cite{becker1964human} and Schultz \cite{schultz1961investment}, HCT posits that education enhances productive capacity, yielding labor-market returns. HCT distinguishes between \textit{general human capital} (transferable competencies such as critical thinking, communication, and core mathematical reasoning) and \textit{firm-specific human capital} (proficiency with specialized software tools, proprietary APIs, or operational frameworks). Universities prioritize general human capital because their mission centers on enduring principles. Conversely, employer job descriptions frequently specify immediately applicable technical tools. This distinction helps explain why measured reference-profile deficits concentrate in applied toolchains such as cloud platforms and data libraries.
 
-\textbf{2) Job Market Signaling and Screening Theory:} Spence \cite{spence1973job} established that in labor markets characterized by asymmetric information, employers cannot directly observe an applicant's innate productivity prior to hiring. Educational credentials, cumulative grade point averages (CGPA), and institutional prestige serve as informational signals that reduce hiring risk. In technical recruitment, however, degree credentials are increasingly complemented by practical capability signals, such as project portfolios, open-source contributions, and technical internship certifications \cite{pianda2024impact, scandurra2024employability}.
+\textbf{2) Job Market Signaling and Screening Theory:} Spence \cite{spence1973job} established that in labor markets characterized by asymmetric information, observable artifacts serve as informational signals that reduce hiring risk. In technical recruitment, degree credentials are increasingly complemented by practical capability signals such as project portfolios and open-source contributions \cite{pianda2024impact, scandurra2024employability}---the portfolio-signal idea that grounds our recommendation for verifiable applied project work below. (The placement-determinant tests of this theory are reported in the companion benchmark audit, \texttt{paper\_placement/}.)
 
 \textbf{3) Constructive Alignment \& Curriculum Theory:} Biggs \cite{biggs1996enhancing} introduced constructive alignment to establish coherence among Intended Learning Outcomes (ILOs), teaching methods, and assessment tasks. At an institutional level, curriculum lag can be understood as \textit{external misalignment}: ILOs are governed by multi-year accreditation reviews (such as ABET and ACM/IEEE guidelines), whereas industry skill demands evolve on shorter market cycles.
 
@@ -126,21 +125,14 @@ Four theoretical perspectives inform the interpretation of these empirical obser
 
 Natural language processing has become a primary tool for extracting and comparing skills from job advertisements. Skill identification from postings is itself an established research program, survey-driven since Khaouja et al. \cite{khaouja2021survey}, and evaluated against human-annotated benchmark corpora whose annotation schemes distinguish skills from qualifications, experience, and occupation \cite{green2022development, zhang2022skillspan}. Recent deep-learning surveys catalogue the datasets and the persistent inconsistency in hard/soft-skill terminology that motivates semantic over lexical comparison \cite{senger2024deep}. While keyword extraction is widely used, rule-based matching often fails on nuanced occupational phrases \cite{kruger2025improving}. Pre-trained language representations address this limitation by projecting terms into continuous vector spaces. For instance, Baral and Ghimire \cite{baral2026analyzing} used embeddings to measure syllabus alignment in Nepal, showing that semantic representations bridge terminology differences between academic syllabi and job listings. Text-mining methods have similarly been applied to profile data science roles \cite{mol2024unravelling, tee2024demand} and build resume-matching systems \cite{daberao2025resumeinsight}. In this work, we use Sentence-BERT (\texttt{all-MiniLM-L6-v2}) \cite{reimers2019sentence} to quantify alignment between market requirements and academic descriptors across multiple similarity thresholds, and we validate the resulting matcher against expert mappings rather than assuming its accuracy.
 
-\subsection{Machine Learning in Employability Modeling}
-
-Predictive modeling of graduate placement has expanded from discriminant analysis to ensemble learning. Tree-based ensembles such as Random Forests and Gradient Boosting frequently yield higher cross-validated accuracy than linear models in educational placement benchmarks \cite{tamene2024predictive, haque2024classification}. Feature-importance analyses in these studies typically identify academic performance and project engagement as leading predictors. However, benchmark evaluations in this literature often report high classification accuracy without assessing decision-boundary structure, multicollinearity, or performance on independent external cohorts.
-
 \subsection{Testable Hypotheses}
 \label{sec:hypotheses}
 
-The four theoretical perspectives of Section~\ref{sec:theory} yield six testable predictions, each evaluated by at least one registered experiment (Table~\ref{tab:experiments}):
+The four theoretical perspectives of Section~\ref{sec:theory} yield three testable predictions, each evaluated by at least one registered experiment (Table~\ref{tab:experiments}):
 \begin{enumerate}[label=\textbf{H\arabic*:}]
     \item \textbf{Constructive Alignment (external misalignment):} Because Intended Learning Outcomes are governed by accreditation cycles while toolchains evolve continuously, curricular coverage should be complete for enduring general competencies (soft skills) but incomplete for applied technical toolchains (Cloud, Programming, Data Science) \cite{biggs1996enhancing}. \textit{Test:} domain deficits in ALIGN03 and their nested-superset re-check in ALIGN04.
     \item \textbf{Terminology divergence (measurement):} If a share of the reported gap is vocabulary mismatch rather than absent competence \cite{kruger2025improving}, dense semantic matching should remove a substantial share of the lexically measured gap, and the matches it adds beyond exact string matching should be predominantly valid. Because every exact string match is also a cosine match at $\tau \le 0.7$, the \emph{direction} of the change is guaranteed by construction; the hypotheses concern the \emph{magnitude} of the reduction (with bootstrap confidence intervals) and the validity of the added matches. \textit{Tests:} ALIGN01 vs.\ ALIGN02 (magnitude of reduction); ALIGN04 (nested superset) and CURR01 (a third vocabulary) for the same question; VALID01 (expert gold) for the validity of the additional matches.
     \item \textbf{Instrument robustness:} If the Skill Gap Index measures a property of the profile--market pair rather than of one sample of it, both variants of SGI should remain strictly positive and the magnitude of the semantic reduction should persist when the market sample is extended from the 519K-posting primary corpus to a nested superset of the same posting-scrape family. \textit{Test:} ALIGN04 (LinkedIn nested superset, $N = 1.29$M postings).
-    \item \textbf{Signaling hierarchy:} Under job-market signaling \cite{spence1973job}, legible capability signals---communication proficiency, completed projects, and cumulative academic performance---should dominate placement odds after mutual statistical control. \textit{Test:} STAT01 multivariate logistic regression.
-    \item \textbf{Credential locality:} If credentials function as locally interpreted signals, placement rates should differ systematically across national labor markets. \textit{Test:} PLAC01 cross-country placement-rate comparison ($N = 10{,}000$).
-    \item \textbf{Human-capital returns to internships:} If internship participation constitutes firm-specific human-capital accumulation \cite{becker1964human}, internship experience should predict placement even after controls. \textit{Test:} STAT01 college-cohort internship risk difference and multivariate odds ratio, with INTL01 as an external descriptive check on a separate (apparently synthetic) international-graduate benchmark (a pre-registered null remains informative: participation \textit{per se}, unlike communication skill or project evidence, may be too coarse a signal).
 \end{enumerate}
 
 % ============================================================
@@ -156,7 +148,7 @@ The corpus comprises 15 open datasets acquired in September 2026 from Kaggle and
 To avoid pooling datasets with incompatible collection mechanisms, we divide the corpus into two functional tiers:
 \begin{itemize}
     \item \textbf{Tier 1: Online Labor Market Postings (1.35M real web-scraped postings; 316K unverified aggregate rows; the linked HuggingFace pair contributes no unique rows):} Comprises the LinkedIn dataset (1.35M records) \cite{asaniczka2024linkedin}, the USA Job Market dataset (316K records) \cite{batuhanklac2024usa}, and the linked HuggingFace Skill Gap jobs--skills pair (519K postings with skill annotations), which the provenance audit shows to be a strict subset of the LinkedIn postings table and which therefore contributes no additional unique records. These corpora contain job advertisements from North America, Europe, and the Asia-Pacific region, providing direct observations of employer skill specifications.
-    \item \textbf{Tier 2: Student Placement and Career Benchmarks ($N \approx 421\text{K}$ apparently synthetic student rows, generator-signature evidence; no real graduate records):} Comprises College Student Placement ($N = 10,000$) \cite{sumedh15072024college}, NGESS Graduate Employment ($N = 7,200$) \cite{philipdayo2024ngess}, Global Student Placement ($N = 10,000$) \cite{rakesh6302024global}, Student Career Success ($N = 50,000$) \cite{mobeenfatimah2024career}, International Graduates ($N = 300,000$) \cite{quackquackrp2024international}, Field-of-Study vs.\ Occupation ($N = 38,444$) \cite{jahnavipaliwal2024field}, and India Fresher Market ($N = 5,000$) \cite{shambhurajejagadale2024india} ($420{,}644$ records in total). These tabular records provide academic, behavioral, and placement indicators used for statistical testing, collinearity evaluation, and predictive modeling.
+    \item \textbf{Tier 2: Student Placement and Career Benchmarks ($N \approx 421\text{K}$ apparently synthetic student rows, generator-signature evidence; no real graduate records):} Comprises College Student Placement ($N = 10,000$) \cite{sumedh15072024college}, NGESS Graduate Employment ($N = 7,200$) \cite{philipdayo2024ngess}, Global Student Placement ($N = 10,000$) \cite{rakesh6302024global}, Student Career Success ($N = 50,000$) \cite{mobeenfatimah2024career}, International Graduates ($N = 300,000$) \cite{quackquackrp2024international}, Field-of-Study vs.\ Occupation ($N = 38,444$) \cite{jahnavipaliwal2024field}, and India Fresher Market ($N = 5,000$) \cite{shambhurajejagadale2024india} ($420{,}644$ records in total). These tabular records provide academic, behavioral, and placement indicators; the placement-benchmark experiments built on them are audited in the companion article (\texttt{paper\_placement/}).
 \end{itemize}
 
 \begin{table*}[!htbp]
@@ -270,7 +262,7 @@ To estimate empirical uncertainty without parametric distribution assumptions, w
 \end{equation}
 We use $\tau = 0.5$ as the baseline threshold and evaluate sensitivity at $\tau \in \{0.4, 0.5, 0.6, 0.7\}$. The market profile size is fixed at $K = 100$ throughout. The academic covering-set size is $P = 100$ for the headline SGI experiments (ALIGN01/02) and $P = 500$ for the domain-deficit and nested-superset experiments (ALIGN03/04) and CURR01; Section~\ref{sec:align04} reports a matched-profile sensitivity that shows how SGI level varies with $P$.
 
-\subsection{Statistical Inference \& Collinearity Diagnostics}
+\subsection{Statistical Inference}
 
 We test differences between placed and non-placed students using Welch's $t$-test (accounting for unequal variances):
 \begin{equation}
@@ -289,39 +281,6 @@ V = \sqrt{\frac{\chi^2}{n \cdot \min(r-1, c-1)}}
 \label{eq:cramer}
 \end{equation}
 
-We evaluate multicollinearity among continuous predictors $\mathbf{X}$ by computing Variance Inflation Factors (VIF). For standardized feature matrices, the VIF vector is obtained from the diagonal of the inverted correlation matrix:
-\begin{equation}
-\text{VIF}_j = \left(\mathbf{R}^{-1}\right)_{jj} = \frac{1}{1 - R_j^2}
-\label{eq:vif}
-\end{equation}
-Features exhibiting $\text{VIF}_j > 5.0$ are flagged as collinear.
-
-\subsection{Predictive Employability Modeling \& Validation Protocols}
-
-Graduate placement prediction is evaluated as a binary classification task: predicting outcome $y \in \{0, 1\}$ ($1 = \text{Placed}$, $0 = \text{Not Placed}$) given student feature vector $\mathbf{x} = [\text{CGPA}, \text{Comm}, \text{Projects}, \text{Internship}, \text{IQ}, \text{AcademicPerf}]^T$. Continuous features are standardized to zero mean and unit variance within training partitions:
-\begin{equation}
-z_{ij} = \frac{x_{ij} - \mu_j}{\sigma_j}
-\label{eq:standardize}
-\end{equation}
-
-In the standardized logistic regression model:
-\begin{equation}
-\ln\left(\frac{P(y=1|\mathbf{z})}{1 - P(y=1|\mathbf{z})}\right) = \beta_0 + \sum_{j=1}^p \beta_j z_j
-\label{eq:logistic}
-\end{equation}
-The odds ratio $\text{OR}_j = \exp(\beta_j)$ represents the change in odds associated with a one-standard-deviation increase in predictor $j$.
-
-Model performance is evaluated using 5-fold stratified cross-validation ($\text{random\_state} = 42$) across five classifier paradigms:
-\begin{enumerate}
-    \item \textbf{Logistic Regression:} $\ell_2$-regularized, $C = 1.0$, solved via L-BFGS.
-    \item \textbf{Random Forest:} $B = 100$ estimators, maximum tree depth $= 12$, Gini split criterion.
-    \item \textbf{Support Vector Machine (SVM):} Radial Basis Function (RBF) kernel, $C = 1.0$, $\gamma = \text{scale}$, with Platt probability calibration.
-    \item \textbf{Decision Tree:} Single CART tree with maximum depth $= 6$.
-    \item \textbf{Majority-Class Baseline:} Classifier predicting the empirical majority class.
-\end{enumerate}
-
-To evaluate model behavior under domain shift, we train the standardized logistic regression model on the College Placement benchmark ($N = 10,000$) and evaluate it on a held-out Student Career Success benchmark ($N = 50,000$; apparently synthetic) using domain-standardized continuous predictors.
-
 % ============================================================
 % SECTION 4: EMPIRICAL RESULTS
 % ============================================================
@@ -338,6 +297,16 @@ Among the 519,814 skill-annotated postings in the HuggingFace corpus, communicat
     \caption{Top 10 most in-demand exact skill tokens across global postings ($N = 519{,}814$ postings; counts are postings containing the exact token; experiment ALIGN01).}
     \label{fig:top_skills}
 \end{figure*}
+
+Regional parsing of 1.35M LinkedIn records (Figure~\ref{fig:geographic}) reveals that the posting corpus is predominantly concentrated in the United States (85.2\%), followed by the United Kingdom (8.4\%), Canada (4.2\%), and Australia (2.2\%).
+
+\begin{figure*}[!htbp]
+    \centering
+    \FigGeo
+    \caption{Geographic concentration of 1.35M job postings (GEO01).}
+    \label{fig:geographic}
+\end{figure*}
+
 
 \subsection{RQ2: Lexical vs. Semantic Reference-Profile Alignment}
 
@@ -484,113 +453,6 @@ The directional structure of H1 persists on the nested LinkedIn superset (ALIGN0
     \label{fig:skill_gap}
 \end{figure*}
 
-\subsection{RQ4: Employability Determinants \& Cross-Validation Benchmarks}
-
-\subsubsection{Univariate \& Descriptive Findings}
-In the College Placement cohort ($N = 10,000$; 1,659 placed, 8,341 not placed, base placement rate $16.59\%$), placed students had higher mean values across key academic and skill indicators (Table~\ref{tab:descriptive}). Placed individuals had higher average CGPA ($8.59 \pm 1.15$ vs. $7.32 \pm 1.44$, $t = 39.37$, $p < 0.001$, Cohen's $d = 0.913$), higher communication scores ($7.66 \pm 2.59$ vs. $5.14 \pm 2.78$, $t = 35.79$, $p < 0.001$, Cohen's $d = 0.918$), and more completed projects ($3.35 \pm 1.28$ vs. $2.35 \pm 1.74$, $t = 27.21$, $p < 0.001$, Cohen's $d = 0.599$). Generalized academic performance ratings ($p = 0.1386$, $d = -0.040$) and extra-curricular participation scores ($p = 0.6383$, $d = -0.013$) showed negligible differences between groups.
-
-\begin{table}[!htbp]
-\centering
-\caption{Descriptive Statistics: Placed vs. Non-Placed Cohort ($N = 10,000$)}
-\label{tab:descriptive}
-\resizebox{\columnwidth}{!}{%
-\input{tables/tab_descriptive}
-}
-\end{table}
-
-Bivariate chi-square tests confirm that placement is strongly associated with project completion ($\chi^2(2) = 719.82$, $p < 0.001$, $V = 0.268$) but not with internship experience in this cohort ($\chi^2(1) = 0.31$, $p = 0.578$, $V = 0.006$).
-
-\begin{figure*}[!htbp]
-    \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \FigEffectSizes
-        \caption{Standardized effect sizes (Cohen's $d$)}
-        \label{fig:placement_a}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \FigMeans
-        \caption{Group means for key predictors}
-        \label{fig:placement_b}
-    \end{subfigure}
-    \caption{Key predictors for placed versus non-placed graduates ($N = 10{,}000$; STAT01). (a) Cohen's $d$ for all seven audited variables; Academic Performance and Extra-Curricular Score are negligible. (b) Group means (all differences in (b) significant at $p < 0.001$, Welch $t$-tests).}
-    \label{fig:placement}
-\end{figure*}
-
-\subsubsection{Multicollinearity Diagnostics}
-Variance Inflation Factors computed for the continuous predictors are summarized in Table~\ref{tab:vif}. All values are $\approx 1.001$ (tolerances $\approx 0.999$), well below the collinearity threshold of 5.0, confirming that multicollinearity does not affect coefficient estimation in this model.
-
-\begin{table}[!htbp]
-\centering
-\caption{Variance Inflation Factor (VIF) Multicollinearity Audit}
-\label{tab:vif}
-\resizebox{\columnwidth}{!}{%
-\input{tables/tab_vif}
-}
-\end{table}
-
-\subsubsection{Standardized Logistic Regression}
-Standardized logistic regression estimates (maximum likelihood with intercept, Wald inference) are reported in Table~\ref{tab:logistic}. A one-standard-deviation increase in Communication Skills is associated with an odds ratio of 6.55 (95\% CI: [5.86, 7.31], $p < 0.001$). CGPA ($\text{OR} = 6.28$, 95\% CI: [5.62, 7.01], $p < 0.001$), IQ score ($\text{OR} = 5.16$, 95\% CI: [4.65, 5.72], $p < 0.001$), and completed projects ($\text{OR} = 3.20$, 95\% CI: [2.92, 3.51], $p < 0.001$) are also positively associated with placement. In contrast to the bivariate internship comparison in the international cohort (Section~\ref{sec:results}-E), neither Internship Experience ($\text{OR} = 1.02$, $p = 0.620$) nor generalized Academic Performance ($\text{OR} = 0.98$, $p = 0.588$) contributes independent signal once the remaining predictors are controlled.
-
-\begin{table}[!htbp]
-\centering
-\caption{Standardized Logistic Regression Placement Model (STAT01; statsmodels MLE with intercept)}
-\label{tab:logistic}
-\resizebox{\columnwidth}{!}{%
-\input{tables/tab_logistic}
-}
-\end{table}
-
-\subsubsection{5-Fold Cross-Validation Model Comparison}
-Table~\ref{tab:model_comparison} documents 5-fold stratified cross-validation performance across five classifier paradigms (mean $\pm$ SD across the five folds, seed 42).
-
-\begin{table}[!htbp]
-\centering
-\caption{Stratified 5-Fold Cross-Validation Performance Benchmarks (seed 42)}
-\label{tab:model_comparison}
-\resizebox{\columnwidth}{!}{%
-\input{tables/tab_model_comparison}
-}
-\end{table}
-
-Results are stable across random seeds: repeating the full 5-fold protocol over 10 seeds (50 fold evaluations per model; Table~\ref{tab:multiseed}) yields a mean accuracy of $90.12\% \pm 0.04\%$ for logistic regression and $95.76\% \pm 0.07\%$ for the SVM, with tree ensembles remaining at $\ge 99.99\%$.
-
-\begin{table}[!htbp]
-\centering
-\caption{Multi-Seed Robustness: 10 Seeds $\times$ 5 Folds (STAT01)}
-\label{tab:multiseed}
-\resizebox{\columnwidth}{!}{%
-\input{tables/tab_multiseed}
-}
-\end{table}
-
-\subsubsection{Diagnostic Audit of Tree Ensembles \& External Generalization}
-The near-perfect classification performance of Random Forest ($99.99\%$) and Decision Tree ($99.97\%$) models prompted an inspection of the underlying data-generating process. Fitting a depth-4 CART tree to the placement cohort yielded 100\% training accuracy, indicating that placement labels in this benchmark were generated via a deterministic $k$-of-$n$ threshold rule: individuals are labeled as placed when meeting at least three of four conditions ($\text{CGPA} > 8.01$, $\text{IQ} > 110.5$, $\text{Communication} > 7.50$, $\text{Projects} \ge 2$), accounting for $99.92\%$ of label assignments. Because orthogonal recursive partitioning aligns directly with this axis-parallel step function, tree ensembles reproduce the rule with minimal error. Logistic regression estimates a linear decision surface across these features, yielding $90.11\%$ cross-validated accuracy and an ROC-AUC of 0.9406.
-
-To evaluate performance on a held-out (apparently synthetic) benchmark, the logistic regression model was tested on the Student Career Success dataset ($N = 50,000$) using standardized values for CGPA, communication, and project count. On this external cohort, discriminative performance decreased to $\text{ROC-AUC} = 0.768$ (accuracy $= 29.9\%$, $F_1 = 0.235$ at the shifted base rate of $78.08\%$), and to $\text{ROC-AUC} = 0.576$ on the Global Placement dataset ($N = 10{,}000$, subset-B features). The in-sample reference fits on the target cohorts reach only $0.782$ and $0.714$, respectively. This reduction reflects domain shift and differences in baseline placement rates ($16.59\%$ versus $78.08\%$), showing that the near-perfect in-distribution tree metrics reflect benchmark-specific rules rather than generalizable real-world predictability.
-
-\subsection{RQ5: Geographic Concentration \& Cross-Cohort Placement Dynamics}
-
-Regional parsing of 1.35M LinkedIn records (Figure~\ref{fig:geographic}) reveals that the posting corpus is predominantly concentrated in the United States (85.2\%), followed by the United Kingdom (8.4\%), Canada (4.2\%), and Australia (2.2\%). 
-
-\begin{figure*}[!htbp]
-    \centering
-    \FigGeo
-    \caption{Geographic concentration of 1.35M job postings (GEO01).}
-    \label{fig:geographic}
-\end{figure*}
-
-In the cohort of 300,000 international graduates (Figure~\ref{fig:international}), graduates with internship experience had an employment rate of 57.60\%, compared with 42.26\% for those without internships, a difference of 15.34 percentage points (95\% bootstrap CI: [14.99, 15.73], Cohen's $h = 0.31$). Across the multi-national placement benchmark ($N = 10,000$), placement rates were similar across countries (Canada 61.5\%, Germany 60.0\%, India 63.2\%, UK 60.8\%, USA 62.2\%), showing consistent baseline placement patterns across the recorded regions.
-
-\begin{figure}[!htbp]
-    \centering
-    \FigInternship
-    \caption{Impact of practical internship experience on international graduate employment ($N = 300{,}000$; INTL01).}
-    \label{fig:international}
-\end{figure}
-
 % ============================================================
 % SECTION 5: DISCUSSION & POLICY IMPLICATIONS
 % ============================================================
@@ -599,7 +461,7 @@ In the cohort of 300,000 international graduates (Figure~\ref{fig:international}
 
 \subsection{Theoretical Implications}
 
-\textbf{Hypothesis verdicts.} Table~\ref{tab:hypotheses} summarizes the six predictions derived in Section~\ref{sec:hypotheses}. H1 (constructive alignment) is supported on the primary corpus and persists on the nested LinkedIn superset (one scrape family): technical categories carry the only nonzero deficits while soft skills are fully covered. H2 (terminology divergence) is supported by the primary ALIGN01/02 contrast ($0.52$ vs.\ $0.32$), echoed within the same scrape family by the nested ALIGN04 check ($0.37$ vs.\ $0.14$), and independently attested on curricular vocabulary by CURR01 (lexical $0$--$2.4\%$ vs.\ semantic $30.4\%$)---and H3 (instrument robustness) is supported by strictly positive SGI and magnitude persistence on the nested LinkedIn superset (the lexical-above-semantic ordering is retained only as a sanity check, since every exact string match is also a cosine match of $1.0 \ge \tau$ by construction), and more strongly still by the matched-profile sensitivity showing identical SGI on both nested samples of the scrape family at equal academic covering-set size. H4 (signaling hierarchy) is supported: communication, CGPA, and projects dominate placement odds under mutual control. H5 (credential locality) is untested: its registered test (PLAC01) draws on an apparently synthetic benchmark (generator-signature evidence), so the cross-country similarity it shows (India 63.2\%, USA 62.2\%, Canada 61.5\%, UK 60.8\%, Germany 60.0\%; max--min 3.18 pp; overlapping 95\% CIs) is reported as a property of that benchmark, not as evidence about graduates. H6---human-capital returns to internship \textit{participation}---is not supported on the college cohort: the univariate internship risk difference is $-0.44$ pp (16.32\% vs.\ 16.77\%) and the multivariate odds ratio is null ($\text{OR} = 1.02$, $p = 0.62$; STAT01). Taken with H4, this locates the return in \textit{demonstrated} capability signals (projects, communication) rather than in experience participation per se---a refinement of signaling-and-human-capital accounts of graduate hiring rather than a refutation of either. In a separate international-graduate cohort, internship experience is associated with a $+15.34$ pp higher employment rate (57.6\% vs.\ 42.3\%; INTL01); this is a different population and estimand from H6 and is reported as descriptive context, not as evidence for H5 or H6.
+\textbf{Hypothesis verdicts.} Table~\ref{tab:hypotheses} summarizes the three predictions derived in Section~\ref{sec:hypotheses}. H1 (constructive alignment) is supported on the primary corpus and persists on the nested LinkedIn superset (one scrape family): technical categories carry the only nonzero deficits while soft skills are fully covered. H2 (terminology divergence) is supported by the primary ALIGN01/02 contrast ($0.52$ vs.\ $0.32$), echoed within the same scrape family by the nested ALIGN04 check ($0.37$ vs.\ $0.14$), and independently attested on curricular vocabulary by CURR01 (lexical $0$--$2.4\%$ vs.\ semantic $30.4\%$)---and H3 (instrument robustness) is supported by strictly positive SGI and magnitude persistence on the nested LinkedIn superset (the lexical-above-semantic ordering is retained only as a sanity check, since every exact string match is also a cosine match of $1.0 \ge \tau$ by construction), and more strongly still by the matched-profile sensitivity showing identical SGI on both nested samples of the scrape family at equal academic covering-set size. The three placement hypotheses (H4 signaling hierarchy, H5 credential locality, H6 internship returns) and their benchmarks (STAT01, STAT02, PLAC01, INTL01) are evaluated as a benchmark audit in the companion article (\texttt{paper\_placement/}).
 
 \begin{table}[!htbp]
 \centering
@@ -614,17 +476,12 @@ H1 & Constructive Alignment & Supported (ALIGN03, ALIGN04) \\
 H2 & Terminology divergence & Supported $\times 3$ (ALIGN01/02, \\
    &                           & ALIGN04, CURR01) \\
 H3 & Instrument robustness  & Supported (ALIGN04) \\
-H4 & Job-market signaling   & Supported (STAT01) \\
-H5 & Credential locality    & Untested (PLAC01 benchmark apparently synthetic; no verdict) \\
-H6 & Human capital (intern.) & Not supported (STAT01; RD $-0.44$ pp, OR $p=0.62$) \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
 \textbf{1) Terminology Divergence and Semantic Alignment:} Studies evaluating curriculum alignment through exact keyword matching often report misalignment rates exceeding 50\% \cite{baral2026analyzing}. Our findings qualify this observation. While exact string matching yields an apparent gap of 52.0\%, dense vector embeddings reduce the estimated deficit to 32.0\% at $\tau = 0.5$ (95\% CI: [23.0\%, 41.0\%]). This divergence indicates that a portion of the measured gap arises from vocabulary differences: academic reference profiles and curricular descriptors often use conceptual terms (e.g., interpersonal communication or database principles), whereas job postings emphasize specific tool names or operational tasks. That expert-annotated lexical agreement is near chance ($\kappa = 0.112$; VALID01) while semantic agreement is substantial ($\kappa = 0.737$) shows this is a measurement property of keyword methods, not a modeling preference.
-
-\textbf{2) Complementary Signals in Graduate Placement:} The statistical associations observed for Communication Skills ($\text{OR} = 6.55$), CGPA ($\text{OR} = 6.28$), and Project Experience ($\text{OR} = 3.20$) illustrate how general and applied competencies interact in hiring outcomes. In terms of Signaling Theory \cite{spence1973job}, CGPA provides an initial screening signal of academic ability. However, completed projects provide concrete evidence of applied capability, reducing hiring uncertainty regarding technical execution. Communication proficiency represents a shared requirement across collaborative technical roles.
 
 \subsection{Institutional Factors in Curriculum Adaptation}
 
@@ -642,26 +499,25 @@ We organize recommendations for higher education, recruitment, and accreditation
 \textbf{For Higher Education Institutions (HEIs):}
 \begin{itemize}
     \item \textit{Integration of Modular Technical Credentials:} Cloud Infrastructure has the lowest reference-profile coverage of any category (44.1\% lexical; 78.7\% under semantic matching) and is the only Critical deficit, while Programming \& Development retains a 1.69 pp deficit. Full degree restructuring may be too slow to keep pace with industry toolchains; HEIs can address this by embedding modular, vendor-neutral technical modules (e.g., containerization fundamentals, cloud storage basics) directly into existing operating systems and database courses.
-    \item \textit{Applied Project Work and Portfolio Development:} Because completed projects are strongly associated with placement odds ($\text{OR} = 3.20$, $p < 0.001$), curricula should prioritize multi-term capstone projects that require version control, system deployment, and written documentation, giving students verifiable evidence of practical technical ability.
-    \item \textit{Embedding Communication Skills into Technical Coursework:} Communication skills demonstrated the strongest association with placement ($\text{OR} = 6.55$, $p < 0.001$); at the same time, the academic reference profile already covers soft-skill requirements in full (deficit $0.00$ pp). The priority is therefore not new content but assessment: rather than relegating communication instruction to standalone electives, departments should integrate oral presentations, collaborative design reviews, and peer code reviews directly into core computing courses.
+    \item \textit{Applied Project Work and Portfolio Development:} Because completed project work is the most portable evidence of applied technical ability, curricula should prioritize multi-term capstone projects that require version control, system deployment, and written documentation, giving students verifiable portfolios rather than relying on credentials alone (the portfolio-signal rationale of Section~\ref{sec:related_work}).
+    \item \textit{Embedding Communication Skills into Technical Coursework:} The academic reference profile already covers soft-skill requirements in full (deficit $0.00$ pp). The priority is therefore not new content but assessment: rather than relegating communication instruction to standalone electives, departments should integrate oral presentations, collaborative design reviews, and peer code reviews directly into core computing courses.
 \end{itemize}
 
 \textbf{For Industry Recruiters:}
 \begin{itemize}
     \item \textit{Semantic Alignment in Recruitment Screening:} Because exact string matching produced a 52.0\% gap compared with 32.0\% under semantic alignment, keyword-based resume screening risks excluding candidates with equivalent conceptual training. Recruitment systems should evaluate semantic similarity rather than exact keyword matches when parsing academic coursework.
-    \item \textit{Work-Integrated Learning and Co-Op Programs:} In the international-graduate cohort, internship experience is \textit{associated with} a 15.3 percentage-point higher employment rate (57.6\% vs.\ 42.3\%; observational, not causal). Employers can collaborate with universities to establish structured 6-month co-op or apprenticeship pathways that carry academic credit.
 \end{itemize}
 
 \textbf{For Accreditation Bodies and Policymakers:}
 \begin{itemize}
     \item \textit{Adaptive Curriculum Guidelines:} Foundational requirements (Python, SQL) recur at similar shares in every corpus view in this study while specialized frameworks diversify across postings, a pattern consistent with rapid toolchain turnover. Accreditation bodies and professional societies (ACM, IEEE-CS) should issue regular modular addenda to curriculum guidelines to facilitate elective updates.
-    \item \textit{Regional Labor-Market Observatories:} Given the concentration of postings (85.2\% US) and regional variation in placement rates, educational authorities should maintain regional labor-market tracking to help institutions align elective offerings with local economic demand.
+    \item \textit{Regional Labor-Market Observatories:} Given the concentration of postings (85.2\% US), educational authorities should maintain regional labor-market tracking to help institutions align elective offerings with local economic demand.
 \end{itemize}
 
 \subsection{Reproducibility and Data Availability}
 \label{sec:reproducibility}
 
-Every quantitative result reported in this article originates from one of twelve registered experiments executed on NVIDIA GPU instances through Kaggle Notebooks; no table or figure is hand-transcribed. Table~\ref{tab:experiments} lists the experiment identifiers, kernel references, and verification status.
+Every quantitative result reported in this article originates from one of the registered experiments executed on NVIDIA GPU instances through Kaggle Notebooks; no table or figure is hand-transcribed. Table~\ref{tab:experiments} lists the experiment identifiers reported here (plus the retained-but-unused TRENDS01 entry), kernel references, and verification status; the placement-model experiments (STAT01, STAT02, PLAC01, INTL01) are reported in the companion benchmark audit (\texttt{paper\_placement/}).
 
 \begin{table*}[!htbp]
 \centering
@@ -681,16 +537,13 @@ The analyses were implemented in Python 3.14.6 with \texttt{scikit-learn} 1.9.0,
 
 Several methodological constraints should be considered when interpreting these findings:
 \begin{enumerate}
-    \item \textbf{Data Provenance \& Benchmark Artifacts:} While Tier 1 datasets contribute 1.35M unique web-mined postings (the HuggingFace Skill Gap tables are a strict subset of the LinkedIn scrape rather than a second sample; Section~\ref{sec:align04}), Tier 2 student placement datasets (e.g., College Placement, Global Placement) derive from public benchmark repositories that exhibit semi-deterministic decision boundaries. As diagnosed in Section~\ref{sec:results}-D5, near-100\% tree ensemble accuracies reflect combinatorial threshold functions embedded in the benchmark rather than real-world predictability. The academic reference profile is drawn from 1,167 job postings in five occupational categories rather than from institutionally collected syllabi.
-    \item \textbf{Domain Shift \& External Generalizability:} When evaluated across distinct institutional benchmarks, predictive discrimination attenuates from $\text{ROC-AUC} = 0.9406$ to $\text{ROC-AUC} = 0.768$ (and $0.576$ on the Global Placement cohort), illustrating that model calibrations do not directly transfer across disparate grading systems and local employment base rates.
+    \item \textbf{Data Provenance \& Benchmark Artifacts:} While Tier 1 datasets contribute 1.35M unique web-mined postings (the HuggingFace Skill Gap tables are a strict subset of the LinkedIn scrape rather than a second sample; Section~\ref{sec:align04}), the Tier 2 student benchmarks are apparently synthetic (generator-signature evidence; \texttt{datasets/synthetic\_checks\_output.json}) and are excluded from the gap findings here; their provenance, decision-boundary, and transfer audit is reported in the companion benchmark article (\texttt{paper\_placement/}). The academic reference profile is drawn from 1,167 job postings in five occupational categories rather than from institutionally collected syllabi.
     \item \textbf{Curriculum Proxy Limitations:} Academic skill demands were proxied through normalized occupational and educational reference profiles rather than direct, institutionally mined university syllabi across diverse global departments. Experiment CURR01 anchors this proxy to the CS2023 Body of Knowledge \cite{taskforce2024cs2023}, quantifying both its validity (30.4\% topical coverage, 49.6\% of profile skills grounded in the guidelines) and its bound: coverage is concentrated in applied Knowledge Areas (HCI, Data Management, Software Engineering) and weak over the theoretical core (Algorithmic Foundations 12.6\%, Mathematical Foundations 10.0\%), so conclusions about applied skill coverage are anchored while claims about the full curricular core are not.
     \item \textbf{Scope of Human Validation:} Matcher validity is established against published expert gold standards (SkillSpan$\to$ESCO mappings; $\kappa = 0.737$ at $\tau = 0.5$; Section~\ref{sec:valid01}) rather than in-house annotation of this specific corpus, and instrument robustness is supported by a nested-superset check (Section~\ref{sec:align04}); independent-rater annotation of the present skill pairs remains future work.
     \item \textbf{Embedding Model and Threshold Sensitivity:} While Sentence-BERT mitigates surface vocabulary divergence, estimated alignment remains sensitive to cosine similarity cutoff selection ($\text{SGI} = 20.0\%$ at $\tau = 0.4$ versus $46.0\%$ at $\tau = 0.7$) and to academic covering-set size ($P$): the matched-profile sensitivity in Section~\ref{sec:align04} shows SGI levels shifting from $0.52/0.32$ ($P = 100$) to $0.37/0.14$ ($P = 500$) on both nested corpora of the scrape family, so cross-experiment SGI comparisons are valid only at equal $(K, P)$.
     \item \textbf{Geographic Concentration:} 85.2\% of the LinkedIn posting corpus originates from the United States, skewing technical demand profiles toward Western, mature tech economies.
     \item \textbf{Corpus Composition \& Conditional Demand:} The 519K-posting skills corpus is dominated by generic, healthcare, and retail competencies (e.g., BLS/acls credentials and nursing appear among the Top-100 market tokens). Consequently, taxonomy-technical demand shares are modest (e.g., 3.97\% of postings require at least one Programming skill), and the RQ3 deficits should be read as \textit{coverage} gaps conditional on demand rather than as economy-wide demand shares. The nested LinkedIn check (ALIGN04) shows both sides of this conditioning: deficits shrink further on free-text skills (Programming 1.39 pp), and exact keyword taxonomy matching under-detects demand in corpora whose skill strings are not pre-normalized---so comparisons across the two annotation layers are valid for the \textit{ordering} of deficits but not their absolute magnitudes.
     \item \textbf{Automated Severity Calibration:} Because absolute domain deficits are small, the Critical/Moderate/Mild labels use a relative-to-median rule rather than externally anchored thresholds; different anchors would reassign labels, though the ranking of categories is invariant.
-    \item \textbf{Measurement Error in Behavioral Scores:} In placement benchmarks, communication scores are frequently reviewer-graded or self-reported, potentially inflating their predictive odds ratios through measurement bias.
-    \item \textbf{Observational Non-Causal Design:} Our econometric models establish associative rather than causal relationships; students with high project completion may possess latent motivation or unmeasured self-efficacy that drives hiring outcomes.
 \end{enumerate}
 
 % ============================================================
@@ -699,7 +552,7 @@ Several methodological constraints should be considered when interpreting these 
 \section{Conclusion}
 \label{sec:conclusion}
 
-Across 15 open datasets (1.35M real web-mined postings, 316K unverified aggregate rows, and 458K apparently synthetic benchmark rows), this empirical investigation---which proxies academic skill requirements with an employer-derived occupational reference profile rather than university syllabi---shows that profile--market misalignment is twofold. A substantial share of the apparent deficit reflects vocabulary divergence between academic descriptors and recruitment postings (the SGI falls from 52\% to 32\% under semantic alignment, and several domain deficits shrink by more than half), while substantive residual gaps remain concentrated in rapidly evolving technical areas, specifically Cloud Infrastructure and Programming \& Development. The instrument supporting this claim is examined three ways: expert-gold agreement on published ESCO mappings ($\kappa = 0.737$), a nested-superset robustness check on 1.29M postings from the same scrape family (both indices strictly positive; identical SGI at matched academic covering-set size), and a computational anchor to the CS2023 curricular guidelines (embedding coverage concentrated in applied knowledge areas; no human line-by-line topic audit was performed). Methodologically, the analysis cautions against relying on in-distribution benchmark evaluations alone: near-perfect classification scores can mask synthetic threshold rules that degrade under domain shift on external cohorts. In practical terms, addressing this divide does not necessitate wholesale curriculum redesign. Integrating modular credentials into established courses, requiring verifiable applied project portfolios, and adopting semantic matching in hiring workflows offer feasible steps toward aligning academic preparation with contemporary workforce demands.
+Across 15 open datasets (1.35M real web-mined postings, 316K unverified aggregate rows, and 458K apparently synthetic benchmark rows), this empirical investigation---which proxies academic skill requirements with an employer-derived occupational reference profile rather than university syllabi---shows that profile--market misalignment is twofold. A substantial share of the apparent deficit reflects vocabulary divergence between academic descriptors and recruitment postings (the SGI falls from 52\% to 32\% under semantic alignment, and several domain deficits shrink by more than half), while substantive residual gaps remain concentrated in rapidly evolving technical areas, specifically Cloud Infrastructure and Programming \& Development. The instrument supporting this claim is examined three ways: expert-gold agreement on published ESCO mappings ($\kappa = 0.737$), a nested-superset robustness check on 1.29M postings from the same scrape family (both indices strictly positive; identical SGI at matched academic covering-set size), and a computational anchor to the CS2023 curricular guidelines (embedding coverage concentrated in applied knowledge areas; no human line-by-line topic audit was performed). In practical terms, addressing this divide does not necessitate wholesale curriculum redesign. Integrating modular credentials into established courses, requiring verifiable applied project portfolios, and adopting semantic matching in hiring workflows offer feasible steps toward aligning academic preparation with contemporary workforce demands.
 
 \FloatBarrier
 

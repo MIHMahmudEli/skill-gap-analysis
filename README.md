@@ -11,8 +11,9 @@ GPU-executed experiment**.
 The project analyzes 15 publicly available open datasets (**3,163,517 raw rows**,
 de-duplicating to **2,123,889 unique rows** — a row total that pools four
 incompatible row units, not an all-purpose record count), acquired from
-LinkedIn, Kaggle, and HuggingFace and answers five research questions
-(RQ1–RQ5):
+LinkedIn, Kaggle, and HuggingFace. The main article answers three research
+questions (RQ1–RQ3); the placement component is audited in a companion
+benchmark-audit article (`paper_placement/`):
 
 - **1,349,621 real web-scraped posting rows** — the LinkedIn 2024 scrape
   (1,348,454; root of the scrape family) plus a 1,167-posting posting-derived
@@ -30,16 +31,18 @@ LinkedIn, Kaggle, and HuggingFace and answers five research questions
   `datasets/REAL_VS_SYNTHETIC.csv`).
 
 The headline gap-measurement results (RQ2/RQ3: SGI 52% → 32%) rest entirely on
-the real posting family; `reports/REAL_VS_SYNTHETIC_FINDINGS.md` lists which
-RQ1/RQ4/RQ5 elements currently run on synthetic benchmarks and the proposed
-changes (pending author approval).
+the real posting family; `reports/REAL_VS_SYNTHETIC_FINDINGS.md` documents the
+generator-signance evidence, and the RQ4/RQ5 placement material now lives in the
+companion benchmark audit (`paper_placement/`).
 
 - **RQ1** — market skill topography
 - **RQ2** — lexical vs. semantic (Sentence-BERT) reference-profile alignment (SGI)
 - **RQ3** — eight-category domain-level skill gaps with bootstrap CIs
-- **RQ4** — graduate placement determinants, CV benchmarks, tree-rule audit,
-  external validation
-- **RQ5** — geographic concentration and internship/cohort effects
+- The former **RQ4/RQ5** placement analyses (employability determinants,
+  cross-cohort dynamics; STAT01/STAT02/PLAC01/INTL01) are reported in the
+  companion benchmark-audit article `paper_placement/` (no real-world claims
+  about graduates; apparently synthetic benchmarks). RQ1 also carries the
+  geographic distribution of postings (GEO01).
 
 ## Project Structure
 
@@ -109,7 +112,7 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | STAT02 | External validation | leyamridha/sg-stat02-external-a1 | USED_IN_MANUSCRIPT |
 | GEO01 | Geographic shares | sadmanhasanmiraj/sg-geo01-linkedin-a1 | USED_IN_MANUSCRIPT |
 | TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | VERIFIED (registry; not used in manuscript — apparently synthetic corpus) |
-| INTL01 | Internship effect | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
+| INTL01 | Internship effect (archived; not reported per Phase 4 D3) | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
 | VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
 | ALIGN04 | Nested-superset SGI robustness check (LinkedIn, 1.29M postings) | tasnimjenny/sg-align04-crosscorpus-a4 | USED_IN_MANUSCRIPT |
@@ -150,17 +153,21 @@ local smoke tests; on Kaggle they read the mounted bundle
 - **Domain gaps** (postings, pp): Cloud & Infrastructure **2.45** (Critical),
   Programming **1.69**, Data Science **1.20**; semantic alignment cuts each by
   up to 74%; Soft Skills fully covered
-- **Placement model** (statsmodels MLE, standardized): Communication
-  OR = 6.55 [5.86, 7.31], CGPA OR = 6.28, IQ OR = 5.16, Projects OR = 3.20
-  (all p < 0.001); CV accuracy 90.11% ± 0.74%, ROC-AUC 0.9406
-- **External validation**: ROC-AUC 0.768 (Student Career Success, N = 50k),
-  0.576 (Global Placement)
-- **Internship association** (international-graduate cohort, N = 300,000):
-  +15.34 pp employment (95% CI [14.99, 15.73]); in the separate college cohort
-  (N = 10,000) the internship risk difference is **−0.44 pp** (null; OR 1.02,
-  p = 0.62). These are different populations and estimands.
-- **Credential locality (H5)**: not supported — placement rates are similar
-  across countries (India 63.2% … Germany 60.0%; PLAC01)
+- **Placement model** (statsmodels MLE, standardized; companion benchmark
+  audit, apparently synthetic benchmarks): Communication OR = 6.55 [5.86, 7.31],
+  CGPA OR = 6.28, IQ OR = 5.16, Projects OR = 3.20 (all p < 0.001); CV accuracy
+  90.11% ± 0.74%, ROC-AUC 0.9406
+- **External validation** (companion): ROC-AUC 0.768 (Student Career Success,
+  N = 50k), 0.576 (Global Placement)
+- **Internship association**: the +15.34 pp international-graduate contrast
+  (INTL01) is archived but **not reported as a finding** in either manuscript
+  (Phase 4 D3: generated file, no claim about graduates); in the separate
+  college cohort (N = 10,000) the internship risk difference is **−0.44 pp**
+  (null; OR 1.02, p = 0.62; companion audit)
+- **Credential locality (H5)**: **untested** — its registered test (PLAC01) is
+  an apparently synthetic benchmark, so the cross-country similarity it shows
+  (India 63.2% … Germany 60.0%) is a benchmark property, not evidence about
+  graduates (companion)
 - **Geographic**: USA 85.2%, UK 8.4%, Canada 4.2%, Australia 2.2% (N = 1.35M)
 - **Matcher validity** (VALID01 vs expert SkillSpan→ESCO mappings, 2,907
   pairs): SBERT τ = 0.5 agreement **κ = 0.737** [0.711, 0.760], accuracy
@@ -181,6 +188,7 @@ local smoke tests; on Kaggle they read the mounted bundle
 - **Input bundle (Kaggle)**: https://www.kaggle.com/datasets/studyhub991/skill-gap-inputs-v1
 - **Experiment outputs (HuggingFace)**: https://huggingface.co/datasets/MoshinAli/skill-gap-experiments
 - **Manuscript**: `paper/main.pdf` (16 pp, IEEEtran; anonymized for double-blind review)
+- **Companion manuscript**: `paper_placement/main.pdf` (benchmark audit, IEEEtran)
 
 Large source datasets (>10 MB) are not committed; see
 `datasets/DATASET_MANIFEST.csv` and `datasets/download_kaggle.py`.

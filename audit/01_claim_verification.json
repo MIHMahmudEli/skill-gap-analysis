@@ -760,7 +760,7 @@
     "ms_value": true,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/tables/tab_vif.tex",
+    "evidence": "paper_placement/tables/tab_vif.tex",
     "note": "max VIF=1.001"
   },
   {
@@ -769,7 +769,7 @@
     "ms_value": true,
     "artifact_value": true,
     "match": true,
-    "evidence": "results/STAT01.../table1_descriptive.csv via tab_descriptive.tex",
+    "evidence": "results/STAT01.../table1_descriptive.csv via paper_placement/tables/tab_descriptive.tex",
     "note": ""
   },
   {
@@ -987,7 +987,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -996,7 +996,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1005,7 +1005,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1014,7 +1014,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1023,7 +1023,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1032,7 +1032,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1041,7 +1041,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1050,7 +1050,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1059,7 +1059,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1068,7 +1068,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {
@@ -1077,7 +1077,7 @@
     "ms_value": null,
     "artifact_value": true,
     "match": true,
-    "evidence": "paper/main.tex / metrics",
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
     "note": ""
   },
   {

@@ -15,6 +15,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 TEX = (ROOT / "paper" / "main.tex").read_text(encoding="utf-8")
+# Phase 4 placement split: second TEX handle for the companion benchmark-audit
+# paper (paper_placement/main.tex).  ALLTEX = both papers, used by cross-paper
+# presence checks (H4-H6 verdicts live only in the companion).
+TEXP = (ROOT / "paper_placement" / "main.tex").read_text(encoding="utf-8")
+ALLTEX = TEX + TEXP
 
 
 def load_metrics(exp: str) -> dict:
@@ -225,16 +230,16 @@ chi_pr = next(c for c in s1["chi_square"] if "Projects" in c["Test"])
 add("C86", "chi2 projects 719.82 V=0.268", [719.82, 0.268],
     [round(chi_pr["chi2"], 2), round(chi_pr["Cramers_V"], 3)], "same")
 vifs = [float(line.split("&")[1].strip().rstrip(" \\\\")) for line in
-        (ROOT / "paper" / "tables" / "tab_vif.tex").read_text(encoding="utf-8").splitlines()
+        (ROOT / "paper_placement" / "tables" / "tab_vif.tex").read_text(encoding="utf-8").splitlines()
         if line.strip() and not line.strip().startswith(("%", "\\begin", "\\end", "\\top", "\\mid", "\\bot", "\\text"))]
 add("C87", "All VIF <= 1.001", True, max(vifs) <= 1.001,
-    "paper/tables/tab_vif.tex", "max VIF=%.3f" % max(vifs))
+    "paper_placement/tables/tab_vif.tex", "max VIF=%.3f" % max(vifs))
 
 # descriptive
-desc = (ROOT / "paper" / "tables" / "tab_descriptive.tex").read_text(encoding="utf-8")
+desc = (ROOT / "paper_placement" / "tables" / "tab_descriptive.tex").read_text(encoding="utf-8")
 add("C88", "CGPA 8.59+/-1.15 vs 7.32+/-1.44 t=39.37 d=0.913",
     "8.59" in desc and "39.37" in desc and "0.913" in desc, True,
-    "results/STAT01.../table1_descriptive.csv via tab_descriptive.tex")
+    "results/STAT01.../table1_descriptive.csv via paper_placement/tables/tab_descriptive.tex")
 add("C89", "Comm 7.66+/-2.59 vs 5.14+/-2.78 t=35.79 d=0.918",
     "7.66" in desc and "35.79" in desc and "0.918" in desc, True, "same")
 add("C90", "AcadPerf p=0.1386; ExtraCur p=0.6383",
@@ -297,9 +302,9 @@ presence = [
      and ("2,643,703" not in TEX)),
     ("C151", "148,765 communication postings (RQ1)", "148,765" in TEX),
     ("C152", "H6 states RD -0.44 pp (college cohort, corrected; +0.08 may appear only in revision log)",
-     ("$-0.44$" in TEX or "-0.44 pp" in TEX) and ("univariate internship risk difference is $-0.44$" in TEX)),
+     ("$-0.44$" in ALLTEX or "-0.44 pp" in ALLTEX) and ("univariate internship risk difference is $-0.44$" in ALLTEX)),
     ("C153", "tab:hypotheses cites STAT01 for H6 (not INTL01)",
-     "Not supported (STAT01" in TEX and "Not supported (INTL01" not in TEX),
+     "Not supported (STAT01" in ALLTEX and "Not supported (INTL01" not in ALLTEX),
     ("C154", "519,814 skill-annotated postings (RQ1, corrected wording)",
      "519,814 skill-annotated postings" in TEX),
     ("C155", "ALIGN03 n_postings 518,953 is analyzed subset (documented)",
@@ -309,11 +314,11 @@ presence = [
     ("C157", "academic reference 1,167 stated (not 13,833 as taxonomy)",
      "1,167" in TEX and "13,833-row taxonomy" in TEX),
     ("C158", "H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12)",
-     ("H5 (credential locality) is untested" in TEX)
-     and ("Untested (PLAC01" in TEX)
-     and ("H5 (credential locality) is not supported" not in TEX)
-     and ("Not supported (PLAC01" not in TEX)
-     and ("domestic training premium" not in TEX)),
+     ("H5 (credential locality) is untested" in ALLTEX)
+     and ("Untested (PLAC01" in ALLTEX)
+     and ("H5 (credential locality) is not supported" not in ALLTEX)
+     and ("Not supported (PLAC01" not in ALLTEX)
+     and ("domestic training premium" not in ALLTEX)),
     ("C159", "CS2023 anchor described as computational, not human line-by-line audit",
      ("computational---not human-validated---anchor" in TEX)
      and ("no human line-by-line topic audit was performed" in TEX)),
@@ -323,7 +328,7 @@ presence = [
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
                    "artifact_value": val, "match": bool(val) if isinstance(val, bool) else None,
-                   "evidence": "paper/main.tex / metrics", "note": ""})
+                   "evidence": "paper/main.tex + paper_placement/main.tex / metrics", "note": ""})
 
 # H5 correction: PLAC01 cross-country rates similar (overlapping CIs) -> not supported
 plac = load_metrics("PLAC01_global_by_country")

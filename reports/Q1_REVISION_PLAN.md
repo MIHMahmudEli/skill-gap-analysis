@@ -208,9 +208,9 @@ FINDINGS.md` §C). Nothing applied until author approval.
 
 | ID | Task | Status |
 |---|---|---|
-| P4-A | **Option A:** move RQ4/RQ5 + placement models to `paper_placement/`; remove from main paper | **BLOCKED — awaiting author choice** |
-| P4-B | **Option B:** keep as clearly labelled "illustrative benchmark audit"; remove real-graduate OR claims; drop synthetic datasets from headline count | **BLOCKED — awaiting author choice** |
-| P4-C | Correct headline scale: report only the nine experiment-feeding sources; list the rest in appendix | Pending after choice |
+| P4-A | **Option A:** move RQ4/RQ5 + placement models to `paper_placement/`; remove from main paper | **DONE (2026-10-12).** Author rulings D1–D4 executed. `paper_placement/` created: standalone IEEEtran companion (H4–H6/RQ4–RQ5 labels kept as companion-paper hypotheses; benchmark-audit framing; no real-graduate claims). Main paper: RQ4 block + RQ5 remainder removed, geography folded into RQ1 (GEO01), H4–H6 + items trimmed, RQ/hypothesis numbering contiguous (RQ1–RQ3/H1–H3). Five tables git-mv'd; `make_latex.py` split (main vs `TABP`); `verify_claims.py` 2nd TEX handle; ledger `paper` column (78 main / 31 placement / 3 dropped D3 / 1 both). |
+| P4-B | **Option B:** keep as clearly labelled "illustrative benchmark audit"; remove real-graduate OR claims; drop synthetic datasets from headline count | **NOT CHOSEN** (superseded by P4-A per author rulings D1–D4). |
+| P4-C | Correct headline scale: report only the nine experiment-feeding sources; list the rest in appendix | **DONE (2026-10-12).** Main intro reports seven experiment-feeding sources (count-free where possible; no "twelve" total), RQ1 trends/TRENDS01 retained-unused marking from Step 2; the full 15-source provenance inventory stays in Table I with synthetic flags and is supplemented by `paper_placement/` corpus table. |
 
 ---
 
