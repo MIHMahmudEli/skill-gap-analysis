@@ -314,3 +314,124 @@ exclude MIT-6046; registered value is ≥ 5.
 
 CURR02 remains blocked on the author labelling gate (§7 step 4) regardless
 of these amendments; nothing here authorises a run.
+
+### 9g. 2026-10-12 — Rarefaction, TU Delft concentration, MIT-6046 membership, exact-set reporting (author instruction; fixed before any CURR02 run)
+
+Four additions to the pre-run protocol. No SGI, coverage, or any other
+analysis output existed on this corpus when these were written; they are set
+from extraction metadata only (`extracted/extraction_summary.json`,
+`extracted/curriculum_phrases.csv`).
+
+#### 9g.1 Curriculum-coverage rarefaction (pooling-bias diagnostic)
+
+The main CURR02 comparison pools every modern unit into one curriculum
+covering set (§9d). To show how much of the measured coverage is a property of
+*pooled course count* rather than of any single course, CURR02 must also
+report a **rarefaction curve**:
+
+- **Frame:** the 26 eligible modern units (all ≥ 5 phrases; §9e floor
+  applied, none excluded).
+- **Sizes:** n ∈ {5, 10, 15, 20, 26} units per draw.
+- **Draws:** B = 1000 per n; each draw samples n units **uniformly without
+  replacement within the draw** (course-weighted, not phrase-weighted), seeded
+  `42 + 100 × index(n)` so every curve point has its own deterministic
+  stream.
+- **Statistic per draw:** pool the sampled units' extracted phrases into a
+  **distinct-phrase set** (identical strings across courses collapse), build
+  the curriculum covering set at the matched P of §9d(4), and compute
+  **coverage of the published market top-K skill list** (lexical, and semantic
+  at each τ), with SGI = 1 − coverage reported alongside.
+- **Grid:** K ∈ {50, 100, 200, 500} × τ ∈ {0.4, 0.5, 0.6, 0.7} ×
+  match ∈ {lexical, semantic}; primary cell K = 100, τ = 0.5.
+- **Reported per (n, K, τ, match):** mean, 2.5th and 97.5th percentiles of
+  the 1000 draws (coverage and SGI), saved as
+  `table_curr_rarefaction.csv`, with raw per-draw values retained beside it.
+
+**Binding interpretation:** the curve is a *descriptive* pooling diagnostic.
+It may not be used to choose n, to drop or keep any unit, to alter P, or to
+replace the pooled n = 26 main result; a saturated curve is reported as
+saturation, an unsaturated one as a corpus-size limitation.
+
+#### 9g.2 Per-institution coverage (descriptive, alongside per-institution SGI)
+
+Coverage of the market top-K skill list by **each institution's own pooled
+phrase set**, at the same grid as 9g.1 (primary cell K = 100, τ = 0.5):
+
+| Institution set | units | modern phrases |
+|---|---|---|
+| MIT (modern only) | 6 | 117 |
+| TU Delft | 14 | 265 |
+| Harvard | 6 | 55 |
+
+Point estimates with the phrase-level bootstrap CI of §9f(3)(b) (B = 1000,
+seed 42), **labelled descriptive and never headline** — they extend §9f(1)'s
+per-institution SGI descriptives to coverage; no per-institution hypothesis
+test, no ranking claim.
+
+#### 9g.3 TU Delft concentration — report with and without, descriptively
+
+**Measured concentration (extraction metadata): TU Delft supplies 265 of the
+437 modern-set phrases = 60.6% (≈ 61%) of the phrase mass, and 14 of the 26
+units = 53.8% of units.** The pooled curriculum profile is therefore
+majority-TU-Delft by construction.
+
+Required companion rows for every headline CURR02 coverage/SGI table:
+
+1. **with TU Delft** — the pooled n = 26 modern set (main result, §9d);
+2. **without TU Delft** — MIT + Harvard only: **12 units, 172 phrases**.
+
+Row 2 is a **descriptive sensitivity only**: it falls below the §6b
+≥ 20-course bar and is single-country (US), so it may never be presented as a
+headline, an alternative main result, or a "cleaner" estimate. It is reported
+in the same table, same columns, same grid, immediately beside row 1, so the
+reader can see the institution-concentration effect directly. The
+institution-weighted SGI of §9d(2)(ii) remains the equal-weight companion;
+this row and that statistic answer different questions and both stay
+descriptive relative to the pooled main result.
+
+#### 9g.4 MIT-6046 membership (clarified; no rule change)
+
+**MIT-6046 (6.046J *Design and Analysis of Algorithms*, Spring 2015) is a
+legacy unit** (material year < 2019): it belongs **only to the
+vintage-sensitivity group** — it is *not* in the 26-unit modern main set and
+*not* in the n = 20 capped sensitivity set of `PRIMARY_SET.md` §2.
+
+It carries **exactly 5 extracted phrases**, i.e. it sits *exactly at* the
+§9e floor and **passes** (5 ≥ 5), so it remains in the legacy analysis set; a
+stricter ≥ 6 floor would have excluded it. Because it is legacy, that choice
+affects only vintage-sensitivity numbers, never the modern main result.
+
+#### 9g.5 Floor unchanged
+
+The **≥ 5 phrases-per-unit floor is unchanged** by this amendment and is not
+reopened; MIT-1806 (2 phrases) remains the only excluded unit, from the
+legacy group.
+
+#### 9g.6 Exact membership must be reported
+
+Every CURR02 result table states, in the table or its caption/footnote, the
+**exact unit IDs** of the set(s) it uses (or a pointer to the committed
+membership file plus its hash). Reference lists as fixed today:
+
+- **Main / rarefaction frame — modern, n = 26:** HARV-CS50, HARV-CS50AI,
+  HARV-CS50CYB, HARV-CS50PY, HARV-CS50SQL, HARV-CS50WEB, MIT-1805,
+  MIT-18404J, MIT-18S191, MIT-6006, MIT-6036, MIT-6100L, TUD-AI1, TUD-AI2,
+  TUD-AI3, TUD-AIP, TUD-ALG, TUD-AST, TUD-AST2, TUD-DS, TUD-FP, TUD-GSE,
+  TUD-QC, TUD-QI, TUD-SV, TUD-TOC.
+- **Capped sensitivity set, n = 20:** `PRIMARY_SET.md` §2 (MIT 6 / TU Delft
+  8 / Harvard 6, first-8-manifest-order rule).
+- **Without-TU-Delft set, n = 12:** the six HARV-* and six MIT modern IDs
+  above.
+- **Per-institution sets:** MIT 6 and Harvard 6 as above; TU Delft = the 14
+  TUD-* IDs above.
+- **Vintage-sensitivity group (legacy), n = 14:** MIT-1806 is excluded below
+  the floor, leaving MIT-60001, MIT-60002, MIT-6033, MIT-6034, MIT-6042,
+  **MIT-6046**, MIT-6824, MIT-6828, STAN-CS107, STAN-CS229, STAN-EE261,
+  STAN-EE263, STAN-EE364A, STAN-EE364B.
+
+Membership is fixed by extraction metadata and cannot be edited in response
+to any result; any later membership change requires a dated amendment and a
+stated, analysis-independent reason.
+
+CURR02 remains blocked on the author labelling gate (§7 step 4) regardless
+of these amendments; nothing here authorises a run.
