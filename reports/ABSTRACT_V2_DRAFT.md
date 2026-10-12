@@ -56,28 +56,34 @@ corpus sentence, but its *reference-profile* role depends on CURR02 passing the
 precision/recall gate — which is exactly what the "posting-derived until CURR02"
 sentence discloses.
 
-## Candidate titles (conditional on CURR02 outcome — do NOT apply yet)
+## Candidate titles (conditional on the FINDINGS — do NOT apply yet)
 
-**Strong** (CURR02 passes the ≥0.90 precision/recall gate and curriculum reference
-corroborates the posting-derived deficits):
+Reconditioned 2026-10-12 (batch 2, step 4): the branch below is chosen by what the
+analyses *show*, not by whether CURR02 clears its extraction gate. CURR02 decides whether
+a curricular gap size may be quoted at all; it no longer decides the title.
+
+**Strong** (findings corroborate: the semantic gap persists against the measured
+curricula, and the Cloud / Programming deficits appear in both the posting-derived and
+the curricular view):
 
 > From Lexicon to Embeddings: A Replicable Measure of the Academic–Industry Skill Gap
 > from Job Postings and Curricular Guidelines
 
-**Mixed** (curriculum attestation partial — corroboration on some domains, divergence
-on others):
+**Mixed** (findings partly corroborate: some domains agree between the two views, others
+diverge, or the curricular view covers only part of the posting taxonomy):
 
 > Vocabulary or Competence? Separating Lexical Divergence from Skill Gaps in
 > Academic–Industry Alignment
 
-**Weak** (CURR02 fails its gate, is waived, or the curriculum reference cannot be
-corroborated — measurement-first, no gap-existence claim):
+**Weak** (findings do not corroborate: the curricular view cannot be aligned to the
+posting-derived taxonomy, or the gap is not reproduced there — measurement-first, no
+gap-existence claim):
 
 > An Audit of Skill-Gap Measurement: Reference-Profile Provenance and Threshold
 > Sensitivity in Academic–Industry Alignment
 
-Current title (kept until the CURR02 ruling):
+Current title (kept until the ruling; "and Machine Learning" removed 2026-10-12 per the
+theory sweep):
 
 > Bridging the Higher Education–Workforce Divide: A Large-Scale Empirical Analysis of
-> Academic–Industry Skills Misalignment Using Natural Language Processing and Machine
-> Learning
+> Academic–Industry Skills Misalignment Using Natural Language Processing
