@@ -54,6 +54,16 @@ SUBS = [
     ("MoshinAli/skill-gap-experiments", "<OUTPUT_ARCHIVE>"),
     ("studyhub991", "<ACCOUNT>"),
     ("MoshinAli", "<ACCOUNT>"),
+    # The GitHub handle was NOT in this list before batch-4 step 5, so the
+    # bundle leaked it: experiments/ is retained (unlike archive/, reports/,
+    # audit/ and labelling/, which are removed), and the ALIGN05 pre-reg
+    # amendments A3/A4 name the repository as MIHMahmudEli/skill-gap-analysis
+    # while explaining why the sealed key was retired. Caught by
+    # verify_reviewer_bundle.sh, which already grepped for this identifier -
+    # the scrub simply had to catch up with the verifier.
+    ("MIHMahmudEli/skill-gap-analysis", "<REPO_SLUG>"),
+    ("MIHMahmudEli", "<ACCOUNT>"),
+    ("mdmohsin11222", "<EMAIL_LOCALPART>"),
 ]
 n = 0
 for p in out.rglob("*"):
