@@ -259,7 +259,7 @@ been shaped by it. The author elected option 2 (re-draw) over waiving.
 **Verified state at retirement (no contamination).**
 
 - `labelling/align05_titles_200.csv` `author_label` was, and remains, **fully
-  blank** — checked in the working tree and at the pushed commit `0aa1ac2`
+  blank** â€” checked in the working tree and at the pushed commit `0aa1ac2`
   (200/200 blank).
 - **No scoring** ever ran against the v1 key: no ALIGN05 `metrics.json` or result
   artifact exists anywhere in history.

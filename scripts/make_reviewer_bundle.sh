@@ -66,20 +66,36 @@ SUBS = [
     ("mdmohsin11222", "<EMAIL_LOCALPART>"),
 ]
 n = 0
+n_undecodable = 0
 for p in out.rglob("*"):
     if not p.is_file():
         continue
+    # Binary artefacts carry no scrubable text; skip them by extension rather
+    # than by failing to decode, so a decode failure always means something.
+    if p.suffix.lower() in {".pdf", ".png", ".jpg", ".jpeg", ".gz", ".zip",
+                            ".pkl", ".npy", ".npz", ".pt", ".bin"}:
+        continue
     try:
         s = p.read_text(encoding="utf-8")
-    except (UnicodeDecodeError, OSError):
-        continue
+    except UnicodeDecodeError:
+        # Previously this `continue`d, silently skipping the file - which is
+        # how the GitHub handle survived in ALIGN05_PREREG.md (a stray CP1252
+        # byte made the file undecodable, so it was never scrubbed). Read with
+        # surrogateescape so the substitutions still apply, and count the file
+        # so the condition is reported instead of hidden.
+        s = p.read_bytes().decode("utf-8", errors="surrogateescape")
+        n_undecodable += 1
+        print("WARN non-UTF-8 bytes in %s - scrubbed anyway" % p.relative_to(out))
+    except OSError as e:
+        print("ERROR cannot read %s: %s" % (p.relative_to(out), e), file=sys.stderr)
+        sys.exit(3)
     orig = s
     for a, b in SUBS:
         s = s.replace(a, b)
     if s != orig:
-        p.write_text(s, encoding="utf-8", newline="\n")
+        p.write_text(s, encoding="utf-8", errors="surrogateescape", newline="\n")
         n += 1
-print("scrubbed %d file(s)" % n)
+print("scrubbed %d file(s); %d file(s) needed a non-UTF-8 read" % (n, n_undecodable))
 PY
 
 # ---------------------------------------------------------------- 4. verify

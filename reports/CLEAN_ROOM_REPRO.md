@@ -333,7 +333,7 @@ could not be re-run on the author's laptop**: `ALIGN02_semantic_sbert`,
 `ALIGN03_domain_gap`, `ALIGN04_crosscorpus_linkedin`, `CURR01_cs2023_anchor` and
 `VALID01_esco_gold` each `import torch`, and that import fails there with
 `ImportError: DLL load failed while importing _C: An Application Control policy has
-blocked this file` — the same local policy that blocks `statsmodels` in
+blocked this file` â€” the same local policy that blocks `statsmodels` in
 `reproduce_stats.py`. Their committed values are reported as **unchanged but
 unverified on CPU**, not as agreeing.
 
@@ -346,7 +346,7 @@ artifact: outputs go to a separate directory, and the manuscript and
 
 - Linux (Ubuntu 22.04/24.04 or similar) with Python 3.12 or 3.14.
 - ~6 GB free disk (the input bundle is 1.4 GB; embeddings dominate the rest).
-- No GPU required — these runs are CPU-only and single-threaded by design.
+- No GPU required â€” these runs are CPU-only and single-threaded by design.
 - Network only for staging inputs and the model; go offline afterwards.
 
 ### 13.2 Stage the environment
@@ -362,7 +362,7 @@ python -c "import torch, sentence_transformers; print(torch.__version__)"
 
 ### 13.3 Stage the raw inputs
 
-Route A (frozen bundle, §4) is what the committed artifacts were produced from:
+Route A (frozen bundle, Â§4) is what the committed artifacts were produced from:
 
 ```bash
 export KAGGLE_USERNAME=... KAGGLE_KEY=...
@@ -404,13 +404,13 @@ echo "exit=$?"     # 0 = every field within tolerance
 The comparison walks every numeric leaf of each `metrics.json` recursively, with
 `max(1e-9, 1e-6 * |value|)` tolerance. Fields that legitimately vary between a GPU
 and a CPU run are excluded by construction (`runtime_sec`, `device`, seeds,
-statuses, timestamps, kernel slug, package versions) — they carry no claim.
+statuses, timestamps, kernel slug, package versions) â€” they carry no claim.
 
 **What to expect, and why it is not necessarily zero.** For the 8 experiments that
 already re-ran on the author's CPU, every difference was exactly `0`: those use
 integer counts, rounded proportions and seeded-bootstrap percentiles that do not
 depend on the arithmetic's order. The 5 embedding experiments are different in
-kind — `SentenceTransformer.encode` accumulates float32 dot products in an order
+kind â€” `SentenceTransformer.encode` accumulates float32 dot products in an order
 that depends on BLAS threading and the SIMD code path, so a GPU encoding and a CPU
 encoding of the same string can differ in the last bits, and those bits propagate
 into cosine similarities and hence into threshold decisions at $\tau$.
@@ -423,7 +423,7 @@ Therefore:
   hide it, and do not round it away.
 - A **headline SGI differing beyond $1e-6$ relative** is a stop condition. Report
   it with both values, the diff, and the threshold at which the divergence
-  appears, and do not update the manuscript or the registry — the author decides
+  appears, and do not update the manuscript or the registry â€” the author decides
   whether the divergence is a tolerance artefact or a genuine non-determinism
   finding.
 - **Structural fields must not differ at all**: `n_rows`, token/vocabulary counts,
@@ -448,11 +448,11 @@ divergence disclosed.
 ### 13.6 What to do with the result
 
 - If all 5 are within tolerance: the manuscript sentence in
-  §Reproducibility and Data Availability may be strengthened from "not claimed
+  Â§Reproducibility and Data Availability may be strengthened from "not claimed
   here as verified" to name the completed CPU verification. That edit is the
   author's to make and requires a commit; it is not automatic.
 - If any headline metric exceeds tolerance: stop, write the comparison into
   `reports/`, and escalate. Do not silently adopt the CPU value.
 - Either way, do not overwrite anything under `results/`, and do not regenerate
-  `results/verification_report.json` as a side effect — `experiments/verify.py`
+  `results/verification_report.json` as a side effect â€” `experiments/verify.py`
   writes it, so run it only if you intend to.

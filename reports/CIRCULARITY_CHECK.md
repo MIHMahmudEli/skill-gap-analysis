@@ -101,7 +101,7 @@ numbers move into Table I's provenance block.
 
 ---
 
-## (d) Title-free near-duplicate check (batch 4, step 3) — descriptive, not registered
+## (d) Title-free near-duplicate check (batch 4, step 3) â€” descriptive, not registered
 
 **Why.** Sections (a)--(c) all depend on a *title* join: the profile carries no
 `job_link`, so a posting can only be compared to a market posting whose normalized
@@ -109,7 +109,7 @@ title already agrees. That makes title agreement a *necessary* condition, and it
 cannot see a duplicate whose title differed from every profile title while its
 skills were identical. This section removes the title restriction entirely.
 
-**Method — exact, not approximate.** Per-posting skill sets, extracted with the
+**Method â€” exact, not approximate.** Per-posting skill sets, extracted with the
 byte-for-byte ALIGN01 rule (`job_skills` split on `,`, stripped, lower-cased;
 `job_skill_set` bracket-stripped, apostrophes dropped, then the same). The
 518,953 market postings carrying skills collapse to **515,996 distinct skill
@@ -140,7 +140,7 @@ manuscript quotes.)
 
 | Quantity | Value |
 |---|---|
-| Profile postings × distinct market skill signatures | 1,167 × 515,996 |
+| Profile postings Ã— distinct market skill signatures | 1,167 Ã— 515,996 |
 | **Pairs at Jaccard = 0.9** | **0** |
 | **Pairs at Jaccard = 0.7** | **0** |
 | Pairs at = 0.6 | 8 |
@@ -148,7 +148,7 @@ manuscript quotes.)
 | **Maximum Jaccard observed anywhere** | **0.6667** |
 
 The maximum is `business development center representative` (5 profile skills) vs
-a 5-skill market posting sharing 4 of them — the overlap is entirely generic
+a 5-skill market posting sharing 4 of them â€” the overlap is entirely generic
 skills, and it is a *small-set* artefact: with only 5 skills on each side, sharing
 4 already gives 4/6. Every other top pair is the same posting against a
 neighbouring signature, or `retail sales associate part time` at `0.6000`

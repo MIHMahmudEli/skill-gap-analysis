@@ -143,6 +143,71 @@ def test_canonical_input_checksums_still_verify():
     assert ok >= 9, f"expected to verify the 9 canonical inputs, saw {ok}"
 
 
+# ---------------------------------------------------------------------------
+# Text encoding: a stray non-UTF-8 byte makes a file silently un-scrubbable.
+# ---------------------------------------------------------------------------
+# Why this test exists (batch 4, step 5). `scripts/make_reviewer_bundle.sh`
+# removed identifiers from the bundle by reading each file as UTF-8, and its
+# scrub loop used to `continue` on `UnicodeDecodeError`. Three markdown files
+# carried isolated CP1252 bytes (em dash 0x97, multiplication sign 0xd7,
+# section sign 0xa7) that PowerShell here-strings had written, so those files
+# were undecodable and were skipped WITHOUT a word - which is exactly how the
+# GitHub handle survived in `experiments/ALIGN05_PREREG.md` and reached a
+# bundle that then had to be rejected by verify_reviewer_bundle.sh. The scrub
+# now tolerates such bytes, but the repository should not contain them at all.
+# ---------------------------------------------------------------------------
+
+BINARY_SUFFIXES = {".pdf", ".png", ".jpg", ".jpeg", ".gz", ".zip",
+                   ".pkl", ".npy", ".npz", ".pt", ".bin"}
+
+
+def test_tracked_text_files_are_valid_utf8():
+    """Every tracked non-binary file must decode as UTF-8.
+
+    A single CP1252 byte (from a Windows console write) makes the file
+    undecodable, which previously caused the reviewer-bundle scrub to skip it
+    silently and let an identifier through.
+    """
+    tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True,
+                             text=True, check=True).stdout.split()
+    bad = []
+    for f in tracked:
+        p = ROOT / f
+        if not p.is_file() or p.suffix.lower() in BINARY_SUFFIXES:
+            continue
+        try:
+            p.read_bytes().decode("utf-8")
+        except UnicodeDecodeError as e:
+            bad.append(f"{f}: byte 0x{e.object[e.start]:02x} at offset {e.start}")
+    assert not bad, (
+        "tracked text files that are not valid UTF-8 (write files as UTF-8, "
+        "not via a CP1252 console here-string):\n  " + "\n  ".join(bad)
+    )
+
+
+def test_reviewer_bundle_scrub_tolerates_non_utf8_bytes():
+    """The bundle scrub must not silently skip an undecodable file.
+
+    Regression guard for the leak: the loop used to `continue` on
+    UnicodeDecodeError, so a file with one stray byte was never scrubbed and
+    carried its identifiers into the bundle unnoticed.
+    """
+    src = (ROOT / "scripts" / "make_reviewer_bundle.sh").read_text(encoding="utf-8")
+    body = src[src.index('python - "$OUT" <<\'PY\''):src.index("\nPY\n")]
+    assert "surrogateescape" in body, (
+        "the bundle scrub must read with errors='surrogateescape' so a file "
+        "with non-UTF-8 bytes is still scrubbed rather than silently skipped"
+    )
+    assert "except (UnicodeDecodeError, OSError):\n        continue" not in body, (
+        "the bundle scrub silently skips undecodable files; this is how the "
+        "GitHub handle reached a bundle (see ALIGN05_PREREG.md, batch-4 step 5)"
+    )
+    # and the GitHub handle must be among the identifiers it scrubs
+    for ident in ("MIHMahmudEli", "mdmohsin11222"):
+        assert f'("{ident}"' in body, f"bundle scrub does not replace {ident}"
+
+
+
 def test_no_recorded_hash_is_the_crlf_variant_in_new_code():
     """New/edited code must not cite the CRLF variant as if it were canonical.
 
