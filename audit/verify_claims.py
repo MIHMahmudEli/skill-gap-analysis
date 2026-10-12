@@ -320,7 +320,9 @@ presence = [
      and ("Not supported (PLAC01" not in ALLTEX)
      and ("domestic training premium" not in ALLTEX)),
     ("C159", "CS2023 anchor described as computational, not human line-by-line audit",
-     ("computational---not human-validated---anchor" in TEX)
+     # Abstract states it as 'a computational anchor, not a human audit'
+         # (batch-4 step-2 rewrite); conclusion keeps the longer wording.
+         ("a computational anchor, not a human audit" in TEX)
      and ("no human line-by-line topic audit was performed" in TEX)),
     ("C160", "abstract discloses employer-derived occupational reference profile (1,167 postings)",
      "employer-derived occupational reference profile (1,167 job postings" in TEX),
