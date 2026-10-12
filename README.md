@@ -200,6 +200,22 @@ scikit-learn 1.9.0, statsmodels 0.15.0, sentence-transformers 6.0.1
 (all-MiniLM-L6-v2), matplotlib 3.11.1, kaggle 2.2.4, huggingface_hub 1.29.0.
 All splits/bootstrap resamples use seed 42 (multi-seed robustness: seeds 0–9).
 
+## Contributing
+
+Read [reports/CONTRIBUTING.md](reports/CONTRIBUTING.md) before changing anything.
+Two rules are enforced mechanically, not by convention:
+
+- **No push without the author's explicit written approval.** `scripts/pre-push`
+  refuses every push unless `ALLOW_PUSH=1` is set. Install the hook once per clone
+  with `git config core.hooksPath scripts`.
+- **Sealed labelling keys never enter this repository.** They live outside it
+  (e.g. `../sealed_keys/`) and are read via `ALIGN05_KEY`. `.gitignore` and
+  `tests/test_no_tracked_secrets.py` both reject `*_key*.csv` and `sealed*/`.
+
+These exist because a sealed key was published before labelling on 2026-10-12,
+which voided the pre-registered ALIGN05 blinded gate and forced a sample re-draw
+under a new seed — see `archive/align05_titles_200_key_RETIRED.md`.
+
 ## Citation
 
 ```bibtex

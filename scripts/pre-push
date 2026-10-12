@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# Pre-push guard (batch 3, step 2). Installed via:
+#
+#   git config core.hooksPath scripts
+#
+# (the repo ships other helper scripts in scripts/, and hooksPath keeps the
+# hook version-controlled rather than living in .git/hooks where it can rot).
+#
+# Fails the push if any TRACKED file matches a sealed-key pattern. This exists
+# because a sealed key was committed to a public repo on 2026-10-12 before any
+# label existed, which voided the pre-registered ALIGN05 blinded gate and forced
+# a full sample re-draw (ALIGN05_PREREG A3; archive/align05_titles_200_key_RETIRED.md).
+#
+# Also enforces the contributor rule: no push without explicit author approval
+# recorded in this conversation. Set ALLOW_PUSH=1 only on the author's explicit
+# written go-ahead; do not set it by default.
+
+set -uo pipefail
+
+if [[ "${ALLOW_PUSH:-0}" != "1" ]]; then
+  cat >&2 <<'EOF'
+REFUSED: push blocked by policy.
+
+Contributor rule (reports/CONTRIBUTING.md): no push to any remote without the
+author's explicit written approval in the current conversation. The 2026-10-12
+push published the ALIGN05 sealed key and voided that gate; this hook exists so
+that cannot happen again silently.
+
+To push after explicit author approval:
+    ALLOW_PUSH=1 git push <remote> <branch>
+EOF
+  exit 1
+fi
+
+fail=0
+
+# --- 1. no tracked sealed key ---------------------------------------------
+bad=$(git ls-files | grep -aiE '(^|/)[^/]*_key[^/]*\.csv$|(^|/)[^/]*key[^/]*\.csv\.bak$|(^|/)sealed(/|$)|(^|/)sealed[^/]*/|(^|/)sealed_keys(/|$)' \
+      | grep -avE '^archive/.*RETIRED')
+
+if [[ -n "$bad" ]]; then
+  echo "REFUSED: sealed-key file(s) tracked - these must never be pushed:" >&2
+  echo "$bad" | sed 's/^/    /' >&2
+  echo "Keys live OUTSIDE the repo (../sealed_keys/) and are read via ALIGN05_KEY." >&2
+  echo "See archive/align05_titles_200_key_RETIRED.md for why this is blocking." >&2
+  fail=1
+fi
+
+# --- 2. no sealed key staged but untracked-by-force ------------------------
+staged=$(git diff --cached --name-only --diff-filter=A | grep -aiE '(^|/)[^/]*_key[^/]*\.csv$|(^|/)sealed' | grep -avE '^archive/.*RETIRED')
+if [[ -n "$staged" ]]; then
+  echo "REFUSED: staged additions match a sealed-key pattern:" >&2
+  echo "$staged" | sed 's/^/    /' >&2
+  fail=1
+fi
+
+# --- 3. the sealed key must not be inside the repo at all ------------------
+for p in "../sealed_keys" "sealed_keys"; do
+  if git ls-files --error-unmatch "$p" >/dev/null 2>&1; then
+    echo "REFUSED: $p is tracked; it must stay outside the repository." >&2
+    fail=1
+  fi
+done
+
+if [[ "$fail" -ne 0 ]]; then
+  echo >&2
+  echo "Fix: git rm --cached <file>, add the pattern to .gitignore, and move the" >&2
+  echo "key outside the repo. Do NOT rewrite history to undo a published key -" >&2
+  echo "redraw the sample under a new seed instead (ALIGN05_PREREG A3)." >&2
+  exit 1
+fi
+
+echo "pre-push guard: OK (no tracked sealed key; push approved via ALLOW_PUSH=1)" >&2
+exit 0
