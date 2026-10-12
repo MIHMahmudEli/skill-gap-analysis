@@ -24,8 +24,8 @@ Every number comes from a committed artifact: `results/ALIGN01_lexical_bootstrap
 > employer-derived reference profile of 1,167 job postings across five occupational
 > categories. Analyses run on a 519,814-posting nested subset of that corpus, and both gap
 > indices are re-checked on a 1.29-million-posting superset from the same family; a
-> posting-level join finds no shared postings between profile and market, so the two sides
-> are independent. N-gram skill extraction over an eight-category taxonomy is combined with
+> posting-level check finds no near-duplicate postings between the reference profile and the
+> market corpus (title--skill Jaccard $\geq$ 0.9). N-gram skill extraction over an eight-category taxonomy is combined with
 > Sentence-BERT alignment at four cosine thresholds (τ ∈ {0.4, 0.5, 0.6, 0.7}; 1,000-fold
 > bootstrap intervals). Exact string matching yields a Skill Gap Index (SGI) of 52.0%;
 > semantic alignment reduces this by 20 percentage points to 32.0% at τ = 0.5 (95% CI
@@ -51,8 +51,8 @@ if you want it in the sentence).
 > employer-derived reference profile of 1,167 job postings across five occupational
 > categories. Analyses run on a 519,814-posting nested subset of that corpus, and both gap
 > indices are re-checked on a 1.29-million-posting superset from the same family; a
-> posting-level join finds no shared postings between profile and market, so the two sides
-> are independent. N-gram skill extraction over an eight-category taxonomy is combined with
+> posting-level check finds no near-duplicate postings between the reference profile and the
+> market corpus (title--skill Jaccard $\geq$ 0.9). N-gram skill extraction over an eight-category taxonomy is combined with
 > Sentence-BERT alignment at four cosine thresholds (τ ∈ {0.4, 0.5, 0.6, 0.7}; 1,000-fold
 > bootstrap intervals). Exact string matching yields a Skill Gap Index (SGI) of 52.0%;
 > semantic alignment reduces this by 20 percentage points to 32.0% at τ = 0.5 (95% CI
@@ -76,7 +76,7 @@ if you want it in the sentence).
 |---|---|
 | "15 open datasets (2.12M unique records…)" | "a 1.35-million-posting LinkedIn corpus — a single scrape family" |
 | corpus/provenance described at dataset level | nested 519,814 subset + 1.29M same-family superset named explicitly |
-| independence not stated | "a posting-level join finds no shared postings… the two sides are independent" (step 1) |
+| independence not stated | "a posting-level check finds no near-duplicate postings between profile and market (title--skill Jaccard >= 0.9)" (step 1) |
 | "academic–industry alignment" framing | "what computing curricula teach and what employers demand" |
 | "modular technical coursework…" recommendation | **removed entirely** (per instruction) |
 | "Soft-skill requirements are fully covered by the reference profile" kept but Cloud/Programming implied curricular | all three explicitly labelled **reference-profile deficits** |
