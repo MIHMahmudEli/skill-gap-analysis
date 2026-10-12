@@ -32,6 +32,14 @@
     citecolor=blue,
 }
 
+% Double-blind anonymity: strip the build timestamp (it embeds the build
+% machine's timezone) and the producer/creator identification strings from the
+% PDF trailer.  These are pdfTeX primitives; harmless if ignored by a
+% different engine.
+\pdfinfoomitdate=1
+\pdfsuppressptexinfo=-1
+\pdftrailerid{}
+
 % Paper Title
 \title{A Benchmark Audit of Graduate-Placement Modeling: Decision Boundaries, External Cohorts, and the Limits of Near-Perfect Placement Scores}
 
@@ -348,10 +356,10 @@ Every quantitative result reported in this article originates from one of the re
 \input{tables/tab_experiments}
 }
 \par\vspace{3pt}
-{\footnotesize Each kernel receives an immutable input bundle from the public Kaggle dataset \texttt{studyhub991/skill-gap-inputs-v1} and writes \texttt{metrics.json} plus CSV artifacts; outputs are downloaded, schema- and sanity-verified (\texttt{experiments/verify.py}), and only \texttt{VERIFIED} outputs are used in this manuscript. Table and figure generation is automated by \texttt{experiments/make\_latex.py} from those verified artifacts. The full 15-source provenance inventory is in the companion article (Table~I there) and in \texttt{datasets/DATASET\_MANIFEST.csv}.}
+{\footnotesize Each kernel receives an immutable input bundle from a public Kaggle dataset (\texttt{anon/skill-gap-inputs-v1}; the owning namespace is withheld for double-blind review) and writes \texttt{metrics.json} plus CSV artifacts; outputs are downloaded, schema- and sanity-verified (\texttt{experiments/verify.py}), and only \texttt{VERIFIED} outputs are used in this manuscript. Table and figure generation is automated by \texttt{experiments/make\_latex.py} from those verified artifacts. The full 15-source provenance inventory is in the companion article (Table~I there) and in \texttt{datasets/DATASET\_MANIFEST.csv}.}
 \end{table*}
 
-The analyses were implemented in Python 3.14.6 with \texttt{scikit-learn} 1.9.0, \texttt{statsmodels} 0.15.0, \texttt{scipy} 1.18.1, \texttt{pandas} 3.0.5, and \texttt{numpy}; stratified cross-validation splits and all estimators use fixed seeds ($\text{seed} = 42$; multi-seed robustness uses seeds 0--9). Complete experiment outputs are archived in the HuggingFace dataset \texttt{MoshinAli/skill-gap-experiments}, and the runnable experiment suite and scheduler live in the project repository (\texttt{experiments/}).
+The analyses were implemented in Python 3.14.6 with \texttt{scikit-learn} 1.9.0, \texttt{statsmodels} 0.15.0, \texttt{scipy} 1.18.1, \texttt{pandas} 3.0.5, and \texttt{numpy}; stratified cross-validation splits and all estimators use fixed seeds ($\text{seed} = 42$; multi-seed robustness uses seeds 0--9). Complete experiment outputs are archived in a public HuggingFace dataset (\texttt{anon/skill-gap-experiments}; namespace withheld for double-blind review), and the runnable experiment suite and scheduler live in the project repository (\texttt{experiments/}).
 
 % ============================================================
 % SECTION 6: CONCLUSION
