@@ -34,20 +34,36 @@ else
 fi
 
 # ---------------------------------------------------------------- 2. PDF metadata
+# Every PDF must carry no dates (CreationDate/ModDate leak the build machine's
+# timezone), no Title/Subject/Keywords/Author, and only the two known tool
+# strings for Creator/Producer.  pdfinfo pads empty fields with spaces, so the
+# values are trimmed before testing -- an empty field is not a leak.
 echo "== pdf metadata check"
 if command -v pdfinfo >/dev/null 2>&1; then
     PDFLEAK=0
     while IFS= read -r pdf; do
-        META="$(pdfinfo "$pdf" 2>/dev/null)"
-        BAD="$(printf '%s\n' "$META" | grep -E '^(Title|Subject|Keywords|Author|Creator|Producer|CreationDate|ModDate): .' || true)"
+        PAIRS="$(pdfinfo "$pdf" 2>/dev/null | sed -n 's/^\([A-Za-z]*\):[[:space:]]*\(.*\)$/\1=\2/p')"
+        BAD=""
+        echo "$PAIRS" | grep -E '^(Title|Subject|Keywords|Author|CreationDate|ModDate)=..*$' >/dev/null 2>&1 && \
+            BAD="$BAD$(printf '%s\n' "$PAIRS" | grep -E '^(Title|Subject|Keywords|Author|CreationDate|ModDate)=..*$' | tr '\n' ';')"
+        CR="$(printf '%s\n' "$PAIRS" | sed -n 's/^Creator=//p')"
+        PR="$(printf '%s\n' "$PAIRS" | sed -n 's/^Producer=//p')"
+        case "$CR" in
+            ""|"LaTeX with hyperref") : ;;
+            *) BAD="$BADCreator=$CR;" ;;
+        esac
+        case "$PR" in
+            ""|MiKTeX\ pdfTeX*|pdfTeX*) : ;;
+            *) BAD="$BADProducer=$PR;" ;;
+        esac
         if [ -n "$BAD" ]; then
             echo "LEAK: $pdf"
-            printf '%s\n' "$BAD" | sed 's/^/     /'
+            echo "     $BAD"
             PDFLEAK=$((PDFLEAK+1))
         fi
     done < <(find "$OUT" -name '*.pdf')
     if [ "$PDFLEAK" -eq 0 ]; then
-        echo "   no PDF carries Title/Author/Creator/Producer/dates: PASS"
+        echo "   no PDF carries dates, personal fields or non-tool metadata: PASS"
     else
         FAIL=1
     fi

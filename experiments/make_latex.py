@@ -24,6 +24,20 @@ RES = ROOT / "results"
 TAB = ROOT / "paper" / "tables"
 TABP = ROOT / "paper_placement" / "tables"
 FIG = ROOT / "paper" / "figures"
+
+# matplotlib writes /CreationDate (with the build machine's local timezone,
+# e.g. "2026 Bangladesh Standard Time") plus Creator/Producer strings into every
+# PDF it emits.  For a double-blind submission those are an identity leak, so
+# figure PDFs are written with all document metadata suppressed.
+FIG_METADATA = {"CreationDate": None, "Creator": None, "Producer": None,
+                "Title": None, "Author": None, "Subject": None,
+                "Keywords": None, "Trapped": None}
+
+
+def save_figure(fig, name: str) -> None:
+    """Write FIG/name with all PDF document metadata suppressed (see
+    FIG_METADATA).  Verified by scripts/verify_reviewer_bundle.sh."""
+    fig.savefig(FIG / name, bbox_inches="tight", metadata=FIG_METADATA)
 TAB.mkdir(parents=True, exist_ok=True)
 TABP.mkdir(parents=True, exist_ok=True)
 FIG.mkdir(parents=True, exist_ok=True)
@@ -488,7 +502,7 @@ def fig_top_skills() -> None:
         ax.text(v + xmax * 0.015, y, f"{v:,} ({v/n_total*100:.1f}%)",
                 va="center", fontsize=6.5)
     fig.tight_layout()
-    fig.savefig(FIG / "fig1_top_skills.pdf", bbox_inches="tight")
+    save_figure(fig, "fig1_top_skills.pdf")
     plt.close(fig)
 
 
@@ -537,7 +551,7 @@ def fig_skill_gap() -> None:
     ax2.legend(loc="upper right", framealpha=0.9)
     ax2.set_title("(b) Skill deficit magnitude (95% CI)")
     fig.tight_layout()
-    fig.savefig(FIG / "fig2_skill_gap.pdf", bbox_inches="tight")
+    save_figure(fig, "fig2_skill_gap.pdf")
     plt.close(fig)
 
 
@@ -555,7 +569,7 @@ def fig_geo_trends() -> None:
         ax.text(i, v + 2, f"{v:.2f}%", ha="center", fontsize=7)
     ax.grid(axis="x", visible=False)
     fig.tight_layout()
-    fig.savefig(FIG / "fig3a_geo_shares.pdf", bbox_inches="tight")
+    save_figure(fig, "fig3a_geo_shares.pdf")
     plt.close(fig)
 
     dt = load("TRENDS01_ai_longitudinal")
@@ -574,7 +588,7 @@ def fig_geo_trends() -> None:
     ax.set_ylim(44, 57)
     ax.legend(ncol=2, framealpha=0.9, loc="lower right")
     fig.tight_layout()
-    fig.savefig(FIG / "fig3b_ai_trends.pdf", bbox_inches="tight")
+    save_figure(fig, "fig3b_ai_trends.pdf")
     plt.close(fig)
 
 
@@ -601,7 +615,7 @@ def fig_placement() -> None:
         off = 0.03 if v >= 0 else -0.06
         ax.text(v + off, i, f"{v:.3f}", va="center", fontsize=6.5)
     fig.tight_layout()
-    fig.savefig(FIG / "fig4a_placement_effect_sizes.pdf", bbox_inches="tight")
+    save_figure(fig, "fig4a_placement_effect_sizes.pdf")
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(3.4, 2.6))
@@ -624,7 +638,7 @@ def fig_placement() -> None:
     ax.legend(framealpha=0.9)
     ax.grid(axis="x", visible=False)
     fig.tight_layout()
-    fig.savefig(FIG / "fig4b_placement_means.pdf", bbox_inches="tight")
+    save_figure(fig, "fig4b_placement_means.pdf")
     plt.close(fig)
 
 
@@ -647,7 +661,7 @@ def fig_internship() -> None:
            f"{ci[0]:.2f}--{ci[1]:.2f})")
     ax.set_title(txt, fontsize=7.5)
     fig.tight_layout()
-    fig.savefig(FIG / "fig5_internship.pdf", bbox_inches="tight")
+    save_figure(fig, "fig5_internship.pdf")
     plt.close(fig)
 
 

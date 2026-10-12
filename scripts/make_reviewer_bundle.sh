@@ -30,6 +30,7 @@ git -C "$ROOT" archive HEAD | tar -x -C "$OUT"
 # pre-publication working files that reviewers should not see.
 rm -rf "$OUT"/audit "$OUT"/archive "$OUT"/reports "$OUT"/labelling "$OUT"/.github
 rm -f  "$OUT"/LICENSE "$OUT"/README.md
+rm -f  "$OUT"/scripts/verify_reviewer_bundle.sh   # holds the identifier list by design
 rm -f  "$OUT"/datasets/cs2023/CS2023_BoK.pdf        # third-party copyright
 rm -f  "$OUT"/results/worker_map.json "$OUT"/results/registry.json   # namespaces
 find "$OUT"/results -name metadata.json -delete                        # kernel/user handles
