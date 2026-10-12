@@ -222,7 +222,7 @@ FINDINGS.md` §C). Nothing applied until author approval.
 | P5-1 | Grep author-identifying strings (MIHMahmudEli, MoshinAli, studyhub991, nihanshadman, leyamridha, sadmanhasanmiraj, nishat1156, etc.) across paper/README/reports/audit/figures; replace with neutral placeholders; anonymized artifact plan | Pending |
 | P5-2 | Move audit AI-process files (adversarial review, executive summary, changelogs) out of public-facing tree into git-ignored `archive/` or archive branch | Pending |
 | P5-3 | Multi-account Kaggle statement in paper + ToS flag to author | Pending |
-| P5-4 | Fix **R-8** (VALID01 `n_positive_by_type` metadata zeros), **R-11/F-5** (`make_latex.py` stop overwriting `tab_crosscorpus.tex`) | Pending |
+| P5-4 | Fix **R-8** (VALID01 `n_positive_by_type` metadata zeros), **R-11/F-5** (`make_latex.py` stop overwriting `tab_crosscorpus.tex`) | Done 2026-10-12 |
 
 ---
 

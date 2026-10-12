@@ -326,6 +326,11 @@ def main() -> None:
         "n_pairs": int(len(pairs)),
         "n_positive": int(pairs.gold.sum()),
         "n_negative": int(len(pairs) - pairs.gold.sum()),
+        "n_pairs_by_neg_type": {k: int(v) for k, v in
+                                pairs.neg_type.value_counts().items()},
+        # gold sum per neg_type is 1138/0/0 by construction (the negative
+        # types carry gold=0); n_pairs_by_neg_type above is the informative
+        # composition breakdown (issue R-8 / ledger M06).
         "n_positive_by_type": {k: int(v) for k, v in
                                pairs.groupby("neg_type").gold.sum().items()},
         "tau_thresholds": TAUS,

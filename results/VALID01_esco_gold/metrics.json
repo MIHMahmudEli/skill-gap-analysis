@@ -13,6 +13,11 @@
   "n_pairs": 2907,
   "n_positive": 1138,
   "n_negative": 1769,
+  "n_pairs_by_neg_type": {
+    "positive": 1138,
+    "random_neg": 1062,
+    "hard_neg": 707
+  },
   "n_positive_by_type": {
     "hard_neg": 0,
     "positive": 1138,

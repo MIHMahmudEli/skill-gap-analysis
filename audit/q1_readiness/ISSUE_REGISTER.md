@@ -35,10 +35,10 @@ not wording alone (wording-only resolutions marked as such).
 | R-5 | HIGH | Phase 2 | Academic profile construct language | Keep proxy language permanently | **OPEN residual** — design limitation, not fixable without new data |
 | R-6 | MEDIUM | Phase 0 R5 | CS2023 line-by-line audit | Hand-check 2,197 topics | **MITIGATED (non-blocking)** — manuscript/README now state computational-only anchor; a human audit would strengthen but is not required for correctness (do not claim one exists) |
 | R-7 | MEDIUM | Phase 5 | Employer-clustered bootstrap for domain CIs | Implement if time | **OPEN (recommended)** |
-| R-8 | LOW | Phase 8 | VALID01 `n_positive_by_type` metadata zeros | Fix metadata emitter | **OPEN (non-blocking)** |
+| R-8 | LOW | Phase 8 | VALID01 `n_positive_by_type` metadata zeros | Fix metadata emitter | **FIXED 2026-10-12** (P5-4): `n_pairs_by_neg_type` added to emitter + committed metrics; ledger M06 reproduced |
 | R-9 | MEDIUM | Phase 11–12 | Venue format (page/word/class) | Convert after venue choice | **OPEN (author)** |
 | R-10 | MEDIUM | Phase 8 | Full human proofread | Manual | **OPEN (author)** |
-| R-11 | LOW | Phase 11 | `make_latex.py` can clobber crosscorpus table | Prefer hand table or update generator | **OPEN** |
+| R-11 | LOW | Phase 11 | `make_latex.py` can clobber crosscorpus table | Prefer hand table or update generator | **FIXED 2026-10-12** (P5-4): generator now emits the audited table byte-for-byte; `--check` mode + `tests/test_make_latex_regeneration.py` |
 | G-1 | MEDIUM | Phase 1 inventory | Orphan datasets in repo | Document unused; no claim of use | **RESOLVED** (documented) |
 | G-2 | LOW | Phase 2 | ai_job_dataset vs ai_job_dataset1 duplicate copies | Inventory flag | **OPEN (inventory)** |
 | A-1 | HIGH | Adversarial V-1 | Internal Revision Log in submission PDF | Remove from `main.tex` | **RESOLVED** 2026-10-11 |
@@ -49,5 +49,5 @@ not wording alone (wording-only resolutions marked as such).
 | A-6 | MEDIUM | Adversarial Phase 7 | BJET word budget (~6.6k body vs ~6k) | Venue conversion after owner choice | **OPEN (author)** |
 | F-3 | LOW | Reconciliation Phase 3 | README stale items: "Internship effect" label, ALIGN04/CURR01 status, 15-pp page count, "curriculum alignment" RQ2 label, curriculum-as-direct-measure tone | Sync README to manuscript + registry | **RESOLVED 2026-10-11** |
 | F-4 | LOW | Reconciliation Phase 2 | Naive line counts (jobs 519,841; LinkedIn 1,348,510) inflated by embedded newlines | Use CSV parser / manifest | **RESOLVED** — pandas reparse confirms 519,814 / 1,348,454; documented in REPRODUCIBILITY_REPORT |
-| F-5 | LOW | Reconciliation Phase 9 | `make_latex.py` still overwrites hand-audited `tab_crosscorpus.tex` and clobbers TikZ PDF figures | Restore via `git checkout --` after regeneration; generator fix deferred | **ACCEPTED** (same as R-11; documented in CHANGELOG) |
+| F-5 | LOW | Reconciliation Phase 9 | `make_latex.py` still overwrites hand-audited `tab_crosscorpus.tex` and clobbers TikZ PDF figures | Restore via `git checkout --` after regeneration; generator fix deferred | **FIXED 2026-10-12** (P5-4): `tab_crosscorpus()` generates the audited table; figures written only with `--figures`; `--check` asserts byte-identical regeneration |
 | F-6 | MEDIUM | Reconciliation Phase 7 | Author names/journal still redacted placeholder | Owner decision | **OPEN (author)** |

@@ -291,14 +291,16 @@ If those four lines hold, the clean-room run is a pass at level L1.
    checked by `audit/verify_claims.py` (C87–C90, C152/C152b) against the
    committed STAT01 artifacts. On a clean machine with the pinned
    `statsmodels==0.15.0` this stage is expected to pass.
-3. **Footgun F-5: `python experiments/make_latex.py` regenerates
-   `paper/tables/tab_crosscorpus.tex` and the figure PDFs with
-   non-authoritative versions** (they are hand-audited). If you re-run it,
-   restore before compiling:
+3. **Footgun F-5 — FIXED 2026-10-12 (P5-4).** `python experiments/make_latex.py`
+   regenerates all 14 tables; `tab_crosscorpus.tex` is now a genuine generator
+   product (byte-identical to the audited table), and figure PDFs are **not**
+   written unless you pass `--figures`. Before compiling you can confirm
+   nothing would change with the side-effect-free check:
    ```powershell
-   git checkout -- paper/figures paper/tables/tab_crosscorpus.tex
+   python experiments/make_latex.py --check   # exit 0 = all tables identical
    ```
-   Fix is tracked as plan item **P5-4** (pending).
+   `tests/test_make_latex_regeneration.py` runs that check in CI, so a
+   hand-edited table or a drifting generator fails the test suite.
 4. **`reproduce_local.py` overwrites tracked audit artifacts.** Re-run the
    stages you need, then `git checkout -- audit results` if you want the
    committed versions back.
