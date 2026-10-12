@@ -148,7 +148,8 @@ local smoke tests; on Kaggle they read the mounted bundle
 
 ## Key Verified Results
 
-- **Skill Gap Index**: lexical **52%** (95% CI [42, 63]); semantic **32%** at
+- **Skill Gap Index** (primary 519K corpus): lexical **52%** (95% CI [42, 63]);
+  semantic **32%** at
   τ = 0.5 (95% CI [23, 41]); 46% at τ = 0.7
 - **Domain gaps** (postings, pp): Cloud & Infrastructure **2.45** (Critical),
   Programming **1.69**, Data Science **1.20**; semantic alignment cuts each by
