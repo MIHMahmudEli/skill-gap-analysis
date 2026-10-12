@@ -70,3 +70,43 @@ def test_default_run_does_not_write_figures():
     fig_block = main_src[:main_src.index('if "--figures" in argv:')]
     assert "fig_top_skills" not in fig_block and "fig_internship" not in fig_block, \
         "figure generation must sit behind the --figures flag"
+
+
+# ---------------------------------------------------------------------
+# Batch 4, step 4: the kernel-slug column was dropped from tab:experiments
+# (main, supplement and companion). Pin the new shape so a generator edit
+# cannot silently reintroduce a host-identifying column.
+# ---------------------------------------------------------------------
+KERNEL_SLUG_MARKERS = ("anon/sg-", "sg-align", "sg-geo", "sg-valid", "sg-curr")
+
+
+def test_experiments_tables_have_single_experiment_id_column():
+    """Each registry table must be 4 columns with ONE 'Experiment ID' header,
+    and must not carry a kernel-slug column."""
+    paths = [
+        ROOT / "paper" / "tables" / "tab_experiments.tex",
+        ROOT / "paper" / "tables" / "tab_experiments_supplement.tex",
+        ROOT / "paper_placement" / "tables" / "tab_experiments.tex",
+    ]
+    for p in paths:
+        txt = p.read_text(encoding="utf-8")
+        specs = re.findall(r"\\begin\{tabular\}\{@\{\}([a-z]+)@\{\}\}", txt)
+        assert specs == ["llrl"], f"{p.name}: expected one llrl spec, got {specs}"
+        hdrs = [ln for ln in txt.splitlines() if "textbf{Experiment ID}" in ln]
+        assert len(hdrs) == 1, f"{p.name}: expected 1 header, got {len(hdrs)}"
+        assert "textbf{ID}" not in txt, f"{p.name}: old 'ID' header still present"
+        for marker in KERNEL_SLUG_MARKERS:
+            assert marker not in txt, f"{p.name}: kernel slug marker {marker!r} present"
+
+
+def test_generator_no_longer_emits_kernel_column():
+    """make_latex.py must not build a kernel cell for any experiments table."""
+    src = (ROOT / "experiments" / "make_latex.py").read_text(encoding="utf-8")
+    fn = src[src.index("def tab_experiments("):]
+    nxt = fn.find("\ndef ", 1)
+    body = fn if nxt == -1 else fn[:nxt]
+    assert "anon_kernel(e[" not in body, \
+        "tab_experiments still emits a kernel cell"
+    assert "anon_kernel(t_e[" not in body, \
+        "tab_experiments supplement still emits a kernel cell"
+
