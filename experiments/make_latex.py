@@ -25,10 +25,11 @@ TAB = ROOT / "paper" / "tables"
 TABP = ROOT / "paper_placement" / "tables"
 FIG = ROOT / "paper" / "figures"
 
-# matplotlib writes /CreationDate (with the build machine's local timezone,
-# e.g. "2026 Bangladesh Standard Time") plus Creator/Producer strings into every
-# PDF it emits.  For a double-blind submission those are an identity leak, so
-# figure PDFs are written with all document metadata suppressed.
+# matplotlib writes /CreationDate (with the build machine's local timezone
+# offset, e.g. a 2026 timestamp labelled with the author's national time
+# standard) plus Creator/Producer strings into every PDF it emits.  For a
+# double-blind submission those are an identity leak, so figure PDFs are
+# written with all document metadata suppressed.
 FIG_METADATA = {"CreationDate": None, "Creator": None, "Producer": None,
                 "Title": None, "Author": None, "Subject": None,
                 "Keywords": None, "Trapped": None}
