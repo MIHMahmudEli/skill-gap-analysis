@@ -59,12 +59,21 @@ KEY = Path(os.environ.get(
     "ALIGN05_KEY",
     str(ROOT.parent / "sealed_keys" / "align05_titles_200_key.csv"))).resolve()
 
-rules_sha = hashlib.sha256(RULES.read_bytes()).hexdigest().upper()
-EXPECTED_RULES_SHA = ("9F0410507C23313C99517CEC9D40A1CC0697CD29192A89357F0E321234F1429D")
+# Hash the LF-NORMALISED bytes, not the raw working-tree bytes. With
+# core.autocrlf=true (Windows default) Git rewrites the file's 55 LF newlines to
+# CRLF on checkout, so hashing bytes-on-disk yields 9F0410... on Windows and
+# 09BC778E... on Linux/macOS -- two hashes for one logical file. The blob stores
+# LF, and pre-reg A2 cites the LF hash, so LF-normalising is the only form that
+# verifies on every machine. .gitattributes pins eol=lf for this file to close
+# the gap from the other side. See ALIGN05_PREREG A4.
+rules_sha = hashlib.sha256(RULES.read_bytes().replace(b"\r\n", b"\n")).hexdigest().upper()
+EXPECTED_RULES_SHA = ("09BC778E67C884ECE38EDEC81B57DF70123EBE331F932D9441D6A12DBFCB7E36")
 if rules_sha != EXPECTED_RULES_SHA:
     raise SystemExit(
         f"FROZEN RULE SET CHANGED: {rules_sha}\n"
         f"expected {EXPECTED_RULES_SHA}\n"
+        "(both are SHA-256 of the LF-normalised bytes; a raw-bytes hash would be "
+        "9F0410... on a CRLF checkout and is not the comparison being made)\n"
         "The v1 rule set must stay byte-identical; any revision requires a new "
         "prereg amendment and a further fresh sample.")
 if KEY.is_relative_to(ROOT):

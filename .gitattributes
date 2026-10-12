@@ -1,0 +1,55 @@
+# Line-ending policy for files whose SHA-256 is recorded somewhere.
+#
+# Why this file exists (batch 4, step 1). `experiments/align05_title_rules_v1.json`
+# is a FROZEN artefact whose SHA-256 is cited in a pre-registration
+# (`experiments/ALIGN05_PREREG.md`, amendment A2) and hard-checked by
+# `experiments/build_align05_validation_sample.py`. On a clone with
+# `core.autocrlf=true` (the default on Windows) Git rewrites its 55 LF newlines to
+# CRLF in the working tree, so hashing the bytes on disk yields
+#   9F0410507C23313C99517CEC9D40A1CC0697CD29192A89357F0E321234F1429D
+# while hashing the LF-normalised bytes -- which is what the blob stores and what
+# A2 records -- yields
+#   09BC778E67C884ECE38EDEC81B57DF70123EBE331F932D9441D6A12DBFCB7E36
+# Both are "correct" for the same logical file; only one is reproducible across
+# machines. Forcing eol=lf makes the working tree byte-identical to the blob on
+# every platform, so a single recorded hash verifies everywhere. See A4.
+#
+# Rule: any file whose content hash is (or may later be) recorded in a
+# pre-registration, registry, metrics.json or checksums file MUST be listed here
+# with eol=lf, and every hash check MUST compare LF-normalised bytes.
+
+# --- files whose hashes are recorded today -----------------------------------
+# experiments/align05_title_rules_v1.json : SHA-256 cited in ALIGN05_PREREG A2/A4
+experiments/align05_title_rules_v1.json  eol=lf
+# datasets/input_checksums.sha256 holds the 9 canonical input hashes; CRLF would
+# also break `sha256sum -c` path parsing (trailing \r in the filename)
+datasets/input_checksums.sha256          eol=lf
+
+# --- categories that would carry a hash if one is ever recorded --------------
+*.json       text eol=lf
+*.sha256     text eol=lf
+*.yaml       text eol=lf
+*.yml        text eol=lf
+*.toml       text eol=lf
+*.cfg        text eol=lf
+*.ini        text eol=lf
+
+# --- source and prose: normalise so future hashes are stable -----------------
+*.py         text eol=lf
+*.sh         text eol=lf
+*.tex        text eol=lf
+*.bib        text eol=lf
+*.md         text eol=lf
+
+# --- never normalise: binary content would be corrupted ----------------------
+*.pdf        binary
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gz         binary
+*.zip        binary
+*.pkl        binary
+*.npy        binary
+*.npz        binary
+*.pt         binary
+*.bin        binary

@@ -306,3 +306,70 @@ precision >= 0.90 **and** recall >= 0.90), the <= 2 revision rule, the analysis
 in 56, and the non-goals in 58 are all unchanged. This amendment alters only
 *which* 200 titles are labelled and *where the key lives*. The 200-title sample
 drawn under seed 42 is retired and may not be re-used for any purpose.
+
+### A4 - 2026-10-12 (agent correction; pre-run; corrects the record, changes nothing)
+
+**What A2 said.** A2 cites the frozen rule set as `SHA-256 09bc778e...7e36`.
+Batch 3's step-1 note and this file's A3 instead quote
+`9F0410507C23313C99517CEC9D40A1CC0697CD29192A89357F0E321234F1429D`, and the
+batch-3 report flagged the mismatch as an unexplained discrepancy. **That flag
+was wrong: A2 was correct.** A3 and the retired-key note recorded the wrong
+value. No edit is made to A2 or A3 - amendments are append-only - this block
+supersedes the hash cited in A3.
+
+**The two hashes are the same file, differing only in line endings.**
+
+| | SHA-256 | CRLF newlines | Bytes |
+|---|---|---|---|
+| (a) working-tree raw bytes, Windows `core.autocrlf=true` | `9F0410507C23313C99517CEC9D40A1CC0697CD29192A89357F0E321234F1429D` | 55 | 4,863 |
+| (b) working-tree, LF-normalised | `09BC778E67C884ECE38EDEC81B57DF70123EBE331F932D9441D6A12DBFCB7E36` | 0 | 4,808 |
+| (c) git blob at `9a6f030` (`git cat-file blob`) | `09BC778E67C884ECE38EDEC81B57DF70123EBE331F932D9441D6A12DBFCB7E36` | 0 | 4,808 |
+
+**(b) == (c), and both equal A2's `09bc778e...7e36`.** The blob is pure LF;
+`core.autocrlf=true` rewrites its 55 LF newlines to CRLF when checking out on
+Windows, so hashing the bytes on disk gives `9F0410...`. A2 recorded the
+canonical, machine-independent value; the batch-3 note recorded a
+Windows-artifact one. The committed blob object id is
+`42ac2df209a2426c45ae32b7de2e212281496fa6`.
+
+**Correction applied.** `experiments/build_align05_validation_sample.py` now
+LF-normalises before hashing and expects `09BC778E...`, so the guard passes on
+Windows, Linux and macOS alike. (Its batch-3 form hashed raw bytes against the
+CRLF value: correct on this laptop, guaranteed to fail on a Linux clone for a
+perfectly unchanged file - the inverse of the reproducibility the guard exists
+to provide.)
+
+`.gitattributes` is added, forcing `eol=lf` on every file whose content hash is
+recorded here, in `datasets/input_checksums.sha256`, or in any metrics file
+(`align05_title_rules_v1.json`, `input_checksums.sha256`, plus `*.json`,
+`*.sha256`, `*.yaml/toml/cfg/ini` and the source/prose types). This closes the
+gap from the other side: the working tree becomes byte-identical to the blob on
+every platform. `tests/test_hash_eol_integrity.py` (7 tests) pins the invariant.
+
+**Scope of the same bug elsewhere - audited 2026-10-12.** Every recorded
+SHA-256 in the repository was re-verified:
+
+- `datasets/input_checksums.sha256`, all 9 canonical inputs: **match, no
+  exposure**. Their targets are *untracked* (gitignored), so git never
+  normalises their EOLs and the recorded hash is of stable raw bytes. The test
+  asserts they stay untracked (or gain `eol=lf`) so this cannot regress.
+  Four of the nine are CRLF-terminated files on disk (hf_skill_gap_skills,
+  hf_job_skill_set, student_career_success, global_placement, plus
+  international_graduates) - that is their content as shipped, not a
+  conversion, and the hashes were computed over exactly those bytes.
+- `results/registry.json` and every `results/*/metrics.json`: **zero** recorded
+  64-hex hashes. Nothing to normalise.
+- `tests/test_common.py`: a hash of a synthetic `b"hello"` fixture written with
+  `write_bytes`; not EOL-sensitive.
+- `requirements.txt` `--require-hashes`: hashes of PyPI release artifacts,
+  fetched over the network, never subject to this repo's EOL policy.
+
+So `align05_title_rules_v1.json` was the **only** recorded hash exposed to EOL
+normalisation, and it is now pinned.
+
+**Nothing else changes.** Sampling design, strata, weights, seed `20261013`,
+the `A5U` prefix, the sealed-key location and access rules, the estimators and
+the gate are all untouched. The v1 rule set's *content* is byte-identical;
+only the encoding of its newlines in the working tree, and the form of the
+hash check, changed. This amendment changes no label, no number and no
+registered decision.
