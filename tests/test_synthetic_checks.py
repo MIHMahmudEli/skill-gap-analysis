@@ -110,14 +110,50 @@ def test_committed_output_artifact_structure():
     d = json.loads(p.read_text(encoding="utf-8"))
     assert d["generated_by"] == "datasets/synthetic_checks.py"
     assert len(d["datasets"]) >= 10
+    TIERS = {"declared_synthetic_source_readme", "strong_signatures",
+             "moderate_signatures", "weak_partial_signatures", "no_signatures_found"}
     for entry in d["datasets"].values():
-        assert entry["basis"] in ("declared_synthetic_source_readme", "apparently_synthetic")
+        assert entry["basis"] in TIERS
         assert entry["rows"] > 0 and entry["checks"], "every audited dataset must carry >=1 check"
         assert "signature_families_triggered" in entry
-    # the one declared-synthetic source must be the India Skills dataset
+        assert entry["discriminating_signatures_count"] <= entry["signatures_consistent_count"]
+    # the ONE declared-synthetic source must remain the India Skills dataset
     declared = [k for k, v in d["datasets"].items() if v["basis"] == "declared_synthetic_source_readme"]
     assert declared == ["India Skills Intelligence (12,000)"]
+    # a dataset whose only flagged family is the non-discriminating id sequence
+    # must report zero discriminating signatures (tier = no_signatures_found)
+    sccs = d["datasets"]["Student Career Success (50,000)"]
+    assert sccs["signature_families_triggered"] == ["ids"]
+    assert sccs["discriminating_signatures_count"] == 0
     # the corrected record: experience_level~remote_type must NOT be flagged as
     # near-deterministic (an earlier informal note claimed 1:1; checks say independent)
     ai = d["datasets"]["AI Trends 2020-2026"]["checks"]["coupling::experience_level~remote_type"]
     assert not ai["near_deterministic_coupling"] and ai["cramers_v"] < 0.1
+
+
+def test_real_data_control_artifact():
+    """The same checks/thresholds on 1.35M genuine postings must document the
+    two false-positive families and the non-discriminating id family
+    (datasets/synthetic_checks_control.py -> ..._control_linkedin.json)."""
+    p = ROOT / "datasets" / "synthetic_checks_control_linkedin.json"
+    assert p.exists(), "run: python datasets/synthetic_checks_control.py"
+    c = json.loads(p.read_text(encoding="utf-8"))
+    d = json.loads((ROOT / "datasets" / "synthetic_checks_output.json").read_text(encoding="utf-8"))
+    assert c["generated_by"] == "datasets/synthetic_checks_control.py"
+    assert c["rows"] > 1_300_000 and len(c["checks"]) >= 15
+    # identical thresholds to the audited-file suite
+    assert (c["alpha"], c["coupling_v_threshold"]) == (d["alpha"], d["coupling_v_threshold"])
+    # on REAL data the coupling check fires on the scraper's own pipeline flags
+    coup = c["checks"]["coupling::got_summary~got_ner"]
+    assert coup["near_deterministic_coupling"] and coup["cramers_v"] > 0.95
+    # ... and the missingness check fires on a 19-missing-of-1.35M column
+    miss = c["checks"]["missingness::job_location|search_country"]
+    assert miss["missing_as_equal_class_consistent"] and miss["missing_share"] < 1e-4
+    # ... while uniformity and the id sequence fire on nothing
+    assert not any(c["checks"][k]["uniform_draw_consistent"]
+                   for k in c["checks"] if k.startswith("uniformity::"))
+    assert not c["checks"]["ids::job_link"]["sequential_id_consistent"]
+    # the artifact must name those families as documented false positives
+    fams = {f["family"] for f in c["false_positive_families"]}
+    assert fams == {"coupling", "missingness"}
+    assert {f["family"] for f in c["non_discriminating_families"]} == {"id_sequence"}

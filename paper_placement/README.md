@@ -22,7 +22,8 @@ gap-measurement paper therefore ends with a contiguous RQ1–RQ3 / H1–H3 block
 no gaps (D4). Verdicts here are benchmark properties only:
 
 - H4 (signaling hierarchy): reproduced *on the benchmark* (labels generated).
-- H5 (credential locality): **untested** (PLAC01 apparently synthetic).
+- H5 (credential locality): **untested** (PLAC01 benchmark of unverified
+  provenance, moderate generator signatures).
 - H6 (internship returns): not supported *within the benchmark* (STAT01).
 
 ## Reporting rulings applied
@@ -30,8 +31,11 @@ no gaps (D4). Verdicts here are benchmark properties only:
 - Per D3, the **15.34 pp internship claim (INTL01) is not reported** in either
   paper; the artifact stays archived at
   `results/INTL01_internship_effect/metrics.json` (reproduced, unreported).
-- Every cohort is disclosed as apparently synthetic (generator-signature
-  evidence: `datasets/synthetic_checks_output.json`; inventory:
+- Every cohort is disclosed with a provenance tier (moderate: College and
+  Global Placement; weak/partial: International Graduates; none found: Student
+  Career Success; unverified record in all four cases). Only the India Skills
+  file is described as synthetic, on its own source's statement. Evidence:
+  `datasets/synthetic_checks_output.json`; inventory:
   `datasets/REAL_VS_SYNTHETIC.csv`).
 
 ## Build

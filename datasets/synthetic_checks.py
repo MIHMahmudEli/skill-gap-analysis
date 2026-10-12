@@ -5,13 +5,52 @@ Purpose: turn the informal "generator signs" column into executable,
 reproducible checks. These checks NEVER assert that a dataset is synthetic;
 they report whether observable regularities are *consistent with* common
 synthetic-generation patterns. Classification stays in REAL_VS_SYNTHETIC.csv,
-which distinguishes:
+which ranks each dataset on a four-step evidence tier (author ruling,
+2026-10-12):
 
-  * declared synthetic  — the source itself states the data are generated
-    (only the India Skills dataset, per its bundled README);
-  * apparently synthetic — inferred from generator signatures below; wording
-    is deliberately cautious (signatures are necessary-ish evidence, not
-    proof: uniformity can also arise from design-based sampling).
+  * declared synthetic          — the source itself states the data are
+                                  generated (only the India Skills dataset,
+                                  per its bundled README).  This is the only
+                                  dataset any file in this repository calls
+                                  "synthetic".
+  * strong generator signatures — several discriminating families fire
+                                  together (AI Trends 2020-2026).
+  * moderate generator signatures
+                               — two or more discriminating families, or one
+                                  plus corroborating informal signs (AI Job
+                                  Market & Salary Trends, College Placement,
+                                  Global Placement, Career Change Prediction).
+  * weak/partial generator signatures
+                               — a mixed pattern, some uniform-consistent
+                                  columns alongside strongly non-uniform ones
+                                  (International Graduates).
+  * provenance unverified, no generator signatures found
+                               — the discriminating families do not fire; the
+                                  only flagged family is the non-discriminating
+                                  id sequence (Student Career Success, NGESS,
+                                  India Fresher Market).
+
+LIMITS OF THESE CHECKS (read before citing a flag):
+
+  * The thresholds (ALPHA, COUPLING_V, BALANCE_RATIO_MAX, BINARY_BALANCE_EPS,
+    the 0.01 missingness tolerance) are ANALYST-CHOSEN, not pre-registered.
+    They were fixed before the tier labels were assigned, but no power
+    analysis or false-discovery control was performed.
+  * These checks are DESCRIPTIVE SCREENING. A flag is a reason to look
+    harder, never evidence that a dataset is generated; non-rejection of
+    uniformity is also compatible with design-based or quota sampling.
+  * The real-data control (datasets/synthetic_checks_control_linkedin.json,
+    1,348,454 genuine LinkedIn postings, same functions, same thresholds)
+    shows two families give FALSE POSITIVES on real data: the coupling check
+    fires on the scraper's own processing flags (got_summary ~ got_ner,
+    V = 0.985) and the missingness check fires on a column with 19 missing
+    values out of 1.35M (its share tolerance is absolute, so near zero both
+    sides round to 0.0 and only the independence term decides).
+  * The id-sequence family DOES NOT DISCRIMINATE. It fires on nine of the ten
+    audited files, and it does not fire on the real LinkedIn corpus (whose
+    job_link URLs end in opaque counters) while real systems routinely use
+    sequential primary keys. It is recorded for completeness and is NOT
+    counted towards a dataset's evidence tier.
 
 Check families (each returns a structured result with a boolean flag and the
 raw statistic; flags mean "consistent with the pattern", never "synthetic"):
@@ -22,9 +61,10 @@ raw statistic; flags mean "consistent with the pattern", never "synthetic"):
                          ratio is the classic uniform-draw signature.
   2. binary_balance    — |p - 0.5| for 0/1 columns (coin-flip draws).
   3. cross_field       — near-deterministic coupling between two categorical
-                         columns (Cramer's V >= coupling_threshold), an
-                         independence-breaking regularity real data rarely
-                         exhibits at scale.
+                         columns (Cramer's V >= coupling_threshold).  On real
+                         data this fires for pipeline-produced column pairs
+                         (see the control above), so it only discriminates
+                         when the pair is not a processing artifact.
   4. id_sequence       — sequential / templated identifiers (1..N numeric,
                          zero-padded counters, prefix+counter templates).
   5. missingness       — "missing as one more equal class": for a column with
@@ -168,13 +208,13 @@ def _p(*parts) -> Path:
 
 SPECS = [
     dict(key="AI Trends 2020-2026", file=_p("ai-and-data-science-job-market-dataset-20202026", "AI Job Market Dataset.csv"),
-         basis="apparently_synthetic",
+         basis="strong_signatures",
          categorical=["job_title", "country", "company_industry", "remote_type", "experience_level", "job_posting_year"],
          binary=["skills_python", "skills_sql", "skills_ml", "skills_deep_learning", "skills_cloud"],
          couple=[("experience_level", "remote_type")],
          ids="job_id", miss=None),
     dict(key="AI Job Market & Salary Trends (15,000)", file=_p("global-ai-job-market-and-salary-trends-2025", "ai_job_dataset.csv"),
-         basis="apparently_synthetic",
+         basis="moderate_signatures",
          categorical=["company_name", "company_location", "experience_level", "employment_type", "company_size"],
          binary=[], couple=[], ids="job_id", miss=None),
     dict(key="India Skills Intelligence (12,000)", file=_p("india-professional-skills-intelligence-dataset", "india_professional_skills_intelligence.csv"),
@@ -182,33 +222,33 @@ SPECS = [
          categorical=["seniority_level", "company_size", "work_mode", "employment_type"],
          binary=["uses_generative_ai_tools"], couple=[], ids="profile_id", miss=None),
     dict(key="College Student Placement (10,000)", file=_p("college-student-placement", "college_student_placement_dataset.csv"),
-         basis="apparently_synthetic",
+         basis="moderate_signatures",
          categorical=["Academic_Performance", "Communication_Skills", "Projects_Completed", "Internship_Experience"],
          binary=["Internship_Experience"], couple=[], ids="College_ID", miss=None),
     dict(key="Global Student Placement (10,000)", file=_p("global-student-placement-2025-dataset", "global_placement.csv"),
-         basis="apparently_synthetic",
+         basis="moderate_signatures",
          categorical=["country", "specialization", "industry", "college_tier"],
          binary=[], couple=[], ids=None, miss=None),
     dict(key="Student Career Success (50,000)", file=_p("student-career-success-prediction-dataset", "student_career_success_dataset.csv"),
-         basis="apparently_synthetic",
+         basis="no_signatures_found",
          categorical=["Gender", "Major", "Placement_Status", "Company_Tier", "Placement_Mode"],
          binary=["GitHub_Profile", "LinkedIn_Profile"], couple=[], ids="Student_ID", miss=None),
     dict(key="International Graduates (300,000)", file=_p("international-graduates-employment-dataset", "dataset.csv"),
-         basis="apparently_synthetic",
+         basis="weak_partial_signatures",
          categorical=["Gender", "Field_of_Study", "Employment_Status", "Country_of_Origin",
                       "Language_Proficiency", "Years_Since_Graduation"],
          binary=["Internship_Experience"], couple=[], ids=None, miss=None),
     dict(key="NGESS Graduate Employment (7,200)", file=_p("ngess-graduate-employment-dataset", "NGESS Graduate Employment Dataset.csv"),
-         basis="apparently_synthetic",
+         basis="no_signatures_found",
          categorical=["Survey_Year", "Gender", "Religion", "NYSC_Status", "Employment_Status", "Field_of_Study"],
          binary=["Internship_Completed", "Student_Loan"], couple=[], ids="Respondent_ID", miss=None),
     dict(key="Career Change Prediction (38,444)", file=_p("field-of-study-vs-occupation", "career_change_prediction_dataset.csv"),
-         basis="apparently_synthetic",
+         basis="moderate_signatures",
          categorical=["Field of Study", "Current Occupation", "Education Level", "Industry Growth Rate"],
          binary=["Career Change Interest", "Mentorship Available"], couple=[],
          ids=None, miss=("Family Influence", "Field of Study")),
     dict(key="India Fresher Market (5,000)", file=_p("indian-fresher-job-market-who-gets-hired-and-why", "fresher_hiring_india_dataset.csv"),
-         basis="apparently_synthetic",
+         basis="no_signatures_found",
          categorical=["backlogs", "degree", "age", "gender", "graduation_year"],
          binary=["prior_internship"], couple=[], ids="candidate_id", miss=None),
 ]
@@ -217,8 +257,19 @@ SPECS = [
 def run() -> dict:
     results = {"generated_by": "datasets/synthetic_checks.py",
                "alpha": ALPHA, "coupling_v_threshold": COUPLING_V,
+               "balance_ratio_max": BALANCE_RATIO_MAX,
+               "binary_balance_eps": BINARY_BALANCE_EPS,
+               "thresholds_status": ("analyst-chosen, not pre-registered; the checks are "
+                                     "descriptive screening, not a hypothesis test of "
+                                     "synthetic origin"),
                "note": ("Flags mean 'consistent with a generator signature', never 'synthetic'. "
-                        "Declared-vs-inferred classification lives in datasets/REAL_VS_SYNTHETIC.csv."),
+                        "Only the declared_synthetic_source_readme basis asserts generation; every "
+                        "other basis is an evidence tier (declared / strong / moderate / weak-partial "
+                        "/ no-signatures-found) recorded in datasets/REAL_VS_SYNTHETIC.csv. "
+                        "The id_sequence family is recorded but does not discriminate and is not "
+                        "counted towards a tier; see the real-data control in "
+                        "datasets/synthetic_checks_control_linkedin.json for the two families that "
+                        "give false positives on genuine postings."),
                "datasets": {}}
     for spec in SPECS:
         df = pd.read_csv(spec["file"], low_memory=False)
@@ -247,6 +298,7 @@ def run() -> dict:
                 if res.get(flag):
                     trig.append(name.split("::")[0])
         entry["signatures_consistent_count"] = len(trig)
+        entry["discriminating_signatures_count"] = sum(1 for t in trig if t != "ids")
         entry["signature_families_triggered"] = sorted(set(trig))
         results["datasets"][spec["key"]] = entry
         print(f"{spec['key']:45s} signatures triggered: {len(trig):2d}  {sorted(set(trig))}")

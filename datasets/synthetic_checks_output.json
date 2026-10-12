@@ -2,11 +2,14 @@
  "generated_by": "datasets/synthetic_checks.py",
  "alpha": 0.05,
  "coupling_v_threshold": 0.95,
- "note": "Flags mean 'consistent with a generator signature', never 'synthetic'. Declared-vs-inferred classification lives in datasets/REAL_VS_SYNTHETIC.csv.",
+ "balance_ratio_max": 1.1,
+ "binary_balance_eps": 0.02,
+ "thresholds_status": "analyst-chosen, not pre-registered; the checks are descriptive screening, not a hypothesis test of synthetic origin",
+ "note": "Flags mean 'consistent with a generator signature', never 'synthetic'. Only the declared_synthetic_source_readme basis asserts generation; every other basis is an evidence tier (declared / strong / moderate / weak-partial / no-signatures-found) recorded in datasets/REAL_VS_SYNTHETIC.csv. The id_sequence family is recorded but does not discriminate and is not counted towards a tier; see the real-data control in datasets/synthetic_checks_control_linkedin.json for the two families that give false positives on genuine postings.",
  "datasets": {
   "AI Trends 2020-2026": {
    "file": "datasets\\kaggle\\ai-and-data-science-job-market-dataset-20202026\\AI Job Market Dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "strong_signatures",
    "rows": 10345,
    "checks": {
     "uniformity::job_title": {
@@ -117,6 +120,7 @@
     }
    },
    "signatures_consistent_count": 12,
+   "discriminating_signatures_count": 11,
    "signature_families_triggered": [
     "binary",
     "ids",
@@ -125,7 +129,7 @@
   },
   "AI Job Market & Salary Trends (15,000)": {
    "file": "datasets\\kaggle\\global-ai-job-market-and-salary-trends-2025\\ai_job_dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "moderate_signatures",
    "rows": 15000,
    "checks": {
     "uniformity::company_name": {
@@ -184,6 +188,7 @@
     }
    },
    "signatures_consistent_count": 4,
+   "discriminating_signatures_count": 3,
    "signature_families_triggered": [
     "ids",
     "uniformity"
@@ -244,13 +249,14 @@
     }
    },
    "signatures_consistent_count": 1,
+   "discriminating_signatures_count": 0,
    "signature_families_triggered": [
     "ids"
    ]
   },
   "College Student Placement (10,000)": {
    "file": "datasets\\kaggle\\college-student-placement\\college_student_placement_dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "moderate_signatures",
    "rows": 10000,
    "checks": {
     "uniformity::Academic_Performance": {
@@ -303,13 +309,14 @@
     }
    },
    "signatures_consistent_count": 2,
+   "discriminating_signatures_count": 2,
    "signature_families_triggered": [
     "uniformity"
    ]
   },
   "Global Student Placement (10,000)": {
    "file": "datasets\\kaggle\\global-student-placement-2025-dataset\\global_placement.csv",
-   "basis": "apparently_synthetic",
+   "basis": "moderate_signatures",
    "rows": 10000,
    "checks": {
     "uniformity::country": {
@@ -350,13 +357,14 @@
     }
    },
    "signatures_consistent_count": 3,
+   "discriminating_signatures_count": 3,
    "signature_families_triggered": [
     "uniformity"
    ]
   },
   "Student Career Success (50,000)": {
    "file": "datasets\\kaggle\\student-career-success-prediction-dataset\\student_career_success_dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "no_signatures_found",
    "rows": 50000,
    "checks": {
     "uniformity::Gender": {
@@ -421,13 +429,14 @@
     }
    },
    "signatures_consistent_count": 1,
+   "discriminating_signatures_count": 0,
    "signature_families_triggered": [
     "ids"
    ]
   },
   "International Graduates (300,000)": {
    "file": "datasets\\kaggle\\international-graduates-employment-dataset\\dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "weak_partial_signatures",
    "rows": 300000,
    "checks": {
     "uniformity::Gender": {
@@ -489,13 +498,14 @@
     }
    },
    "signatures_consistent_count": 2,
+   "discriminating_signatures_count": 2,
    "signature_families_triggered": [
     "uniformity"
    ]
   },
   "NGESS Graduate Employment (7,200)": {
    "file": "datasets\\kaggle\\ngess-graduate-employment-dataset\\NGESS Graduate Employment Dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "no_signatures_found",
    "rows": 7200,
    "checks": {
     "uniformity::Survey_Year": {
@@ -569,13 +579,14 @@
     }
    },
    "signatures_consistent_count": 1,
+   "discriminating_signatures_count": 0,
    "signature_families_triggered": [
     "ids"
    ]
   },
   "Career Change Prediction (38,444)": {
    "file": "datasets\\kaggle\\field-of-study-vs-occupation\\career_change_prediction_dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "moderate_signatures",
    "rows": 38444,
    "checks": {
     "uniformity::Field of Study": {
@@ -639,6 +650,7 @@
     }
    },
    "signatures_consistent_count": 4,
+   "discriminating_signatures_count": 4,
    "signature_families_triggered": [
     "missingness",
     "uniformity"
@@ -646,7 +658,7 @@
   },
   "India Fresher Market (5,000)": {
    "file": "datasets\\kaggle\\indian-fresher-job-market-who-gets-hired-and-why\\fresher_hiring_india_dataset.csv",
-   "basis": "apparently_synthetic",
+   "basis": "no_signatures_found",
    "rows": 5000,
    "checks": {
     "uniformity::backlogs": {
@@ -709,6 +721,7 @@
     }
    },
    "signatures_consistent_count": 3,
+   "discriminating_signatures_count": 2,
    "signature_families_triggered": [
     "ids",
     "uniformity"

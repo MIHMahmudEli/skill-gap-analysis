@@ -41,7 +41,7 @@ companion benchmark audit (`paper_placement/`).
 - The former **RQ4/RQ5** placement analyses (employability determinants,
   cross-cohort dynamics; STAT01/STAT02/PLAC01/INTL01) are reported in the
   companion benchmark-audit article `paper_placement/` (no real-world claims
-  about graduates; apparently synthetic benchmarks). RQ1 also carries the
+  about graduates; tier-flagged benchmark provenance). RQ1 also carries the
   geographic distribution of postings (GEO01).
 
 ## Project Structure
@@ -111,7 +111,7 @@ manuscript tables/figures are generated only from `VERIFIED` outputs.
 | STAT01 | Placement statistics + CV | nihanshadman/sg-stat01-placement-a2 | USED_IN_MANUSCRIPT |
 | STAT02 | External validation | leyamridha/sg-stat02-external-a1 | USED_IN_MANUSCRIPT |
 | GEO01 | Geographic shares | sadmanhasanmiraj/sg-geo01-linkedin-a1 | USED_IN_MANUSCRIPT |
-| TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | VERIFIED (registry; not used in manuscript — apparently synthetic corpus) |
+| TRENDS01 | AI trends 2020–2026 | nishat1156/sg-trends01-ai-a1 | VERIFIED (registry; not used in manuscript — strong generator signatures; corpus excluded from the manuscript) |
 | INTL01 | Internship effect (archived; not reported per Phase 4 D3) | afrojahaqueshornaly/sg-intl01-internship-a1 | USED_IN_MANUSCRIPT |
 | PLAC01 | Placement by country | abdullahalsayfan/sg-plac01-global-a1 | USED_IN_MANUSCRIPT |
 | VALID01 | External gold-standard matcher validation (SkillSpan/ESCO) | nihanshadman/sg-valid01-gold-a1 | USED_IN_MANUSCRIPT |
@@ -154,7 +154,7 @@ local smoke tests; on Kaggle they read the mounted bundle
   Programming **1.69**, Data Science **1.20**; semantic alignment cuts each by
   up to 74%; Soft Skills fully covered
 - **Placement model** (statsmodels MLE, standardized; companion benchmark
-  audit, apparently synthetic benchmarks): Communication OR = 6.55 [5.86, 7.31],
+  audit, tier-flagged benchmark provenance): Communication OR = 6.55 [5.86, 7.31],
   CGPA OR = 6.28, IQ OR = 5.16, Projects OR = 3.20 (all p < 0.001); CV accuracy
   90.11% ± 0.74%, ROC-AUC 0.9406
 - **External validation** (companion): ROC-AUC 0.768 (Student Career Success,
@@ -165,7 +165,7 @@ local smoke tests; on Kaggle they read the mounted bundle
   college cohort (N = 10,000) the internship risk difference is **−0.44 pp**
   (null; OR 1.02, p = 0.62; companion audit)
 - **Credential locality (H5)**: **untested** — its registered test (PLAC01) is
-  an apparently synthetic benchmark, so the cross-country similarity it shows
+  a benchmark of unverified provenance (moderate generator signatures), so the cross-country similarity it shows
   (India 63.2% … Germany 60.0%) is a benchmark property, not evidence about
   graduates (companion)
 - **Geographic**: USA 85.2%, UK 8.4%, Canada 4.2%, Australia 2.2% (N = 1.35M)

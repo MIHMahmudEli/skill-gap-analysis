@@ -1,0 +1,198 @@
+{
+ "generated_by": "datasets/synthetic_checks_control.py",
+ "corpus": "datasets\\kaggle\\1-3m-linkedin-jobs-and-skills-2024\\linkedin_job_postings.csv",
+ "rows": 1348454,
+ "role": "REAL control: genuine web-scraped postings run through the identical generator-signature checks and thresholds, so the audited-file flags can be read against a known-real baseline",
+ "alpha": 0.05,
+ "coupling_v_threshold": 0.95,
+ "balance_ratio_max": 1.1,
+ "binary_balance_eps": 0.02,
+ "thresholds_status": "analyst-chosen, not pre-registered; the checks are descriptive screening, not a hypothesis test of synthetic origin",
+ "checks": {
+  "uniformity::got_summary": {
+   "applicable": true,
+   "n_categories": 2,
+   "chi2": 1153734.047,
+   "df": 1,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 25.661,
+   "uniform_draw_consistent": false
+  },
+  "uniformity::got_ner": {
+   "applicable": true,
+   "n_categories": 2,
+   "chi2": 1148279.396,
+   "df": 1,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 24.905,
+   "uniform_draw_consistent": false
+  },
+  "uniformity::is_being_worked": {
+   "applicable": true,
+   "n_categories": 2,
+   "chi2": 1342556.462,
+   "df": 1,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 912.587,
+   "uniform_draw_consistent": false
+  },
+  "uniformity::first_seen": {
+   "applicable": true,
+   "n_categories": 6,
+   "chi2": 656576.049,
+   "df": 5,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 12.769,
+   "uniform_draw_consistent": false
+  },
+  "uniformity::search_country": {
+   "applicable": true,
+   "n_categories": 4,
+   "chi2": 2620142.452,
+   "df": 3,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 38.674,
+   "uniform_draw_consistent": false
+  },
+  "uniformity::job_level": {
+   "applicable": true,
+   "n_categories": 2,
+   "chi2": 833936.13,
+   "df": 1,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 8.364,
+   "uniform_draw_consistent": false
+  },
+  "uniformity::job_type": {
+   "applicable": true,
+   "n_categories": 3,
+   "chi2": 2632378.661,
+   "df": 2,
+   "p_value": 0.0,
+   "balance_ratio_max_min": 314.072,
+   "uniform_draw_consistent": false
+  },
+  "binary::got_summary (as-is; t/f schema)": {
+   "applicable": false
+  },
+  "binary::got_summary (LABELLED t/f->1/0 mapping)": {
+   "applicable": true,
+   "n": 1348454,
+   "share_positive": 0.9625,
+   "coin_flip_consistent": false
+  },
+  "binary::got_ner (as-is; t/f schema)": {
+   "applicable": false
+  },
+  "binary::got_ner (LABELLED t/f->1/0 mapping)": {
+   "applicable": true,
+   "n": 1348454,
+   "share_positive": 0.9614,
+   "coin_flip_consistent": false
+  },
+  "binary::is_being_worked (as-is; t/f schema)": {
+   "applicable": false
+  },
+  "binary::is_being_worked (LABELLED t/f->1/0 mapping)": {
+   "applicable": true,
+   "n": 1348454,
+   "share_positive": 0.0011,
+   "coin_flip_consistent": false
+  },
+  "coupling::job_level~job_type": {
+   "applicable": true,
+   "table_shape": [
+    2,
+    3
+   ],
+   "cramers_v": 0.0324,
+   "independence_p": 0.0,
+   "row_modal_share": 0.992,
+   "col_modal_share": 0.8932,
+   "near_deterministic_coupling": false
+  },
+  "coupling::search_country~job_type": {
+   "applicable": true,
+   "table_shape": [
+    4,
+    3
+   ],
+   "cramers_v": 0.0122,
+   "independence_p": 0.0,
+   "row_modal_share": 0.992,
+   "col_modal_share": 0.8523,
+   "near_deterministic_coupling": false
+  },
+  "coupling::got_summary~got_ner": {
+   "applicable": true,
+   "table_shape": [
+    2,
+    2
+   ],
+   "cramers_v": 0.9851,
+   "independence_p": 0.0,
+   "row_modal_share": 0.9989,
+   "col_modal_share": 0.9989,
+   "near_deterministic_coupling": true
+  },
+  "coupling::first_seen~search_country": {
+   "applicable": true,
+   "table_shape": [
+    6,
+    4
+   ],
+   "cramers_v": 0.0356,
+   "independence_p": 0.0,
+   "row_modal_share": 0.8523,
+   "col_modal_share": 0.3491,
+   "near_deterministic_coupling": false
+  },
+  "ids::job_link": {
+   "applicable": true,
+   "n": 1348454,
+   "n_unique": 1348454,
+   "sequential_id_consistent": false
+  },
+  "missingness::company|search_country": {
+   "applicable": true,
+   "missing_share": 0.0,
+   "nonmissing_classes": 90605,
+   "uniform_class_expected_share": 0.0,
+   "share_matches_equal_class": true,
+   "independence_chi2": 19.86,
+   "independence_p": 0.0002,
+   "missing_independent_of_companion": false,
+   "missing_as_equal_class_consistent": false
+  },
+  "missingness::job_location|search_country": {
+   "applicable": true,
+   "missing_share": 0.0,
+   "nonmissing_classes": 29153,
+   "uniform_class_expected_share": 0.0,
+   "share_matches_equal_class": true,
+   "independence_chi2": 5.104,
+   "independence_p": 0.1644,
+   "missing_independent_of_companion": true,
+   "missing_as_equal_class_consistent": true
+  }
+ },
+ "false_positive_families": [
+  {
+   "family": "coupling",
+   "example": "got_summary ~ got_ner",
+   "why": "both columns are the scraper's own processing flags, so they are coupled by construction; Cramer's V >= 0.95 on real data. Only non-pipeline column pairs are interpretable."
+  },
+  {
+   "family": "missingness",
+   "example": "job_location",
+   "why": "19 missing values of 1,348,454 (share 1.4e-5); the share test uses an absolute 0.01 tolerance, so observed and expected both round to 0.0 and only the independence term decides the flag."
+  }
+ ],
+ "non_discriminating_families": [
+  {
+   "family": "id_sequence",
+   "why": "fires on 9 of the 10 audited files and does not fire here, yet real systems routinely use sequential primary keys and this corpus embeds opaque trailing counters in its URLs. Recorded for completeness; not counted towards any evidence tier."
+  }
+ ],
+ "families_flagged": 2
+}

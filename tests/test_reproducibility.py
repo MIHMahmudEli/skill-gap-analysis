@@ -38,8 +38,9 @@ REGISTRY = ROOT / "results" / "registry.json"
 PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity"}
 # TRENDS01: excluded from the manuscript 2026-10-12 (author instruction):
 # RQ1-trend claims, Fig. 6b and the "spanning 2020 through 2026" phrasing
-# were removed because the corpus is apparently synthetic (generator-
-# signature evidence). Registry entry and artifacts retained; reason
+# were removed because the corpus carries STRONG generator signatures (top
+# evidence tier for an unverified-provenance file; datasets/REAL_VS_SYNTHETIC.csv).
+# Registry entry and artifacts retained; reason
 # recorded in results/registry.json under `manuscript_use_reason`.
 NOT_USED_IN_MANUSCRIPT = {"TRENDS01_ai_longitudinal"}
 
