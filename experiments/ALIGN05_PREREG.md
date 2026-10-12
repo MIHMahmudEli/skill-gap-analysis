@@ -246,3 +246,63 @@ No claims of corpus independence (Â§3). No placement/outcome data involved.
    regenerates both files deterministically (both seeded with 42).
 4. `labelling/score_labels.py` joins the blinded CSV to the key on
    `sample_id` at scoring time; nothing about the estimators changed.
+
+
+### A3 - 2026-10-12 (author instruction; pre-run; RETIRES the v1 sample and key)
+
+**Trigger.** The v1 sealed key, `experiments/align05_titles_200_key.csv`, was
+committed to a **public** GitHub repository (`MIHMahmudEli/skill-gap-analysis`,
+`main`) before a single `author_label` existed. Publishing the key voids the
+blinded status of the validation gate: any labelling done afterwards could have
+been shaped by it. The author elected option 2 (re-draw) over waiving.
+
+**Verified state at retirement (no contamination).**
+
+- `labelling/align05_titles_200.csv` `author_label` was, and remains, **fully
+  blank** — checked in the working tree and at the pushed commit `0aa1ac2`
+  (200/200 blank).
+- **No scoring** ever ran against the v1 key: no ALIGN05 `metrics.json` or result
+  artifact exists anywhere in history.
+- **No rule revision** was informed by it: `align05_title_rules_v1.json` was
+  touched in exactly one commit (`9a6f030`, sample creation) and is byte-identical
+  since, SHA-256
+  `9F0410507C23313C99517CEC9D40A1CC0697CD29192A89357F0E321234F1429D`.
+  The builder now hard-fails if this hash changes.
+- **History is untouched**: no force-push, no rebase, no filter-branch. The old
+  key was moved out of the active path by an ordinary commit to
+  `archive/align05_titles_200_key_RETIRED.csv` with a dated note. It remains
+  reachable in public history and is retained only as a record of the leak; it is
+  **not** a valid key and must never be used to score ALIGN05.
+
+**Replacement sample (v2).** Same frame (distinct normalized titles over the
+519,814-posting primary corpus), same two strata (predicted-tech /
+predicted-nontech), same **frozen** v1 rule set (hash verified above, unchanged),
+same 100-per-stratum equal allocation, same weights (92.37 / 2,552.79), same
+blinded 3-column format (`sample_id, job_title, author_label`, `author_label`
+blank, rows shuffled, ids assigned in shuffled order).
+
+**Changes, and only these:**
+
+1. **Seed.** `SEED_V2 = 20261013` replaces 42 for both the stratum draws and the
+   shuffle. Seed 42 is burned: it produced the retired sample and is not reused
+   for a draw the author will label against.
+2. **ID prefix.** `A5U001`-`A5U200` replaces `A5T001`-`A5T200`, so the two
+   samples cannot be confused and no retired id can be re-used accidentally.
+3. **Key location.** The v2 key is written **outside the repository** to
+   `../sealed_keys/align05_titles_200_key.csv` (mode 0600 where honoured), and
+   `.gitignore` now rejects `*_key*.csv`, `*key*.csv.bak`, `sealed/`, `sealed*/`
+   and `**/sealed_keys/`. The builder refuses to write a key inside the repo.
+4. **Key access.** `labelling/score_labels.py` and `scripts/run_after_labels.sh`
+   read the key from `ALIGN05_KEY` (or an explicit argument); both fail with an
+   explanatory message if it is absent rather than falling back to an in-repo
+   path. The key is never printed or opened by either.
+5. **Guards.** `tests/test_no_tracked_secrets.py` and the pre-push hook
+   `scripts/pre-push` fail if any *tracked* file matches the sealed-key patterns,
+   with a single explicit allowlist entry for the retired archive copy (already
+   public, retained for the record).
+
+**Unchanged (reaffirmed).** The estimators, the gate (design-weighted tech
+precision >= 0.90 **and** recall >= 0.90), the <= 2 revision rule, the analysis
+in 56, and the non-goals in 58 are all unchanged. This amendment alters only
+*which* 200 titles are labelled and *where the key lives*. The 200-title sample
+drawn under seed 42 is retired and may not be re-used for any purpose.

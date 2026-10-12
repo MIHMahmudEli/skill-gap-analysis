@@ -50,8 +50,13 @@ ROOT = Path(__file__).resolve().parents[1]
 # copies; normal runs always read the committed labelling/ files.
 import os  # noqa: E402
 LAB = Path(os.environ.get("LABELLING_DIR", ROOT / "labelling"))
-# A5_KEY exists only so the scorer can be smoke-tested against scratch copies.
-A5_KEY = Path(os.environ.get("A5_KEY", ROOT / "experiments" / "align05_titles_200_key.csv"))
+# Sealed key: lives OUTSIDE the repository (../sealed_keys/ by default) because a
+# key committed to a public repo voids the blinded gate (archive/align05_titles_200_key_RETIRED.md).
+# Override with ALIGN05_KEY. Never print or open it here; only the design columns are read.
+# An empty-string env var counts as unset (the runner exports "" for non-ALIGN05 studies).
+A5_KEY = Path(
+    os.environ.get("ALIGN05_KEY") or os.environ.get("A5_KEY")
+    or str(ROOT.parent / "sealed_keys" / "align05_titles_200_key.csv"))
 PREC_CSV = LAB / "curriculum_precision_100.csv"
 RECALL_CSV = LAB / "curriculum_recall_100.csv"
 A5_CSV = LAB / "align05_titles_200.csv"
@@ -183,6 +188,12 @@ else:
 # ---------------------------------------------------------------- ALIGN05 gate
 a = pd.read_csv(A5_CSV)
 a["lab"] = a["author_label"].map(norm_label)
+if not A5_KEY.exists():
+    raise SystemExit(
+        f"ALIGN05 sealed key not found: {A5_KEY}\n"
+        "It lives OUTSIDE the repository by design. Set ALIGN05_KEY to its path "
+        "(e.g. export ALIGN05_KEY=../sealed_keys/align05_titles_200_key.csv). "
+        "Do not commit a key: see archive/align05_titles_200_key_RETIRED.md.")
 key = pd.read_csv(A5_KEY)  # sealed design columns (stratum/weights/predictions)
 a = a.merge(key, on="sample_id", how="left", validate="one_to_one")
 assert a["stratum"].notna().all(), "every sample_id must exist in the sealed key"

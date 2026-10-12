@@ -55,8 +55,24 @@ echo "========================================================================"
 # ---------------------------------------------------------------- stage 1: gate
 echo
 echo "--- stage 1/5: score_labels.py gate -------------------------------------"
+# The ALIGN05 sealed key lives OUTSIDE the repo. Honour an explicit 3rd arg,
+# else ALIGN05_KEY from the environment, else the ../sealed_keys/ default.
+if [[ "$STUDY" == "align05" ]]; then
+  if [[ -n "${3:-}" ]]; then
+    export ALIGN05_KEY="$3"
+  fi
+  KEY_PATH="${ALIGN05_KEY:-$ROOT/../sealed_keys/align05_titles_200_key.csv}"
+  if [[ ! -f "$KEY_PATH" ]]; then
+    echo "ERROR: ALIGN05 sealed key not found at: $KEY_PATH"
+    echo "It lives OUTSIDE the repository by design. Pass it as the 3rd argument or"
+    echo "export ALIGN05_KEY=<path>. Never commit a key - see"
+    echo "archive/align05_titles_200_key_RETIRED.md for why."
+    exit 3
+  fi
+  echo "sealed key: $KEY_PATH (read-only; never printed)"
+fi
 SCORER_OUT="$(mktemp)"
-if ! LABELLING_DIR="$LAB" python labelling/score_labels.py >"$SCORER_OUT" 2>&1; then
+if ! LABELLING_DIR="$LAB" ALIGN05_KEY="${KEY_PATH:-}" python labelling/score_labels.py >"$SCORER_OUT" 2>&1; then
   echo "ERROR: score_labels.py did not run. Output:"
   cat "$SCORER_OUT"
   rm -f "$SCORER_OUT"

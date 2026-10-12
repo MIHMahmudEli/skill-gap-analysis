@@ -61,3 +61,13 @@ results/*_attempt*/
 datasets/curriculum/raw/
 datasets/curriculum/license_snapshots/*.html
 datasets/curriculum/license_snapshots/*.txt
+
+# Sealed labelling keys — NEVER tracked (see archive/align05_titles_200_key_RETIRED.md
+# for the leak this prevents). Keys live OUTSIDE the repo, e.g. ../sealed_keys/,
+# and are read via the ALIGN05_KEY env var. Guards: tests/test_no_tracked_secrets.py
+# and the pre-push hook scripts/pre-push.
+*_key*.csv
+*key*.csv.bak
+sealed/
+sealed*/
+**/sealed_keys/
