@@ -1,0 +1,7 @@
+Feature,Coefficient,Std_Error,Odds_Ratio,OR_CI_Lower,OR_CI_Upper,z,p_value,Significance
+CGPA,1.8368,0.0562,6.2765,5.6214,7.0081,32.655,6.754e-234,***
+Communication_Skills,1.879,0.0564,6.5471,5.8615,7.313,33.291,5.286e-243,***
+Projects_Completed,1.1644,0.0465,3.2041,2.9249,3.5099,25.037,2.444e-138,***
+Internship_Binary,0.0192,0.0387,1.0194,0.9449,1.0997,0.496,0.6197,ns
+IQ,1.6404,0.0529,5.157,4.6494,5.72,31.03,2.135e-211,***
+Academic_Performance,-0.0207,0.0383,0.9795,0.9086,1.0559,-0.541,0.5884,ns

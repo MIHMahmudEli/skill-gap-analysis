@@ -1,0 +1,1 @@
+NOTE: executed 2026-10-12 in batch-2 step 8 (pre-torch-block) on CPU, byte-identical to committed

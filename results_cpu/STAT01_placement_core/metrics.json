@@ -1,0 +1,232 @@
+{
+  "experiment_id": "STAT01_placement_core",
+  "status": "completed",
+  "runtime_sec": 159.28,
+  "seed": 42,
+  "multiseeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "dataset": "college_student_placement_dataset.csv",
+  "n_total": 10000,
+  "n_placed": 1659,
+  "n_not_placed": 8341,
+  "base_rate_placed": 0.1659,
+  "logistic_insample_accuracy": 0.9013,
+  "logistic_pseudo_r2_mcfadden": 0.513,
+  "table4_logistic": [
+    {
+      "Feature": "CGPA",
+      "Coefficient": 1.8368,
+      "Std_Error": 0.0562,
+      "Odds_Ratio": 6.2765,
+      "OR_CI_Lower": 5.6214,
+      "OR_CI_Upper": 7.0081,
+      "z": 32.655,
+      "p_value": 6.754e-234,
+      "Significance": "***"
+    },
+    {
+      "Feature": "Communication_Skills",
+      "Coefficient": 1.879,
+      "Std_Error": 0.0564,
+      "Odds_Ratio": 6.5471,
+      "OR_CI_Lower": 5.8615,
+      "OR_CI_Upper": 7.313,
+      "z": 33.291,
+      "p_value": 5.286e-243,
+      "Significance": "***"
+    },
+    {
+      "Feature": "Projects_Completed",
+      "Coefficient": 1.1644,
+      "Std_Error": 0.0465,
+      "Odds_Ratio": 3.2041,
+      "OR_CI_Lower": 2.9249,
+      "OR_CI_Upper": 3.5099,
+      "z": 25.037,
+      "p_value": 2.444e-138,
+      "Significance": "***"
+    },
+    {
+      "Feature": "Internship_Binary",
+      "Coefficient": 0.0192,
+      "Std_Error": 0.0387,
+      "Odds_Ratio": 1.0194,
+      "OR_CI_Lower": 0.9449,
+      "OR_CI_Upper": 1.0997,
+      "z": 0.496,
+      "p_value": 0.6197,
+      "Significance": "ns"
+    },
+    {
+      "Feature": "IQ",
+      "Coefficient": 1.6404,
+      "Std_Error": 0.0529,
+      "Odds_Ratio": 5.157,
+      "OR_CI_Lower": 4.6494,
+      "OR_CI_Upper": 5.72,
+      "z": 31.03,
+      "p_value": 2.135e-211,
+      "Significance": "***"
+    },
+    {
+      "Feature": "Academic_Performance",
+      "Coefficient": -0.0207,
+      "Std_Error": 0.0383,
+      "Odds_Ratio": 0.9795,
+      "OR_CI_Lower": 0.9086,
+      "OR_CI_Upper": 1.0559,
+      "z": -0.541,
+      "p_value": 0.5884,
+      "Significance": "ns"
+    }
+  ],
+  "cv_seed42": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.9011,
+      "f1_weighted": 0.8966,
+      "precision_weighted": 0.8956,
+      "recall_weighted": 0.9011,
+      "auc": 0.9406,
+      "accuracy_sd": 0.0074,
+      "f1_sd": 0.0078,
+      "auc_sd": 0.0075
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9999,
+      "f1_weighted": 0.9999,
+      "precision_weighted": 0.9999,
+      "recall_weighted": 0.9999,
+      "auc": 1.0,
+      "accuracy_sd": 0.0002,
+      "f1_sd": 0.0002,
+      "auc_sd": 0.0
+    },
+    {
+      "model": "SVM (RBF)",
+      "accuracy": 0.9572,
+      "f1_weighted": 0.9565,
+      "precision_weighted": 0.9564,
+      "recall_weighted": 0.9572,
+      "auc": 0.9894,
+      "accuracy_sd": 0.0056,
+      "f1_sd": 0.0058,
+      "auc_sd": 0.0019
+    },
+    {
+      "model": "Decision Tree",
+      "accuracy": 0.9997,
+      "f1_weighted": 0.9997,
+      "precision_weighted": 0.9997,
+      "recall_weighted": 0.9997,
+      "auc": 0.9998,
+      "accuracy_sd": 0.0007,
+      "f1_sd": 0.0007,
+      "auc_sd": 0.0004
+    },
+    {
+      "model": "Baseline (Majority)",
+      "accuracy": 0.8341,
+      "f1_weighted": 0.7587,
+      "precision_weighted": 0.6957,
+      "recall_weighted": 0.8341,
+      "auc": 0.5,
+      "accuracy_sd": 0.0002,
+      "f1_sd": 0.0003,
+      "auc_sd": 0.0
+    }
+  ],
+  "cv_multiseed": [
+    {
+      "model": "Logistic Regression",
+      "n_seed_fold_evals": 50,
+      "n_seeds": 10,
+      "accuracy_mean": 0.9012,
+      "accuracy_sd": 0.0004,
+      "f1_mean": 0.8967,
+      "f1_sd": 0.0004,
+      "auc_mean": 0.9408,
+      "auc_sd": 0.0002
+    },
+    {
+      "model": "Random Forest",
+      "n_seed_fold_evals": 50,
+      "n_seeds": 10,
+      "accuracy_mean": 1.0,
+      "accuracy_sd": 0.0,
+      "f1_mean": 1.0,
+      "f1_sd": 0.0,
+      "auc_mean": 1.0,
+      "auc_sd": 0.0
+    },
+    {
+      "model": "SVM (RBF)",
+      "n_seed_fold_evals": 50,
+      "n_seeds": 10,
+      "accuracy_mean": 0.9576,
+      "accuracy_sd": 0.0007,
+      "f1_mean": 0.9569,
+      "f1_sd": 0.0008,
+      "auc_mean": 0.9896,
+      "auc_sd": 0.0002
+    },
+    {
+      "model": "Decision Tree",
+      "n_seed_fold_evals": 50,
+      "n_seeds": 10,
+      "accuracy_mean": 1.0,
+      "accuracy_sd": 0.0001,
+      "f1_mean": 1.0,
+      "f1_sd": 0.0001,
+      "auc_mean": 0.9999,
+      "auc_sd": 0.0003
+    },
+    {
+      "model": "Baseline (Majority)",
+      "n_seed_fold_evals": 50,
+      "n_seeds": 10,
+      "accuracy_mean": 0.8341,
+      "accuracy_sd": 0.0,
+      "f1_mean": 0.7587,
+      "f1_sd": 0.0,
+      "auc_mean": 0.5,
+      "auc_sd": 0.0
+    }
+  ],
+  "tree_audit": {
+    "depth4_cart_train_accuracy": 1.0,
+    "kofn_rule": "placed if >=3 of {CGPA>8.01, IQ>110.5, Communication>7.50, Projects>=2}",
+    "kofn_agreement_with_labels": 0.9992,
+    "cart_vs_kofn_agreement": 0.9992,
+    "tree_rules": "|--- Communication_Skills <= 0.67\n|   |--- IQ <= 0.73\n|   |   |--- class: 0\n|   |--- IQ >  0.73\n|   |   |--- CGPA <= 0.32\n|   |   |   |--- class: 0\n|   |   |--- CGPA >  0.32\n|   |   |   |--- Projects_Completed <= -0.59\n|   |   |   |   |--- class: 0\n|   |   |   |--- Projects_Completed >  -0.59\n|   |   |   |   |--- class: 1\n|--- Communication_Skills >  0.67\n|   |--- CGPA <= 0.32\n|   |   |--- IQ <= 0.73\n|   |   |   |--- class: 0\n|   |   |--- IQ >  0.73\n|   |   |   |--- Projects_Completed <= -0.59\n|   |   |   |   |--- class: 0\n|   |   |   |--- Projects_Completed >  -0.59\n|   |   |   |   |--- class: 1\n|   |--- CGPA >  0.32\n|   |   |--- Projects_Completed <= -0.59\n|   |   |   |--- IQ <= 0.73\n|   |   |   |   |--- class: 0\n|   |   |   |--- IQ >  0.73\n|   |   |   |   |--- class: 1\n|   |   |--- Projects_Completed >  -0.59\n|   |   |   |--- class: 1\n"
+  },
+  "chi_square": [
+    {
+      "Test": "Placement vs Internship Experience",
+      "chi2": 0.31,
+      "df": 1,
+      "p_value": 0.5778,
+      "Cramers_V": 0.006,
+      "Significance": "ns"
+    },
+    {
+      "Test": "Placement vs Projects Grouped",
+      "chi2": 719.821,
+      "df": 2,
+      "p_value": 4.931e-157,
+      "Cramers_V": 0.268,
+      "Significance": "***"
+    }
+  ]
+}
