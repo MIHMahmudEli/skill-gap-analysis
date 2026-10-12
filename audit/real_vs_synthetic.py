@@ -36,7 +36,16 @@ Columns:
   classification      REAL / DECLARED SYNTHETIC / UNVERIFIED PROVENANCE /
                       AGGREGATE UNVERIFIED (author ruling 2026-10-12: the
                       word "synthetic" is asserted for the declared file only)
-  evidence_tier       declared > strong > moderate > weak/partial > none found
+  evidence_tier       computed, not hand-assigned: read from
+                      datasets/synthetic_checks_output.json, where
+                      evidence_tier() applies fixed cut points to the share of
+                      applicable DISCRIMINATING checks that fired (uniformity +
+                      coin-flip binary -- the families that did not fire on the
+                      1.35M-posting real-data control; coupling, missingness
+                      and the sequential-ID family are excluded).  Cut points:
+                      >=0.80 strong, >=0.50 moderate, >=0.20 weak/partial,
+                      below that no generator signatures found.  The row also
+                      carries the fired/applicable counts and share.
   synthetic_basis     declared by source | signature-tier evidence only (not
                       asserted synthetic) | n/a
   signature_checks    datasets/synthetic_checks_output.json for rows whose
@@ -46,6 +55,7 @@ Writes datasets/REAL_VS_SYNTHETIC.csv. No download; no manuscript edit here.
 """
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -54,6 +64,38 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 K = ROOT / "datasets" / "kaggle"
 OUT = ROOT / "datasets" / "REAL_VS_SYNTHETIC.csv"
+
+# ---------------------------------------------------------------- computed tier
+# The evidence tier is NOT hand-assigned: it is read from the executable
+# checker suite, where evidence_tier() applies fixed cut points to the share of
+# applicable DISCRIMINATING checks that fired (uniformity + coin-flip binary:
+# the only families that did not also fire on the real-data control,
+# datasets/synthetic_checks_control_linkedin.json).  Cut points, in
+# datasets/synthetic_checks.py: >=0.80 strong, >=0.50 moderate, >=0.20
+# weak/partial, below that no generator signatures found.  Coupling,
+# missingness and the sequential-ID family never influence a tier.
+_CHECKS = json.loads((ROOT / "datasets" / "synthetic_checks_output.json").read_text(encoding="utf-8"))
+TIER_LABEL = {
+    "declared_synthetic_source_readme": "declared synthetic (source states it)",
+    "strong_signatures": "strong generator signatures",
+    "moderate_signatures": "moderate generator signatures",
+    "weak_partial_signatures": "weak/partial generator signatures",
+    "no_signatures_found": "provenance unverified, no generator signatures found",
+}
+
+
+def tier(dataset_key: str) -> str:
+    """Display label of the tier computed by datasets/synthetic_checks.py.
+
+    Rows that are not in the generator-signature audit at all (the real
+    scraped corpora and the aggregate file) carry no tier."""
+    e = _CHECKS["datasets"].get(dataset_key)
+    if e is None:
+        return "n/a (not audited: real or aggregate rows)"
+    return "%s [discriminating checks %d/%d, share %.2f]" % (
+        TIER_LABEL[e["evidence_tier"]], e["discriminating_signatures_count"],
+        e["discriminating_checks_applicable"], e["discriminating_share"])
+
 
 
 def bal(vals: pd.Series) -> tuple[int, float]:
@@ -88,7 +130,7 @@ add(dataset="AI Trends 2020-2026", path=str(p.relative_to(ROOT)), rows=len(d),
                      "executable chi2/Cramer's V check = 0.015 -- an earlier informal note claiming a "
                      "1:1 map was wrong, corrected 2026-10-12)"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="strong generator signatures",
+    evidence_tier=tier("AI Trends 2020-2026"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="NO - removed from the manuscript 2026-10-12 (RQ1 trends, Fig. 6b); retained only as a non-inferential row in the supplement provenance table")
@@ -105,7 +147,7 @@ add(dataset="AI Job Market & Salary Trends (15,000)", path=str(p.relative_to(ROO
                      f"20 countries ~750 each (ratio {r_loc:.2f}); experience_level/employment_type/company_size uniform-consistent "
                      "(chi2 p=0.90/0.63/0.99); job_id = sequential AI<counter>; 95 of 15,000 deadlines land exactly 20 days after posting"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="moderate generator signatures",
+    evidence_tier=tier("AI Job Market & Salary Trends (15,000)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="NO - not in Table I as postings (manifest discloses it as unused sibling)")
@@ -124,7 +166,7 @@ add(dataset="India Skills Intelligence (12,000)", path=str(p.relative_to(ROOT)),
                      "(calibrated to a headline figure); categorical columns NOT uniform-consistent "
                      "(calibrated distributions, chi2 p=0.00), consistent with a calibrated rather than flat generator"),
     classification="DECLARED SYNTHETIC",
-    evidence_tier="declared synthetic (source states it)",
+    evidence_tier=tier("India Skills Intelligence (12,000)"),
     synthetic_basis="declared by source",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - Table I already says 'Synthetic profiles calibrated on India Skills Report 2026' (good), but Sec III-A groups it under 'open datasets acquired from Kaggle' without marking it synthetic in prose")
@@ -141,7 +183,7 @@ add(dataset="College Student Placement (10,000)", path=str(p.relative_to(ROOT)),
                      "Projects_Completed uniform-consistent (chi2 p=0.77/0.48); Communication_Skills borderline "
                      "(p=0.044); Placement 16.6% with a hard label boundary (STAT01 records ROC-AUC 0.9406)"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="moderate generator signatures",
+    evidence_tier=tier("College Student Placement (10,000)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - limitation 1 calls Tier 2 'semi-deterministic decision boundaries' but they are presented as placement/graduate outcomes")
@@ -156,7 +198,7 @@ add(dataset="Global Student Placement (10,000)", path=str(p.relative_to(ROOT)), 
     generator_signs=(f"5 countries ~2,000 each (ratio {r_co:.2f}); 5 specializations ~2,000 each (ratio {r_sp:.2f}); "
                      f"6 industries ~1,670 each (ratio {r_in:.2f}); cgpa/communication/salary to 15 decimal places"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="moderate generator signatures",
+    evidence_tier=tier("Global Student Placement (10,000)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - PLAC01 reports 'placement rates by country (India 63.2% ... Germany 60.0%)' as if country observations")
@@ -173,7 +215,7 @@ add(dataset="Student Career Success (50,000)", path=str(p.relative_to(ROOT)), ro
                       "checker verdict: all 5 categorical columns REJECT uniformity, no coupling, no "
                       "missingness flag -- only the non-discriminating ID-sequence family fires, hence the tier"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="provenance unverified, no generator signatures found",
+    evidence_tier=tier("Student Career Success (50,000)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - used as an 'external validation cohort' in STAT02")
@@ -190,7 +232,7 @@ add(dataset="International Graduates (300,000)", path=str(p.relative_to(ROOT)), 
                      f"6 fields ~50,000 each (uniform-consistent, ratio {r_f:.2f}); 4 languages ~exactly 90,1xx/59,8xx; "
                      "Years_Since_Graduation near-uniform but rejected (p=0.014)"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="weak/partial generator signatures",
+    evidence_tier=tier("International Graduates (300,000)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="PARTIAL - INTL01 reports internship->employment odds ratio (1.48x) as a graduate-outcome finding")
@@ -207,7 +249,7 @@ add(dataset="NGESS Graduate Employment (7,200)", path=str(p.relative_to(ROOT)), 
                      "Survey_Year uneven all reject uniformity) -- no discriminating signature: the only flagged family "
                       "is the non-discriminating ID-sequence, hence the 'no generator signatures found' tier"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="provenance unverified, no generator signatures found",
+    evidence_tier=tier("NGESS Graduate Employment (7,200)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="NO in results (not run) but listed in Table I among placement benchmarks")
@@ -222,7 +264,7 @@ add(dataset="LinkedIn Jobs & Skills (1,348,454)", path=str(p.relative_to(ROOT)),
     generator_signs=("none detected: 584,544 distinct titles with a realistic long tail (top title 'LEAD SALES ASSOCIATE-FT' 0.54%); "
                      "messy casing, typos, employer-specific strings - consistent with organic scrape"),
     classification="REAL (web-scraped)",
-    evidence_tier="n/a (real)",
+    evidence_tier=tier("LinkedIn Jobs & Skills (1,348,454)"),
     synthetic_basis="n/a",
     signature_checks="",
     paper_treats_as_real="YES - treated as real throughout (correct)")
@@ -234,7 +276,7 @@ add(dataset="HF Skill Gap Jobs+Skills (519,814 linked pair)", path="datasets/hf_
     generator_signs=("none detected: 266,917 distinct titles, long tail identical in shape to LinkedIn "
                      "(same top titles - it is a strict subset of the LinkedIn scrape, OVERLAP_AUDIT.csv)"),
     classification="REAL (web-scraped; subset of LinkedIn)",
-    evidence_tier="n/a (real)",
+    evidence_tier=tier("HF Skill Gap Jobs+Skills (519,814 linked pair)"),
     synthetic_basis="n/a",
     signature_checks="",
     paper_treats_as_real="YES (correct)")
@@ -245,7 +287,7 @@ add(dataset="HF Job Skill Set academic reference (1,167)", path="datasets/hf_job
     dataset_card="HuggingFace skill-gap-analytics (CC-BY 4.0)",
     generator_signs="no generation; a 1,167-posting subsample of the same real scrape, not a taxonomy",
     classification="REAL (posting-derived reference)",
-    evidence_tier="n/a (real)",
+    evidence_tier=tier("HF Job Skill Set academic reference (1,167)"),
     synthetic_basis="n/a",
     signature_checks="",
     paper_treats_as_real="YES (correct)")
@@ -265,7 +307,7 @@ add(dataset="Career Change Prediction (38,444)", path=str(p.relative_to(ROOT)), 
                      "Family Influence missingness = 0.2505 vs 1/(3+1)=0.25 expected, independent of Field of Study "
                      "(p=0.455) -- missing drawn as one more uniform class, then blanked"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="moderate generator signatures",
+    evidence_tier=tier("Career Change Prediction (38,444)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="OVERSTATED - Table I lists it as 'Field of study vs. occupation transition records' (Tier 2)")
@@ -285,7 +327,7 @@ add(dataset="India Fresher Market (5,000)", path=str(p.relative_to(ROOT)), rows=
                       "there is no coupling or missingness flag -- only two narrow columns and the "
                       "non-discriminating ID-sequence flag, hence the 'no generator signatures found' tier"),
     classification="UNVERIFIED PROVENANCE",
-    evidence_tier="provenance unverified, no generator signatures found",
+    evidence_tier=tier("India Fresher Market (5,000)"),
     synthetic_basis="signature-tier evidence only (not asserted synthetic)",
     signature_checks="datasets/synthetic_checks_output.json",
     paper_treats_as_real="OVERSTATED - Table I lists it as 'Entry-level engineering recruitment outcomes' (Tier 2)")
@@ -300,7 +342,7 @@ add(dataset="USA Job Market Skills (316,279)", path=str(p.relative_to(ROOT)), ro
     generator_signs=("not individual postings: aggregate triples; source scrape unverifiable; "
                      "all 6,328 titles also occur in the LinkedIn scrape (title-string overlap only)"),
     classification="AGGREGATE / UNVERIFIED provenance",
-    evidence_tier="n/a (aggregate triples, not individual rows)",
+    evidence_tier=tier("USA Job Market Skills (316,279)"),
     synthetic_basis="n/a (provenance unverified, not classified synthetic)",
     signature_checks="",
     paper_treats_as_real="OVERSTATED - Tier 1 says '316K records ... direct observations of employer skill specifications' (reads as postings)")

@@ -125,6 +125,49 @@ def test_committed_output_artifact_structure():
     sccs = d["datasets"]["Student Career Success (50,000)"]
     assert sccs["signature_families_triggered"] == ["ids"]
     assert sccs["discriminating_signatures_count"] == 0
+
+
+def test_tier_rule_is_mechanical():
+    """Tiers must be recomputable from the committed checks: only the
+    discriminating families (uniformity + binary, i.e. the families that did
+    not fire on the real-data control) count, and the cut points are fixed."""
+    import csv as _csv
+    import re as _re
+    from synthetic_checks import (DISCRIMINATING_FAMILIES, DISCRIMINATING_FLAGS,
+                                  STRONG_MIN_SHARE, MODERATE_MIN_SHARE, WEAK_MIN_SHARE,
+                                  evidence_tier)
+    d = json.loads((ROOT / "datasets" / "synthetic_checks_output.json").read_text(encoding="utf-8"))
+    assert (STRONG_MIN_SHARE, MODERATE_MIN_SHARE, WEAK_MIN_SHARE) == (0.80, 0.50, 0.20)
+    for key, e in d["datasets"].items():
+        fired = applicable = 0
+        for name, res in e["checks"].items():
+            if name.split("::")[0] in DISCRIMINATING_FAMILIES and res.get("applicable"):
+                applicable += 1
+                fired += int(any(res.get(f) for f in DISCRIMINATING_FLAGS))
+        assert (fired, applicable) == (e["discriminating_signatures_count"],
+                                       e["discriminating_checks_applicable"]), key
+        expected = ("declared_synthetic_source_readme" if e["basis"] == "declared_synthetic_source_readme"
+                    else evidence_tier(fired, applicable))
+        assert e["evidence_tier"] == expected, key
+    # the one tier the mechanical rule changed on 2026-10-12: India Fresher's
+    # share (2/5 = 0.40) clears the 0.20 floor, so it is weak/partial, not none
+    assert d["datasets"]["India Fresher Market (5,000)"]["evidence_tier"] == "weak_partial_signatures"
+    assert d["datasets"]["Career Change Prediction (38,444)"]["evidence_tier"] == "moderate_signatures"
+    # ... and the CSV must carry the same computed tier, with counts
+    TIER_PHRASE = {
+        "declared_synthetic_source_readme": "declared synthetic",
+        "strong_signatures": "strong generator signatures",
+        "moderate_signatures": "moderate generator signatures",
+        "weak_partial_signatures": "weak/partial generator signatures",
+        "no_signatures_found": "provenance unverified, no generator signatures found",
+    }
+    rows = {r["dataset"]: r for r in _csv.DictReader(
+        (ROOT / "datasets" / "REAL_VS_SYNTHETIC.csv").open(encoding="utf-8"))}
+    for key in d["datasets"]:
+        e, label = d["datasets"][key], rows[key]["evidence_tier"]
+        assert label.startswith(TIER_PHRASE[e["evidence_tier"]]), (key, label)
+        share_in_label = float(_re.search(r"share ([0-9.]+)\]", label).group(1))
+        assert abs(share_in_label - e["discriminating_share"]) < 0.005, (key, label)
     # the corrected record: experience_level~remote_type must NOT be flagged as
     # near-deterministic (an earlier informal note claimed 1:1; checks say independent)
     ai = d["datasets"]["AI Trends 2020-2026"]["checks"]["coupling::experience_level~remote_type"]

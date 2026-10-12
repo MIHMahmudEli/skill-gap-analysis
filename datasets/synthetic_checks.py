@@ -6,29 +6,30 @@ reproducible checks. These checks NEVER assert that a dataset is synthetic;
 they report whether observable regularities are *consistent with* common
 synthetic-generation patterns. Classification stays in REAL_VS_SYNTHETIC.csv,
 which ranks each dataset on a four-step evidence tier (author ruling,
-2026-10-12):
+2026-10-12).  THE TIER IS COMPUTED, NOT CHOSEN: evidence_tier() below counts
+the applicable checks in the DISCRIMINATING families and takes the share that
+fired, with these cut points --
+
+      strong / moderate   >= 0.80 of applicable discriminating checks fired
+      moderate / weak     >= 0.50
+      weak / none found   >= 0.20
+      no generator signatures found                          below 0.20
+
+The discriminating families are exactly those that did NOT fire on the
+real-data control: uniformity and coin-flip binary.  Coupling and missingness
+DO fire on 1,348,454 genuine postings (pipeline flags; a 19-of-1.35M
+missingness share), and the sequential-ID family fires on nine of the ten
+audited files while not firing on the real corpus, so none of those three
+influences a tier.  They are still executed and recorded as evidence.
 
   * declared synthetic          — the source itself states the data are
                                   generated (only the India Skills dataset,
                                   per its bundled README).  This is the only
                                   dataset any file in this repository calls
-                                  "synthetic".
-  * strong generator signatures — several discriminating families fire
-                                  together (AI Trends 2020-2026).
-  * moderate generator signatures
-                               — two or more discriminating families, or one
-                                  plus corroborating informal signs (AI Job
-                                  Market & Salary Trends, College Placement,
-                                  Global Placement, Career Change Prediction).
-  * weak/partial generator signatures
-                               — a mixed pattern, some uniform-consistent
-                                  columns alongside strongly non-uniform ones
-                                  (International Graduates).
-  * provenance unverified, no generator signatures found
-                               — the discriminating families do not fire; the
-                                  only flagged family is the non-discriminating
-                                  id sequence (Student Career Success, NGESS,
-                                  India Fresher Market).
+                                  "synthetic"; it carries this label whatever
+                                  its checks say.
+  * strong / moderate / weak-partial / no generator signatures found
+                               — the computed tier, above.
 
 LIMITS OF THESE CHECKS (read before citing a flag):
 
@@ -93,6 +94,38 @@ ALPHA = 0.05
 COUPLING_V = 0.95          # Cramer's V above which a categorical pair is "near-deterministic"
 BALANCE_RATIO_MAX = 1.10   # max/min category-count ratio treated as "near-equal"
 BINARY_BALANCE_EPS = 0.02
+
+# ------------------------------------------------------------------ evidence-tier rule
+# Families that DISCRIMINATE are exactly the families that did NOT fire on the
+# real-data control (datasets/synthetic_checks_control_linkedin.json, 1,348,454
+# genuine postings, same thresholds): uniformity and coin-flip binary.  The
+# coupling and missingness families DO fire on that real corpus (scraper
+# pipeline flags; a 19-of-1.35M missingness share), and the sequential-ID family
+# is non-discriminating in both directions, so all three are EXCLUDED from tier
+# assignment and are recorded only as evidence.
+DISCRIMINATING_FAMILIES = ("uniformity", "binary")
+DISCRIMINATING_FLAGS = ("uniform_draw_consistent", "coin_flip_consistent")
+STRONG_MIN_SHARE = 0.80     # share of applicable discriminating checks fired
+MODERATE_MIN_SHARE = 0.50
+WEAK_MIN_SHARE = 0.20       # at/below this a dataset is "no generator signatures found"
+
+
+def evidence_tier(fired: int, applicable: int) -> str:
+    """Mechanical tier from the discriminating-check share (author ruling,
+    2026-10-12).  cut points: >=0.80 strong; >=0.50 moderate; >=0.20
+    weak/partial; below that, no generator signatures found.  Zero applicable
+    discriminating checks means nothing could fire, hence 'not assessable',
+    which is reported as no signatures found."""
+    if applicable == 0:
+        return "no_signatures_found"
+    share = fired / applicable
+    if share >= STRONG_MIN_SHARE:
+        return "strong_signatures"
+    if share >= MODERATE_MIN_SHARE:
+        return "moderate_signatures"
+    if share >= WEAK_MIN_SHARE:
+        return "weak_partial_signatures"
+    return "no_signatures_found"
 
 
 # ------------------------------------------------------------------ checks
@@ -264,12 +297,13 @@ def run() -> dict:
                                      "synthetic origin"),
                "note": ("Flags mean 'consistent with a generator signature', never 'synthetic'. "
                         "Only the declared_synthetic_source_readme basis asserts generation; every "
-                        "other basis is an evidence tier (declared / strong / moderate / weak-partial "
-                        "/ no-signatures-found) recorded in datasets/REAL_VS_SYNTHETIC.csv. "
-                        "The id_sequence family is recorded but does not discriminate and is not "
-                        "counted towards a tier; see the real-data control in "
-                        "datasets/synthetic_checks_control_linkedin.json for the two families that "
-                        "give false positives on genuine postings."),
+                        "other tier is computed by evidence_tier() from the share of applicable "
+                        "DISCRIMINATING checks fired (uniformity + binary only: the families that "
+                        "did not fire on the real-data control), cut points >=0.80 strong, "
+                        ">=0.50 moderate, >=0.20 weak/partial, else none found. Coupling, "
+                        "missingness and id_sequence are executed and recorded but never "
+                        "influence a tier; see "
+                        "datasets/synthetic_checks_control_linkedin.json."),
                "datasets": {}}
     for spec in SPECS:
         df = pd.read_csv(spec["file"], low_memory=False)
@@ -291,14 +325,26 @@ def run() -> dict:
                 df[spec["miss"][0]], df[spec["miss"][1]])
         # summary count of triggered signatures (uniform-consistent categoricals etc.)
         trig = []
+        disc_fired = disc_applicable = 0
         for name, res in entry["checks"].items():
+            fam = name.split("::")[0]
             for flag in ("uniform_draw_consistent", "coin_flip_consistent",
                          "near_deterministic_coupling", "sequential_id_consistent",
                          "missing_as_equal_class_consistent"):
                 if res.get(flag):
-                    trig.append(name.split("::")[0])
+                    trig.append(fam)
+            if fam in DISCRIMINATING_FAMILIES and res.get("applicable"):
+                disc_applicable += 1
+                if any(res.get(f) for f in DISCRIMINATING_FLAGS):
+                    disc_fired += 1
         entry["signatures_consistent_count"] = len(trig)
-        entry["discriminating_signatures_count"] = sum(1 for t in trig if t != "ids")
+        entry["discriminating_signatures_count"] = disc_fired
+        entry["discriminating_checks_applicable"] = disc_applicable
+        entry["discriminating_share"] = (round(disc_fired / disc_applicable, 3)
+                                         if disc_applicable else 0.0)
+        # mechanical tier (declared files keep their declared label regardless)
+        entry["evidence_tier"] = (spec["basis"] if spec["basis"] == "declared_synthetic_source_readme"
+                                  else evidence_tier(disc_fired, disc_applicable))
         entry["signature_families_triggered"] = sorted(set(trig))
         results["datasets"][spec["key"]] = entry
         print(f"{spec['key']:45s} signatures triggered: {len(trig):2d}  {sorted(set(trig))}")
