@@ -97,3 +97,67 @@ wait. Proposed protocol, reusing the SENS01 grid and the existing pipeline:
 
 If the leave-out experiment is later run, this paragraph gains its Î”SGI sentence and the
 numbers move into Table I's provenance block.
+
+
+---
+
+## (d) Title-free near-duplicate check (batch 4, step 3) — descriptive, not registered
+
+**Why.** Sections (a)--(c) all depend on a *title* join: the profile carries no
+`job_link`, so a posting can only be compared to a market posting whose normalized
+title already agrees. That makes title agreement a *necessary* condition, and it
+cannot see a duplicate whose title differed from every profile title while its
+skills were identical. This section removes the title restriction entirely.
+
+**Method — exact, not approximate.** Per-posting skill sets, extracted with the
+byte-for-byte ALIGN01 rule (`job_skills` split on `,`, stripped, lower-cased;
+`job_skill_set` bracket-stripped, apostrophes dropped, then the same). The
+518,953 market postings carrying skills collapse to **515,996 distinct skill
+signatures**. Every one of the 1,167 profile postings is then compared against
+every size-comparable signature by an **inverted-index set-similarity join with
+a Jaccard size filter**: for threshold `t`, a market set `M` can only clear `t`
+against profile set `P` if `t|P| <= |M| <= |P|/t`, derived from
+`|P n M| >= t(|P|+|M|)/(1+t)` together with `|P n M| <= min(|P|,|M|)`. At
+`t = 0.7` that admits only `|M| ? [0.7|P|, 1.43|P|]`, which prunes almost every
+signature before any set operation; shared elements are then counted exactly.
+
+> **Method substitution, disclosed.** The instruction named MinHash/LSH. That
+> implementation was written first and **timed out** (128 permutations over
+> ~100k signatures in pure Python). The exact join above was run instead. It is
+> strictly stronger, not weaker: LSH banding can only *miss* candidate pairs
+> below its recall threshold, whereas an exact join with a size filter that is
+> itself a mathematical consequence of the threshold has no false negatives. So
+> the zero below is a guarantee, not an approximation.
+
+**Validation that the method can detect non-zero.** Re-running the title-join as a
+control reproduces section (a) exactly: the single `>= 0.5` hit is
+`retail sales manager` at Jaccard `0.5000`, and `0` at `>= 0.9`. (The control sees
+569 of the 575 title matches rather than 575, because 61 market postings carry no
+`job_skills` and drop out of the join; section (a)'s 575 stands, and is what the
+manuscript quotes.)
+
+### Results
+
+| Quantity | Value |
+|---|---|
+| Profile postings × distinct market skill signatures | 1,167 × 515,996 |
+| **Pairs at Jaccard = 0.9** | **0** |
+| **Pairs at Jaccard = 0.7** | **0** |
+| Pairs at = 0.6 | 8 |
+| Pairs at = 0.5 | 105 |
+| **Maximum Jaccard observed anywhere** | **0.6667** |
+
+The maximum is `business development center representative` (5 profile skills) vs
+a 5-skill market posting sharing 4 of them — the overlap is entirely generic
+skills, and it is a *small-set* artefact: with only 5 skills on each side, sharing
+4 already gives 4/6. Every other top pair is the same posting against a
+neighbouring signature, or `retail sales associate part time` at `0.6000`
+(9 of 12 shared).
+
+**Verdict.** Removing the title restriction does not change the conclusion: there
+are **no near-duplicate postings between the reference profile and the market
+corpus at Jaccard = 0.9, and none at = 0.7 either**. The title-join bound was not
+hiding anything detectable at skill level.
+
+**Status.** Descriptive audit. Nothing written to `results/`, registry untouched,
+no label opened, no gated study run.
