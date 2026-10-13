@@ -35,9 +35,15 @@ class KaggleWorker:
             )
         return proc.stdout
 
-    def kernels_push(self, folder: Path, accelerator: str = "GPU", timeout: int = 7200):
-        return self._run(["kernels", "push", "-p", str(folder),
-                          "--accelerator", accelerator, "-t", str(timeout)])
+    def kernels_push(self, folder: Path, accelerator: str | None = "GPU",
+                     timeout: int = 7200):
+        # accelerator=None omits --accelerator entirely, which leaves the
+        # metadata's enable_gpu flag in force (CPU-only runs set it false).
+        args = ["kernels", "push", "-p", str(folder)]
+        if accelerator:
+            args += ["--accelerator", accelerator]
+        args += ["-t", str(timeout)]
+        return self._run(args)
 
     def kernels_status(self, ref: str) -> str:
         out = self._run(["kernels", "status", ref]).strip().lower()

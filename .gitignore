@@ -71,3 +71,8 @@ datasets/curriculum/license_snapshots/*.txt
 sealed/
 sealed*/
 **/sealed_keys/
+
+# Kaggle CPU verification staging: kernel source bundle, raw kernel
+# output and downloaded logs.  The normalised artifacts in
+# results_cpu_kaggle/ ARE tracked.
+.kaggle_cpu_verify/
