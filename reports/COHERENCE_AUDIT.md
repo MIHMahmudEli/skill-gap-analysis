@@ -1,7 +1,57 @@
 # COHERENCE_AUDIT — paper/main.tex against the measurement-audit title
 
-**Status: ANALYSIS ONLY. Nothing in `paper/main.tex` was changed by this pass.**
-**Baseline for "what changed": commit `9ca13e2` (and `0aa1ac2`, the last push).**
+**Status: APPLIED 2026-10-13. Every item below was written into
+`paper/main.tex`; the analysis is retained as the record of what was found and
+why.** The baseline for "what changed" is commit `25997e3` (the state this audit
+was generated against); the applying commit is recorded in `git log`.
+
+### What was applied
+
+All **40 flagged sentences** were rewritten and **T1** (the new Threats item) was
+inserted, plus four items that fall outside the four categories but were named
+directly by the instruction to apply this audit:
+
+| Extra change | Where | Why |
+|---|---|---|
+| `15 open datasets (2.12M …)` headline removed | §1 opening (`we analyze 15 open datasets`) | instruction: no "15 open datasets / 2.12M" headline |
+| `15 open datasets` → pointer to Table I | contribution 1 | same |
+| `Across 15 open datasets (…)` → tiered corpus description | §6 conclusion, sentence 1 | same |
+| Computational-anchor qualifier added | §4.3 CURR01 results **and** §5.6 item 2 | instruction: qualifier at **both** C159 locations |
+| `academic covering-set` → `reference-profile covering-set` | M1 + `L463` hypothesis verdict + abstract `(market K, profile P)` | internal consistency with M1 |
+
+`15 open datasets` now appears **once**, in §2.1 Datasets (`L158`), where it is
+the factual inventory paired with Table I and `DATASET_MANIFEST.csv` — the place
+the number belongs.
+
+### Deviations from the proposals in this document
+
+Three, all deliberate:
+
+1. **§6 sentence 1 was NOT kept verbatim.** The "already conform" list asks for
+   it verbatim, but it opens with the corpus-inventory headline the instruction
+   removes. The conforming clause it carries
+   (*"which proxies academic skill requirements with an employer-derived
+   occupational reference profile rather than university syllabi"*) **is**
+   preserved word-for-word; only the `Across 15 open datasets (…)` opener was
+   replaced, with all three tier figures kept.
+2. **F2 was solved more cheaply than proposed.** The audit's F2 costs +2 words
+   against a 248/250 abstract. The applied sentence is one word *shorter*,
+   landing the abstract at **247/250**.
+3. **I8 keeps the provenance-documentation clause** the proposal drops, reworded
+   as a conditional rather than a recommendation, so no contribution point is
+   silently lost.
+
+### Gates re-run after applying (all green)
+
+`pytest` **52/52** · `audit/verify_claims.py` **103/103** ·
+`experiments/make_latex.py --check` **14/14 byte-identical** · `pdflatex` clean
+(0 errors, 0 undefined references) · abstract renders in full ·
+**247/250 words** · prose **7,006 words** (venue band 4,500–8,000).
+
+No gate pins the page count: the added hedging and the new T1 item take the PDF
+from 13 to **14 pages**, the overflow being references spilling onto a
+~38%-full page 14. Every numeric constant is untouched, which is why
+`verify_claims.py` still reports 103/103.
 
 Title under audit:
 
