@@ -1388,5 +1388,112 @@
     "match": true,
     "evidence": "metrics.json sources.onet / license_note",
     "note": ""
+  },
+  {
+    "id": "A622",
+    "claim": "ALIGN06 maps zero demand weight to Soft Skills (0.00 pp) against 52.26 pp in postings",
+    "ms_value": [
+      0.0,
+      52.26
+    ],
+    "artifact_value": [
+      0.0,
+      52.26
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv K=100 lexical vs ALIGN03 domain_gap_table.csv",
+    "note": ""
+  },
+  {
+    "id": "A623",
+    "claim": "ALIGN06 maps zero demand weight to Business & Domain (0.00 pp) against 11.81 pp in postings",
+    "ms_value": [
+      0.0,
+      11.81
+    ],
+    "artifact_value": [
+      0.0,
+      11.81
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv K=100 lexical vs ALIGN03 domain_gap_table.csv",
+    "note": ""
+  },
+  {
+    "id": "A624",
+    "claim": "ALIGN06 maps zero demand weight to Cybersecurity (0.00 pp) against 0.62 pp in postings",
+    "ms_value": [
+      0.0,
+      0.62
+    ],
+    "artifact_value": [
+      0.0,
+      0.62
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv K=100 lexical vs ALIGN03 domain_gap_table.csv",
+    "note": ""
+  },
+  {
+    "id": "A625",
+    "claim": "ALIGN06 largest category is Programming & Development, 21.67 pp",
+    "ms_value": [
+      "Programming & Development",
+      21.67
+    ],
+    "artifact_value": [
+      "Programming & Development",
+      21.67
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv K=100 lexical, argmax demand",
+    "note": ""
+  },
+  {
+    "id": "A626",
+    "claim": "ALIGN03 largest lexical deficit is Cloud & Infrastructure, 2.45 pp",
+    "ms_value": [
+      "Cloud & Infrastructure",
+      2.45
+    ],
+    "artifact_value": [
+      "Cloud & Infrastructure",
+      2.45
+    ],
+    "match": true,
+    "evidence": "ALIGN03 domain_gap_table.csv, argmax deficit_pp_lexical",
+    "note": ""
+  },
+  {
+    "id": "A627",
+    "claim": "Within-taxonomy demand totals: postings 82.71 pp, O*NET 60.92 pp",
+    "ms_value": [
+      82.71,
+      60.92
+    ],
+    "artifact_value": [
+      82.71,
+      60.92
+    ],
+    "match": true,
+    "evidence": "column sums of the two category tables",
+    "note": ""
+  },
+  {
+    "id": "A628",
+    "claim": "ALIGN06 demand share is matcher-independent (lexical and semantic tau=0.5 rows agree, 8 categories each)",
+    "ms_value": [
+      true,
+      8,
+      8
+    ],
+    "artifact_value": [
+      true,
+      8,
+      8
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv K=100, lexical vs semantic tau=0.5",
+    "note": ""
   }
 ]

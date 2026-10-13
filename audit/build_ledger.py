@@ -96,6 +96,74 @@ for r in rows:
     if r["claim_id"] == "C156":
         r["proposed_action"] = "DONE (Phase 9): matched-profile 2x2 replaces vocabulary-composition story."
 
+# ALIGN06 (A6xx): the supplementary O*NET x BLS demand-side check. Every row
+# is hand-annotated because a caveat cannot be derived from a number: the O*NET
+# side is employment-weighted occupations, not postings (ALIGN06_PREREG 7.2),
+# so a null concern means "no caveat beyond that estimand difference".
+A6_MAIN = "RQ2 subsubsection ALIGN06 + threats item 9"
+A6_APPX = "Appendix A, Table tab_align06_categories"
+A6_EV = "results/ALIGN06_onet_demand_profile/"
+_NOT_POSTINGS = ("Demand side is employment-weighted O*NET occupations, not "
+                 "postings (ALIGN06_PREREG 7.2); level is not comparable to "
+                 "the posting-based SGI")
+_ZERO_WEIGHT = ("Zero O*NET demand weight: the Technology Skills inventory "
+                "maps no term to this category")
+A6_OVERRIDES = {
+    "A601": (A6_MAIN, A6_EV + "metrics.json registered_contrasts.a", _NOT_POSTINGS),
+    "A602": (A6_MAIN, A6_EV + "metrics.json registered_contrasts.a", _NOT_POSTINGS),
+    "A603": (A6_MAIN, A6_EV + "metrics.json registered_contrasts.b", _NOT_POSTINGS),
+    "A604": (A6_MAIN, A6_EV + "metrics.json registered_contrasts.b", _NOT_POSTINGS),
+    "A605": (A6_MAIN, A6_EV + "metrics.json registered_contrasts.c_persistence_claim_permitted",
+             "Rule is mechanical: permitted iff the semantic skill-CI lower bound exceeds 0"),
+    "A606": (A6_MAIN, A6_EV + "metrics.json vocabulary_overlap.economy-wide",
+             "Explains why the ALIGN06 lexical SGI is far above the posting-based value"),
+    "A607": (A6_MAIN, A6_EV + "table_onet_profile_top.csv rank 1",
+             "O*NET Technology Skills is a software/hardware inventory, not a skill taxonomy"),
+    "A608": (A6_MAIN, A6_EV + "table_sgi_onet_grid.csv", None),
+    "A609": (A6_MAIN, A6_EV + "table_sgi_onet_grid.csv", None),
+    "A610": (A6_MAIN, A6_EV + "table_sgi_onet_grid.csv (K=100, P=all)", _NOT_POSTINGS),
+    "A611": (A6_MAIN, A6_EV + "table_sgi_onet_grid.csv",
+             "Stratum is 18 O*NET-SOC occupations over 13 SOC bases (ALIGN06_PREREG A3)"),
+    "A612": (A6_MAIN, A6_EV + "table_sgi_onet_grid.csv", _NOT_POSTINGS),
+    "A613": (A6_MAIN, A6_EV + "table_cross_source.csv",
+             "Descriptive only; never used to select parameters (ALIGN06_PREREG 6.4)"),
+    "A614": (A6_MAIN, A6_EV + "table_category_gap_onet.csv",
+             "Coverage rate is bounded [0,1]; regression-guarded in experiments/verify.py (A7)"),
+    "A615": (A6_MAIN, A6_EV + "table_category_gap_onet.csv", None),
+    "A616": (A6_MAIN, A6_EV + "table_category_gap_onet.csv market_demand_pp sum",
+             "Soft Skills, Business & Domain and Cybersecurity carry zero O*NET demand weight"),
+    "A617": (A6_MAIN, A6_EV + "metrics.json frame.economy-wide.employment_multiplicity",
+             "Measured and disclosed, not silently rescaled (ALIGN06_PREREG A4)"),
+    "A618": (A6_MAIN, A6_EV + "metrics.json frame.economy-wide.employment_multiplicity", None),
+    "A619": (A6_MAIN, A6_EV + "metrics.json frame.computing-IT.employment_multiplicity", None),
+    "A620": (A6_MAIN, A6_EV + "metrics.json sources.oews",
+             "May 2025 national release; BLS OEWS is public domain (17 U.S.C. 105)"),
+    "A621": (A6_MAIN, A6_EV + "metrics.json sources.onet, sources.license_note",
+             "Licence snapshots in datasets/curriculum/license_snapshots/"),
+    "A622": (A6_APPX, A6_EV + "table_category_gap_onet.csv K=100 lexical; ALIGN03 domain_gap_table.csv",
+             _ZERO_WEIGHT),
+    "A623": (A6_APPX, A6_EV + "table_category_gap_onet.csv K=100 lexical; ALIGN03 domain_gap_table.csv",
+             _ZERO_WEIGHT),
+    "A624": (A6_APPX, A6_EV + "table_category_gap_onet.csv K=100 lexical; ALIGN03 domain_gap_table.csv",
+             _ZERO_WEIGHT),
+    "A625": (A6_APPX, A6_EV + "table_category_gap_onet.csv K=100 lexical",
+             "Largest O*NET category; the largest posting-side category differs, "
+             "so the two demand columns are not differenced"),
+    "A626": (A6_APPX, A6_EV + "ALIGN03 domain_gap_table.csv deficit_pp_lexical",
+             "Largest posting-side lexical deficit is Cloud & Infrastructure, not Programming"),
+    "A627": (A6_APPX, "sum of both category tables",
+             "Within-taxonomy totals over two different populations; not a comparable quantity"),
+    "A628": (A6_APPX, A6_EV + "table_category_gap_onet.csv K=100 lexical vs semantic tau=0.5",
+             "Demand share is a property of the profile, not of the matcher; the "
+             "semantic rows must be pinned to tau=0.5 (an unfiltered read is tau=0.4)"),
+}
+for r in rows:
+    ov = A6_OVERRIDES.get(r["claim_id"])
+    if ov:
+        r["manuscript_location"], r["evidence_path"], con = ov
+        if con is not None:
+            r["scientific_concern"] = con
+
 # extra manual rows for qualitative claims
 manual = [
     dict(claim_id="M01", manuscript_location="Sec.IV-B1; Fig.1",

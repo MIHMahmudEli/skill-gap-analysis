@@ -29,7 +29,7 @@ at `abbff83`).
   (52 entries) + auto-generated `paper/tables/*.tex` (12 files) and
   `paper/figures/*.pdf` (7 files).
 - **Build process:** `pdflatex main && bibtex main && pdflatex ×2` in `paper/`.
-  Last build (2026-10-11 10:15): 15 pages, 912,430 bytes, 0 errors, 0 undefined
+  Last build (2026-10-13): 16 pages, 784,883 bytes, 0 errors, 0 undefined
   references (verified in `paper/main.log`).
 - **Tables/figures are generated**, not hand-authored: `experiments/make_latex.py`
   reads `results/<EXP_ID>/*.csv` + `metrics.json` only.

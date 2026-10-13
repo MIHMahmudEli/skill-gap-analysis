@@ -327,7 +327,7 @@ presence = [
          ("a computational anchor, not a human audit" in TEX)
      and ("no human line-by-line topic audit was performed" in TEX)),
     ("C160", "abstract discloses employer-derived occupational reference profile (1,167 postings)",
-     "employer-derived occupational reference profile (1,167 job postings" in TEX),
+     "employer-derived occupational reference profile (1,167 postings" in TEX),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
@@ -478,6 +478,53 @@ add("A621", "ALIGN06 O*NET release verified as O*NET 30.0 and CC BY 4.0 attribut
     [a6["sources"]["onet"]["release_verified"],
      "CC BY 4.0" in a6["sources"]["license_note"]],
     "metrics.json sources.onet / license_note")
+
+# --- Appendix A, Table tab_align06_categories: eight-category comparison ---
+# Postings (ALIGN03) against O*NET x BLS (ALIGN06) at K=100, lexical and
+# semantic tau=0.5. The table is GENERATED from these two CSVs by
+# experiments/make_latex.py; these checks pin every number the manuscript
+# quotes from it. The ALIGN06 category table holds four tau values, so the
+# semantic read is pinned to tau=0.5 -- an unfiltered read returns tau=0.4.
+_p3 = pd.read_csv(RESULTS / "ALIGN03_domain_gap" / "domain_gap_table.csv") \
+    .set_index("category")
+_c6 = pd.read_csv(RESULTS / "ALIGN06_onet_demand_profile" /
+                  "table_category_gap_onet.csv")
+_c6 = _c6[_c6.K == 100]
+_ol = _c6[_c6.match == "lexical"].set_index("category")
+_o5 = _c6[(_c6.match == "semantic") & (_c6.tau == 0.5)].set_index("category")
+
+for _cid, _cat, _pp in (("A622", "Soft Skills", 52.26),
+                        ("A623", "Business & Domain", 11.81),
+                        ("A624", "Cybersecurity", 0.62)):
+    add(_cid, f"ALIGN06 maps zero demand weight to {_cat} "
+              f"(0.00 pp) against {_pp:.2f} pp in postings",
+        [0.00, _pp],
+        [round(float(_ol.loc[_cat, "market_demand_pp"]), 2),
+         round(float(_p3.loc[_cat, "market_demand_pp"]), 2)],
+        "table_category_gap_onet.csv K=100 lexical vs "
+        "ALIGN03 domain_gap_table.csv")
+add("A625", "ALIGN06 largest category is Programming & Development, 21.67 pp",
+    ["Programming & Development", 21.67],
+    [str(_ol.market_demand_pp.idxmax()),
+     round(float(_ol.market_demand_pp.max()), 2)],
+    "table_category_gap_onet.csv K=100 lexical, argmax demand")
+add("A626", "ALIGN03 largest lexical deficit is Cloud & Infrastructure, 2.45 pp",
+    ["Cloud & Infrastructure", 2.45],
+    [str(_p3.deficit_pp_lexical.idxmax()),
+     round(float(_p3.deficit_pp_lexical.max()), 2)],
+    "ALIGN03 domain_gap_table.csv, argmax deficit_pp_lexical")
+add("A627", "Within-taxonomy demand totals: postings 82.71 pp, O*NET 60.92 pp",
+    [82.71, 60.92],
+    [round(float(_p3.market_demand_pp.sum()), 2),
+     round(float(_ol.market_demand_pp.sum()), 2)],
+    "column sums of the two category tables")
+add("A628", "ALIGN06 demand share is matcher-independent "
+            "(lexical and semantic tau=0.5 rows agree, 8 categories each)",
+    [True, 8, 8],
+    [bool((_ol.market_demand_pp.round(6) ==
+           _o5.market_demand_pp.round(6)).all()),
+     int(len(_ol)), int(len(_o5))],
+    "table_category_gap_onet.csv K=100, lexical vs semantic tau=0.5")
 
 out = ROOT / "audit" / "01_claim_verification.json"
 out.write_text(json.dumps(checks, indent=2, ensure_ascii=False), encoding="utf-8")

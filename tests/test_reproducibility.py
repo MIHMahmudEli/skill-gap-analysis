@@ -248,3 +248,52 @@ def test_align06_cov_matrix_flat_index_is_row_major():
     assert "cat_id_a[m] * n + occ_arr_a[m]" not in src, (
         "transposed flat index (cat_id * n + occ_id) reappeared in cov_matrix; "
         "this is the ALIGN06_PREREG.md A7 defect")
+
+
+def test_align06_generated_category_table_pins_tau_0_5():
+    """tab_align06_categories must read the semantic column at tau=0.5.
+
+    table_category_gap_onet.csv holds four tau values (0.4/0.5/0.6/0.7) for
+    every semantic row, so an unfiltered read silently returns tau=0.4. At
+    tau=0.4 Cloud & Infrastructure reaches 100.0% semantic coverage; the
+    manuscript and Appendix A quote 92.1% at tau=0.5.
+    """
+    tab = ROOT / "paper" / "tables" / "tab_align06_categories.tex"
+    if not tab.exists():
+        pytest.skip("generated category table absent")
+    body = tab.read_text(encoding="utf-8")
+    lines = [l for l in body.splitlines() if "&" in l and not l.startswith("%")]
+
+    def cells(line: str) -> list:
+        """Split a generated row on the cell separator. esc() turns '&' inside
+        a category name into '\\&', which would otherwise shift the split, and
+        every row ends with the LaTeX newline marker."""
+        parts = [p.strip() for p in line.replace("\\&", "\x00").split("&")]
+        parts[-1] = parts[-1].rstrip("\\").strip()
+        return parts
+
+    # '&' inside a category name is escaped by esc(), so rows read
+    # "Cloud \& Infrastructure", not "Cloud & Infrastructure"
+    cloud = [l for l in lines if l.startswith("Cloud \\& Infrastructure")]
+    assert len(cloud) == 1, f"Cloud row missing or duplicated: {cloud}"
+    c = cells(cloud[0])
+    # cells: category, postings demand, postings cov lex, postings cov sem,
+    #         ONET demand, ONET cov lex, ONET cov sem
+    assert len(c) == 7, c
+    assert c[6] == "92.1", (
+        f"O*NET Cloud semantic coverage reads {c[6]}, expected 92.1 at "
+        "tau=0.5 -- an unfiltered read of table_category_gap_onet.csv returns "
+        "tau=0.4 (100.0); pin the semantic filter to tau == 0.5")
+
+    # the three categories the manuscript names as carrying no O*NET demand
+    # weight must read exactly 0.00 on the O*NET demand column
+    for cat in ("Soft Skills", "Business \\& Domain", "Cybersecurity"):
+        row = [l for l in lines if l.startswith(cat)]
+        assert len(row) == 1, f"{cat} row missing or duplicated"
+        assert cells(row[0])[4] == "0.00", row[0]
+
+    # O*NET demand is matcher-independent, so only the semantic column may vary
+    # with tau; the demand column must not
+    prog = [l for l in lines if l.startswith("Programming \\& Development")]
+    assert len(prog) == 1, "Programming row missing or duplicated"
+    assert cells(prog[0])[4] == "21.67", prog[0]

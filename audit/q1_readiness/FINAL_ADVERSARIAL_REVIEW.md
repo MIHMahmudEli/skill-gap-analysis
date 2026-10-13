@@ -15,7 +15,7 @@ Prior audit claims were treated as untrusted until re-checked against artifacts.
 | 13 tests pass | `pytest tests/ -q` | **CONFIRMED** 13 passed (re-run after manuscript edits) |
 | 12/12 experiments `USED_IN_MANUSCRIPT` + artifacts | `registry.json` + `verification_report.json` + `metrics.json` existence | **CONFIRMED** all 12 metrics present, `all_verified: true` |
 | Local reruns vs artifact-only | ALIGN01/02/04, CURR01, STAT01, STAT02: prior local CPU re-runs + this session H6 recompute from raw CSV | **CONFIRMED** H6 independently recomputed: RD **−0.4442 pp**, 16.3219% vs 16.7661% |
-| PDF compiles | pdflatex+bibtex×2 | **CONFIRMED** — after edits: **15 pages**, 0 errors / 0 undefined / 0 overfull |
+| PDF compiles | pdflatex+bibtex×2 | **CONFIRMED** — **16 pages** at the 2026-10-13 recheck (15 before the Appendix A demand-share table was added), 0 errors / 0 undefined / 0 overfull |
 | PDF ↔ current sources | recompile overwrites `main.pdf` from current `main.tex` | **CONFIRMED** (post-edit rebuild) |
 | 107 reproduced / 1 partial / 0 contradicted | ledger + matrix tallies | **CONFIRMED** (partial = M06 VALID01 metadata quirk only) |
 | Numerical corrections in abstract/body/tables | grepped `main.tex` for 2.64M, 519,814, 1,167, −0.44, profile-size 2×2 | **CONFIRMED** present and consistent |
