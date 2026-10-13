@@ -327,6 +327,7 @@ If those four lines hold, the clean-room run is a pass at level L1.
 
 ## 13. Running the 5 Sentence-BERT experiments on a machine where `torch` loads
 
+**STATUS 2026-10-13: CLOSED — all 5 were verified on a CPU-only Kaggle kernel.**
 `reports/CPU_VS_COMMITTED.md` records that 8 of 13 experiments were re-executed on
 CPU and reproduced all 288 compared numeric fields exactly, but that **5 experiments
 could not be re-run on the author's laptop**: `ALIGN02_semantic_sbert`,
@@ -334,13 +335,42 @@ could not be re-run on the author's laptop**: `ALIGN02_semantic_sbert`,
 `VALID01_esco_gold` each `import torch`, and that import fails there with
 `ImportError: DLL load failed while importing _C: An Application Control policy has
 blocked this file` — the same local policy that blocks `statsmodels` in
-`reproduce_stats.py`. Their committed values are reported as **unchanged but
+`reproduce_stats.py`. Their committed values were reported as **unchanged but
 unverified on CPU**, not as agreeing.
 
-This section closes that gap on any machine where `torch` loads (Linux or cloud;
-the author's Windows laptop is not one of them). Nothing here changes a committed
-artifact: outputs go to a separate directory, and the manuscript and
-`results/registry.json` are not touched.
+That gap is now closed by `scripts/kaggle_cpu_verify.py`, which pushed the 5 to a
+CPU-only Kaggle kernel owned by the account that holds the input bundle, pinned the
+kernel to the commit GitHub served, and gated the downloaded output against the
+committed artifacts:
+
+| | |
+|---|---|
+| Kernel | `studyhub991/cpu-verify-embedding-5` (private, CPU, internet on for pip + the HF model + VALID01's pinned upstream annotations) |
+| Runtime | 1065 s total (ALIGN02 58.8 s, ALIGN03 194.6 s, ALIGN04 547.1 s, CURR01 27.6 s, VALID01 175.1 s) |
+| Environment | Python 3.13.15, `torch` 2.11.0+cpu, `sentence-transformers` 6.0.1, AMD EPYC 7B12, `pip_mode: pinned` |
+| Comparison | `reports/CPU_VS_COMMITTED_KAGGLE.md` — 614 numeric fields, 0 beyond tolerance, largest `\|diff\|` **0.000e+00** |
+| Headline gate | 113 headline fields (SGI, CI bounds, domain deficits, CS2023 coverage, κ, precision, recall, AUC) checked at the decimals the manuscript reports — 0 mismatches |
+| Archive | `MoshinAli/skill-gap-cpu-verification` (22 files: `results_cpu_kaggle/`, the comparison report, `run_info.json`) |
+
+Two pitfalls the driver now guards, both hit on the way:
+
+1. **Kaggle's CLI uploads only a kernel's `code_file`.** An extra `repo.tar.gz` in
+   the kernel folder never reaches the machine (first run died with
+   `FATAL: repo.tar.gz not shipped with the kernel`). The kernel now clones the
+   public repository and then *pins itself*, asserting the clone's HEAD equals the
+   commit recorded at build time and checking that commit out if GitHub's tip has
+   moved.
+2. **`results_cpu/` is tracked, so the clone already contained the 8 committed
+   non-embedding experiments.** Leaving them would have made the comparison
+   circular. The driver deletes the cloned `results_cpu/` before running, so from
+   that point it can only hold fresh output; the 8 cloned copies that did land in
+   the first download were moved out of `results_cpu_kaggle/` before the gate ran.
+
+Nothing here changes a committed artifact under `results/`: outputs go to
+`results_cpu_kaggle/`, and `results/registry.json` is not touched.
+
+The remaining sections describe the manual procedure this driver automates, and are
+kept so the same run can be repeated on any CPU-only Linux machine.
 
 ### 13.1 Prerequisites
 
@@ -446,6 +476,13 @@ BLAS threading, and the committed GPU values remain the reported ones with the
 divergence disclosed.
 
 ### 13.6 What to do with the result
+
+**DONE 2026-10-13 — the all-5-within-tolerance branch was taken.** The manuscript
+sentence in §Reproducibility and Data Availability was strengthened to name the
+completed CPU verification (288 + 614 = 902 compared numeric fields, all zero
+difference), and `reports/CPU_VS_COMMITTED_KAGGLE.md` plus
+`reports/cpu_kaggle_gate.json` were committed as the evidence. The branches below
+are kept for anyone repeating the run.
 
 - If all 5 are within tolerance: the manuscript sentence in
   §Reproducibility and Data Availability may be strengthened from "not claimed

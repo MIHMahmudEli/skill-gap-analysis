@@ -1,0 +1,63 @@
+{
+  "commit": "25997e3b2330d164e160f1398e6e8d7c47583150",
+  "cpu_count": 4,
+  "cpu_model": "AMD EPYC 7B12",
+  "experiments": {
+    "ALIGN02_semantic_sbert": {
+      "metrics_written": true,
+      "returncode": 0,
+      "runtime_sec": 58.8,
+      "status": "ok"
+    },
+    "ALIGN03_domain_gap": {
+      "metrics_written": true,
+      "returncode": 0,
+      "runtime_sec": 194.6,
+      "status": "ok"
+    },
+    "ALIGN04_crosscorpus_linkedin": {
+      "metrics_written": true,
+      "returncode": 0,
+      "runtime_sec": 547.1,
+      "status": "ok"
+    },
+    "CURR01_cs2023_anchor": {
+      "metrics_written": true,
+      "returncode": 0,
+      "runtime_sec": 27.6,
+      "status": "ok"
+    },
+    "VALID01_esco_gold": {
+      "metrics_written": true,
+      "returncode": 0,
+      "runtime_sec": 175.1,
+      "status": "ok"
+    }
+  },
+  "experiments_requested": [
+    "ALIGN02_semantic_sbert",
+    "ALIGN03_domain_gap",
+    "ALIGN04_crosscorpus_linkedin",
+    "CURR01_cs2023_anchor",
+    "VALID01_esco_gold"
+  ],
+  "input_dataset": "studyhub991/skill-gap-inputs-v1",
+  "input_dir_detected": "/kaggle/input/datasets/studyhub991/skill-gap-inputs-v1",
+  "pip_mode": "pinned",
+  "platform": "Linux-6.18.48+-x86_64-with-glibc2.39",
+  "python_version": "3.13.15",
+  "repo_archive_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "repo_source": "git clone of https://github.com/MIHMahmudEli/skill-gap-analysis.git",
+  "seed": 42,
+  "single_thread_blas": true,
+  "status": "ok",
+  "total_runtime_sec": 1065.2,
+  "versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.1",
+    "sentence_transformers": "6.0.1",
+    "torch": "2.11.0+cpu"
+  }
+}

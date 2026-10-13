@@ -1,0 +1,14 @@
+{
+  "generated_utc": "2026-10-13T07:32:58Z",
+  "cpu_dir": "results_cpu_kaggle",
+  "comparator_exit_code": 0,
+  "fields_compared": 614,
+  "fields_differing": 0,
+  "fields_missing": 0,
+  "fields_extra": 0,
+  "headline_checked": 113,
+  "headline_mismatches": 0,
+  "differences": [],
+  "headline_failures": [],
+  "gate_passed": true
+}

@@ -1,0 +1,49 @@
+{
+  "experiment_id": "ALIGN02_semantic_sbert",
+  "status": "completed",
+  "runtime_sec": 54.9,
+  "seed": 42,
+  "bootstrap_n": 1000,
+  "model": "all-MiniLM-L6-v2",
+  "device": "cpu",
+  "top_n": 100,
+  "sensitivity": [
+    {
+      "tau": 0.4,
+      "SGI": 0.2,
+      "Coverage_Rate": 0.8,
+      "CI_Lower": 0.12,
+      "CI_Upper": 0.28,
+      "Delta_SGI": -0.12
+    },
+    {
+      "tau": 0.5,
+      "SGI": 0.32,
+      "Coverage_Rate": 0.68,
+      "CI_Lower": 0.23,
+      "CI_Upper": 0.41,
+      "Delta_SGI": 0.0
+    },
+    {
+      "tau": 0.6,
+      "SGI": 0.39,
+      "Coverage_Rate": 0.61,
+      "CI_Lower": 0.3,
+      "CI_Upper": 0.48,
+      "Delta_SGI": 0.07
+    },
+    {
+      "tau": 0.7,
+      "SGI": 0.46,
+      "Coverage_Rate": 0.54,
+      "CI_Lower": 0.37,
+      "CI_Upper": 0.56,
+      "Delta_SGI": 0.14
+    }
+  ],
+  "sgi_at_tau_0.5": 0.32,
+  "sgi_ci_at_tau_0.5": [
+    0.23,
+    0.41
+  ]
+}

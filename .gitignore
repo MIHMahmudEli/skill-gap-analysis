@@ -76,3 +76,10 @@ sealed*/
 # output and downloaded logs.  The normalised artifacts in
 # results_cpu_kaggle/ ARE tracked.
 .kaggle_cpu_verify/
+
+# Downloaded THIRD-PARTY inputs that land inside the Kaggle CPU
+# verification output: VALID01 pulls the SkillSpan benchmark annotations
+# from jensjorisdecorte/Skill-Extraction-benchmark at run time. They are
+# someone else's data, so they are neither committed here nor uploaded to
+# the verification archive (scripts/kaggle_cpu_verify.py refuses them too).
+results_cpu_kaggle/*/_upstream/

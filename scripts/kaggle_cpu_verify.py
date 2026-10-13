@@ -282,6 +282,14 @@ if _why:
 run_info["repo_source"] = _repo_source
 log("repository at %s via %s" % (EXPECTED_COMMIT[:12], _repo_source))
 
+# results_cpu/ is TRACKED, so the clone already carries the committed
+# non-embedding experiments.  Leaving them would make any later comparison
+# circular, so drop them: from here on results_cpu/ holds only fresh runs.
+_stale = REPO / "results_cpu"
+if _stale.exists():
+    shutil.rmtree(_stale)
+    log("removed the cloned results_cpu/ so only fresh runs can appear there")
+
 # ---------------------------------------------------------------------------
 # 2. pinned requirements
 # ---------------------------------------------------------------------------
@@ -776,6 +784,11 @@ def wrote_report_note(path: Path) -> str:
 # Hugging Face upload, strict allowlist
 # ---------------------------------------------------------------------------
 FORBIDDEN_NAME = re.compile(r"(?i)(_key|\.env|sealed|worker_map\.json)")
+# Third-party INPUTS that an experiment downloaded into its output tree are not
+# results and must not be redistributed from our archive: VALID01 fetches the
+# SkillSpan benchmark annotations from jensjorisdecorte/Skill-Extraction-benchmark
+# into <exp>/_upstream/.  Only our own computed artifacts are uploadable.
+THIRD_PARTY_CACHE = re.compile(r"(^|/)_upstream/")
 SECRET_IN_CONTENT = re.compile(
     r"(?i)(hf_[a-z0-9]{25,}|kaggle[_-]?api[_-]?key\s*[:=]|"
     r"Kaggel_Token\s*[:=]|KAGGLE_KEY\s*[:=])")
@@ -785,6 +798,11 @@ def _refuse(path: Path) -> str | None:
     rel = str(path.relative_to(ROOT)).replace("\\", "/")
     if FORBIDDEN_NAME.search(rel):
         return f"path matches a forbidden pattern ({rel})"
+    if THIRD_PARTY_CACHE.search(rel):
+        return ("downloaded third-party input cache, not a computed result "
+                "(VALID01 pulls these from jensjorisdecorte/"
+                "Skill-Extraction-benchmark; redistribute them from upstream, "
+                "not from this archive)")
     try:
         head = path.read_bytes()[:1_000_000]
     except Exception as e:

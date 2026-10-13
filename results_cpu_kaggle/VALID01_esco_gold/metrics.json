@@ -1,0 +1,173 @@
+{
+  "experiment_id": "VALID01_esco_gold",
+  "status": "completed",
+  "runtime_sec": 172.85,
+  "seed": 42,
+  "bootstrap_n": 1000,
+  "model": "all-MiniLM-L6-v2",
+  "device": "cpu",
+  "gold_source": "Decorte et al. 2022/2023 skill-extraction benchmark (CC-BY-4.0), pinned commit 19305c85e35a74fb2a5128d8ee3798b06470b596",
+  "esco_inventory": "skills_en_label.txt (ESCO v1.1.0 preferred labels)",
+  "n_mentions": 1062,
+  "n_label_pool": 507,
+  "n_pairs": 2907,
+  "n_positive": 1138,
+  "n_negative": 1769,
+  "n_pairs_by_neg_type": {
+    "positive": 1138,
+    "random_neg": 1062,
+    "hard_neg": 707
+  },
+  "n_positive_by_type": {
+    "hard_neg": 0,
+    "positive": 1138,
+    "random_neg": 0
+  },
+  "tau_thresholds": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "kappa_at_tau_0.5": 0.7368,
+  "kappa_ci_at_tau_0.5": [
+    0.7106,
+    0.76
+  ],
+  "accuracy_at_tau_0.5": 0.8786,
+  "accuracy_ci_at_tau_0.5": [
+    0.8662,
+    0.8899
+  ],
+  "precision_at_tau_0.5": 0.9189,
+  "recall_at_tau_0.5": 0.7566,
+  "auc_cosine": 0.9608,
+  "kappa_lexical_exact": 0.1121,
+  "kappa_lexical_contains": 0.2627,
+  "sensitivity": {
+    "lexical_exact": {
+      "accuracy": 0.6453,
+      "precision": 1.0,
+      "recall": 0.094,
+      "f1": 0.1719,
+      "kappa": 0.1121,
+      "accuracy_ci": [
+        0.6281,
+        0.6629
+      ],
+      "kappa_ci": [
+        0.091,
+        0.1323
+      ]
+    },
+    "lexical_contains": {
+      "accuracy": 0.6956,
+      "precision": 0.9408,
+      "recall": 0.2373,
+      "f1": 0.3789,
+      "kappa": 0.2627,
+      "accuracy_ci": [
+        0.6784,
+        0.7131
+      ],
+      "kappa_ci": [
+        0.2344,
+        0.2901
+      ]
+    },
+    "sbert_tau_0.4": {
+      "accuracy": 0.8992,
+      "precision": 0.8614,
+      "recall": 0.8849,
+      "f1": 0.873,
+      "kappa": 0.7895,
+      "auc": 0.9608,
+      "accuracy_ci": [
+        0.8885,
+        0.9099
+      ],
+      "kappa_ci": [
+        0.7663,
+        0.8117
+      ]
+    },
+    "sbert_tau_0.5": {
+      "accuracy": 0.8786,
+      "precision": 0.9189,
+      "recall": 0.7566,
+      "f1": 0.8299,
+      "kappa": 0.7368,
+      "auc": 0.9608,
+      "accuracy_ci": [
+        0.8662,
+        0.8899
+      ],
+      "kappa_ci": [
+        0.7106,
+        0.76
+      ]
+    },
+    "sbert_tau_0.6": {
+      "accuracy": 0.8287,
+      "precision": 0.9571,
+      "recall": 0.5888,
+      "f1": 0.7291,
+      "kappa": 0.6139,
+      "auc": 0.9608,
+      "accuracy_ci": [
+        0.8149,
+        0.8435
+      ],
+      "kappa_ci": [
+        0.5823,
+        0.6435
+      ]
+    },
+    "sbert_tau_0.7": {
+      "accuracy": 0.7602,
+      "precision": 0.9846,
+      "recall": 0.3937,
+      "f1": 0.5625,
+      "kappa": 0.4364,
+      "auc": 0.9608,
+      "accuracy_ci": [
+        0.7444,
+        0.7754
+      ],
+      "kappa_ci": [
+        0.4046,
+        0.4649
+      ]
+    }
+  },
+  "esco_coverage": [
+    {
+      "corpus": "market_top100",
+      "lexical_coverage": 0.06,
+      "lexical_ci": [
+        0.02,
+        0.11
+      ],
+      "semantic_coverage_tau0.5": 0.91,
+      "semantic_ci": [
+        0.85,
+        0.96
+      ],
+      "mean_best_cosine": 0.7473
+    },
+    {
+      "corpus": "academic_top100",
+      "lexical_coverage": 0.11,
+      "lexical_ci": [
+        0.05,
+        0.17
+      ],
+      "semantic_coverage_tau0.5": 0.99,
+      "semantic_ci": [
+        0.97,
+        1.0
+      ],
+      "mean_best_cosine": 0.7803
+    }
+  ]
+}

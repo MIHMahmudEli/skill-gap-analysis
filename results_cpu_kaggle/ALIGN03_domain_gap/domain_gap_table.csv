@@ -1,0 +1,9 @@
+category,market_demand_pp,coverage_rate_lexical,covered_pp_lexical,deficit_pp_lexical,deficit_lex_ci_lower,deficit_lex_ci_upper,coverage_rate_semantic_tau0.5,covered_pp_semantic,deficit_pp_semantic,deficit_sem_ci_lower,deficit_sem_ci_upper,severity_lexical,severity_semantic,taxonomy_skills_in_market,taxonomy_skills_total
+Programming & Development,3.97,0.5747,2.28,1.69,1.66,1.72,0.6505,2.58,1.39,1.36,1.41,Moderate,Critical,28,28
+Data Science & Analytics,8.04,0.851,6.84,1.2,1.16,1.24,0.9336,7.51,0.53,0.51,0.56,Moderate,Moderate,20,21
+Cloud & Infrastructure,4.39,0.4406,1.93,2.45,2.42,2.49,0.7867,3.45,0.94,0.91,0.96,Critical,Critical,17,17
+Soft Skills,52.26,1.0,52.26,0.0,0.0,0.0,1.0,52.26,0.0,0.0,0.0,Mild,Mild,14,14
+Business & Domain,11.81,0.9022,10.65,1.16,1.13,1.18,1.0,11.81,0.0,0.0,0.0,Moderate,Mild,13,13
+Design & UX,0.6,0.0,0.0,0.6,0.58,0.63,0.2407,0.15,0.46,0.44,0.48,Mild,Moderate,10,10
+Data Engineering,1.02,0.3128,0.32,0.7,0.68,0.72,0.595,0.61,0.41,0.4,0.43,Mild,Mild,13,13
+Cybersecurity,0.62,0.0,0.0,0.62,0.6,0.64,0.7371,0.46,0.16,0.15,0.17,Mild,Mild,11,11
