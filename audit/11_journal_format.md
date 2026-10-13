@@ -52,6 +52,8 @@ final choice is an author decision.*
   OA APC applies (check current APC/funding); Springer Nature template.
 - **Format:** class change required.
 
+> **The 4,500--8,000 word prose band and the 150--250 word abstract cap are placeholders.** They are taken from the IJETHE candidate above, and IJETHE is one of three assessed candidates -- no venue has been selected. Do not treat the band as a hard gate, and do not delete required text (attribution, estimand caveats, registered numbers) to satisfy it. Re-derive the target from the submission guidelines of the venue actually chosen, and update this note and `reports/COHERENCE_AUDIT.md` at that point.
+
 ## 11.3 Not Assessed as Primary (recorded, not recommended/rejected)
 
 - *Computers & Education* (Elsevier): previously flagged as needing Tier-C

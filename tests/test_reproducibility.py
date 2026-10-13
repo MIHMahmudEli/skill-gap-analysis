@@ -173,3 +173,78 @@ def test_input_checksums_file_lists_nine_bundles():
     for ln in lines:
         parts = ln.split()
         assert len(parts) >= 2 and len(parts[0]) == 64
+
+
+# ---------------------------------------------------------------------------
+# ALIGN06 section 6.3 regression guard.
+#
+# The first ALIGN06 execution shipped a category table whose coverage_rate
+# reached 1.204964 with CI_rate_upper 10.232392 -- impossible values for a
+# share.  Cause: cov_matrix() built its flat scatter index as
+# `cat_id * n + occ_id` and then reshaped to (n, n_cats); a row-major reshape
+# requires `occ_id * n_cats + cat_id`.  With n=891 and n_cats=8 every covered
+# (occupation, category) count landed in the wrong cell while `den`, written by
+# direct indexing, stayed correct, so cov_b / den_b could exceed 1.  Recorded
+# as ALIGN06_PREREG.md section 11 block A7.
+#
+# Two guards: the algebraic invariant on the committed artifact (this is what
+# actually caught the defect), and a source check that the index convention at
+# the single vulnerable site cannot be silently reverted.
+# ---------------------------------------------------------------------------
+
+ALIGN06_CAT_CSV = (ROOT / "results" / "ALIGN06_onet_demand_profile"
+                   / "table_category_gap_onet.csv")
+ALIGN06_RUNNER = ROOT / "experiments" / "align06_demand_profile.py"
+
+
+def test_align06_category_coverage_rate_is_a_share():
+    """coverage_rate is a weighted share and cannot leave [0, 1]; it must also
+    satisfy the section 6.3 identity deficit = demand * (1 - coverage_rate)."""
+    if not ALIGN06_CAT_CSV.exists():
+        pytest.skip("ALIGN06 category table absent")
+    import pandas as pd
+
+    c = pd.read_csv(ALIGN06_CAT_CSV)
+    assert len(c) == 160, f"expected 160 category rows, got {len(c)}"
+    for col in ["market_demand_pp", "coverage_rate", "deficit_pp",
+                "CI_rate_lower", "CI_rate_upper",
+                "CI_deficit_lower", "CI_deficit_upper"]:
+        c[col] = pd.to_numeric(c[col], errors="coerce")
+
+    # the defect this test exists for
+    assert ((c.coverage_rate >= -1e-12) & (c.coverage_rate <= 1 + 1e-12)).all(), (
+        "coverage_rate outside [0,1] -- cov_matrix flat-index regression (A7): "
+        f"{c.loc[(c.coverage_rate > 1 + 1e-12) | (c.coverage_rate < -1e-12),
+                 ['category', 'match', 'K', 'tau', 'coverage_rate']]}")
+    assert (c.CI_rate_lower >= -1e-12).all(), "CI_rate_lower negative"
+    assert (c.CI_rate_upper <= 1 + 1e-12).all(), (
+        "CI_rate_upper above 1 -- cov_matrix flat-index regression (A7)")
+    assert (c.CI_rate_lower <= c.CI_rate_upper + 1e-12).all(), "inverted rate CI"
+
+    # demand share is a percentage point quantity
+    assert ((c.market_demand_pp >= -1e-9) & (c.market_demand_pp <= 100 + 1e-9)).all()
+
+    # section 6.3 identity: deficit_pp = market_demand_pp * (1 - coverage_rate),
+    # which only holds if cov and den are indexed on the same (occ, cat) grid
+    err = (c.deficit_pp - c.market_demand_pp * (1.0 - c.coverage_rate)).abs()
+    assert err.max() < 5e-3, f"section 6.3 identity broken, max abs err {err.max()}"
+
+    # bootstrap intervals remain coherent with the point estimate
+    assert (c.CI_deficit_lower <= c.CI_deficit_upper + 1e-9).all()
+    inside = ((c.deficit_pp >= c.CI_deficit_lower - 1e-4)
+              & (c.deficit_pp <= c.CI_deficit_upper + 1e-4))
+    assert inside.all(), f"{int((~inside).sum())} deficits outside their own CI"
+
+
+def test_align06_cov_matrix_flat_index_is_row_major():
+    """The (n, n_cats) scatter at cov_matrix must stay row-major. Reverting to
+    cat_id * n + occ_id silently redistributes every count (see A7)."""
+    if not ALIGN06_RUNNER.exists():
+        pytest.skip("ALIGN06 runner absent")
+    src = ALIGN06_RUNNER.read_text(encoding="utf-8")
+    assert "occ_arr_a[m] * n_cats + cat_id_a[m]" in src, (
+        "row-major flat index missing from cov_matrix; the (n, n_cats) scatter "
+        "must be occ_id * n_cats + cat_id_id")
+    assert "cat_id_a[m] * n + occ_arr_a[m]" not in src, (
+        "transposed flat index (cat_id * n + occ_id) reappeared in cov_matrix; "
+        "this is the ALIGN06_PREREG.md A7 defect")
