@@ -102,6 +102,32 @@ full listing is available on a real run, when labelling is already complete.
    The scorer's output also carries a non-UTF8 box-drawing dash, so every `grep` forces
    text mode with `-a`.
 
+## What each label file validates
+
+Recorded 2026-10-13, correcting a working note that had attributed both samples to the
+matcher-validation side. The two samples test different instruments; neither touches the
+published matcher-validity figures.
+
+| Label file | n | Validates | Effect on published figures |
+|---|---|---|---|
+| `labelling/align05_titles_200.csv` | 200 titles | ALIGN05's **tech / non-tech job-family classifier** (design-weighted precision and recall; gate at `ALIGN05_PREREG.md` §5.4) | none on VALID01 |
+| `labelling/curriculum_precision_100.csv` | 100 items | CURR02's **skill-extraction precision** (bar: precision ≥ 0.90) | none on VALID01 |
+| `labelling/curriculum_recall_100.csv` | 100 items | CURR02's **skill-extraction recall** (reported with stratified-bootstrap CI; no numeric bar, reviewed individually) | none on VALID01 |
+
+The "200 curriculum items" are the two 100-item curriculum samples together: 100
+precision + 100 recall.
+
+VALID01's precision 91.9\%, recall 75.7\% and κ = 0.737 are computed against published
+**expert ESCO mappings** (SkillSpan → ESCO), not against author annotation. Author
+labelling therefore does not revise them, and a second rater does not upgrade them: they
+stand or fall with the ESCO gold standard.
+
+**Where annotator IDs go.** The `rater2_label` column in `curriculum_precision_100.csv`
+is the one that needs a second human rater, since a single-rater fill would leave CURR02's
+precision singly coded. Annotator IDs belong in the **ALIGN05 and CURR02** ledger entries
+(`audit/01_claim_evidence_ledger.csv`, `proposed_action` column) once the labels exist,
+together with the fill date and the rater count per sample — **not** in VALID01's entry.
+
 ## What this does not do
 
 It does not run CURR02, ALIGN05 or ALIGN06 — no label exists, and the author has
