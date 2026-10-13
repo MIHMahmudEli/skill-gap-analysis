@@ -417,3 +417,33 @@ both sides are truncated to `k_eff = min(K, |O*NET profile|, |academic
 profile|)`. Every grid row carries `market_profile_n`, `academic_profile_n` and
 `effective_profile_n`, making the truncation explicit per row. Per §4.5(4)
 this variant is reported in the appendix table only and is never headline.
+
+### A7 - 2026-10-13 - §6.3 category table: `cov_matrix` flat-index bug (fixed before interpretation)
+
+The first execution of `experiments/align06_demand_profile.py` against the real
+OEWS archive produced a §6.3 table in which `coverage_rate` reached **1.204964**
+(Design & UX, semantic, K=100, τ=0.5) with `CI_rate_upper` = **10.232392** —
+values outside [0, 1], which the §6.3 definition cannot generate.
+
+Cause: `cov_matrix()` built its flat scatter index as `cat_id * n + occ_id` and
+then reshaped to `(n, n_cats)`. A row-major `(n, n_cats)` reshape requires
+`occ_id * n_cats + cat_id`. With `n = 891` occupations and `n_cats = 8` the
+mismatch placed every covered `(occupation, category)` count in the wrong cell,
+while `den` — written by direct indexing — stayed correct, so the ratio
+`cov_b / den_b` could exceed 1.
+
+Fix (one line, `experiments/align06_demand_profile.py`): the flat index is now
+`occ_arr_a[m] * n_cats + cat_id_a[m]`.
+
+Blast radius: `cov_matrix` is called only inside `run_category_report`, i.e. only
+for §6.3. §6.2 (the grid and both registered contrasts), §6.4 (cross-source) and
+§6.5 (`metrics.json`) do not call it, and their outputs are identical across the
+two runs. The first §6.3 table is discarded and the pipeline was re-executed from
+scratch at seed 42; the recomputed table satisfies `0 ≤ coverage_rate ≤ 1` in all
+160 rows, with `CI_rate_upper ≤ 1` throughout.
+
+This is a coding-error correction made before any §6.3 number was interpreted or
+written into the manuscript, and it is not a §7.4 result-dependent choice: the
+preregistered §6.3 formula is unchanged, and the §6.2 headline contrasts are
+numerically identical across both runs (SGI 0.97 lexical, 0.68 semantic at
+τ=0.5, persistence claim permitted).

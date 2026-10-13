@@ -309,6 +309,7 @@ def tab_experiments() -> None:
         "VALID01_esco_gold": "External gold-standard matcher validation (VALID01)",
         "ALIGN04_crosscorpus_linkedin": "Nested-superset SGI re-check, LinkedIn (ALIGN04)",
         "CURR01_cs2023_anchor": "CS2023 curriculum anchor validation (CURR01)",
+        "ALIGN06_onet_demand_profile": "O\\textsuperscript{*}NET $\\times$ BLS employment-weighted demand profile, supplementary (ALIGN06)",
     }
     rows = []
     for eid, t_ in tasks.items():

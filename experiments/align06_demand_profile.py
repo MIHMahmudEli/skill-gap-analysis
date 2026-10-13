@@ -862,7 +862,8 @@ def run_category_report(variants: dict, acad) -> list[dict]:
         m = flag[tax_pos_a]
         if not m.any():
             return np.zeros((n, n_cats), np.float64)
-        flat = cat_id_a[m] * n + occ_arr_a[m]
+        # row-major flat index for a (n, n_cats) reshape
+        flat = occ_arr_a[m] * n_cats + cat_id_a[m]
         return np.bincount(flat, minlength=n * n_cats
                            ).reshape(n, n_cats).astype(np.float64)
 

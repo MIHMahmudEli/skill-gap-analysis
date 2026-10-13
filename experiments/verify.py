@@ -44,6 +44,11 @@ REQUIRED = {
     "SENS01_sgi_sensitivity": ["metrics.json", "table_sensitivity_grid.csv",
                                "table_sensitivity_summary.csv",
                                "figure_sensitivity_heatmap.png"],
+    "ALIGN06_onet_demand_profile": ["metrics.json", "control_6_1.json",
+                                    "table_sgi_onet_grid.csv",
+                                    "table_category_gap_onet.csv",
+                                    "table_onet_profile_top.csv",
+                                    "table_cross_source.csv"],
 }
 
 
@@ -207,6 +212,56 @@ def check_numeric_sanity(exp_id: str, dir_path: Path) -> list[str]:
         summ = pd.read_csv(dir_path / "table_sensitivity_summary.csv")
         if not (summ.SGI_min <= summ.SGI_max).all():
             issues.append("summary min > max")
+    elif exp_id == "ALIGN06_onet_demand_profile":
+        # the section 6.1 blocking control must have passed
+        if m.get("control_6_1", {}).get("status") != "passed":
+            issues.append("section 6.1 control not passed")
+        rc = m["registered_contrasts"]
+        cells = [rc["a_lexical_economywide_P_all_K100_vs_0.52"],
+                 rc["b_semantic_economywide_P_all_K100_tau0.5_vs_0.32"]]
+        for name, cell in zip(("a", "b"), cells):
+            if not (0 <= cell["SGI"] <= 1):
+                issues.append(f"contrast {name}: SGI out of [0,1]")
+            if not (0 <= cell["coverage"] <= 1):
+                issues.append(f"contrast {name}: coverage out of [0,1]")
+            if not (cell["CI_skill_lower"] <= cell["SGI"]
+                    <= cell["CI_skill_upper"]):
+                issues.append(f"contrast {name}: SGI outside its own skill CI")
+        # section 7.3 persistence rule is mechanical, not a judgement call
+        if rc["c_persistence_claim_permitted"] != (cells[1]["CI_skill_lower"] > 0):
+            issues.append("persistence flag violates the section 7.3 rule")
+        if cells[1]["SGI"] > cells[0]["SGI"]:
+            issues.append("semantic SGI exceeds lexical SGI at the headline cell")
+        grid = pd.read_csv(dir_path / "table_sgi_onet_grid.csv")
+        if len(grid) != m["counts"]["grid_rows"]:
+            issues.append("grid row count disagrees with metrics.counts")
+        if not ((0 <= grid.SGI) & (grid.SGI <= 1)).all():
+            issues.append("SGI out of [0,1]")
+        has_skill = grid.CI_skill_lower.notna()
+        if not (grid.loc[has_skill, "CI_skill_lower"]
+                <= grid.loc[has_skill, "CI_skill_upper"]).all():
+            issues.append("inverted skill CI")
+        out = grid[has_skill & ((grid.SGI < grid.CI_skill_lower)
+                                | (grid.SGI > grid.CI_skill_upper))]
+        if len(out):
+            issues.append(f"{len(out)} grid rows with SGI outside their skill CI")
+        sem = grid[grid.match == "semantic"]
+        for _, grp in sem.groupby(["variant", "P", "K"]):
+            if not grp.sort_values("tau").SGI.is_monotonic_increasing:
+                issues.append("semantic SGI not monotone in tau")
+                break
+        # section 6.3 invariant: a coverage RATE is a share and cannot exceed
+        # 1.  Regression guard for the cov_matrix flat-index bug (A7).
+        cat = pd.read_csv(dir_path / "table_category_gap_onet.csv")
+        if len(cat) != m["counts"]["category_rows"]:
+            issues.append("category row count disagrees with metrics.counts")
+        if not ((cat.coverage_rate >= -1e-9)
+                & (cat.coverage_rate <= 1 + 1e-9)).all():
+            issues.append("category coverage_rate outside [0,1] "
+                          "(cov_matrix regression)")
+        if not ((cat.CI_rate_lower >= -1e-9)
+                & (cat.CI_rate_upper <= 1 + 1e-9)).all():
+            issues.append("category coverage CI outside [0,1]")
     return issues
 
 

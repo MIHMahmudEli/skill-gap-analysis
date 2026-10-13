@@ -1101,5 +1101,292 @@
     "match": true,
     "evidence": "audit/05_stat_reproduction.json (intern_RD_pp=-0.4442); STAT01 OR=1.02 p=0.62",
     "note": "FIXED in Phase 9: manuscript now reports -0.44 pp; prior '+0.08 pp' retracted"
+  },
+  {
+    "id": "A601",
+    "claim": "ALIGN06 economy-wide lexical SGI 0.97 (K=100, P=all)",
+    "ms_value": 0.97,
+    "artifact_value": 0.97,
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.a",
+    "note": ""
+  },
+  {
+    "id": "A602",
+    "claim": "ALIGN06 economy-wide lexical CI [0.93, 1.00]",
+    "ms_value": [
+      0.93,
+      1.0
+    ],
+    "artifact_value": [
+      0.93,
+      1.0
+    ],
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.a",
+    "note": ""
+  },
+  {
+    "id": "A603",
+    "claim": "ALIGN06 economy-wide semantic SGI 0.68 (tau=0.5)",
+    "ms_value": 0.68,
+    "artifact_value": 0.68,
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.b",
+    "note": ""
+  },
+  {
+    "id": "A604",
+    "claim": "ALIGN06 economy-wide semantic CI [0.59, 0.77]",
+    "ms_value": [
+      0.59,
+      0.77
+    ],
+    "artifact_value": [
+      0.59,
+      0.77
+    ],
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.b",
+    "note": ""
+  },
+  {
+    "id": "A605",
+    "claim": "ALIGN06 persistence claim permitted (7.3 rule: skill CI lower > 0)",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.c_persistence_claim_permitted",
+    "note": ""
+  },
+  {
+    "id": "A606",
+    "claim": "ALIGN06 vocabulary overlap 90 terms of an 8,613-term O*NET profile",
+    "ms_value": [
+      90,
+      8613
+    ],
+    "artifact_value": [
+      90,
+      8613
+    ],
+    "match": true,
+    "evidence": "metrics.json vocabulary_overlap.economy-wide",
+    "note": ""
+  },
+  {
+    "id": "A607",
+    "claim": "ALIGN06 'microsoft office software' listed by 94% of frame occupations",
+    "ms_value": 0.94,
+    "artifact_value": 0.94,
+    "match": true,
+    "evidence": "table_onet_profile_top.csv rank 1",
+    "note": ""
+  },
+  {
+    "id": "A608",
+    "claim": "ALIGN06 economy-wide lexical SGI range [0.97, 0.985] over the grid",
+    "ms_value": [
+      0.97,
+      0.985
+    ],
+    "artifact_value": [
+      0.97,
+      0.985
+    ],
+    "match": true,
+    "evidence": "table_sgi_onet_grid.csv economy-wide lexical",
+    "note": ""
+  },
+  {
+    "id": "A609",
+    "claim": "ALIGN06 economy-wide semantic tau=0.5 range [0.57, 0.72] over the grid",
+    "ms_value": [
+      0.57,
+      0.72
+    ],
+    "artifact_value": [
+      0.57,
+      0.72
+    ],
+    "match": true,
+    "evidence": "table_sgi_onet_grid.csv economy-wide semantic tau=0.5",
+    "note": ""
+  },
+  {
+    "id": "A610",
+    "claim": "ALIGN06 tau sweep 0.43/0.68/0.80/0.89 (K=100, P=all)",
+    "ms_value": [
+      0.43,
+      0.68,
+      0.8,
+      0.89
+    ],
+    "artifact_value": [
+      0.43,
+      0.68,
+      0.8,
+      0.89
+    ],
+    "match": true,
+    "evidence": "table_sgi_onet_grid.csv economy-wide semantic sweep",
+    "note": ""
+  },
+  {
+    "id": "A611",
+    "claim": "ALIGN06 computing/IT SGI 0.97 lexical and 0.72 semantic (tau=0.5)",
+    "ms_value": [
+      0.97,
+      0.72
+    ],
+    "artifact_value": [
+      0.97,
+      0.72
+    ],
+    "match": true,
+    "evidence": "table_sgi_onet_grid.csv computing-IT",
+    "note": ""
+  },
+  {
+    "id": "A612",
+    "claim": "ALIGN06 five weighting variants span semantic SGI [0.60, 0.72]",
+    "ms_value": [
+      0.6,
+      0.72
+    ],
+    "artifact_value": [
+      0.6,
+      0.72
+    ],
+    "match": true,
+    "evidence": "table_sgi_onet_grid.csv K=100 P=all tau=0.5",
+    "note": ""
+  },
+  {
+    "id": "A613",
+    "claim": "ALIGN06 top-K Jaccard vs posting corpora in [0.000, 0.012]",
+    "ms_value": [
+      0.0,
+      0.012
+    ],
+    "artifact_value": [
+      0.0,
+      0.012
+    ],
+    "match": true,
+    "evidence": "table_cross_source.csv",
+    "note": ""
+  },
+  {
+    "id": "A614",
+    "claim": "ALIGN06 Cloud coverage 92.1% and deficit 1.04 pp at tau=0.5",
+    "ms_value": [
+      0.921,
+      1.04
+    ],
+    "artifact_value": [
+      0.921,
+      1.04
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv",
+    "note": ""
+  },
+  {
+    "id": "A615",
+    "claim": "ALIGN06 Data Engineering coverage 51.9% and deficit 4.73 pp at tau=0.5",
+    "ms_value": [
+      0.519,
+      4.73
+    ],
+    "artifact_value": [
+      0.519,
+      4.73
+    ],
+    "match": true,
+    "evidence": "table_category_gap_onet.csv",
+    "note": ""
+  },
+  {
+    "id": "A616",
+    "claim": "ALIGN06 taxonomy covers 60.9% of demand, 39.1% unmapped",
+    "ms_value": 39.1,
+    "artifact_value": 39.1,
+    "match": true,
+    "evidence": "table_category_gap_onet.csv market_demand_pp sum",
+    "note": ""
+  },
+  {
+    "id": "A617",
+    "claim": "ALIGN06 64 of 771 SOC bases shared; join inflation 1.352x",
+    "ms_value": [
+      64,
+      771,
+      1.352
+    ],
+    "artifact_value": [
+      64,
+      771,
+      1.352
+    ],
+    "match": true,
+    "evidence": "metrics.json frame.economy-wide.employment_multiplicity",
+    "note": ""
+  },
+  {
+    "id": "A618",
+    "claim": "ALIGN06 join sums 194.3M vs 143.8M once-counted employment",
+    "ms_value": [
+      194.3,
+      143.8
+    ],
+    "artifact_value": [
+      194.3,
+      143.8
+    ],
+    "match": true,
+    "evidence": "metrics.json frame.economy-wide.employment_multiplicity",
+    "note": ""
+  },
+  {
+    "id": "A619",
+    "claim": "ALIGN06 computing/IT join inflation 1.299x",
+    "ms_value": 1.299,
+    "artifact_value": 1.299,
+    "match": true,
+    "evidence": "metrics.json frame.computing-IT.employment_multiplicity",
+    "note": ""
+  },
+  {
+    "id": "A620",
+    "claim": "ALIGN06 OEWS workbook oesm25nat/national_M2025_dl.xlsx, 830 detailed occupations, 0 suppressed",
+    "ms_value": [
+      "oesm25nat/national_M2025_dl.xlsx",
+      830,
+      0
+    ],
+    "artifact_value": [
+      "oesm25nat/national_M2025_dl.xlsx",
+      830,
+      0
+    ],
+    "match": true,
+    "evidence": "metrics.json sources.oews",
+    "note": ""
+  },
+  {
+    "id": "A621",
+    "claim": "ALIGN06 O*NET release verified as O*NET 30.0 and CC BY 4.0 attribution recorded",
+    "ms_value": [
+      "O*NET 30.0",
+      true
+    ],
+    "artifact_value": [
+      "O*NET 30.0",
+      true
+    ],
+    "match": true,
+    "evidence": "metrics.json sources.onet / license_note",
+    "note": ""
   }
 ]

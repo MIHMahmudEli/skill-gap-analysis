@@ -1,0 +1,9 @@
+other_source,K,jaccard_topK,spearman_rho_weight_vectors,intersection,union,interpretation
+HF postings (ALIGN01/02 market side),50,0.0,-0.814181,0,100,descriptive only; cannot select parameters
+HF postings (ALIGN01/02 market side),100,0.010101,-0.831077,2,198,descriptive only; cannot select parameters
+HF postings (ALIGN01/02 market side),200,0.007557,-0.821507,3,397,descriptive only; cannot select parameters
+HF postings (ALIGN01/02 market side),500,0.012146,-0.82581,12,988,descriptive only; cannot select parameters
+LinkedIn 1.3M scrape (ALIGN04),50,0.0,-0.814181,0,100,descriptive only; cannot select parameters
+LinkedIn 1.3M scrape (ALIGN04),100,0.010101,-0.831162,2,198,descriptive only; cannot select parameters
+LinkedIn 1.3M scrape (ALIGN04),200,0.007557,-0.821517,3,397,descriptive only; cannot select parameters
+LinkedIn 1.3M scrape (ALIGN04),500,0.012146,-0.826108,12,988,descriptive only; cannot select parameters

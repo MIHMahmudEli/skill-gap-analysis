@@ -12,6 +12,8 @@ import re
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 TEX = (ROOT / "paper" / "main.tex").read_text(encoding="utf-8")
@@ -352,6 +354,130 @@ checks.append({
     "evidence": "audit/05_stat_reproduction.json (intern_RD_pp=-0.4442); STAT01 OR=1.02 p=0.62",
     "note": "FIXED in Phase 9: manuscript now reports -0.44 pp; prior '+0.08 pp' retracted",
 })
+
+# ---------------------------------------------------------------------------
+# ALIGN06: supplementary demand-side check (O*NET 30.0 x BLS OEWS May 2025).
+# taxonomy-derived demand profile, NOT postings -- see ALIGN06_PREREG.md 7.2
+# for the estimand caveat that travels with every number here.
+# ---------------------------------------------------------------------------
+a6 = load_metrics("ALIGN06_onet_demand_profile")
+_a6r = a6["registered_contrasts"]
+_a6a = _a6r["a_lexical_economywide_P_all_K100_vs_0.52"]
+_a6b = _a6r["b_semantic_economywide_P_all_K100_tau0.5_vs_0.32"]
+
+add("A601", "ALIGN06 economy-wide lexical SGI 0.97 (K=100, P=all)",
+    0.97, round(_a6a["SGI"], 2),
+    "metrics.json registered_contrasts.a")
+add("A602", "ALIGN06 economy-wide lexical CI [0.93, 1.00]",
+    [0.93, 1.00],
+    [round(_a6a["CI_skill_lower"], 2), round(_a6a["CI_skill_upper"], 2)],
+    "metrics.json registered_contrasts.a")
+add("A603", "ALIGN06 economy-wide semantic SGI 0.68 (tau=0.5)",
+    0.68, round(_a6b["SGI"], 2),
+    "metrics.json registered_contrasts.b")
+add("A604", "ALIGN06 economy-wide semantic CI [0.59, 0.77]",
+    [0.59, 0.77],
+    [round(_a6b["CI_skill_lower"], 2), round(_a6b["CI_skill_upper"], 2)],
+    "metrics.json registered_contrasts.b")
+add("A605", "ALIGN06 persistence claim permitted (7.3 rule: skill CI lower > 0)",
+    True, bool(_a6r["c_persistence_claim_permitted"]),
+    "metrics.json registered_contrasts.c_persistence_claim_permitted")
+_vo = a6["vocabulary_overlap"]["economy-wide"]
+add("A606", "ALIGN06 vocabulary overlap 90 terms of an 8,613-term O*NET profile",
+    [90, 8613], [_vo["intersection"], _vo["onet_vocab"]],
+    "metrics.json vocabulary_overlap.economy-wide")
+add("A607", "ALIGN06 'microsoft office software' listed by 94% of frame occupations",
+    0.94, round(float(pd.read_csv(RESULTS / "ALIGN06_onet_demand_profile" /
+                                 "table_onet_profile_top.csv")
+                      .iloc[0]["demand_share_occupation_level"]), 2),
+    "table_onet_profile_top.csv rank 1")
+
+_g6 = pd.read_csv(RESULTS / "ALIGN06_onet_demand_profile" /
+                  "table_sgi_onet_grid.csv")
+_ew6 = _g6[_g6.variant == "economy-wide"]
+add("A608", "ALIGN06 economy-wide lexical SGI range [0.97, 0.985] over the grid",
+    [0.97, 0.985],
+    [round(float(_ew6[_ew6.match == "lexical"].SGI.min()), 3),
+     round(float(_ew6[_ew6.match == "lexical"].SGI.max()), 3)],
+    "table_sgi_onet_grid.csv economy-wide lexical")
+_sem5 = _ew6[(_ew6.match == "semantic") & (_ew6.tau == 0.5)]
+add("A609", "ALIGN06 economy-wide semantic tau=0.5 range [0.57, 0.72] over the grid",
+    [0.57, 0.72],
+    [round(float(_sem5.SGI.min()), 2), round(float(_sem5.SGI.max()), 2)],
+    "table_sgi_onet_grid.csv economy-wide semantic tau=0.5")
+_sweep = (_ew6[((_ew6.K == 100) & (_ew6.P.astype(str) == "all")
+                & (_ew6.match == "semantic"))].sort_values("tau").SGI.round(2)
+          .tolist())
+add("A610", "ALIGN06 tau sweep 0.43/0.68/0.80/0.89 (K=100, P=all)",
+    [0.43, 0.68, 0.80, 0.89], _sweep,
+    "table_sgi_onet_grid.csv economy-wide semantic sweep")
+_ci5 = _g6[(_g6.variant == "computing-IT") & (_g6.tau == 0.5)
+           & (_g6.match == "semantic") & (_g6.K == 100)]
+add("A611", "ALIGN06 computing/IT SGI 0.97 lexical and 0.72 semantic (tau=0.5)",
+    [0.97, 0.72],
+    [round(float(_g6[(_g6.variant == "computing-IT") & (_g6.match == "lexical")
+                     & (_g6.K == 100) & (_g6.P.astype(str) == "all")]
+            .iloc[0]["SGI"]), 2),
+     round(float(_ci5.iloc[0]["SGI"]), 2)],
+    "table_sgi_onet_grid.csv computing-IT")
+_var5 = _g6[(_g6.K == 100) & (_g6.P.astype(str) == "all") & (_g6.tau == 0.5)
+            & (_g6.match == "semantic")]
+add("A612", "ALIGN06 five weighting variants span semantic SGI [0.60, 0.72]",
+    [0.60, 0.72],
+    [round(float(_var5.SGI.min()), 2), round(float(_var5.SGI.max()), 2)],
+    "table_sgi_onet_grid.csv K=100 P=all tau=0.5")
+_cs6 = pd.read_csv(RESULTS / "ALIGN06_onet_demand_profile" /
+                   "table_cross_source.csv")
+add("A613", "ALIGN06 top-K Jaccard vs posting corpora in [0.000, 0.012]",
+    [0.0, 0.012],
+    [round(float(_cs6.jaccard_topK.min()), 3),
+     round(float(_cs6.jaccard_topK.max()), 3)],
+    "table_cross_source.csv")
+_cat6 = pd.read_csv(RESULTS / "ALIGN06_onet_demand_profile" /
+                    "table_category_gap_onet.csv")
+_c1 = _cat6[((_cat6.K == 100) & (_cat6.match == "semantic") & (_cat6.tau == 0.5))]
+add("A614", "ALIGN06 Cloud coverage 92.1% and deficit 1.04 pp at tau=0.5",
+    [0.921, 1.04],
+    [round(float(_c1[_c1.category == "Cloud & Infrastructure"]
+                 .iloc[0]["coverage_rate"]), 3),
+     round(float(_c1[_c1.category == "Cloud & Infrastructure"]
+                 .iloc[0]["deficit_pp"]), 2)],
+    "table_category_gap_onet.csv")
+add("A615", "ALIGN06 Data Engineering coverage 51.9% and deficit 4.73 pp at tau=0.5",
+    [0.519, 4.73],
+    [round(float(_c1[_c1.category == "Data Engineering"].iloc[0]["coverage_rate"]), 3),
+     round(float(_c1[_c1.category == "Data Engineering"].iloc[0]["deficit_pp"]), 2)],
+    "table_category_gap_onet.csv")
+_dem = _cat6[((_cat6.K == 100) & (_cat6.match == "lexical"))]
+add("A616", "ALIGN06 taxonomy covers 60.9% of demand, 39.1% unmapped",
+    39.1, round(100.0 - float(_dem.market_demand_pp.sum()), 1),
+    "table_category_gap_onet.csv market_demand_pp sum")
+_em6 = a6["frame"]["economy-wide"]["employment_multiplicity"]
+add("A617", "ALIGN06 64 of 771 SOC bases shared; join inflation 1.352x",
+    [64, 771, 1.352],
+    [_em6["bases_with_multiple_onet_codes"], _em6["distinct_soc_bases"],
+     round(_em6["join_inflation_factor"], 3)],
+    "metrics.json frame.economy-wide.employment_multiplicity")
+add("A618", "ALIGN06 join sums 194.3M vs 143.8M once-counted employment",
+    [194.3, 143.8],
+    [round(_em6["employment_sum_with_4_2_join"] / 1e6, 1),
+     round(_em6["employment_sum_if_base_counted_once"] / 1e6, 1)],
+    "metrics.json frame.economy-wide.employment_multiplicity")
+_emt = a6["frame"]["computing-IT"]["employment_multiplicity"]
+add("A619", "ALIGN06 computing/IT join inflation 1.299x",
+    1.299, round(_emt["join_inflation_factor"], 3),
+    "metrics.json frame.computing-IT.employment_multiplicity")
+add("A620", "ALIGN06 OEWS workbook oesm25nat/national_M2025_dl.xlsx, 830 detailed occupations, 0 suppressed",
+    ["oesm25nat/national_M2025_dl.xlsx", 830, 0],
+    [a6["sources"]["oews"]["inner_workbook"],
+     a6["sources"]["oews"]["rows_detailed_matched"],
+     a6["sources"]["oews"]["rows_detailed_suppressed"]],
+    "metrics.json sources.oews")
+add("A621", "ALIGN06 O*NET release verified as O*NET 30.0 and CC BY 4.0 attribution recorded",
+    ["O*NET 30.0", True],
+    [a6["sources"]["onet"]["release_verified"],
+     "CC BY 4.0" in a6["sources"]["license_note"]],
+    "metrics.json sources.onet / license_note")
 
 out = ROOT / "audit" / "01_claim_verification.json"
 out.write_text(json.dumps(checks, indent=2, ensure_ascii=False), encoding="utf-8")

@@ -241,7 +241,13 @@
       "worker": "tasnimjenny"
     },
     "ALIGN06_onet_demand_profile": {
-      "attempts": 0,
+      "attempts": 2,
+      "completed_utc": "2026-10-13T11:32:02Z",
+      "counts": {
+        "category_rows": 160,
+        "cross_source_rows": 8,
+        "grid_rows": 500
+      },
       "deps": [],
       "history": [
         {
@@ -274,15 +280,32 @@
         },
         {
           "event": "registered_before_execution",
-          "note": "Registered per ALIGN06_PREREG.md section 8 before any grid cell is computed.",
+          "note": "Registered per ALIGN06_PREREG.md section 8 before any grid cell was computed.",
+          "ts": "2026-10-13"
+        },
+        {
+          "attempt": 1,
+          "event": "executed",
+          "note": "First execution against the real OEWS archive wrote an invalid section 6.3 table (coverage_rate 1.204964, CI_rate_upper 10.232392) because cov_matrix built its flat scatter index as cat_id*n+occ_id before reshaping to (n, n_cats). Sections 6.2, 6.4 and 6.5 do not call cov_matrix and were unaffected; table discarded. See ALIGN06_PREREG.md section 11 A7.",
+          "ts": "2026-10-13T11:22:18Z"
+        },
+        {
+          "attempt": 2,
+          "event": "reexecuted_after_fix",
+          "note": "Flat index corrected to occ_id*n_cats+cat_id; pipeline re-run from scratch at seed 42. All 160 category rows satisfy 0 <= coverage_rate <= 1 and section 6.2 headline contrasts are unchanged.",
+          "ts": "2026-10-13T11:32:02Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "manuscript": "paper/main.pdf",
           "ts": "2026-10-13"
         }
       ],
-      "last_state": "registered",
+      "last_state": "complete",
       "location": "local",
       "prereg": "experiments/ALIGN06_PREREG.md",
       "seed": 42,
-      "status": "REGISTERED",
+      "status": "USED_IN_MANUSCRIPT",
       "status_errors": 0,
       "worker": "local"
     },

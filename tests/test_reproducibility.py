@@ -49,7 +49,7 @@ NOT_USED_IN_MANUSCRIPT = {"TRENDS01_ai_longitudinal"}
 # status is REGISTERED (or RUNNING / COMPLETED once a run is under way) and
 # its metrics.json may not exist yet. Remove an ID from this list in the same
 # commit that finishes its run.
-NOT_YET_RUN = {"ALIGN06_onet_demand_profile"}
+NOT_YET_RUN: set[str] = set()
 
 
 def _load_registry():
@@ -90,7 +90,9 @@ def test_registry_all_used_in_manuscript():
                 f"{exp_id} is registered but has an unexpected status: {status}")
         else:
             assert status == "USED_IN_MANUSCRIPT", (exp_id, status)
-    assert len(statuses) == 12 + len(staged) + len(not_yet_run), statuses
+    # 13 base = 12 USED_IN_MANUSCRIPT + 1 not-used; any not-yet-run entry is
+    # counted separately so the registry cannot grow silently.
+    assert len(statuses) == 13 + len(staged) + len(not_yet_run), statuses
 
 
 def test_registry_metrics_files_exist_and_complete():
