@@ -43,6 +43,13 @@ PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity"}
 # Registry entry and artifacts retained; reason
 # recorded in results/registry.json under `manuscript_use_reason`.
 NOT_USED_IN_MANUSCRIPT = {"TRENDS01_ai_longitudinal"}
+# Experiments registered in advance of their first execution, per the
+# "registered before execution" rule in their preregistration
+# (ALIGN06_PREREG.md section 8). While an ID is listed here its registry
+# status is REGISTERED (or RUNNING / COMPLETED once a run is under way) and
+# its metrics.json may not exist yet. Remove an ID from this list in the same
+# commit that finishes its run.
+NOT_YET_RUN = {"ALIGN06_onet_demand_profile"}
 
 
 def _load_registry():
@@ -63,7 +70,8 @@ def test_registry_all_used_in_manuscript():
     assert statuses, "empty registry"
     staged = PENDING_MANUSCRIPT_INTEGRATION
     not_used = NOT_USED_IN_MANUSCRIPT
-    unknown = (staged | not_used) - set(ids)
+    not_yet_run = NOT_YET_RUN
+    unknown = (staged | not_used | not_yet_run) - set(ids)
     assert not unknown, f"staging list references missing experiments: {unknown}"
     for exp_id, status in zip(ids, statuses):
         if exp_id in staged:
@@ -77,9 +85,12 @@ def test_registry_all_used_in_manuscript():
             assert entry.get("manuscript_use") == "not_used_in_manuscript", exp_id
             assert entry.get("manuscript_use_reason"), (
                 f"{exp_id} is marked not-used but carries no manuscript_use_reason")
+        elif exp_id in not_yet_run:
+            assert status in ("REGISTERED", "RUNNING", "COMPLETED", "VERIFIED"), (
+                f"{exp_id} is registered but has an unexpected status: {status}")
         else:
             assert status == "USED_IN_MANUSCRIPT", (exp_id, status)
-    assert len(statuses) == 12 + len(staged), statuses
+    assert len(statuses) == 12 + len(staged) + len(not_yet_run), statuses
 
 
 def test_registry_metrics_files_exist_and_complete():
@@ -89,6 +100,8 @@ def test_registry_metrics_files_exist_and_complete():
     for exp_id, meta in items:
         d = ROOT / "results" / exp_id
         m = d / "metrics.json"
+        if exp_id in NOT_YET_RUN and not m.exists():
+            continue  # registered before execution (ALIGN06_PREREG.md §8)
         assert m.exists(), f"missing metrics for {exp_id}"
         payload = json.loads(m.read_text(encoding="utf-8"))
         assert payload.get("status") == "completed", exp_id

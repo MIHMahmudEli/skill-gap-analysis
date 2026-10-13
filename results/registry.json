@@ -240,6 +240,52 @@
       "verified_utc": "2026-10-10T18:21:53Z",
       "worker": "tasnimjenny"
     },
+    "ALIGN06_onet_demand_profile": {
+      "attempts": 0,
+      "deps": [],
+      "history": [
+        {
+          "event": "prereg_signed",
+          "section": "experiments/ALIGN06_PREREG.md#9",
+          "ts": "2026-10-13"
+        },
+        {
+          "bytes": 13462590,
+          "event": "source_a_fetched",
+          "release": "db_30_0",
+          "sha256": "B7388AADEB3EDEF2A59FD292AC4E9B72D3E9266C65A136B7B8CC42B23003CE5A",
+          "ts": "2026-10-13"
+        },
+        {
+          "bytes": 279525,
+          "event": "source_b_fetched",
+          "inner_workbook": "oesm25nat/national_M2025_dl.xlsx",
+          "reference_period": "May 2025",
+          "release": "oesm25nat",
+          "scope": "national",
+          "sha256": "B5855A37F3E03E779F6FBF173D3BBC94AEEFF33426AEF32FA95CE6D025BAB1AF",
+          "ts": "2026-10-13"
+        },
+        {
+          "event": "control_6_1_passed",
+          "lexical_k100_p_all_sgi": 0.52,
+          "semantic_k100_tau05_sgi": 0.32,
+          "ts": "2026-10-13"
+        },
+        {
+          "event": "registered_before_execution",
+          "note": "Registered per ALIGN06_PREREG.md section 8 before any grid cell is computed.",
+          "ts": "2026-10-13"
+        }
+      ],
+      "last_state": "registered",
+      "location": "local",
+      "prereg": "experiments/ALIGN06_PREREG.md",
+      "seed": 42,
+      "status": "REGISTERED",
+      "status_errors": 0,
+      "worker": "local"
+    },
     "CURR01_cs2023_anchor": {
       "attempts": 3,
       "completed_utc": "2026-10-10T18:10:34Z",
