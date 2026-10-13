@@ -2,6 +2,14 @@
 
 % Packages
 \usepackage[utf8]{inputenc}
+% Greek letters and comparison operators used in the abstract have no
+% glyph in the T1 text font. Undeclared, pdflatex raises
+% 'LaTeX Error: Unicode character' and DROPS the glyph. Declare them once
+% so the source stays readable as Unicode and the PDF renders.
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -59,7 +67,7 @@ contact@university.edu}
 % ABSTRACT
 % ============================================================
 \begin{abstract}
-Disparities between what computing curricula teach and what employers demand are reported, yet studies measuring both sides at scale remain limited. We compare a 1.35-million-posting LinkedIn corpus—a single scrape family—against an employer-derived occupational reference profile (1,167 job postings, five occupational categories). Analyses run on a 519,814-posting nested subset; both gap indices are re-checked on a 1.29-million-posting superset from the same family, and a posting-level check finds no near-duplicate postings among profile/market pairs sharing a normalized title. N-gram extraction over an eight-category taxonomy combines Sentence-BERT alignment at four cosine thresholds (τ ∈ {0.4, 0.5, 0.6, 0.7}; 1,000-fold bootstrap). Exact string matching yields a Skill Gap Index (SGI) of 52.0%; semantic alignment reduces this by 20 percentage points to 32.0% at τ = 0.5 (95% CI [23.0%, 41.0%]). Both are the headline configuration (market K = 100, academic P = 100); on the primary corpus, sweeping (K, P) keeps lexical SGI in [0.52, 0.73] and semantic SGI at τ = 0.5 in [0.26, 0.42]. The profile covers 30.4% of the CS2023 Body of Knowledge by embedding coverage—a computational anchor, not a human audit—so no curricular gap size is claimed. Reference-profile deficits concentrate in Cloud Infrastructure (2.45 pp lexical, 0.94 pp semantic) and Programming & Development (1.69 pp lexical); soft-skill requirements are fully covered. The matcher agrees with expert ESCO mappings at κ = 0.737 (precision 91.9%, recall 75.7%), though the gold set is skewed toward software-development mentions; the lexical-to-semantic reduction is consistent with vocabulary divergence accounting for part of the gap.
+Disparities between what computing curricula teach and what employers demand are reported, yet studies measuring both sides at scale remain limited. We compare a 1.35-million-posting LinkedIn corpus—a single scrape family—against an employer-derived occupational reference profile (1,167 job postings, five occupational categories). Analyses run on a 519,814-posting nested subset; both gap indices are re-checked on a 1.29-million-posting superset from the same family, and a posting-level check finds no near-duplicate postings among profile/market pairs sharing a normalized title. N-gram extraction over an eight-category taxonomy combines Sentence-BERT alignment at four cosine thresholds (τ ∈ {0.4, 0.5, 0.6, 0.7}; 1,000-fold bootstrap). Exact string matching yields a Skill Gap Index (SGI) of 52.0\%; semantic alignment reduces this by 20 percentage points to 32.0\% at τ = 0.5 (95\% CI [23.0\%, 41.0\%]). Both are the headline configuration (market K = 100, academic P = 100); on the primary corpus, sweeping (K, P) keeps lexical SGI in [0.52, 0.73] and semantic SGI at τ = 0.5 in [0.26, 0.42]. The profile covers 30.4\% of the CS2023 Body of Knowledge by embedding coverage—a computational anchor, not a human audit—so no curricular gap size is claimed. Reference-profile deficits concentrate in Cloud Infrastructure (2.45 pp lexical, 0.94 pp semantic) and Programming \& Development (1.69 pp lexical); soft-skill requirements are fully covered. The matcher agrees with expert ESCO mappings at κ = 0.737 (precision 91.9\%, recall 75.7\%), though the gold set is skewed toward software-development mentions; the lexical-to-semantic reduction is consistent with vocabulary divergence accounting for part of the gap.
 \end{abstract}
 
 \begin{IEEEkeywords}
