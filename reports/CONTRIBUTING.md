@@ -75,8 +75,12 @@ redrawing the sample under a fresh seed with the new key held outside the repo.
   if a number changes, that is a finding, and it is reported, not quietly applied.
 - `reproduce_stats.py` and the five Sentence-BERT experiments do not run on the
   author's laptop (a local Application Control policy blocks `statsmodels` and
-  `torch`). Do not claim full CPU reproducibility in the manuscript; the
-  committed text says 8 of 13 re-ran bit-exactly and 5 are unverified on CPU.
+  `torch`). The five were verified instead on a CPU-only Kaggle kernel, so all 13
+  registered experiments are now CPU-verified. The committed text claims
+  **bit-exactness only for the 8 locally re-run experiments**; for the 5 Kaggle
+  ones it says headline metrics agree at reported precision and per-pair cosine
+  similarities differ by at most 1e-4 (CPU vs GPU float differences). Preserve
+  that distinction whenever editing the reproducibility paragraph.
 
 ## 5. Do not run what is gated
 

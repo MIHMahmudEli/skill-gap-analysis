@@ -1,6 +1,27 @@
 # CPU vs committed artifacts
 
-experiments compared: 5 | numeric fields: 614 | beyond tolerance: 0 | largest |diff|: 0.000e+00
+experiments compared: 5 | metrics.json numeric fields: 614 | beyond tolerance: 0 | largest |diff|: 0.000e+00
+
+**Verdict.** Headline metrics agree at reported precision; per-pair cosine
+similarities differ by at most 1e-4 (CPU vs GPU float differences).
+
+Those two clauses cover two different artifact classes, compared separately
+below. They must not be conflated, and neither may be reported as bit-exactness
+for these five experiments.
+
+| Part | Artifact compared | Comparisons | Differing | Largest abs diff |
+|---|---|---|---|---|
+| 1 | `metrics.json` numeric leaves - summary metrics, bootstrap CIs, headline values | 614 fields | **0** | 0.000e+00 |
+| 2 | 14 CSV artifacts, every row - including the per-pair cosine similarities | 17,796 numeric cells over 5,985 rows | 2,445 | 1.000e-04 |
+
+Part 1 is exact: all 614 `metrics.json` fields are bit-identical between the
+committed GPU run and the CPU run. Part 2 is not and is not claimed to be: the
+row-level cosines are float32 values whose accumulation order depends on the BLAS
+threading level and SIMD code path, so the GPU and CPU encode the same string to
+differing last bits. Bit-exactness is claimed in this repository only for the 8
+locally re-run experiments (`reports/CPU_VS_COMMITTED.md`).
+
+## Part 1 - `metrics.json`, field by field
 
 | Experiment | Metric | Committed | CPU | abs diff | tol | ok |
 |---|---|---|---|---|---|---|
@@ -618,3 +639,56 @@ experiments compared: 5 | numeric fields: 614 | beyond tolerance: 0 | largest |d
 | VALID01_esco_gold | `tau_thresholds[1]` | 0.5 | 0.5 | 0.000e+00 | 5.0e-07 | yes |
 | VALID01_esco_gold | `tau_thresholds[2]` | 0.6 | 0.6 | 0.000e+00 | 6.0e-07 | yes |
 | VALID01_esco_gold | `tau_thresholds[3]` | 0.7 | 0.7 | 0.000e+00 | 7.0e-07 | yes |
+
+## Part 2 - CSV artifacts (row-level, per-pair cosine similarities)
+
+`metrics.json` does not contain the per-pair cosines; they live in the CSV
+artifacts, which the gate above does not read. Every `*.csv` present in both
+`results/` and `results_cpu_kaggle/` was therefore compared cell by cell,
+aligning rows by position and comparing floats exactly (no tolerance):
+**14 files, 5,985 rows, 17,796 numeric cells. 12 of the 14 files are identical;
+2 differ, both in a cosine column only. No non-numeric cell differs in any file.**
+
+| Experiment | Artifact | Rows (both) | Numeric cells | Differing cells | Rows affected | Column | Max abs diff | Cells > 1e-4 |
+|---|---|---|---|---|---|---|---|---|
+| CURR01_cs2023_anchor | `cs2023_topic_matches.csv` | 2,197 | 4,394 | **5** | 5 | `cosine_similarity` | **1.000e-04** | 1 |
+| VALID01_esco_gold | `pair_results.csv` | 2,907 | 11,628 | **2,440** | 2,440 | `cosine` | **4.172e-07** | 0 |
+
+Worst cell in each file:
+
+- **CURR01 `cs2023_topic_matches.csv`, row 1,312 (0-indexed):** committed
+  `0.4736` vs CPU `0.4735`. The column is written to 4 decimal places, so the two
+  runs land either side of a rounding boundary; the underlying float32 gap is
+  `1.0000000000000002e-04`. This is the single largest numeric difference
+  anywhere in the CPU verification, and it is 1e-4 as stated in the verdict.
+  The other 4 differing cells are the same column at the same order of magnitude.
+- **VALID01 `pair_results.csv`, row 2,276:** committed `1.000000238418579` vs CPU
+  `0.9999998211860657`, a self-cosine held in float32 as `1.0 +/- 4.17e-07`.
+  No cell in this file exceeds 1e-4; the 2,440 differing pairs (84% of 2,907)
+  differ only from the 7th significant digit onward.
+
+The 12 byte-identical CSV artifacts:
+
+| Experiment | Identical artifacts |
+|---|---|
+| ALIGN02_semantic_sbert | `skill_semantic_matches.csv`, `table_sensitivity_tau.csv` |
+| ALIGN03_domain_gap | `domain_gap_table.csv`, `taxonomy_skill_counts.csv` |
+| ALIGN04_crosscorpus_linkedin | `domain_gap_linkedin.csv`, `market_top500_linkedin.csv`, `skill_semantic_matches_linkedin.csv`, `table_crosscorpus_sgi.csv` |
+| CURR01_cs2023_anchor | `table_cs2023_per_ka.csv`, `table_cs2023_sensitivity.csv` |
+| VALID01_esco_gold | `table_valid_coverage.csv`, `table_valid_pairs.csv` |
+
+**Why the differing cells do not move any reported number.** Neither file is
+read by `experiments/make_latex.py` (which generates all 14 manuscript tables
+from `results/`) or by `audit/verify_claims.py` (which checks all 103 manuscript
+constants); both are required-artifact outputs checked for presence and schema by
+`experiments/verify.py`, and `cs2023_topic_matches.csv` is used for the qualitative
+unmatched-topic diagnosis in `audit/04_curriculum_validation.md` at 2 decimal
+places. The threshold decisions the cosines feed were taken identically by both
+runs - that is what the 614/614 exact `metrics.json` agreement and the 113/113
+headline-gate agreement at reported precision demonstrate.
+
+Full per-file detail is machine-readable in `reports/cpu_kaggle_csv_diff.json`.
+
+**What this report claims for the 5 embedding experiments:** headline metrics
+agree at reported precision; per-pair cosine similarities differ by at most 1e-4
+(CPU vs GPU float differences). It does not claim bit-exactness for these five.

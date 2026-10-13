@@ -20,6 +20,14 @@ tolerance — the seven CPU-native experiments use no floating-point reductions 
 depend on the BLAS threading level, and their outputs are integer counts, rounded
 proportions and seeded-bootstrap percentiles that reproduce identically.
 
+**Scope of the word "bit-exact" here.** It means the 288 numeric leaves of
+`metrics.json` under the comparison rule above, and it is claimed **only** for
+these 8 locally re-run experiments. The 5 embedding experiments listed in the next
+section were verified later on a CPU-only Kaggle kernel and carry a narrower claim
+in `reports/CPU_VS_COMMITTED_KAGGLE.md`: headline metrics agree at reported
+precision; per-pair cosine similarities differ by at most 1e-4 (CPU vs GPU float
+differences).
+
 | | |
 |---|---|
 | Experiments re-run on CPU | 8 of 13 |
@@ -28,6 +36,14 @@ proportions and seeded-bootstrap percentiles that reproduce identically.
 | Largest observed |diff| | 0 |
 
 ## Blocked: 5 embedding experiments could not re-run on this machine
+
+> **Superseded 2026-10-13.** This section records the state at the time of this
+> report. The block below is machine-level and still real, but the gap it
+> describes is now closed: all 5 were re-executed on a CPU-only Kaggle kernel and
+> verified against the committed artifacts — `reports/CPU_VS_COMMITTED_KAGGLE.md`,
+> where the claim is headline metrics agree at reported precision; per-pair cosine
+> similarities differ by at most 1e-4 (CPU vs GPU float differences). The text
+> below is retained unchanged as the record of why they could not run here.
 
 no CPU run — `import torch` blocked on this machine by an Application Control (WDAC/AppLocker) policy: `torch._C` fails to load with *"DLL load failed while importing _C:
 An Application Control policy has blocked this file."* This affects

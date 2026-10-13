@@ -1,0 +1,64 @@
+{
+  "kernel_env": {
+    "cwd": "/kaggle/working",
+    "python": "3.13.15"
+  },
+  "probe": "ALIGN06 BLS reachability from a Kaggle CPU kernel",
+  "results": [
+    {
+      "body_preview": "<!DOCTYPE HTML>\n<html lang=\"en-us\">      \n               <head> \n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<title>Access Denied</title>\n</head>\n  <style type=\"text/css\">\n    .centerDiv\n    {\n      width: 60%;\n      height:200px;\n      margin: 0 auto;\n      background-color:#FFFFFF ;\n    }\n  </style>\n<body>\n<div class=\"centerDiv\">\n               <h1><a href=https://www.b",
+      "download": true,
+      "elapsed_sec": 0.163,
+      "http_error": "Forbidden",
+      "label": "oews_nat_archive",
+      "status": 403,
+      "ts": "2026-10-13T09:11:45Z",
+      "url": "https://www.bls.gov/oes/special-requests/oesm25nat.zip"
+    },
+    {
+      "body_preview": "<!DOCTYPE HTML>\n<html lang=\"en-us\">      \n               <head> \n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<title>Access Denied</title>\n</head>\n  <style type=\"text/css\">\n    .centerDiv\n    {\n      width: 60%;\n      height:200px;\n      margin: 0 auto;\n      background-color:#FFFFFF ;\n    }\n  </style>\n<body>\n<div class=\"centerDiv\">\n               <h1><a href=https://www.b",
+      "download": false,
+      "elapsed_sec": 0.071,
+      "http_error": "Forbidden",
+      "label": "bls_robots",
+      "status": 403,
+      "ts": "2026-10-13T09:11:47Z",
+      "url": "https://www.bls.gov/robots.txt"
+    },
+    {
+      "body_preview": "<!DOCTYPE HTML>\n<html lang=\"en-us\">      \n               <head> \n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<title>Access Denied</title>\n</head>\n  <style type=\"text/css\">\n    .centerDiv\n    {\n      width: 60%;\n      height:200px;\n      margin: 0 auto;\n      background-color:#FFFFFF ;\n    }\n  </style>\n<body>\n<div class=\"centerDiv\">\n               <h1><a href=https://www.b",
+      "download": false,
+      "elapsed_sec": 0.082,
+      "http_error": "Forbidden",
+      "label": "bls_copyright_page",
+      "status": 403,
+      "ts": "2026-10-13T09:11:49Z",
+      "url": "https://www.bls.gov/opub/copyright-information.htm"
+    },
+    {
+      "body_preview": "<!DOCTYPE HTML>\n<html lang=\"en-us\">      \n               <head> \n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<title>Access Denied</title>\n</head>\n  <style type=\"text/css\">\n    .centerDiv\n    {\n      width: 60%;\n      height:200px;\n      margin: 0 auto;\n      background-color:#FFFFFF ;\n    }\n  </style>\n<body>\n<div class=\"centerDiv\">\n               <h1><a href=https://www.b",
+      "download": false,
+      "elapsed_sec": 0.072,
+      "http_error": "Forbidden",
+      "label": "oe_ws_tables",
+      "status": 403,
+      "ts": "2026-10-13T09:11:51Z",
+      "url": "https://www.bls.gov/oes/tables.htm"
+    },
+    {
+      "content_length": "13462590",
+      "content_type": "application/zip",
+      "download": false,
+      "elapsed_sec": 0.44,
+      "head_bytes": 4096,
+      "head_preview": "PK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000\ufffd\ufffd\u0012[\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\r\u0000\u001c\u0000db_30_0_text/UT\t\u0000\u0003$\ufffd\ufffdhE\ufffd\ufffdhux\u000b\u0000\u0001\u0004\ufffd\u0001\u0000\u0000\u0004X\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000O\u0018XZ\ufffd\ufffd\ufffd7\ufffd\u0004\u0000\u00003\u001d\u0000\u0000'\u0000\u001c\u0000db_30_0_text/Skills to Work Context.txtUT\t\u0000\u0003\ufffd'\ufffdg\ufffd\ufffd\ufffdhux\u000b\u0000\u0001\u0004\ufffd\u0001\u0000\u0000\u0004X\u0002\u0000\u0000\ufffd\ufffd\ufffdr\ufffd8\u0010\ufffd\ufffd\u07aa}\u0007=@\ufffd!\ufffd\u06bd\ufffd\ufffdf+\ufffdP\ufffd\ufffd\ufffd\ufffd",
+      "label": "onet_db_30_0_control",
+      "last_modified": "Thu, 23 Jul 2026 21:08:14 GMT",
+      "server": "nginx/1.24.0",
+      "status": 200,
+      "ts": "2026-10-13T09:11:53Z",
+      "url": "https://www.onetcenter.org/dl_files/database/db_30_0_text.zip"
+    }
+  ],
+  "ts": "2026-10-13T09:11:56Z"
+}

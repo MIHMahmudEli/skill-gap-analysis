@@ -61,6 +61,10 @@ results/*_attempt*/
 datasets/curriculum/raw/
 datasets/curriculum/license_snapshots/*.html
 datasets/curriculum/license_snapshots/*.txt
+# ALIGN06 raw + derived O*NET/OEWS material: archives and derived tables stay out
+# of git; only metrics.json-derived results under results/ and the licence
+# snapshots above are committed (ALIGN06_PREREG.md 3, "Storage and accounting").
+datasets/onet/
 
 # Sealed labelling keys — NEVER tracked (see archive/align05_titles_200_key_RETIRED.md
 # for the leak this prevents). Keys live OUTSIDE the repo, e.g. ../sealed_keys/,

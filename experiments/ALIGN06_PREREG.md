@@ -258,11 +258,21 @@ Licenses below are recorded from established knowledge and marked *re-verify*;
 the author initials and dates each row after opening the linked page. An
 unsigned §9 blocks all ALIGN06 downloads.
 
+**SIGNED 2026-10-13.** Rows 1 and 2 are signed on the author's explicit acceptance
+("I have checked the O\*NET and OEWS terms and accept attribution requirements"
+— answered **YES**, 2026-10-13). Rows 1 and 2 were re-verified against the live
+licence pages on that date before any file was fetched; the exact licence names,
+versions and URLs retrieved are recorded in the table and in full in
+`datasets/curriculum/license_snapshots/{onet_db_30_0.txt, bls_oes_m2025.txt}`
+(raw snapshots, gitignored; committed summaries appended to `SNAPSHOT_INDEX.md`).
+Row 3 remains **unsigned** — §10 (USAJOBS) is not authorized by this instruction and
+no USAJOBS request will be made.
+
 | # | Source | License as understood (re-verify) | Page to open | Snapshot file | Author ✅ / date |
 |---|---|---|---|---|---|
-| 1 | O\*NET Database (`db_30_0`) | US DOL work, public domain / "may be used without restriction"; citation and citation-of-derivative expectations to confirm | `onetcenter.org/database.html` + `onetcenter.org/dl_files/database/db_30_0_text.zip` | `datasets/curriculum/license_snapshots/onet_db_30_0.txt` | ☐ ____ |
-| 2 | BLS OEWS (May 2025 national) | US BLS work, public domain (17 U.S.C. §105); acknowledged-use / "source: BLS OEWS" notice to confirm | `bls.gov/oes/copyright.htm` + `bls.gov/oes/oes_stat.htm` | `datasets/curriculum/license_snapshots/bls_oes_m2025.txt` | ☐ ____ |
-| 3 | USAJOBS content + API (only if §10 authorized) | OPM content public domain (17 U.S.C. §105); **API terms of use apply** — rate limits, User-Agent/contact, caching and redistribution limits to confirm | `developer.usajobs.gov` (API guide + terms) and `usajobs.gov/Help/legal` | `datasets/curriculum/license_snapshots/usajobs_api_terms.txt` | ☐ ____ |
+| 1 | O\*NET Database (`db_30_0`) | ~~US DOL work, public domain / "may be used without restriction"~~ — **CORRECTED ON RE-VERIFY: Creative Commons Attribution 4.0 International (CC BY 4.0), attribution REQUIRED.** Applies to older releases: "Earlier versions of the O\*NET Database may be used under this license"; version number must appear in the attribution, so **"O\*NET 30.0 Database"**. Required credit, link to the licence, and an indication of changes. "O\*NET®" is a USDOL/ETA trademark; "O\*NET" used as an adjective only. Developer registration is optional. | Licence: `https://www.onetcenter.org/license_db.html` (from `https://www.onetcenter.org/license.html`, "License Exceptions"); deed `https://creativecommons.org/licenses/by/4.0/`; archive `https://www.onetcenter.org/dl_files/database/db_30_0_text.zip` | `datasets/curriculum/license_snapshots/onet_db_30_0.txt` | ☑ **signed 2026-10-13** (author YES); licence retrieved and recorded same date |
+| 2 | BLS OEWS (May 2025 national) | **Public domain (17 U.S.C. §105)** — confirmed verbatim: "everything that we publish … is in the public domain, except for previously copyrighted photographs and illustrations. You are free to use our public domain material without specific permission, although we do ask that you cite the Bureau of Labor Statistics as the source." Cite BLS as source. **BLS emblem is a registered trademark and may not be used** — no BLS logo will appear in the paper or any artifact. | `https://www.bls.gov/opub/copyright-information.htm` (the two prereg-cited OEWS URLs, `bls.gov/oes/copyright.htm` and `bls.gov/oes/oes_stat.htm`, no longer serve licence text — they return the OEWS home page; licence unchanged) | `datasets/curriculum/license_snapshots/bls_oes_m2025.txt` | ☑ **signed 2026-10-13** (author YES); licence retrieved and recorded same date |
+| 3 | USAJOBS content + API (only if §10 authorized) | not verified — **not applicable** | `developer.usajobs.gov` (API guide + terms) and `usajobs.gov/Help/legal` | `datasets/curriculum/license_snapshots/usajobs_api_terms.txt` | ☐ **not signed** — §10 not authorized by this instruction; no USAJOBS request will be made |
 
 Also recorded at fetch time: manifest entry, `datasets/OVERLAP_AUDIT.csv` row
 (new-source de-dup accounting), and the SHA-256 of each archive (§3, §6.5).
@@ -302,3 +312,108 @@ in §11. Without both, USAJOBS is not queried at any point.
 ## 11. Amendments (dated blocks; appended, never silent)
 
 *(none yet — this file is the original registration, 2026-10-12)*
+
+---
+
+### A1 — 2026-10-13 — OEWS acquisition route (deviation from §3's fetch method)
+
+§3 pinned `https://www.bls.gov/oes/special-requests/oesm25nat.zip` as the May
+2025 national source. **The file is unchanged; only the retrieval route
+differed**, because `www.bls.gov` returns **HTTP 403** to this host (Akamai
+bot-management — every path 403s, including `robots.txt`) across
+curl/Schannel, Python `urllib` and Python `requests` with a descriptive
+identifying User-Agent, **and** to a Kaggle kernel (probe
+`studyhub991/align06-bls-probe`; an O\*NET control request returned 200 in the
+same kernel, so the failure is BLS-specific). `download.bls.gov` and
+`stats.bls.gov` are also 403; `data.bls.gov` is reachable but does not host
+the archive. TLS-fingerprint spoofing was deliberately **not** attempted, and
+no BLS figure was transcribed by hand.
+
+Consequence: the archive is supplied through an ordinary browser by the author
+and placed at `datasets/onet/raw/oesm25nat.zip` (gitignored). At ingest the
+run records the archive's SHA-256, byte count and inner workbook filename in
+`metrics.json → sources.oews`, so the pinned release stays verifiable. **No
+§5/§6/§7 parameter changes.**
+
+### A2 — 2026-10-13 — `P` values larger than a stratum's frame (clarification)
+
+§5 fixes `P ∈ {100, 250, 500, 1000}` sampled **without replacement** from the
+frame, but the computing/IT stratum of §4.1 holds only the codes frozen in
+ALIGN05_PREREG §4, so every `P` in the grid exceeds it; an SRS without
+replacement of size `P` from a set smaller than `P` does not exist. The only
+well-defined reading is `take = min(P, |frame|)`. Implemented that way, and
+every grid row carries `frame_size`, `draw_size` and `p_capped_to_frame` so the
+cap is visible per row rather than implicit. In the economy-wide stratum
+(923 frame occupations) only `P = 1000` and `P = all` coincide. Fixed by the
+frame size **before** any cell was evaluated, so it is not a §7.4
+result-dependent choice.
+
+### A3 — 2026-10-13 — computing/IT crosswalk re-verification (§4.1, run time)
+
+§4.1 requires the 16 frozen SOC 2018 codes to be "re-verified at run time"
+against the recorded O\*NET-SOC release. Against O\*NET 30.0:
+
+* **13 of 16 bases resolve** — `11-3021`, `15-1211`, `15-1212`, `15-1221`,
+  `15-1231`, `15-1241`, `15-1244`, `15-1251`, `15-1252`, `15-1253`,
+  `15-1254`, `15-1255`, `15-2051`.
+* **3 are absent from O\*NET 30.0 entirely** — `15-1213`, `15-1216`,
+  `15-1256`.
+* The 13 resolved bases expand to **18 O\*NET-SOC codes**, because four carry
+  `.01`/`.02` companions (`15-1211`, `15-1241`, `15-1255`, `15-2051`).
+
+The stratum therefore holds 18 frame occupations, not 16. Recorded in
+`metrics.json → frame["computing-IT"].tech_soc_crosswalk` with the full
+requested / resolved / unresolved lists. This stratum is secondary and never
+headline (§4.1), so no §7.1 headline is affected.
+
+### A4 — 2026-10-13 — §4.2 join multiplicity (measured, not rescaled)
+
+§4.2 prescribes truncating to the SOC six-digit base and joining on
+`OCC_CODE`, and gives its own example `15-1252.00` / `15-1252.01 → 15-1252`.
+Applied literally, **every** O\*NET-SOC code sharing a base receives that
+base's full `TOT_EMP`, so an employment mass shared by *n* codes is counted
+*n* times. In the economy-wide frame **67 bases are shared** by more than one
+O\*NET-SOC code (up to 9 — e.g. `15-1299`), so `Σ_o w(o)` overstates
+unduplicated employment.
+
+Implemented **as preregistered** — no rescaling and no reallocation — and
+quantified in `metrics.json → frame[*].employment_multiplicity`, which reports
+`employment_sum_with_4_2_join` beside `employment_sum_if_base_counted_once`
+and their ratio. Inventing a reallocation now would be an unregistered change
+under §7.4; the magnitude is disclosed instead so a reader can bound it.
+Decided before any O\*NET cell was evaluated.
+
+### A5 — 2026-10-13 — §4.3 surrounding-punctuation implementation (detail)
+
+§4.3 orders the steps NFKC → case-fold → collapse whitespace → strip
+surrounding punctuation and trademark markers. Two implementation details are
+recorded so the vocabulary is reproducible:
+
+* **`+ # / - & _` and interior `.` are never stripped** — they are part of
+  technology names, and stripping them would turn `c++` into `c`, `c#` into
+  `c`, and `f#` into `f`.
+* **A leading `.` followed by a word character is preserved** (`'.net'`, not
+  `'net'`), while a trailing `.` is stripped like any other surrounding
+  punctuation. The posting corpora spell the framework `.net`; 0 O\*NET
+  `Example` values begin with `.` while 4 end with `.`.
+
+Measured over all 32,681 `Example` rows: **0** contain `™`/`®`/`©` — relevant
+because NFKC expands `™` into the letters `TM` *before* the strip step could
+see it — and **0** normalized rows retain leading or trailing punctuation from
+the strip set. The full strip set is written to
+`metrics.json → normalization.strip_chars`.
+
+### A6 — 2026-10-13 — §4.5(4) statement vocabulary and its effect on `K`
+
+§4.5(4) states that the importance-weighted variant's "vocabulary is
+statements, not tool names". Implemented literally: its profile is built from
+`Skills.txt` Scale ID `IM` (`Element Name`) with `IM` multiplied into `w(o)`,
+**not** from `Technology Skills.txt`. `Skills.txt` carries **35 distinct IM
+element names**, so that profile holds at most 35 skills against
+`K ∈ {50, 100, 200, 500}`.
+
+§5 defines the comparison as symmetric ("O\*NET top-K vs academic top-K"), so
+both sides are truncated to `k_eff = min(K, |O*NET profile|, |academic
+profile|)`. Every grid row carries `market_profile_n`, `academic_profile_n` and
+`effective_profile_n`, making the truncation explicit per row. Per §4.5(4)
+this variant is reported in the appendix table only and is never headline.

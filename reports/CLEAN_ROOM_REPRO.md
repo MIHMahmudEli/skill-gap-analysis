@@ -348,7 +348,7 @@ committed artifacts:
 | Kernel | `studyhub991/cpu-verify-embedding-5` (private, CPU, internet on for pip + the HF model + VALID01's pinned upstream annotations) |
 | Runtime | 1065 s total (ALIGN02 58.8 s, ALIGN03 194.6 s, ALIGN04 547.1 s, CURR01 27.6 s, VALID01 175.1 s) |
 | Environment | Python 3.13.15, `torch` 2.11.0+cpu, `sentence-transformers` 6.0.1, AMD EPYC 7B12, `pip_mode: pinned` |
-| Comparison | `reports/CPU_VS_COMMITTED_KAGGLE.md` — 614 numeric fields, 0 beyond tolerance, largest `\|diff\|` **0.000e+00** |
+| Comparison | `reports/CPU_VS_COMMITTED_KAGGLE.md` Part 1 - 614 `metrics.json` numeric fields, 0 beyond tolerance, largest `\|diff\|` **0.000e+00**. Part 2 - 14 CSV artifacts, 17,796 numeric cells, 2,445 differing (per-pair cosines only), largest **1.0e-04**; headline metrics agree at reported precision |
 | Headline gate | 113 headline fields (SGI, CI bounds, domain deficits, CS2023 coverage, κ, precision, recall, AUC) checked at the decimals the manuscript reports — 0 mismatches |
 | Archive | `MoshinAli/skill-gap-cpu-verification` (22 files: `results_cpu_kaggle/`, the comparison report, `run_info.json`) |
 
@@ -479,10 +479,15 @@ divergence disclosed.
 
 **DONE 2026-10-13 — the all-5-within-tolerance branch was taken.** The manuscript
 sentence in §Reproducibility and Data Availability was strengthened to name the
-completed CPU verification (288 + 614 = 902 compared numeric fields, all zero
-difference), and `reports/CPU_VS_COMMITTED_KAGGLE.md` plus
-`reports/cpu_kaggle_gate.json` were committed as the evidence. The branches below
-are kept for anyone repeating the run.
+completed CPU verification (288 + 614 = 902 compared `metrics.json` numeric
+fields, all zero difference), and `reports/CPU_VS_COMMITTED_KAGGLE.md` plus
+`reports/cpu_kaggle_gate.json` were committed as the evidence. The row-level CSV
+artifacts are a **separate** comparison and are not bit-identical for the 5:
+headline metrics agree at reported precision; per-pair cosine similarities differ
+by at most 1e-4 (CPU vs GPU float differences). Part 2 of that report and
+`reports/cpu_kaggle_csv_diff.json` carry the counts and maxima (14 CSV files,
+5,985 rows, 17,796 numeric cells, 2,445 differing, largest 1.0e-04). The branches
+below are kept for anyone repeating the run.
 
 - If all 5 are within tolerance: the manuscript sentence in
   §Reproducibility and Data Availability may be strengthened from "not claimed

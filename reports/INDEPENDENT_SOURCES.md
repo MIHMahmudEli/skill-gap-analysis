@@ -12,7 +12,7 @@ as listed in `reports/PROVENANCE_AUDIT.md` §D. Nothing here has been downloaded
 
 | Source | Provenance | License (re-verify) | Unit type |
 |---|---|---|---|
-| O*NET 29.x Database — Tools & Technology / Skills / Knowledge sections | US Department of Labor, Employment and Training Administration; national occupational survey (biennial) | Public domain (US Gov work; "may be used without restriction") | Occupation × tool/technology/skill statement |
+| O*NET 30.0 Database (`db_30_0`) — Tools & Technology / Skills / Knowledge sections | US Department of Labor, Employment and Training Administration; national occupational survey (biennial) | **CC BY 4.0** (verified 2026-10-13 at `onetcenter.org/license_db.html`; earlier "public domain" entry was wrong — attribution is mandatory; older releases may be used under this licence with the version number in the credit) | Occupation × tool/technology/skill statement |
 | ESCO (European Skills, Competences, Qualifications and Occupations) v1.2+ | European Commission (JRC) + Cedefop; expert-mapped multilingual taxonomy | CC-BY 4.0 | Occupation/skill concept (stable ESCO IDs); includes technology-skill relations |
 | Wikidata occupation→skill statements (P106, skills P101/P1068...) | Wikimedia community; crowdsourced structured data | CC0 | Structured subject–predicate–object statements (sparse, variable completeness) |
 

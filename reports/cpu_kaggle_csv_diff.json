@@ -1,0 +1,190 @@
+[
+  {
+    "columns": {},
+    "experiment": "ALIGN02_semantic_sbert",
+    "file": "skill_semantic_matches.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 100,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 100,
+    "rows_ref": 100,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN02_semantic_sbert",
+    "file": "table_sensitivity_tau.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 24,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 4,
+    "rows_ref": 4,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN03_domain_gap",
+    "file": "domain_gap_table.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 104,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 8,
+    "rows_ref": 8,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN03_domain_gap",
+    "file": "taxonomy_skill_counts.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 508,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 127,
+    "rows_ref": 127,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN04_crosscorpus_linkedin",
+    "file": "domain_gap_linkedin.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 88,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 8,
+    "rows_ref": 8,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN04_crosscorpus_linkedin",
+    "file": "market_top500_linkedin.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 500,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 500,
+    "rows_ref": 500,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN04_crosscorpus_linkedin",
+    "file": "skill_semantic_matches_linkedin.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 100,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 100,
+    "rows_ref": 100,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "ALIGN04_crosscorpus_linkedin",
+    "file": "table_crosscorpus_sgi.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 24,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 5,
+    "rows_ref": 5,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {
+      "cosine_similarity": {
+        "compared": 2197,
+        "cpu": 0.4735,
+        "differing": 5,
+        "max_abs": 0.0001000000000000445,
+        "over_1e-4": 1,
+        "ref": 0.4736,
+        "worst_row": 1312
+      }
+    },
+    "experiment": "CURR01_cs2023_anchor",
+    "file": "cs2023_topic_matches.csv",
+    "max_abs_diff": 0.0001000000000000445,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 4394,
+    "numeric_cells_differing": 5,
+    "rows_cpu": 2197,
+    "rows_ref": 2197,
+    "rows_with_any_difference": 5
+  },
+  {
+    "columns": {},
+    "experiment": "CURR01_cs2023_anchor",
+    "file": "table_cs2023_per_ka.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 238,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 17,
+    "rows_ref": 17,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "CURR01_cs2023_anchor",
+    "file": "table_cs2023_sensitivity.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 20,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 4,
+    "rows_ref": 4,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {
+      "cosine": {
+        "compared": 2907,
+        "cpu": 0.9999998211860657,
+        "differing": 2440,
+        "max_abs": 4.172325134277344e-07,
+        "over_1e-4": 0,
+        "ref": 1.000000238418579,
+        "worst_row": 2276
+      }
+    },
+    "experiment": "VALID01_esco_gold",
+    "file": "pair_results.csv",
+    "max_abs_diff": 4.172325134277344e-07,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 11628,
+    "numeric_cells_differing": 2440,
+    "rows_cpu": 2907,
+    "rows_ref": 2907,
+    "rows_with_any_difference": 2440
+  },
+  {
+    "columns": {},
+    "experiment": "VALID01_esco_gold",
+    "file": "table_valid_coverage.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 6,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 2,
+    "rows_ref": 2,
+    "rows_with_any_difference": 0
+  },
+  {
+    "columns": {},
+    "experiment": "VALID01_esco_gold",
+    "file": "table_valid_pairs.csv",
+    "max_abs_diff": 0.0,
+    "nonnumeric_diff_cells": 0,
+    "numeric_cells_compared": 62,
+    "numeric_cells_differing": 0,
+    "rows_cpu": 6,
+    "rows_ref": 6,
+    "rows_with_any_difference": 0
+  }
+]

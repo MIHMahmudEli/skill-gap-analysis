@@ -1,0 +1,48 @@
+{
+  "cells": {
+    "lexical_K100_P_all": {
+      "coverage": 0.48,
+      "expected": 0.52,
+      "ok": true,
+      "rule": "exact at 2dp",
+      "sgi": 0.52
+    },
+    "semantic_K100_tau0.5_P_all": {
+      "coverage": 0.68,
+      "expected": 0.32,
+      "ok": true,
+      "rule": "+/- 0.02 device tolerance",
+      "sgi": 0.31999999999999995,
+      "tol": 0.02
+    }
+  },
+  "corpora": {
+    "academic": {
+      "n_rows": 1167,
+      "name": "academic reference profile"
+    },
+    "market": {
+      "n_rows": 518953,
+      "name": "hf_skill_gap (HF postings)"
+    }
+  },
+  "environment": {
+    "device": "cpu",
+    "numpy": "2.5.1",
+    "python": "3.14.6",
+    "sentence_transformers": "6.0.1",
+    "torch": "2.13.0+cpu"
+  },
+  "experiment_id": "ALIGN06_onet_demand_profile",
+  "imported_from": "experiments\\exp_scripts\\sens01_sgi_sensitivity.py",
+  "phase": "6.1 instrument control",
+  "prereg": "experiments/ALIGN06_PREREG.md#6.1",
+  "profiles": {
+    "academic_top": 500,
+    "market_top": 500
+  },
+  "reads_onet_or_oews": false,
+  "runtime_sec": 27.025,
+  "status": "passed",
+  "ts": "2026-10-13T09:29:12Z"
+}

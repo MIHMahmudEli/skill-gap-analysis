@@ -46,3 +46,22 @@ Short excerpts captured during source-plan verification. Full raw HTML (if fetch
 ## Elements of AI / University of Helsinki (EXCLUDED)
 - URL: https://www.elementsofai.com/faq/how-is-the-content-licensed
 - Excerpt: “all rights reserved… For licensing, please contact hello@minnalearn.com.”
+
+
+## O*NET 30.0 Database (`db_30_0`) - ALIGN06, signed 2026-10-13
+- Licence page: https://www.onetcenter.org/license_db.html (reached from https://www.onetcenter.org/license.html, "License Exceptions")
+- Licence: **Creative Commons Attribution 4.0 International (CC BY 4.0)** - https://creativecommons.org/licenses/by/4.0/
+- Excerpt: "Except as noted below, the content of the O*NET 31.0 Database is licensed under a Creative Commons Attribution 4.0 International License. You are free to copy or adapt the information from this database, as long as you: credit the O*NET 31.0 Database and the U.S. Department of Labor, Employment and Training Administration as the original source, link to the license, and indicate where any changes were made to the original."
+- Older releases: "Earlier versions of the O*NET Database may be used under this license, or any previous license under which they were released. When using any version of the Database, please include the appropriate version number in your attribution."
+- Credit line used: "This analysis uses information from the O*NET 30.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET(R) is a trademark of USDOL/ETA."
+- Developer registration: optional, not required for this research use.
+- **Correction:** `ALIGN06_PREREG.md` section 9 row 1 and `reports/INDEPENDENT_SOURCES.md` had both recorded O*NET as public domain. It is not; attribution is mandatory. Full raw snapshot: `onet_db_30_0.txt` (gitignored).
+
+## BLS OEWS, May 2025 national - ALIGN06, signed 2026-10-13
+- Licence page: https://www.bls.gov/opub/copyright-information.htm
+- Licence: **Public domain** (17 U.S.C. section 105); no version number, no permission required.
+- Excerpt: "The Bureau of Labor Statistics (BLS) is a Federal government agency and everything that we publish, both in hard copy and electronically, is in the public domain, except for previously copyrighted photographs and illustrations. You are free to use our public domain material without specific permission, although we do ask that you cite the Bureau of Labor Statistics as the source."
+- Credit line used: "Source: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics (OEWS), May 2025 national estimates."
+- Logo: "The BLS emblem ... are federally registered trademarks. Unauthorized use of the BLS emblem is prohibited." No BLS emblem is reproduced anywhere in this project.
+- URL note: the two URLs originally cited in `ALIGN06_PREREG.md` section 9 (`bls.gov/oes/copyright.htm`, `bls.gov/oes/oes_stat.htm`) now serve the OEWS home page rather than licence text. The licence itself is unchanged.
+- Access note: every `bls.gov` and `download.bls.gov` request from the author's host returns HTTP 403 (Akamai bot management), across curl/Schannel, Python urllib and Python requests, with a descriptive identifying User-Agent. Recorded in the raw snapshot `bls_oes_m2025.txt` (gitignored).
