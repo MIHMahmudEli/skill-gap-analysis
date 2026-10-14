@@ -434,6 +434,39 @@
     "note": "coverage (0.68) and point estimate (0.32) are identical to the headline cell, so only the interval moves, and only at its upper end; the headline interval itself is asserted separately by C11b from ALIGN02's sgi_ci_at_tau_0.5"
   },
   {
+    "id": "C205",
+    "claim": "abstract defines SGI at first use rather than naming it",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex abstract",
+    "note": ""
+  },
+  {
+    "id": "C206",
+    "claim": "abstract quotes the analysed 518,953 postings, not the 519,814-row dataset count",
+    "ms_value": [
+      true,
+      true
+    ],
+    "artifact_value": [
+      true,
+      true
+    ],
+    "match": true,
+    "evidence": "paper/main.tex abstract",
+    "note": "C203 pins the dataset-level reconciliation (519,814 listed, 861 with no skill, 518,953 analysed); this check pins the abstract's own choice, and Table I's note and the Sec.III-C footnote still carry 519,814 where the row count belongs"
+  },
+  {
+    "id": "C208",
+    "claim": "abstract closes by requiring SGI levels to be reported with their settings",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex abstract, final sentence",
+    "note": ""
+  },
+  {
     "id": "C12",
     "claim": "SGI tau=0.7 = 46.0%",
     "ms_value": 0.46,
@@ -1565,6 +1598,21 @@
     "match": true,
     "evidence": "metrics.json vocabulary_overlap.economy-wide",
     "note": ""
+  },
+  {
+    "id": "C207",
+    "claim": "abstract quantifies the O*NET vocabulary overlap as 1.0% of its 8,613 terms",
+    "ms_value": [
+      0.01,
+      true
+    ],
+    "artifact_value": [
+      0.01,
+      true
+    ],
+    "match": true,
+    "evidence": "metrics.json vocabulary_overlap.economy-wide + paper/main.tex abstract",
+    "note": "90 of 8,613 economy-wide O*NET terms appear in the 5,047-skill reference profile = 1.04%, quoted as 1.0%; A606 already pins the counts, this pins the manuscript's use of them"
   },
   {
     "id": "A607",

@@ -277,11 +277,11 @@ add("C11q", "abstract: SGI falls 0.32 -> 0.04 as the covering set grows from 100
     note="the covering-set axis alone moves SGI by 28 pp, which is why the "
          "abstract restricts interpretation to matched settings")
 add("C11r", "abstract restricts interpretation to matched settings", True,
-    "only comparisons at matched $(K, P)$ settings are interpretable" in TEX,
+    "only matched $(K, P)$ comparisons are interpretable" in TEX,
     "paper/main.tex abstract")
 add("C11s", "abstract headline 52.0/32.0 percent is stated as the matched-setting "
     "configuration, not as a corpus-general value", True,
-    "In the headline configuration (market top-100 vs.\\ occupational top-100)" in TEX
+    "In the headline setting (market top-100 vs.\\ occupational top-100)" in TEX
     and "Both are the headline configuration" not in TEX,
     "paper/main.tex abstract")
 
@@ -328,6 +328,29 @@ add("C204", "Limitations discloses SENS02's skill-list interval at the headline 
          "cell, so only the interval moves, and only at its upper end; the headline "
          "interval itself is asserted separately by C11b from ALIGN02's "
          "sgi_ci_at_tau_0.5")
+
+# --- abstract precision edits (batch 5): SGI defined at first use, the ANALYSED
+# subset quoted rather than the dataset row count, and an explicit closing
+# requirement that SGI be reported with its settings.
+add("C205", "abstract defines SGI at first use rather than naming it", True,
+    "The Skill Gap Index (SGI) is the share of top-100 posting skills with no "
+    "match in the reference profile" in TEX,
+    "paper/main.tex abstract")
+add("C206", "abstract quotes the analysed 518,953 postings, not the 519,814-row "
+    "dataset count",
+    [True, True],
+    ["518,953 skill-annotated postings" in TEX,
+     re.search(r"\\begin\{abstract\}.*?519,814.*?\\end\{abstract\}", TEX, re.S) is None],
+    "paper/main.tex abstract",
+    note="C203 pins the dataset-level reconciliation (519,814 listed, 861 with no "
+         "skill, 518,953 analysed); this check pins the abstract's own choice, and "
+         "Table I's note and the Sec.III-C footnote still carry 519,814 where the "
+         "row count belongs")
+add("C208", "abstract closes by requiring SGI levels to be reported with their "
+    "settings", True,
+    "SGI levels depend on these design choices and must be reported with their "
+    "settings" in TEX,
+    "paper/main.tex abstract, final sentence")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],
@@ -645,6 +668,14 @@ _vo = a6["vocabulary_overlap"]["economy-wide"]
 add("A606", "ALIGN06 vocabulary overlap 90 terms of an 8,613-term O*NET profile",
     [90, 8613], [_vo["intersection"], _vo["onet_vocab"]],
     "metrics.json vocabulary_overlap.economy-wide")
+add("C207", "abstract quantifies the O*NET vocabulary overlap as 1.0% of its 8,613 terms",
+    [0.01, True],
+    [round(_vo["onet_share_in_academic"], 3),
+     "shares just 1.0\\% of its 8,613 terms" in TEX],
+    "metrics.json vocabulary_overlap.economy-wide + paper/main.tex abstract",
+    note="90 of 8,613 economy-wide O*NET terms appear in the 5,047-skill reference "
+         "profile = 1.04%, quoted as 1.0%; A606 already pins the counts, this pins "
+         "the manuscript's use of them")
 add("A607", "ALIGN06 'microsoft office software' listed by 94% of frame occupations",
     0.94, round(float(pd.read_csv(RESULTS / "ALIGN06_onet_demand_profile" /
                                  "table_onet_profile_top.csv")
