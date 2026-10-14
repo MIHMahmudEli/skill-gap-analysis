@@ -415,7 +415,7 @@ def tab_validity() -> None:
 
 def tab_crosscorpus() -> None:
     """Matched-profile cross-corpus SGI (audit Phase 9/10): two corpora (HF
-    Skill-Gap, LinkedIn 2024) x two academic profile sizes (P=100, P=500).
+    Skill-Gap, LinkedIn 2024) x two occupational reference-profile sizes (P=100, P=500).
 
     The published diagonal is bold: ALIGN01/02 (HF, P=100) and ALIGN04
     (LinkedIn, P=500).  The off-diagonal cells are the audit reanalyses that
@@ -466,7 +466,7 @@ def tab_crosscorpus() -> None:
 % (audit/_sgi_sensitivity/*.json).
 \\begin{{tabular}}{{@{{}}lcccc@{{}}}}
 \\toprule
-& \\multicolumn{{2}}{{c}}{{\\textbf{{Academic $P=100$}}}} & \\multicolumn{{2}}{{c}}{{\\textbf{{Academic $P=500$}}}} \\\\
+& \\multicolumn{{2}}{{c}}{{\\textbf{{Occupational $P=100$}}}} & \\multicolumn{{2}}{{c}}{{\\textbf{{Occupational $P=500$}}}} \\\\
 \\textbf{{Matcher}} & \\textbf{{HF}} & \\textbf{{LinkedIn}} & \\textbf{{HF}} & \\textbf{{LinkedIn}} \\\\
 \\midrule
 {body}
@@ -478,7 +478,7 @@ def tab_crosscorpus() -> None:
 
 
 def tab_cs2023() -> None:
-    """CS2023 per-Knowledge-Area coverage of the academic reference profile."""
+    """CS2023 per-Knowledge-Area coverage of the occupational reference profile."""
     ka_names = {
         "AI": "Artificial Intelligence", "AL": "Algorithmic Foundations",
         "AR": "Architecture and Organization", "DM": "Data Management",

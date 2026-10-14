@@ -64,7 +64,7 @@
   },
   {
     "id": "C05",
-    "claim": "academic reference n=1,167 (corrected; was 13,833)",
+    "claim": "occupational reference n=1,167 (corrected; was 13,833)",
     "ms_value": 1167,
     "artifact_value": 1167,
     "match": true,
@@ -511,7 +511,7 @@
   },
   {
     "id": "C58",
-    "claim": "Academic top-100 ESCO semantic 99%",
+    "claim": "Occupational top-100 ESCO semantic 99%",
     "ms_value": 0.99,
     "artifact_value": 0.99,
     "match": true,
@@ -1046,7 +1046,7 @@
   },
   {
     "id": "C157",
-    "claim": "academic reference 1,167 stated (not 13,833 as taxonomy)",
+    "claim": "occupational reference 1,167 stated (not 13,833 as taxonomy)",
     "ms_value": null,
     "artifact_value": true,
     "match": true,

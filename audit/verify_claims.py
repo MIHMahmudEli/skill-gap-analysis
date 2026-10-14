@@ -109,7 +109,7 @@ add("C03", "Tier-2 total 420,644", 420644,
     "manuscript tier composition arithmetic")
 add("C04", "AI trends N=10,345 (artifact/registry only; trends claims removed from manuscript 2026-10-12)", 10345, t1["n_postings"],
     "results/TRENDS01_ai_longitudinal/metrics.json")
-add("C05", "academic reference n=1,167 (corrected; was 13,833)", 1167,
+add("C05", "occupational reference n=1,167 (corrected; was 13,833)", 1167,
     int(next(r["records"] for r in manifest if "HF Job Skill Set" in r["dataset_name"])),
     "manifest (audit-corrected) / hf_job_skill_set.csv rows")
 
@@ -184,7 +184,7 @@ add("C56", "ESCO inventory 13,896", 13896, v1["esco_inventory"] and 13896,
     "results/VALID01_esco_gold/_upstream/skills_en_label.txt line count",
     "confirmed separately: file has 13,896 lines")
 add("C57", "Market top-100 ESCO semantic 91%", 0.91, v1["esco_coverage"][0]["semantic_coverage_tau0.5"], "same")
-add("C58", "Academic top-100 ESCO semantic 99%", 0.99, v1["esco_coverage"][1]["semantic_coverage_tau0.5"], "same")
+add("C58", "Occupational top-100 ESCO semantic 99%", 0.99, v1["esco_coverage"][1]["semantic_coverage_tau0.5"], "same")
 add("C59", "kappa tau=0.4 ~0.79", 0.79, round(v1["sensitivity"]["sbert_tau_0.4"]["kappa"], 2), "same")
 add("C60", "kappa tau=0.7 ~0.44", 0.44, round(v1["sensitivity"]["sbert_tau_0.7"]["kappa"], 2), "same")
 add("C61", "precision 91.9% recall 75.7%", [0.919, 0.757],
@@ -313,7 +313,7 @@ presence = [
      a3["n_postings"] == 518953),
     ("C156", "profile-size confound documented (matched-profile 2x2 in Sec.IV-B2)",
      "matched-profile" in TEX and "Profile-size sensitivity" in TEX),
-    ("C157", "academic reference 1,167 stated (not 13,833 as taxonomy)",
+    ("C157", "occupational reference 1,167 stated (not 13,833 as taxonomy)",
      "1,167" in TEX and "13,833-row taxonomy" in TEX),
     ("C158", "H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12)",
      ("H5 (credential locality) is untested" in ALLTEX)

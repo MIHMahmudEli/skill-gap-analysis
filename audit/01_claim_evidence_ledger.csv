@@ -6,7 +6,7 @@ C02,main,Tab.I,"LinkedIn records 1,348,454 (Table I, corrected)",1348454,1348454
 C02b,main,Sec.IV-A (RQ1 geography; GEO01),GEO01 n_rows = LinkedIn postings processed,1348454,1348454,reproduced,results/GEO01_linkedin_shares/metrics.json,"matches corrected manifest (was 1,348,510 pre-audit)",
 C03,main,various,"Tier-2 total 420,644",420644,420644,reproduced,paper/main.tex:158 (arithmetic),,
 C04,main,various,"AI trends N=10,345 (artifact/registry only; trends claims removed from manuscript 2026-10-12)",10345,10345,reproduced,results/TRENDS01_ai_longitudinal/metrics.json,,
-C05,main,Tab.I,"academic reference n=1,167 (corrected; was 13,833)",1167,1167,reproduced,manifest (audit-corrected) / hf_job_skill_set.csv rows,,"DONE (Phase 8/9): unique-record accounting + academic ref n=1,167 disclosed."
+C05,main,Tab.I,"occupational reference n=1,167 (corrected; was 13,833)",1167,1167,reproduced,manifest (audit-corrected) / hf_job_skill_set.csv rows,,"DONE (Phase 8/9): unique-record accounting + academic ref n=1,167 disclosed."
 C10,main,Abstract; Sec.IV-B,Lexical SGI = 52.0%,0.52,0.52,reproduced,results/ALIGN01_lexical_bootstrap/metrics.json,,
 C10b,main,various,Lexical coverage 48/100,48,48,reproduced,results/ALIGN01_lexical_bootstrap/metrics.json,,
 C10c,main,various,"Lexical SGI CI [0.42, 0.63]","[0.42, 0.63]","[0.42, 0.63]",reproduced,results/ALIGN01_lexical_bootstrap/metrics.json,,
@@ -51,7 +51,7 @@ C55b,main,various,"n_mentions 1,062",1062,1062,reproduced,same,,
 C55c,main,various,"n_positive 1,138 / n_negative 1,769","[1138, 1769]","[1138, 1769]",reproduced,same,,
 C56,main,various,"ESCO inventory 13,896",13896,13896,reproduced,results/VALID01_esco_gold/_upstream/skills_en_label.txt line count,"confirmed separately: file has 13,896 lines",
 C57,main,various,Market top-100 ESCO semantic 91%,0.91,0.91,reproduced,same,,
-C58,main,various,Academic top-100 ESCO semantic 99%,0.99,0.99,reproduced,same,,
+C58,main,various,Occupational top-100 ESCO semantic 99%,0.99,0.99,reproduced,same,,
 C59,main,various,kappa tau=0.4 ~0.79,0.79,0.79,reproduced,same,,
 C60,main,various,kappa tau=0.7 ~0.44,0.44,0.44,reproduced,same,,
 C61,main,various,precision 91.9% recall 75.7%,"[0.919, 0.757]","[0.919, 0.757]",reproduced,same,,
@@ -96,7 +96,7 @@ C153,placement,paper_placement tab:hypotheses,tab:hypotheses cites STAT01 for H6
 C154,main,various,"519,814 skill-annotated postings (RQ1, corrected wording)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C155,main,Sec.IV-C vs ALIGN03 metrics,"ALIGN03 n_postings 518,953 is analyzed subset (documented)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,"DONE (Phase 9): RQ1 wording clarifies 519,814 postings; ALIGN03 subset documented."
 C156,main,Sec.IV-B2 (profile-size sensitivity),profile-size confound documented (matched-profile 2x2 in Sec.IV-B2),null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,DONE (Phase 9): matched-profile 2x2 replaces vocabulary-composition story.
-C157,main,Sec.III-A; Tab.I; Limit.1,"academic reference 1,167 stated (not 13,833 as taxonomy)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
+C157,main,Sec.III-A; Tab.I; Limit.1,"occupational reference 1,167 stated (not 13,833 as taxonomy)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C158,main,various,H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12),null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C159,main,various,"CS2023 anchor described as computational, not human line-by-line audit",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C160,main,various,"abstract discloses employer-derived occupational reference profile (1,167 postings)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
