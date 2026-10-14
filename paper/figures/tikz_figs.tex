@@ -5,33 +5,36 @@
 \usepgfplotslibrary{groupplots,statistics}
 \usetikzlibrary{patterns,positioning,calc}
 
-% ---- shared style (print-safe IEEE palette) ----
-\definecolor{sgBlue}{RGB}{31,78,121}
-\definecolor{sgTeal}{RGB}{0,124,132}
-\definecolor{sgOrange}{RGB}{202,112,40}
-\definecolor{sgRed}{RGB}{176,54,54}
-\definecolor{sgGreen}{RGB}{56,128,72}
-\definecolor{sgGrey}{RGB}{110,110,110}
-\definecolor{sgLight}{RGB}{230,230,230}
+% ---- shared style (light, print-safe palette) ----
+% Fills are deliberately pale so that value labels, CI whiskers and the thin
+% bar outlines stay legible on top of them; series are separated by hue, not
+% by saturation, and no bar carries a dark border.
+\definecolor{sgBlue}{RGB}{147,179,224}    % demand / market / primary
+\definecolor{sgTeal}{RGB}{126,208,178}    % lexical measurement
+\definecolor{sgGreen}{RGB}{176,208,141}   % semantic measurement
+\definecolor{sgOrange}{RGB}{245,197,133}  % lexical deficit
+\definecolor{sgRed}{RGB}{238,165,156}     % semantic deficit / contrast
+\definecolor{sgGrey}{RGB}{152,160,168}    % reference lines, whiskers
+\definecolor{sgLight}{RGB}{233,235,237}   % grid
+\definecolor{sgAxis}{RGB}{196,201,206}    % axis lines, ticks
 
 \pgfplotsset{
   sg axis/.style={
-    axis line style={sgGrey, line width=0.4pt},
-    tick style={sgGrey, line width=0.4pt},
-    label style={font=\footnotesize, color=black!80},
-    tick label style={font=\scriptsize, color=black!75},
+    axis line style={sgAxis, line width=0.4pt},
+    tick style={sgAxis, line width=0.4pt},
+    label style={font=\footnotesize, color=black!72},
+    tick label style={font=\scriptsize, color=black!62},
     legend style={
       font=\scriptsize,
-      draw=sgGrey!50,
-      fill=white,
-      fill opacity=0.92,
-      text opacity=1,
-      inner sep=2.5pt,
+      draw=none,
+      fill=none,
       cells={anchor=west},
+      inner sep=2pt,
+      /tikz/every even column/.append style={column sep=5pt},
     },
     ymin=0,
     ymajorgrids=true,
-    grid style={sgLight, line width=0.3pt},
+    grid style={sgLight, line width=0.4pt},
     width=0.98\linewidth,
     height=0.72\linewidth,
     scale only axis,
@@ -40,8 +43,8 @@
 \tikzset{
   sg bar/.style={
     fill=#1,
-    draw=#1!70!black,
-    line width=0.3pt,
+    draw=#1!80!black,
+    line width=0.35pt,
   },
 }
 
@@ -61,13 +64,16 @@
   xtick=data,
   xticklabels={comm,custsvc,teamwork,commsk,lead,probsolv,timemgmt,attdet,probslv,projmgmt},
   x tick label style={rotate=35, anchor=east, font=\scriptsize},
-  ymin=0, ymax=175000,
+  ymin=0, ymax=185000,
   ylabel={Number of postings},
+  scaled y ticks=false,
+  ytick={0,50000,100000,150000},
+  yticklabels={0,50k,100k,150k},
   enlarge x limits=0.08,
-  nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
-  every node near coord/.append style={font=\scriptsize, color=black!70, rotate=90, anchor=west, yshift=0pt, xshift=1pt},
+  nodes near coords={\pgfmathprintnumber[fixed, precision=0, 1000 sep={,}]{\pgfplotspointmeta}},
+  every node near coord/.append style={font=\scriptsize, color=black!55, rotate=90, anchor=west, xshift=1pt},
 ]
-\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt] coordinates {
+\addplot[fill=sgTeal, draw=sgTeal!80!black, line width=0.35pt] coordinates {
   (Comm,148765)(CustSvc,111342)(Teamwork,91559)(CommSk,78182)(Lead,74517)(ProbSolv,59713)(TimeMgmt,57352)(AttDet,53873)(ProbSlv,51903)(ProjMgmt,48656)
 };
 \end{axis}
@@ -96,15 +102,15 @@
   legend pos=north east,
   legend cell align=left,
 ]
-\addplot[fill=sgBlue, draw=sgBlue!70!black, line width=0.3pt, bar shift=-7pt] coordinates {
+\addplot[fill=sgBlue, draw=sgBlue!80!black, line width=0.35pt, bar shift=-7pt] coordinates {
   (Prog,3.97)(DataSci,8.04)(Cloud,4.39)(Soft,52.26)(Bus,11.81)(Design,0.60)(DataEng,1.02)(Cyber,0.62)
 };
 \addlegendentry{Demand}
-\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt, bar shift=0pt] coordinates {
+\addplot[fill=sgTeal, draw=sgTeal!80!black, line width=0.35pt, bar shift=0pt] coordinates {
   (Prog,57.47)(DataSci,85.10)(Cloud,44.06)(Soft,100)(Bus,90.22)(Design,0)(DataEng,31.28)(Cyber,0)
 };
 \addlegendentry{Coverage (lex.)}
-\addplot[fill=sgGreen, draw=sgGreen!70!black, line width=0.3pt, bar shift=7pt] coordinates {
+\addplot[fill=sgGreen, draw=sgGreen!80!black, line width=0.35pt, bar shift=7pt] coordinates {
   (Prog,65.05)(DataSci,93.36)(Cloud,78.67)(Soft,100)(Bus,100)(Design,24.07)(DataEng,59.50)(Cyber,73.71)
 };
 \addlegendentry{Coverage (sem.)}
@@ -124,17 +130,17 @@
   height=0.78\linewidth,
   symbolic x coords={Prog,DataSci,Cloud,Soft,Bus,Design,DataEng,Cyber},
   xtick=data,
-  x tick label style={font=\scriptsize},
+  x tick label style={rotate=32, anchor=east, font=\scriptsize},
   enlarge x limits=0.12,
   ymin=0, ymax=3.2,
   ylabel={Deficit (pp)},
   legend pos=north east,
 ]
-\addplot[fill=sgOrange, draw=sgOrange!70!black, line width=0.3pt, bar shift=-4pt] coordinates {
+\addplot[fill=sgOrange, draw=sgOrange!80!black, line width=0.35pt, bar shift=-4pt] coordinates {
   (Prog,1.69)(DataSci,1.20)(Cloud,2.45)(Soft,0.00)(Bus,1.16)(Design,0.60)(DataEng,0.70)(Cyber,0.62)
 };
 \addlegendentry{Lexical deficit}
-\addplot[fill=sgRed, draw=sgRed!70!black, line width=0.3pt, bar shift=4pt] coordinates {
+\addplot[fill=sgRed, draw=sgRed!80!black, line width=0.35pt, bar shift=4pt] coordinates {
   (Prog,1.39)(DataSci,0.53)(Cloud,0.94)(Soft,0.00)(Bus,0.00)(Design,0.46)(DataEng,0.41)(Cyber,0.16)
 };
 \addlegendentry{Semantic deficit}
@@ -160,14 +166,14 @@
 \begin{axis}[
   sg axis,
   ybar,
-  bar width=16pt,
-  width=0.96\linewidth,
-  height=0.78\linewidth,
+  bar width=44pt,
+  width=0.86\linewidth,
+  height=0.70\linewidth,
   symbolic x coords={USA,UK,Canada,Australia},
   xtick=data,
   ymin=0, ymax=100,
   ylabel={Share of postings (\%)},
-  enlarge x limits=0.18,
+  enlarge x limits=0.10,
   nodes near coords={\pgfmathprintnumber\pgfplotspointmeta\%},
   every node near coord/.append style={font=\scriptsize, color=black!75, yshift=2pt},
 ]
@@ -201,10 +207,10 @@
   nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
   every node near coord/.append style={font=\scriptsize, color=black!70, rotate=90, anchor=west, xshift=1pt},
 ]
-\addplot[fill=sgGrey, draw=sgGrey!70!black, line width=0.3pt] coordinates {
+\addplot[fill=sgGrey, draw=sgGrey!80!black, line width=0.35pt] coordinates {
   (ExtraCurr,-0.013)(AcadPerf,-0.040)
 };
-\addplot[fill=sgBlue, draw=sgBlue!70!black, line width=0.3pt] coordinates {
+\addplot[fill=sgBlue, draw=sgBlue!80!black, line width=0.35pt] coordinates {
   (Projects,0.599)(PrevSem,0.901)(IQ,0.802)(CGPA,0.913)(CommSk,0.918)
 };
 \end{axis}
@@ -234,9 +240,9 @@
   nodes near coords={\pgfmathprintnumber\pgfplotspointmeta},
   every node near coord/.append style={font=\scriptsize, color=black!70, yshift=2pt},
 ]
-\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt, bar shift=-5pt] coordinates {(CGPA,8.59)(Comm,7.66)(Projects,3.35)};
+\addplot[fill=sgTeal, draw=sgTeal!80!black, line width=0.35pt, bar shift=-5pt] coordinates {(CGPA,8.59)(Comm,7.66)(Projects,3.35)};
 \addlegendentry{Placed}
-\addplot[fill=sgRed, draw=sgRed!70!black, line width=0.3pt, bar shift=5pt] coordinates {(CGPA,7.32)(Comm,5.14)(Projects,2.35)};
+\addplot[fill=sgRed, draw=sgRed!80!black, line width=0.35pt, bar shift=5pt] coordinates {(CGPA,7.32)(Comm,5.14)(Projects,2.35)};
 \addlegendentry{Not placed}
 \end{axis}
 \end{tikzpicture}%
@@ -265,7 +271,7 @@
   nodes near coords={\pgfmathprintnumber\pgfplotspointmeta\%},
   every node near coord/.append style={font=\footnotesize, color=black!80, yshift=2pt},
 ]
-\addplot[fill=sgTeal, draw=sgTeal!70!black, line width=0.3pt] coordinates {
+\addplot[fill=sgTeal, draw=sgTeal!80!black, line width=0.35pt] coordinates {
   (With,57.60)(Without,42.26)
 };
 \end{axis}
