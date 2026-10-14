@@ -1232,6 +1232,15 @@
     "note": ""
   },
   {
+    "id": "C166",
+    "claim": "ALIGN06 results subsection is one paragraph with attribution, estimand caveat and an Appendix A pointer",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
+    "note": ""
+  },
+  {
     "id": "C161",
     "claim": "H5 PLAC01 rates similar across countries (max-min ~3.2 pp, overlapping CIs)",
     "ms_value": "similar across countries",

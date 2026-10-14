@@ -405,6 +405,14 @@ presence = [
      and ("\\textbf{Provenance-Audited Corpus for the Instrument:}" in TEX)
      and ("\\textbf{Harmonized Multi-Source Corpus:}" not in TEX)
      and ("Seven of the 15 sources feed" not in TEX)),
+    ("C166", "ALIGN06 results subsection is one paragraph with attribution, estimand caveat and an Appendix A pointer",
+     (TEX.count("\\emph{Estimand caveat, carried throughout:}") == 1)
+     and ("BLS OEWS May 2025 employment (attribution, licences and release pins in Section~\\ref{sec:align06_data})" in TEX)
+     and ("are in Appendix~\\ref{app:align06}." in TEX)
+     # everything the compression removed must still be stated, in Threats
+     and ("share 90 of 8,613 O\\*NET terms" in TEX)
+     and ("a positive SGI is close to guaranteed" in TEX)
+     and ("No headline figure is revised from ALIGN06." in TEX)),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
