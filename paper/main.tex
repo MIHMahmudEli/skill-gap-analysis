@@ -518,6 +518,26 @@ The persistent 32.0\% semantic deficit, and the domain-level deficits concentrat
 
 The measurements support claims about the instrument and the corpus---which vocabularies an exact matcher can and cannot resolve, how much of the posting-derived skill space the eight-category taxonomy covers, and how far a posting-derived reference profile sits from a technology inventory. They support no claim about curricula: no curriculum was read at course level and no institution is observed acting on any measurement, so this study derives no recommendation about course design, assessment practice, or accreditation. Four open questions follow from the measurements, and this study cannot answer any of them. Whether the 44.1\% lexical coverage of Cloud Infrastructure reflects curriculum content or the vocabulary of a keyword matcher applied to posting text would require course-level reading and human annotation of curricula. Whether the concentration of non-zero deficits in technical categories is an effect of corpus composition---the posting corpus is dominated by generic and non-technical competencies---rather than of curriculum content is untested here. Whether the deficits persist outside this single scrape family, and outside a corpus that is 85.2\% United States, is bounded only by the nested-superset check of ALIGN04, which is a sample-size extension within the same family. Whether a different taxonomy or a different covering-set size $P$ would move the deficits as much as the matcher threshold does is likewise unmeasured. These are recorded as open questions rather than as implications for practice, which is the scope Contribution~5 states.
 
+\subsection{Reporting Checklist for Skill Gap Measurements}
+
+\label{sec:reporting}
+
+An SGI value is not interpretable without the settings that produced it, so every report should carry five things.
+
+\begin{enumerate}
+
+\item \textbf{Configuration:} $K$, $P$ and $n_{\text{post}}$, and whether $P$ is the full profile or a top-$P$ covering set.
+
+\item \textbf{Sensitivity range:} its place within the registered envelope (lexical $0.29$--$0.73$, semantic $\tau = 0.5$ $0.04$--$0.42$), not the value alone.
+
+\item \textbf{Matched settings:} a cross-corpus or cross-experiment comparison is valid only at equal $(K, P)$; the covering-set sweep alone moves semantic SGI from $0.32$ to $0.04$.
+
+\item \textbf{Matcher base rate:} the positive rate of the matcher's validation set ($39.1\%$ here); precision is prevalence-dependent, so the reported $91.9\%$ is an upper bound on deployment.
+
+\item \textbf{Reference-profile provenance:} what it derives from and how many postings it rests on ($1{,}167$, posting-derived), and whether it is a curriculum sample (it is not).
+
+\end{enumerate}
+
 \subsection{Reproducibility and Data Availability}
 \label{sec:reproducibility}
 

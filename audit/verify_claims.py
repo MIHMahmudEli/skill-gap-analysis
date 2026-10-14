@@ -351,6 +351,24 @@ add("C208", "abstract closes by requiring SGI levels to be reported with their "
     "SGI levels depend on these design choices and must be reported with their "
     "settings" in TEX,
     "paper/main.tex abstract, final sentence")
+
+# --- Reporting Checklist (Discussion): five requirements, citing only values
+# that are already pinned elsewhere in this file.
+_chk = re.search(r"\\subsection\{Reporting Checklist for Skill Gap Measurements\}"
+                 r".*?\\end\{enumerate\}", TEX, re.S)
+_chk_txt = _chk.group(0) if _chk else ""
+add("C209", "Reporting Checklist subsection lists exactly five requirements and "
+    "cites only already-registered results",
+    [True, True, True, True],
+    [bool(_chk),
+     _chk_txt.count("\\item \\textbf{") == 5,
+     "39.1\\%" in _chk_txt,
+     "1{,}167" in _chk_txt],
+    "paper/main.tex Sec.Discussion (reporting checklist)",
+    note="every figure the checklist cites is pinned elsewhere: the envelope by "
+         "C11o/C11p, the 0.32->0.04 covering-set swing by C11q, the 39.1% matcher "
+         "base rate by C162, and the 1,167-posting provenance by C160, so the "
+         "checklist introduces no new quantity")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],

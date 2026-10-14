@@ -467,6 +467,25 @@
     "note": ""
   },
   {
+    "id": "C209",
+    "claim": "Reporting Checklist subsection lists exactly five requirements and cites only already-registered results",
+    "ms_value": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "artifact_value": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "match": true,
+    "evidence": "paper/main.tex Sec.Discussion (reporting checklist)",
+    "note": "every figure the checklist cites is pinned elsewhere: the envelope by C11o/C11p, the 0.32->0.04 covering-set swing by C11q, the 39.1% matcher base rate by C162, and the 1,167-posting provenance by C160, so the checklist introduces no new quantity"
+  },
+  {
     "id": "C12",
     "claim": "SGI tau=0.7 = 46.0%",
     "ms_value": 0.46,

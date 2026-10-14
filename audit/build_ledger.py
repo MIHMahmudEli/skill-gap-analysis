@@ -95,6 +95,7 @@ LOC = {
     "C203": "Sec.III-C footnote; Tab.datasets note",
     "C204": "Limitations item 6 (embedding batch)",
     "C205": "Abstract", "C206": "Abstract", "C207": "Abstract", "C208": "Abstract",
+    "C209": "Sec.Discussion (reporting checklist)",
 }
 for r in rows:
     r["manuscript_location"] = LOC.get(r["claim_id"], "various")
