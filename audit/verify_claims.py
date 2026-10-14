@@ -305,6 +305,16 @@ add("C202", "Sec.IV-B2 does not present the identical cross-corpus SGI as eviden
     and "supporting H3 even more cleanly" not in TEX
     and "not of the market corpus at all" not in TEX,
     "paper/main.tex Sec.IV-B2")
+add("C203", "the 519,814 -> 518,953 difference is 861 postings carrying no skill, "
+    "and the manuscript explains it in a footnote and in Table I's note",
+    [861, True],
+    [519814 - a3["n_postings"],
+     "861" in TEX and "record no skill" in TEX],
+    "datasets/hf_skill_gap_skills.csv rows minus ALIGN03 n_postings",
+    note="verified directly against the CSV on 2026-10-14: 519,814 rows, "
+         "861 with an empty job_skills value, 518,953 non-empty. C155 already "
+         "asserts n_postings == 518953; this check ties the manuscript's "
+         "explanation of the gap to that same number")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],
@@ -507,8 +517,11 @@ presence = [
      ("$-0.44$" in ALLTEX or "-0.44 pp" in ALLTEX) and ("univariate internship risk difference is $-0.44$" in ALLTEX)),
     ("C153", "tab:hypotheses cites STAT01 for H6 (not INTL01)",
      "Not supported (STAT01" in ALLTEX and "Not supported (INTL01" not in ALLTEX),
-    ("C154", "519,814 skill-annotated postings (RQ1, corrected wording)",
-     "519,814 skill-annotated postings" in TEX),
+    ("C154", "518,953 skill-annotated postings (RQ1); 861 of the 519,814 postings "
+     "in the skills table carry no skill and are dropped by the loader",
+     "518,953 skill-annotated postings" in TEX
+     and "519,814 skill-annotated postings" not in TEX
+     and a3["n_postings"] == 518953),
     ("C155", "ALIGN03 n_postings 518,953 is analyzed subset (documented)",
      a3["n_postings"] == 518953),
     ("C156", "profile-size confound documented (SENS02 covering-set sweep in Sec.IV-B2)",

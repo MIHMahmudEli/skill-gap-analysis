@@ -402,6 +402,21 @@
     "note": ""
   },
   {
+    "id": "C203",
+    "claim": "the 519,814 -> 518,953 difference is 861 postings carrying no skill, and the manuscript explains it in a footnote and in Table I's note",
+    "ms_value": [
+      861,
+      true
+    ],
+    "artifact_value": [
+      861,
+      true
+    ],
+    "match": true,
+    "evidence": "datasets/hf_skill_gap_skills.csv rows minus ALIGN03 n_postings",
+    "note": "verified directly against the CSV on 2026-10-14: 519,814 rows, 861 with an empty job_skills value, 518,953 non-empty. C155 already asserts n_postings == 518953; this check ties the manuscript's explanation of the gap to that same number"
+  },
+  {
     "id": "C12",
     "claim": "SGI tau=0.7 = 46.0%",
     "ms_value": 0.46,
@@ -1325,7 +1340,7 @@
   },
   {
     "id": "C154",
-    "claim": "519,814 skill-annotated postings (RQ1, corrected wording)",
+    "claim": "518,953 skill-annotated postings (RQ1); 861 of the 519,814 postings in the skills table carry no skill and are dropped by the loader",
     "ms_value": null,
     "artifact_value": true,
     "match": true,
