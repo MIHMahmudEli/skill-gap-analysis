@@ -381,6 +381,11 @@ presence = [
     ("C163", "VALID01 lexical kappa no longer claimed as independent corroboration",
      ("it does not corroborate that reading \\emph{independently}" in TEX)
      and ("independently corroborates this" not in TEX)),
+    ("C164", "H1-H3 framed as pre-specified checks; H1 is profile-not-curricula and H3 near-guaranteed",
+     ("\\subsection{Pre-Specified Checks (H1--H3)}" in TEX)
+     and ("\\textbf{H1 tests the reference profile, not curricula}:" in TEX)
+     and ("\\textbf{H3 is near-guaranteed by construction}:" in TEX)
+     and ("\\subsection{Testable Hypotheses}" not in TEX)),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
