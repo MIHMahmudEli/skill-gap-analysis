@@ -512,6 +512,28 @@
       "status_errors": 0,
       "verified_utc": "2026-10-11T14:42:51Z"
     },
+    "SENS02_covering_set_sweep": {
+      "attempts": 0,
+      "deps": [
+        "SENS01_sgi_sensitivity",
+        "ALIGN01_lexical_bootstrap",
+        "ALIGN02_semantic_sbert",
+        "ALIGN04_crosscorpus_linkedin"
+      ],
+      "history": [
+        {
+          "event": "registered",
+          "note": "created before any SENS02 execution; registration precedes the run",
+          "prereg": "experiments/SENS02_PREREG.md",
+          "ts": "2026-10-14T10:25:30Z"
+        }
+      ],
+      "prereg": "experiments/SENS02_PREREG.md",
+      "run_mode": "local",
+      "seed": 42,
+      "slug": "sens02-covering-set-sweep",
+      "status": "REGISTERED"
+    },
     "STAT01_placement_core": {
       "attempts": 2,
       "completed_utc": "2026-10-10T14:35:31Z",

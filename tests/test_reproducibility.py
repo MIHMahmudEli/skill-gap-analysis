@@ -49,7 +49,7 @@ NOT_USED_IN_MANUSCRIPT = {"TRENDS01_ai_longitudinal"}
 # status is REGISTERED (or RUNNING / COMPLETED once a run is under way) and
 # its metrics.json may not exist yet. Remove an ID from this list in the same
 # commit that finishes its run.
-NOT_YET_RUN: set[str] = set()
+NOT_YET_RUN: set[str] = {"SENS02_covering_set_sweep"}
 
 
 def _load_registry():
