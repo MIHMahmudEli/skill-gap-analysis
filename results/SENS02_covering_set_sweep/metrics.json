@@ -1,0 +1,337 @@
+{
+  "status": "completed",
+  "experiment_id": "SENS02_covering_set_sweep",
+  "prereg": "experiments/SENS02_PREREG.md",
+  "seed": 42,
+  "K": 100,
+  "P_acad_grid": [
+    "100",
+    "250",
+    "500",
+    "1000",
+    "all"
+  ],
+  "P_acad_note": "occupational reference-profile covering-set size; not SENS01's posting sample size (n_post)",
+  "tau": [
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "B_SKILL": 1000,
+  "B_POST": 500,
+  "n_postings": {
+    "hf_2024": 518953,
+    "linkedin_2024": 1294296
+  },
+  "n_reference_rows": 1167,
+  "n_reference_skills": 5047,
+  "distinct_profile_skills_embedded": 5078,
+  "model": "all-MiniLM-L6-v2",
+  "grid": {
+    "corpus": [
+      "hf_2024",
+      "linkedin_2024"
+    ],
+    "match": [
+      "lexical",
+      "semantic"
+    ],
+    "P_acad": [
+      "100",
+      "250",
+      "500",
+      "1000",
+      "all"
+    ],
+    "tau": [
+      0.4,
+      0.5,
+      0.6,
+      0.7
+    ]
+  },
+  "counts": {
+    "grid_rows": 50
+  },
+  "sgi_by_p_acad": {
+    "hf_2024": {
+      "100": {
+        "lexical": 0.52,
+        "semantic": {
+          "0.4": 0.2,
+          "0.5": 0.32,
+          "0.6": 0.39,
+          "0.7": 0.46
+        }
+      },
+      "250": {
+        "lexical": 0.43,
+        "semantic": {
+          "0.4": 0.07,
+          "0.5": 0.2,
+          "0.6": 0.28,
+          "0.7": 0.35
+        }
+      },
+      "500": {
+        "lexical": 0.37,
+        "semantic": {
+          "0.4": 0.06,
+          "0.5": 0.14,
+          "0.6": 0.22,
+          "0.7": 0.28
+        }
+      },
+      "1000": {
+        "lexical": 0.34,
+        "semantic": {
+          "0.4": 0.02,
+          "0.5": 0.11,
+          "0.6": 0.17,
+          "0.7": 0.23
+        }
+      },
+      "all": {
+        "lexical": 0.29,
+        "semantic": {
+          "0.4": 0.0,
+          "0.5": 0.04,
+          "0.6": 0.12,
+          "0.7": 0.15
+        }
+      }
+    },
+    "linkedin_2024": {
+      "100": {
+        "lexical": 0.52,
+        "semantic": {
+          "0.4": 0.2,
+          "0.5": 0.32,
+          "0.6": 0.39,
+          "0.7": 0.46
+        }
+      },
+      "250": {
+        "lexical": 0.43,
+        "semantic": {
+          "0.4": 0.07,
+          "0.5": 0.2,
+          "0.6": 0.28,
+          "0.7": 0.35
+        }
+      },
+      "500": {
+        "lexical": 0.37,
+        "semantic": {
+          "0.4": 0.06,
+          "0.5": 0.14,
+          "0.6": 0.22,
+          "0.7": 0.28
+        }
+      },
+      "1000": {
+        "lexical": 0.34,
+        "semantic": {
+          "0.4": 0.02,
+          "0.5": 0.11,
+          "0.6": 0.17,
+          "0.7": 0.23
+        }
+      },
+      "all": {
+        "lexical": 0.29,
+        "semantic": {
+          "0.4": 0.0,
+          "0.5": 0.04,
+          "0.6": 0.12,
+          "0.7": 0.15
+        }
+      }
+    }
+  },
+  "registered_contrasts": {
+    "R1_lex_P100_is_0.52": {
+      "ok": true,
+      "got": {
+        "hf_2024": 0.52,
+        "linkedin_2024": 0.52
+      },
+      "expected": 0.52
+    },
+    "R2_sem_P100_is_0.32": {
+      "ok": true,
+      "got": {
+        "hf_2024": 0.32,
+        "linkedin_2024": 0.32
+      },
+      "expected": 0.32,
+      "tol": 0.02
+    },
+    "R3_lex_P500_is_0.37": {
+      "ok": true,
+      "got": {
+        "hf_2024": 0.37,
+        "linkedin_2024": 0.37
+      },
+      "expected": 0.37
+    },
+    "R4_sem_P500_is_0.14": {
+      "ok": true,
+      "got": {
+        "hf_2024": 0.14,
+        "linkedin_2024": 0.14
+      },
+      "expected": 0.14,
+      "tol": 0.02
+    },
+    "R5_level_change_lex_100_to_500": {
+      "ok": true,
+      "got": {
+        "hf_2024": 0.15,
+        "linkedin_2024": 0.15
+      },
+      "expected": 0.15,
+      "interpretation": "equal on both corpora => the 0.52->0.37 level change is a covering-set-size effect, not a corpus effect"
+    },
+    "R6_cross_corpus_gap": {
+      "ok": true,
+      "per_P_acad": {
+        "100": {
+          "lexical": 0.0,
+          "semantic_tau0.5": 0.0
+        },
+        "250": {
+          "lexical": 0.0,
+          "semantic_tau0.5": 0.0
+        },
+        "500": {
+          "lexical": 0.0,
+          "semantic_tau0.5": 0.0
+        },
+        "1000": {
+          "lexical": 0.0,
+          "semantic_tau0.5": 0.0
+        },
+        "all": {
+          "lexical": 0.0,
+          "semantic_tau0.5": 0.0
+        }
+      },
+      "worst_lexical": 0.0,
+      "worst_semantic_tau0.5": 0.0,
+      "limits": {
+        "lexical": 0.01,
+        "semantic_tau0.5": 0.02
+      }
+    },
+    "R7_monotone_in_P_acad": {
+      "ok": true,
+      "curves": {
+        "hf_2024_lexical_tau": {
+          "sgi": [
+            0.52,
+            0.43,
+            0.37,
+            0.34,
+            0.29
+          ],
+          "non_increasing": true
+        },
+        "hf_2024_semantic_tau0.4": {
+          "sgi": [
+            0.2,
+            0.07,
+            0.06,
+            0.02,
+            0.0
+          ],
+          "non_increasing": true
+        },
+        "hf_2024_semantic_tau0.5": {
+          "sgi": [
+            0.32,
+            0.2,
+            0.14,
+            0.11,
+            0.04
+          ],
+          "non_increasing": true
+        },
+        "hf_2024_semantic_tau0.6": {
+          "sgi": [
+            0.39,
+            0.28,
+            0.22,
+            0.17,
+            0.12
+          ],
+          "non_increasing": true
+        },
+        "hf_2024_semantic_tau0.7": {
+          "sgi": [
+            0.46,
+            0.35,
+            0.28,
+            0.23,
+            0.15
+          ],
+          "non_increasing": true
+        },
+        "linkedin_2024_lexical_tau": {
+          "sgi": [
+            0.52,
+            0.43,
+            0.37,
+            0.34,
+            0.29
+          ],
+          "non_increasing": true
+        },
+        "linkedin_2024_semantic_tau0.4": {
+          "sgi": [
+            0.2,
+            0.07,
+            0.06,
+            0.02,
+            0.0
+          ],
+          "non_increasing": true
+        },
+        "linkedin_2024_semantic_tau0.5": {
+          "sgi": [
+            0.32,
+            0.2,
+            0.14,
+            0.11,
+            0.04
+          ],
+          "non_increasing": true
+        },
+        "linkedin_2024_semantic_tau0.6": {
+          "sgi": [
+            0.39,
+            0.28,
+            0.22,
+            0.17,
+            0.12
+          ],
+          "non_increasing": true
+        },
+        "linkedin_2024_semantic_tau0.7": {
+          "sgi": [
+            0.46,
+            0.35,
+            0.28,
+            0.23,
+            0.15
+          ],
+          "non_increasing": true
+        }
+      }
+    }
+  },
+  "all_registered_contrasts_ok": true,
+  "smoke": false,
+  "runtime_sec": 167.96
+}

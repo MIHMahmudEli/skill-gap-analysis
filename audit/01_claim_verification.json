@@ -202,6 +202,117 @@
     "note": ""
   },
   {
+    "id": "C11h",
+    "claim": "SENS02 lexical SGI 0.52/0.43/0.37/0.34/0.29 at covering-set size P_acad 100/250/500/1000/all (both corpora identical)",
+    "ms_value": [
+      0.52,
+      0.43,
+      0.37,
+      0.34,
+      0.29
+    ],
+    "artifact_value": [
+      0.52,
+      0.43,
+      0.37,
+      0.34,
+      0.29
+    ],
+    "match": true,
+    "evidence": "results/SENS02_covering_set_sweep/table_covering_set_sweep.csv",
+    "note": "headline 0.52 is the P_acad=100 point; ALIGN04's 0.37 is the P_acad=500 point of the same curve"
+  },
+  {
+    "id": "C11i",
+    "claim": "SENS02 semantic SGI at tau=0.5 0.32/0.20/0.14/0.11/0.04 over the same covering-set sizes (both corpora identical)",
+    "ms_value": [
+      0.32,
+      0.2,
+      0.14,
+      0.11,
+      0.04
+    ],
+    "artifact_value": [
+      0.32,
+      0.2,
+      0.14,
+      0.11,
+      0.04
+    ],
+    "match": true,
+    "evidence": "table_covering_set_sweep.csv",
+    "note": ""
+  },
+  {
+    "id": "C11j",
+    "claim": "SENS02 level change SGI(P_acad=100) - SGI(P_acad=500) = 0.15 lexical on BOTH corpora",
+    "ms_value": [
+      0.15,
+      0.15
+    ],
+    "artifact_value": [
+      0.15,
+      0.15
+    ],
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.R5",
+    "note": "equal on both corpora: the 0.52 -> 0.37 level change is a covering-set-size effect, not a corpus effect"
+  },
+  {
+    "id": "C11k",
+    "claim": "SENS02 cross-corpus gap 0.00 at every covering-set size (lexical and semantic tau=0.5)",
+    "ms_value": [
+      0.0,
+      0.0
+    ],
+    "artifact_value": [
+      0.0,
+      0.0
+    ],
+    "match": true,
+    "evidence": "metrics.json registered_contrasts.R6",
+    "note": ""
+  },
+  {
+    "id": "C11l",
+    "claim": "SENS02 covering-set size P_acad=100 reproduces the headline lexical/semantic 0.52/0.32",
+    "ms_value": [
+      0.52,
+      0.32
+    ],
+    "artifact_value": [
+      0.52,
+      0.32
+    ],
+    "match": true,
+    "evidence": "table_covering_set_sweep.csv",
+    "note": "identical on linkedin_2024; that identity is asserted by C11k"
+  },
+  {
+    "id": "C11m",
+    "claim": "SENS02 covering-set size P_acad=500 reproduces ALIGN04's lexical/semantic 0.37/0.14",
+    "ms_value": [
+      0.37,
+      0.14
+    ],
+    "artifact_value": [
+      0.37,
+      0.14
+    ],
+    "match": true,
+    "evidence": "table_covering_set_sweep.csv",
+    "note": "the ALIGN04 value is one point of the same covering-set curve"
+  },
+  {
+    "id": "C11n",
+    "claim": "SENS02 all seven registered contrasts pass",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "metrics.json registered_contrasts R1-R7",
+    "note": ""
+  },
+  {
     "id": "C12",
     "claim": "SGI tau=0.7 = 46.0%",
     "ms_value": 0.46,

@@ -61,6 +61,12 @@
       "registry_status": "VERIFIED",
       "verified": true
     },
+    "SENS02_covering_set_sweep": {
+      "issues": [],
+      "missing_files": [],
+      "registry_status": "COMPLETED",
+      "verified": true
+    },
     "STAT01_placement_core": {
       "issues": [],
       "missing_files": [],
@@ -86,5 +92,5 @@
       "verified": true
     }
   },
-  "verified_utc": "2026-10-14T07:23:18Z"
+  "verified_utc": "2026-10-14T10:44:03Z"
 }

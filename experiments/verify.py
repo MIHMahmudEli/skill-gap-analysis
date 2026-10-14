@@ -44,6 +44,8 @@ REQUIRED = {
     "SENS01_sgi_sensitivity": ["metrics.json", "table_sensitivity_grid.csv",
                                "table_sensitivity_summary.csv",
                                "figure_sensitivity_heatmap.png"],
+    "SENS02_covering_set_sweep": ["metrics.json",
+                                  "table_covering_set_sweep.csv"],
     "ALIGN06_onet_demand_profile": ["metrics.json", "control_6_1.json",
                                     "table_sgi_onet_grid.csv",
                                     "table_category_gap_onet.csv",
@@ -262,6 +264,48 @@ def check_numeric_sanity(exp_id: str, dir_path: Path) -> list[str]:
         if not ((cat.CI_rate_lower >= -1e-9)
                 & (cat.CI_rate_upper <= 1 + 1e-9)).all():
             issues.append("category coverage CI outside [0,1]")
+    elif exp_id == "SENS02_covering_set_sweep":
+        rc = m["registered_contrasts"]
+        for name, cell in rc.items():
+            if not cell.get("ok"):
+                issues.append(f"registered contrast failed: {name}")
+        if not m.get("all_registered_contrasts_ok"):
+            issues.append("all_registered_contrasts_ok is not true")
+        if m.get("smoke"):
+            issues.append("metrics.json came from a --smoke run, not the real one")
+        grid = pd.read_csv(dir_path / "table_covering_set_sweep.csv",
+                           keep_default_na=False)
+        if len(grid) != m["counts"]["grid_rows"]:
+            issues.append("grid row count disagrees with metrics.counts")
+        if not ((0 <= grid.SGI) & (grid.SGI <= 1)).all():
+            issues.append("SGI out of [0,1]")
+        if not ((1.0 - grid.coverage - grid.SGI).abs() <= 1e-9).all():
+            issues.append("SGI is not 1 - coverage")
+        for lo, hi, what in (("CI_skill_lo", "CI_skill_hi", "skill"),
+                             ("CI_post_lo", "CI_post_hi", "posting")):
+            if not (grid[lo] <= grid[hi]).all():
+                issues.append(f"inverted {what} CI")
+            out = grid[(grid.SGI < grid[lo]) | (grid.SGI > grid[hi])]
+            if len(out):
+                issues.append(f"{len(out)} rows with SGI outside their {what} CI")
+        # The point SENS02 was registered to settle: at matched covering-set
+        # size the two corpora must agree, or the 0.52 -> 0.37 level change is
+        # not a pure covering-set effect.
+        for match, tau, tol in (("lexical", "", 0.01),
+                                ("semantic", "0.5", 0.02)):
+            sub = grid[(grid.match == match) & (grid.tau.astype(str) == tau)]
+            wide = sub.pivot_table(index="P_acad", columns="corpus", values="SGI")
+            gap = (wide.max(axis=1) - wide.min(axis=1)).max()
+            if gap > tol:
+                issues.append(f"corpora disagree on {match} SGI (gap {gap} > {tol})")
+        # coverage must be non-decreasing in the covering-set size
+        order = {str(p): i for i, p in enumerate(m["P_acad_grid"])}
+        for _, grp in grid.groupby(["corpus", "match", "tau"]):
+            seq = list(grp.assign(_o=grp.P_acad.map(order))
+                       .sort_values("_o").coverage)
+            if any(seq[i] > seq[i + 1] + 1e-9 for i in range(len(seq) - 1)):
+                issues.append("coverage not non-decreasing in P_acad")
+                break
     return issues
 
 

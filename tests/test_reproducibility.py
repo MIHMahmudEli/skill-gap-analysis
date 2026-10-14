@@ -35,7 +35,11 @@ REGISTRY = ROOT / "results" / "registry.json"
 #
 # SENS01: staged for the Phase-2 revision (P2-3 abstract/sensitivity
 # rewrite, `reports/Q1_REVISION_PLAN.md`); verified 2026-10-11.
-PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity"}
+# SENS02: covering-set sweep, verified 2026-10-14 (SENS02_PREREG.md); staged
+# for the profile-size paragraph of `paper/main.tex`, which cites it in the
+# next commit of this batch.
+PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity",
+                                  "SENS02_covering_set_sweep"}
 # TRENDS01: excluded from the manuscript 2026-10-12 (author instruction):
 # RQ1-trend claims, Fig. 6b and the "spanning 2020 through 2026" phrasing
 # were removed because the corpus carries STRONG generator signatures (top
@@ -49,7 +53,11 @@ NOT_USED_IN_MANUSCRIPT = {"TRENDS01_ai_longitudinal"}
 # status is REGISTERED (or RUNNING / COMPLETED once a run is under way) and
 # its metrics.json may not exist yet. Remove an ID from this list in the same
 # commit that finishes its run.
-NOT_YET_RUN: set[str] = {"SENS02_covering_set_sweep"}
+#
+# SENS02: registered 2026-10-14 10:25Z (commit 3a7b7cc, before execution) and
+# run the same day; its entry moved to PENDING_MANUSCRIPT_INTEGRATION above
+# because its metrics.json now exists and verify.py REQUIRED covers it.
+NOT_YET_RUN: set[str] = set()
 
 
 def _load_registry():

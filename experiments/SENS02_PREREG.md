@@ -160,4 +160,33 @@ wording and SENS02 is reported as a null/qualifying result.
 
 ## 9. Amendments
 
-*(none yet — append dated blocks here; never edit §1–§8 silently)*
+### A1 — 2026-10-14, recorded after the run (not a design change)
+
+§1–§8 were not edited. Two observations that the run produced and that a
+reader of the artifacts should know:
+
+1. **Skill-list interval at P_acad = 100 is [0.42, 0.63] / [0.23, 0.42].**
+   The lexical interval reproduces the headline [0.42, 0.63] exactly. The
+   semantic one is [0.23, 0.42] against the headline [0.23, 0.41] — the same
+   coverage (0.68) and the same point estimate (0.32), but a bootstrap whose
+   upper bound moves by 0.01. Cause: the coverage *indicator vector* is the
+   same weight but not necessarily the same support, because SENS02 embeds a
+   different set of strings (5,078) than SENS01 (23,456), and a changed
+   batch composition shifts a handful of cosine similarities at the 16th
+   digit, reordering which skills sit exactly on the τ = 0.5 boundary. The
+   bootstrap draws are identical (both `RandomState(42)`); they index
+   positions, so a reordering of which positions are covered moves the
+   interval. This is the batch/precision sensitivity already disclosed at
+   `results/SENS01_sgi_sensitivity/metrics.json:13` and
+   `experiments/README.md:353`, and it is why §6 gave R2/R4 a ±0.02
+   tolerance while requiring the lexical ends to be exact. No registered
+   contrast was affected: R1–R7 all passed.
+
+2. **The posting-level intervals reported here are new information, not a
+   restatement.** SENS01 marks its `n_post = all` rows `NaN` because its
+   gather is prohibitive at that size (manuscript §III-C); SENS02's sparse
+   form makes them computable, and they are *narrower* than every skill-list
+   interval in the grid (e.g. [0.50, 0.55] at P_acad = 100 against
+   [0.42, 0.63]). The manuscript claim that the full-corpus posting term is
+   *bounded by* the largest sub-sampled one is therefore confirmed, not
+   contradicted.

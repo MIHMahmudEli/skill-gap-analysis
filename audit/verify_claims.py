@@ -160,6 +160,83 @@ add("C11g", "SENS01 n_post=all anchor rows carry no posting-level interval",
     True, all(not (r["CI_post_lo"] or r["CI_post_hi"])
               for r in _sens_grid if r["P"] == "all"),
     "table_sensitivity_grid.csv n_post=all rows (column P)")
+
+# --- SENS02 covering-set sweep (experiments/SENS02_PREREG.md, registered
+# 2026-10-14 10:25Z in a commit that predates the run): the same K = 100
+# market profile measured against occupational covering sets that grow from
+# 100 to every one of the 5,047 skills in the 1,167-row reference profile.
+# P_acad below is that covering-set size -- NOT SENS01's grid dimension,
+# which is the market posting sample size n_post.
+_s02 = load_metrics("SENS02_covering_set_sweep")
+_s02_grid = list(csv.DictReader(
+    (RESULTS / "SENS02_covering_set_sweep" / "table_covering_set_sweep.csv")
+    .open(encoding="utf-8")))
+_s02_P = ["100", "250", "500", "1000", "all"]
+
+
+def _s02_cell(corpus: str, match: str, p: str, tau: str = "") -> dict:
+    for r in _s02_grid:
+        if (r["corpus"] == corpus and r["match"] == match
+                and r["P_acad"] == p and r["tau"] == tau):
+            return r
+    raise SystemExit(f"SENS02 cell not found: {corpus} {match} "
+                     f"P_acad={p} tau={tau!r}")
+
+
+def _s02_curve(match: str, tau: str = "") -> list:
+    """The two corpora are identical at every point, so one curve suffices."""
+    a = [float(_s02_cell("hf_2024", match, p, tau)["SGI"]) for p in _s02_P]
+    b = [float(_s02_cell("linkedin_2024", match, p, tau)["SGI"]) for p in _s02_P]
+    if a != b:
+        raise SystemExit(f"SENS02 corpora diverge on {match} tau={tau!r}: {a} vs {b}")
+    return a
+
+
+add("C11h", "SENS02 lexical SGI 0.52/0.43/0.37/0.34/0.29 at covering-set size "
+    "P_acad 100/250/500/1000/all (both corpora identical)",
+    [0.52, 0.43, 0.37, 0.34, 0.29], _s02_curve("lexical"),
+    "results/SENS02_covering_set_sweep/table_covering_set_sweep.csv",
+    note="headline 0.52 is the P_acad=100 point; ALIGN04's 0.37 is the "
+         "P_acad=500 point of the same curve")
+add("C11i", "SENS02 semantic SGI at tau=0.5 0.32/0.20/0.14/0.11/0.04 over the "
+    "same covering-set sizes (both corpora identical)",
+    [0.32, 0.20, 0.14, 0.11, 0.04], _s02_curve("semantic", "0.5"),
+    "table_covering_set_sweep.csv")
+add("C11j", "SENS02 level change SGI(P_acad=100) - SGI(P_acad=500) = 0.15 "
+    "lexical on BOTH corpora",
+    [0.15, 0.15],
+    [round(_s02["registered_contrasts"]
+           ["R5_level_change_lex_100_to_500"]["got"]["hf_2024"], 4),
+     round(_s02["registered_contrasts"]
+           ["R5_level_change_lex_100_to_500"]["got"]["linkedin_2024"], 4)],
+    "metrics.json registered_contrasts.R5",
+    note="equal on both corpora: the 0.52 -> 0.37 level change is a "
+         "covering-set-size effect, not a corpus effect")
+add("C11k", "SENS02 cross-corpus gap 0.00 at every covering-set size "
+    "(lexical and semantic tau=0.5)",
+    [0.0, 0.0],
+    [round(_s02["registered_contrasts"]["R6_cross_corpus_gap"]
+           ["worst_lexical"], 4),
+     round(_s02["registered_contrasts"]["R6_cross_corpus_gap"]
+           ["worst_semantic_tau0.5"], 4)],
+    "metrics.json registered_contrasts.R6")
+add("C11l", "SENS02 covering-set size P_acad=100 reproduces the headline "
+    "lexical/semantic 0.52/0.32",
+    [0.52, 0.32],
+    [float(_s02_cell("hf_2024", "lexical", "100")["SGI"]),
+     float(_s02_cell("hf_2024", "semantic", "100", "0.5")["SGI"])],
+    "table_covering_set_sweep.csv",
+    note="identical on linkedin_2024; that identity is asserted by C11k")
+add("C11m", "SENS02 covering-set size P_acad=500 reproduces ALIGN04's "
+    "lexical/semantic 0.37/0.14",
+    [0.37, 0.14],
+    [float(_s02_cell("hf_2024", "lexical", "500")["SGI"]),
+     float(_s02_cell("hf_2024", "semantic", "500", "0.5")["SGI"])],
+    "table_covering_set_sweep.csv",
+    note="the ALIGN04 value is one point of the same covering-set curve")
+add("C11n", "SENS02 all seven registered contrasts pass", True,
+    _s02["all_registered_contrasts_ok"],
+    "metrics.json registered_contrasts R1-R7")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],
