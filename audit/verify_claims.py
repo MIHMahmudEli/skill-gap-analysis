@@ -578,7 +578,7 @@ presence = [
      and ("no human line-by-line topic audit was performed" in TEX)),
     ("C160", "abstract discloses employer-derived occupational reference profile (1,167 postings)",
      "employer-derived occupational reference profile (1,167 postings" in TEX),
-    ("C161", "Statistical Inference states the headline SGI CI resamples the market skill list, not postings",
+    ("C167", "Statistical Inference states the headline SGI CI resamples the market skill list, not postings",
      ("binary coverage indicators" in TEX)
      and ("from the \\emph{market skill list}, not from postings" in TEX)
      and ("posting-level 95\\% intervals of $[0.49, 0.58]$" in TEX)

@@ -127,7 +127,7 @@ C157,main,Sec.III-A; Tab.I; Limit.1,"occupational reference 1,167 stated (not 13
 C158,main,various,H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12),null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C159,main,various,"CS2023 anchor described as computational, not human line-by-line audit",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C160,main,various,"abstract discloses employer-derived occupational reference profile (1,167 postings)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
-C161,placement,paper_placement Sec.V-A (hyp. verdicts),"Statistical Inference states the headline SGI CI resamples the market skill list, not postings",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
+C167,main,various,"Statistical Inference states the headline SGI CI resamples the market skill list, not postings",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C162,main,various,"VALID01 precision scope limitation (39.1% base rate, not transferable to 100 x P)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C163,main,various,VALID01 lexical kappa no longer claimed as independent corroboration,null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C164,main,various,H1-H3 framed as pre-specified checks; H1 is profile-not-curricula and H3 near-guaranteed,null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,

@@ -171,6 +171,45 @@ def test_audit_claim_ledger_reproduces():
     assert counts.get("reproduced", 0) >= 90, counts
 
 
+def test_claim_ids_are_unique_across_verify_claims_and_ledger():
+    """No claim_id may identify two different claims.
+
+    Two add()/presence checks were once written under the same id (C161 was
+    simultaneously the main paper's statistical-inference check and the
+    companion paper's H5 PLAC01 check), so the ledger carried two rows sharing
+    one id and any reference to "C161" was ambiguous.  Both the verification
+    JSON and the emitted ledger are checked, and both are regenerated here so
+    the test cannot pass against a stale artifact."""
+    script = ROOT / "audit" / "verify_claims.py"
+    ledger_script = ROOT / "audit" / "build_ledger.py"
+    if not (script.exists() and ledger_script.exists()):
+        pytest.skip("audit scripts absent")
+    proc = subprocess.run(
+        [sys.executable, str(script)],
+        capture_output=True, text=True, cwd=str(ROOT), timeout=600,
+    )
+    assert proc.returncode == 0, proc.stderr[-2000:]
+    proc = subprocess.run(
+        [sys.executable, str(ledger_script)],
+        capture_output=True, text=True, cwd=str(ROOT), timeout=600,
+    )
+    assert proc.returncode == 0, proc.stderr[-2000:]
+
+    from collections import Counter
+    js = ROOT / "audit" / "01_claim_verification.json"
+    assert js.exists()
+    ids = [c["id"] for c in json.loads(js.read_text(encoding="utf-8"))]
+    dupes = {k: v for k, v in Counter(ids).items() if v > 1}
+    assert not dupes, f"duplicate claim ids in verify_claims output: {dupes}"
+
+    ledger = ROOT / "audit" / "01_claim_evidence_ledger.csv"
+    assert ledger.exists()
+    rows = list(csv.DictReader(ledger.open(encoding="utf-8")))
+    cids = [r["claim_id"] for r in rows]
+    dupes = {k: v for k, v in Counter(cids).items() if v > 1}
+    assert not dupes, f"duplicate claim_id in ledger: {dupes}"
+
+
 def test_input_checksums_file_lists_nine_bundles():
     csum = ROOT / "datasets" / "input_checksums.sha256"
     if not csum.exists():
