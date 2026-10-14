@@ -443,8 +443,9 @@ presence = [
      "519,814 skill-annotated postings" in TEX),
     ("C155", "ALIGN03 n_postings 518,953 is analyzed subset (documented)",
      a3["n_postings"] == 518953),
-    ("C156", "profile-size confound documented (matched-profile 2x2 in Sec.IV-B2)",
-     "matched-profile" in TEX and "Profile-size sensitivity" in TEX),
+    ("C156", "profile-size confound documented (SENS02 covering-set sweep in Sec.IV-B2)",
+     "matched-profile" in TEX and "Profile-size sensitivity" in TEX
+     and "SENS02" in TEX),
     ("C157", "occupational reference 1,167 stated (not 13,833 as taxonomy)",
      "1,167" in TEX and "13,833-row taxonomy" in TEX),
     ("C158", "H5 credential locality UNTESTED (PLAC01 benchmark apparently synthetic; 2026-10-12)",

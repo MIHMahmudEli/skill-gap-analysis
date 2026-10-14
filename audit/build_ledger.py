@@ -81,7 +81,14 @@ LOC = {
     "C77": "Sec.IV-D4/D5", "C100": "Abstract; Sec.IV-D5", "C110": "Sec.V-E; Hyp.H5/H6",
     "C120": "Sec.IV-A (RQ1 geography; GEO01)", "C152": "Sec.V-A (hyp. verdicts)", "C152b": "Sec.V-A (hyp. verdicts)",
     "C153": "Tab.XIII", "C155": "Sec.IV-C vs ALIGN03 metrics",
-    "C156": "Sec.IV-B2 (profile-size sensitivity)", "C157": "Sec.III-A; Tab.I; Limit.1",
+    "C156": "Sec.IV-B2 (profile-size sensitivity; SENS02)", "C157": "Sec.III-A; Tab.I; Limit.1",
+    "C11h": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
+    "C11i": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
+    "C11j": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
+    "C11k": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
+    "C11l": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
+    "C11m": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
+    "C11n": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
 }
 for r in rows:
     r["manuscript_location"] = LOC.get(r["claim_id"], "various")
@@ -94,7 +101,11 @@ for r in rows:
     if r["claim_id"] == "C155":
         r["proposed_action"] = "DONE (Phase 9): RQ1 wording clarifies 519,814 postings; ALIGN03 subset documented."
     if r["claim_id"] == "C156":
-        r["proposed_action"] = "DONE (Phase 9): matched-profile 2x2 replaces vocabulary-composition story."
+        r["proposed_action"] = ("DONE (Phase 9): matched-profile 2x2 replaces the "
+                                "vocabulary-composition story. UPDATED 2026-10-14: SENS02 "
+                                "(C11h-C11n) extends it to a covering-set sweep P=100..all "
+                                "showing the level change is a covering-set effect, not a "
+                                "corpus effect.")
 
 # ALIGN06 (A6xx): the supplementary O*NET x BLS demand-side check. Every row
 # is hand-annotated because a caveat cannot be derived from a number: the O*NET

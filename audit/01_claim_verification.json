@@ -1254,7 +1254,7 @@
   },
   {
     "id": "C156",
-    "claim": "profile-size confound documented (matched-profile 2x2 in Sec.IV-B2)",
+    "claim": "profile-size confound documented (SENS02 covering-set sweep in Sec.IV-B2)",
     "ms_value": null,
     "artifact_value": true,
     "match": true,

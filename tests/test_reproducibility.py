@@ -35,11 +35,9 @@ REGISTRY = ROOT / "results" / "registry.json"
 #
 # SENS01: staged for the Phase-2 revision (P2-3 abstract/sensitivity
 # rewrite, `reports/Q1_REVISION_PLAN.md`); verified 2026-10-11.
-# SENS02: covering-set sweep, verified 2026-10-14 (SENS02_PREREG.md); staged
-# for the profile-size paragraph of `paper/main.tex`, which cites it in the
-# next commit of this batch.
-PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity",
-                                  "SENS02_covering_set_sweep"}
+# SENS02 was staged here for one commit (fb59639) and graduated to
+# USED_IN_MANUSCRIPT on 2026-10-14 when Sec.IV-B2 began citing it.
+PENDING_MANUSCRIPT_INTEGRATION = {"SENS01_sgi_sensitivity"}
 # TRENDS01: excluded from the manuscript 2026-10-12 (author instruction):
 # RQ1-trend claims, Fig. 6b and the "spanning 2020 through 2026" phrasing
 # were removed because the corpus carries STRONG generator signatures (top
@@ -98,9 +96,10 @@ def test_registry_all_used_in_manuscript():
                 f"{exp_id} is registered but has an unexpected status: {status}")
         else:
             assert status == "USED_IN_MANUSCRIPT", (exp_id, status)
-    # 13 base = 12 USED_IN_MANUSCRIPT + 1 not-used; any not-yet-run entry is
-    # counted separately so the registry cannot grow silently.
-    assert len(statuses) == 13 + len(staged) + len(not_yet_run), statuses
+    # 14 base = 13 USED_IN_MANUSCRIPT + 1 not-used; any not-yet-run entry is
+    # counted separately so the registry cannot grow silently.  Raised from
+    # 13 when SENS02 graduated to USED_IN_MANUSCRIPT (2026-10-14).
+    assert len(statuses) == 14 + len(staged) + len(not_yet_run), statuses
 
 
 def test_registry_metrics_files_exist_and_complete():

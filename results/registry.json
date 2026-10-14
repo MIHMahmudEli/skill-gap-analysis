@@ -533,13 +533,20 @@
           "prereg": "experiments/SENS02_PREREG.md",
           "runtime_sec": 167.96,
           "ts": "2026-10-14T10:42:16Z"
+        },
+        {
+          "event": "used_in_manuscript",
+          "location": "paper/main.tex Sec.IV-B2 (Profile-size sensitivity; SENS02)",
+          "ts": "2026-10-14T10:49:36Z"
         }
       ],
+      "manuscript_use": "used_in_manuscript",
+      "manuscript_use_reason": "Sec.IV-B2 profile-size sensitivity cites the SENS02 covering-set sweep for the claim that the SGI level is a property of the reference-profile covering-set size.",
       "prereg": "experiments/SENS02_PREREG.md",
       "run_mode": "local",
       "seed": 42,
       "slug": "sens02-covering-set-sweep",
-      "status": "VERIFIED",
+      "status": "USED_IN_MANUSCRIPT",
       "verified_utc": "2026-10-14T10:44:03Z"
     },
     "STAT01_placement_core": {
