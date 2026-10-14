@@ -364,10 +364,27 @@ match $\kappa = 0.112$, 95\% CI [0.091, 0.132]; containment $\kappa =
 precision $91.9\%$, recall $75.7\%$, ROC-AUC of the cosine score $0.961$;
 Table~\ref{tab:validity}). Agreement remains substantial across the
 operating range ($\kappa$ from $0.79$ at $\tau = 0.4$ to $0.44$ at $\tau =
-0.7$), and the near-chance lexical $\kappa$ independently corroborates this
-section's central finding: exact string matching understates true
-skill alignment, which is why the semantic SGI is the headline
-instrument. A complementary vocabulary check against the 13,896-skill ESCO
+0.7$), and the near-chance lexical $\kappa$ is consistent with this section's
+central reading---that exact string matching resolves substantially less than
+the expert mappings do, which is why the semantic SGI is the headline
+instrument---but it does not corroborate that reading \emph{independently}:
+the pair-level $\kappa$ and the corpus-level SGI contrast are two views of the
+same matcher, so VALID01 validates the component that produces the headline
+rather than confirming the headline from outside.
+
+\textbf{Scope of the precision figure.} The pair set is 39.1\% positive by
+construction (1,138 positive pairs of 2,907), and its negatives are a mix of
+one random unmapped ESCO skill per mention and sibling-mention skills drawn
+from the same sentence. Precision is prevalence-dependent and falls as
+positives become rarer, so the reported $91.9\%$ is a property of this
+near-balanced test set and is an \emph{upper} bound on deployment, where the
+matcher scores $K \times P$ pairs---$10{,}000$ of them at the headline $K = P
+= 100$---and true correspondences are a small minority of them. The figure
+should therefore be read as evidence that the matcher ranks expert-mapped
+pairs well under a 39.1\% base rate, not as the share of matches the
+instrument reports that would be correct in the 100 $\times$ $P$ setting.
+
+A complementary vocabulary check against the 13,896-skill ESCO
 inventory shows that only 6\% of the market Top-100 and 11\% of the
 occupational Top-100 appear verbatim in ESCO, yet dense matching at $\tau =
 0.5$ resolves 91\% [85\%, 96\%] and 99\% [97\%, 100\%] of them to an ESCO

@@ -625,6 +625,24 @@
     "note": ""
   },
   {
+    "id": "C62",
+    "claim": "VALID01 pair set 39.1% positive (1,138 of 2,907)",
+    "ms_value": 0.391,
+    "artifact_value": 0.391,
+    "match": true,
+    "evidence": "results/VALID01_esco_gold/metrics.json n_positive/n_pairs",
+    "note": ""
+  },
+  {
+    "id": "C63",
+    "claim": "VALID01 negatives split random + sibling (1,769 total)",
+    "ms_value": 1769,
+    "artifact_value": 1769,
+    "match": true,
+    "evidence": "same",
+    "note": ""
+  },
+  {
     "id": "C70",
     "claim": "N=10,000; placed 1,659",
     "ms_value": [
@@ -1156,6 +1174,24 @@
   {
     "id": "C161",
     "claim": "Statistical Inference states the headline SGI CI resamples the market skill list, not postings",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C162",
+    "claim": "VALID01 precision scope limitation (39.1% base rate, not transferable to 100 x P)",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C163",
+    "claim": "VALID01 lexical kappa no longer claimed as independent corroboration",
     "ms_value": null,
     "artifact_value": true,
     "match": true,

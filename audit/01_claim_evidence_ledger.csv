@@ -60,6 +60,8 @@ C58,main,various,Occupational top-100 ESCO semantic 99%,0.99,0.99,reproduced,sam
 C59,main,various,kappa tau=0.4 ~0.79,0.79,0.79,reproduced,same,,
 C60,main,various,kappa tau=0.7 ~0.44,0.44,0.44,reproduced,same,,
 C61,main,various,precision 91.9% recall 75.7%,"[0.919, 0.757]","[0.919, 0.757]",reproduced,same,,
+C62,main,various,"VALID01 pair set 39.1% positive (1,138 of 2,907)",0.391,0.391,reproduced,results/VALID01_esco_gold/metrics.json n_positive/n_pairs,,
+C63,main,various,"VALID01 negatives split random + sibling (1,769 total)",1769,1769,reproduced,same,,
 C70,placement,paper_placement Sec.IV-A (was main Sec.IV-D1),"N=10,000; placed 1,659","[10000, 1659]","[10000, 1659]",reproduced,results/STAT01_placement_core/metrics.json,,
 C71,placement,paper_placement Sec.IV-A tab:logistic,"Comm OR 6.55 CI [5.86,7.31]",6.55,6.55,reproduced,table4_logistic.csv,"raw OR=6.5471 CI[5.8615,7.3130]",
 C72,placement,paper_placement Sec.IV-A tab:logistic,CGPA OR 6.28,6.28,6.28,reproduced,same,raw=6.2765,
@@ -106,6 +108,8 @@ C158,main,various,H5 credential locality UNTESTED (PLAC01 benchmark apparently s
 C159,main,various,"CS2023 anchor described as computational, not human line-by-line audit",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C160,main,various,"abstract discloses employer-derived occupational reference profile (1,167 postings)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C161,placement,paper_placement Sec.V-A (hyp. verdicts),"Statistical Inference states the headline SGI CI resamples the market skill list, not postings",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
+C162,main,various,"VALID01 precision scope limitation (39.1% base rate, not transferable to 100 x P)",null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
+C163,main,various,VALID01 lexical kappa no longer claimed as independent corroboration,null,true,reproduced,paper/main.tex + paper_placement/main.tex / metrics,,
 C161,placement,paper_placement Sec.V-A (hyp. verdicts),"H5 PLAC01 rates similar across countries (max-min ~3.2 pp, overlapping CIs)",similar across countries,"{""min"": 59.99, ""max"": 63.17, ""spread_pp"": 3.18}",reproduced,results/PLAC01_global_by_country/metrics.json by_country,Reclassifies H5 from INTL01 (internship) to PLAC01 (cross-country); prior 'Supported (INTL01)' was a misattribution,
 C152b,placement,paper_placement Sec.V-A (hyp. verdicts),H6 college RD -0.44 pp is artifact-supported (audit Phase 5),-0.44,-0.4442,reproduced,audit/05_stat_reproduction.json (intern_RD_pp=-0.4442); STAT01 OR=1.02 p=0.62,FIXED in Phase 9: manuscript now reports -0.44 pp; prior '+0.08 pp' retracted,"DONE (Phase 9): H6 now cites STAT01, RD=-0.44 pp; INTL01 retained only for H5."
 A601,main,RQ2 subsubsection ALIGN06 + threats item 9,"ALIGN06 economy-wide lexical SGI 0.97 (K=100, P=all)",0.97,0.97,reproduced,results/ALIGN06_onet_demand_profile/metrics.json registered_contrasts.a,"Demand side is employment-weighted O*NET occupations, not postings (ALIGN06_PREREG 7.2); level is not comparable to the posting-based SGI",

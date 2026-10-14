@@ -225,6 +225,11 @@ add("C59", "kappa tau=0.4 ~0.79", 0.79, round(v1["sensitivity"]["sbert_tau_0.4"]
 add("C60", "kappa tau=0.7 ~0.44", 0.44, round(v1["sensitivity"]["sbert_tau_0.7"]["kappa"], 2), "same")
 add("C61", "precision 91.9% recall 75.7%", [0.919, 0.757],
     [round(v1["precision_at_tau_0.5"], 3), round(v1["recall_at_tau_0.5"], 3)], "same")
+add("C62", "VALID01 pair set 39.1% positive (1,138 of 2,907)", 0.391,
+    round(v1["n_positive"] / v1["n_pairs"], 3),
+    "results/VALID01_esco_gold/metrics.json n_positive/n_pairs")
+add("C63", "VALID01 negatives split random + sibling (1,769 total)", 1769,
+    v1["n_negative"], "same")
 
 # --- STAT01 ---
 add("C70", "N=10,000; placed 1,659", [10000, 1659], [s1["n_total"], s1["n_placed"]],
@@ -369,6 +374,13 @@ presence = [
      and ("from the \\emph{market skill list}, not from postings" in TEX)
      and ("posting-level 95\\% intervals of $[0.49, 0.58]$" in TEX)
      and ("$[0.28, 0.38]$" in TEX)),
+    ("C162", "VALID01 precision scope limitation (39.1% base rate, not transferable to 100 x P)",
+     ("39.1\\% positive by" in TEX)
+     and ("near-balanced test set and is an \\emph{upper} bound on deployment" in TEX)
+     and ("100 $\\times$ $P$ setting" in TEX)),
+    ("C163", "VALID01 lexical kappa no longer claimed as independent corroboration",
+     ("it does not corroborate that reading \\emph{independently}" in TEX)
+     and ("independently corroborates this" not in TEX)),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,
