@@ -339,6 +339,18 @@ add("C143", "Cloud 47.1-53.9% (artifact only; removed from manuscript 2026-10-12
     [round(min(cl) + 1e-9, 1), round(max(cl) + 1e-9, 1)], "same")
 
 # --- text presence checks (numbers appear in tex) ---
+_rvs = list(csv.DictReader(
+    (ROOT / "datasets" / "REAL_VS_SYNTHETIC.csv").open(encoding="utf-8-sig")))
+_feeds_rows = [r for r in _rvs
+               if not r["feeds_experiment"].strip().lower().startswith("none executed")]
+# The CSV merges the two HuggingFace Skill Gap tables into one row; Table I lists
+# them as two sources (Jobs and the linked Skills twin), so it contributes 2.
+_rows_in_table1 = len(_feeds_rows) + 1
+_rows_none = len(_rvs) - len(_feeds_rows)
+add("C200", "of the 15 inventoried sources, 8 feed an experiment and 7 feed none",
+    [8, 7], [_rows_in_table1, _rows_none],
+    "datasets/REAL_VS_SYNTHETIC.csv feeds_experiment (HF Jobs+Skills counted as two)")
+
 presence = [
     ("C150", "raw sum 3,163,517 retained as inventory note (unique 2.12M primary)",
      ("3,163,517" in TEX) and ("2,123,889" in TEX) and ("3,176,266" not in TEX)
@@ -386,6 +398,13 @@ presence = [
      and ("\\textbf{H1 tests the reference profile, not curricula}:" in TEX)
      and ("\\textbf{H3 is near-guaranteed by construction}:" in TEX)
      and ("\\subsection{Testable Hypotheses}" not in TEX)),
+    ("C165", "Table I trimmed to the 4 posting sources; the other 11 moved to Appendix app:sources; 8/7 source split stated",
+     ("eight feed an experiment and seven feed none" in TEX)
+     and ("\\label{app:sources}" in TEX)
+     and ("the four posting sources that feed every experiment in this article" in TEX)
+     and ("\\textbf{Provenance-Audited Corpus for the Instrument:}" in TEX)
+     and ("\\textbf{Harmonized Multi-Source Corpus:}" not in TEX)
+     and ("Seven of the 15 sources feed" not in TEX)),
 ]
 for cid, claim, val in presence:
     checks.append({"id": cid, "claim": claim, "ms_value": None,

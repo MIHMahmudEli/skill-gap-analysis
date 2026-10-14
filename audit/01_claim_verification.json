@@ -1073,6 +1073,21 @@
     "note": ""
   },
   {
+    "id": "C200",
+    "claim": "of the 15 inventoried sources, 8 feed an experiment and 7 feed none",
+    "ms_value": [
+      8,
+      7
+    ],
+    "artifact_value": [
+      8,
+      7
+    ],
+    "match": true,
+    "evidence": "datasets/REAL_VS_SYNTHETIC.csv feeds_experiment (HF Jobs+Skills counted as two)",
+    "note": ""
+  },
+  {
     "id": "C150",
     "claim": "raw sum 3,163,517 retained as inventory note (unique 2.12M primary)",
     "ms_value": null,
@@ -1201,6 +1216,15 @@
   {
     "id": "C164",
     "claim": "H1-H3 framed as pre-specified checks; H1 is profile-not-curricula and H3 near-guaranteed",
+    "ms_value": null,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex + paper_placement/main.tex / metrics",
+    "note": ""
+  },
+  {
+    "id": "C165",
+    "claim": "Table I trimmed to the 4 posting sources; the other 11 moved to Appendix app:sources; 8/7 source split stated",
     "ms_value": null,
     "artifact_value": true,
     "match": true,

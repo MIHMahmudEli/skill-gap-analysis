@@ -25,11 +25,11 @@ at `abbff83`).
 
 ## 0.3 Authoritative Manuscript Source
 
-- **Source of truth:** `paper/main.tex` (73,277 bytes) + `paper/references.bib`
-  (52 entries) + auto-generated `paper/tables/*.tex` (12 files) and
+- **Source of truth:** `paper/main.tex` (90,366 bytes) + `paper/references.bib`
+  (52 entries) + auto-generated `paper/tables/*.tex` (9 files) and
   `paper/figures/*.pdf` (7 files).
 - **Build process:** `pdflatex main && bibtex main && pdflatex ×2` in `paper/`.
-  Last build (2026-10-13): 16 pages, 784,883 bytes, 0 errors, 0 undefined
+  Last build (2026-10-14): 17 pages, 795,918 bytes, 0 errors, 0 undefined
   references (verified in `paper/main.log`).
 - **Tables/figures are generated**, not hand-authored: `experiments/make_latex.py`
   reads `results/<EXP_ID>/*.csv` + `metrics.json` only.
