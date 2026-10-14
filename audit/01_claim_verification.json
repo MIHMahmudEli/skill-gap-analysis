@@ -140,7 +140,7 @@
       0.58
     ],
     "match": true,
-    "evidence": "results/SENS01_sgi_sensitivity/table_sensitivity_grid.csv K=100 P=1000",
+    "evidence": "results/SENS01_sgi_sensitivity/table_sensitivity_grid.csv K=100 n_post=1000 (column P)",
     "note": ""
   },
   {
@@ -160,7 +160,7 @@
   },
   {
     "id": "C11e",
-    "claim": "SENS01 P=1000 point estimates reproduce headline (0.52 / 0.32)",
+    "claim": "SENS01 n_post=1000 point estimates reproduce headline (0.52 / 0.32)",
     "ms_value": [
       0.52,
       0.32
@@ -194,11 +194,11 @@
   },
   {
     "id": "C11g",
-    "claim": "SENS01 P=all anchor rows carry no posting-level interval",
+    "claim": "SENS01 n_post=all anchor rows carry no posting-level interval",
     "ms_value": true,
     "artifact_value": true,
     "match": true,
-    "evidence": "table_sensitivity_grid.csv P=all rows",
+    "evidence": "table_sensitivity_grid.csv n_post=all rows (column P)",
     "note": ""
   },
   {

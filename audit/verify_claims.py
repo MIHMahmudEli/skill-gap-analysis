@@ -124,9 +124,11 @@ add("C11", "Semantic SGI tau=0.5 = 32.0%", 0.32, a2["sgi_at_tau_0.5"],
 add("C11b", "Semantic CI tau=0.5 [0.23, 0.41]", [0.23, 0.41], a2["sgi_ci_at_tau_0.5"], "same")
 
 # --- SENS01 dual bootstrap: the posting-level interval reported next to the
-# skill-list CI in Statistical Inference.  K=100, P=1000 is the largest posting
-# sample in the pre-registered grid and the one that reproduces both headline
-# point estimates exactly; the P=all anchor rows carry no CI_post by design.
+# skill-list CI in Statistical Inference.  K=100, n_post=1000 is the largest
+# posting draw in the pre-registered grid and the one that reproduces both
+# headline point estimates exactly; the n_post=all anchor rows carry no
+# CI_post by design.  The artifact column is named P (registered, never
+# renamed); n_post is the manuscript/ledger name for that same dimension.
 _sens_grid = list(csv.DictReader(
     (RESULTS / "SENS01_sgi_sensitivity" / "table_sensitivity_grid.csv")
     .open(encoding="utf-8")))
@@ -137,27 +139,27 @@ def _sens_cell(match: str, tau: str = "") -> dict:
         if (r["corpus"] == "hf_2024" and r["match"] == match
                 and r["K"] == "100" and r["P"] == "1000" and r["tau"] == tau):
             return r
-    raise SystemExit(f"SENS01 K=100 P=1000 cell not found: {match} tau={tau!r}")
+    raise SystemExit(f"SENS01 K=100 n_post=1000 cell not found: {match} tau={tau!r}")
 
 
 _sens_lex = _sens_cell("lexical")
 _sens_sem = _sens_cell("semantic", "0.5")
 add("C11c", "SENS01 posting-level CI lexical [0.49, 0.58]", [0.49, 0.58],
     [float(_sens_lex["CI_post_lo"]), float(_sens_lex["CI_post_hi"])],
-    "results/SENS01_sgi_sensitivity/table_sensitivity_grid.csv K=100 P=1000")
+    "results/SENS01_sgi_sensitivity/table_sensitivity_grid.csv K=100 n_post=1000 (column P)")
 add("C11d", "SENS01 posting-level CI semantic tau=0.5 [0.28, 0.38]", [0.28, 0.38],
     [float(_sens_sem["CI_post_lo"]), float(_sens_sem["CI_post_hi"])], "same")
-add("C11e", "SENS01 P=1000 point estimates reproduce headline (0.52 / 0.32)",
+add("C11e", "SENS01 n_post=1000 point estimates reproduce headline (0.52 / 0.32)",
     [0.52, 0.32],
     [float(_sens_lex["SGI"]), float(_sens_sem["SGI"])], "same")
 add("C11f", "SENS01 skill-list CI on same cells [0.43, 0.62] / [0.23, 0.42]",
     [0.43, 0.62, 0.23, 0.42],
     [round(float(_sens_lex["CI_skill_lo"]), 2), round(float(_sens_lex["CI_skill_hi"]), 2),
      float(_sens_sem["CI_skill_lo"]), float(_sens_sem["CI_skill_hi"])], "same")
-add("C11g", "SENS01 P=all anchor rows carry no posting-level interval",
+add("C11g", "SENS01 n_post=all anchor rows carry no posting-level interval",
     True, all(not (r["CI_post_lo"] or r["CI_post_hi"])
               for r in _sens_grid if r["P"] == "all"),
-    "table_sensitivity_grid.csv P=all rows")
+    "table_sensitivity_grid.csv n_post=all rows (column P)")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],
