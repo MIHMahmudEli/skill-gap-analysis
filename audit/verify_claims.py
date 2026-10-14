@@ -284,6 +284,27 @@ add("C11s", "abstract headline 52.0/32.0 percent is stated as the matched-settin
     "In the headline configuration (market top-100 vs.\\ occupational top-100)" in TEX
     and "Both are the headline configuration" not in TEX,
     "paper/main.tex abstract")
+
+# --- the arithmetic (not empirical) part of the cross-corpus identity, which
+# is what makes identical SGI on both corpora uninformative about the market.
+_mpo = list(csv.DictReader(
+    (ROOT / "reports" / "sens01_market_profile_overlap.csv").open(encoding="utf-8")))
+_le200 = [r for r in _mpo if int(r["K"]) <= 200]
+add("C201", "cross-corpus top-K market skill lists are identical at every swept "
+    "K<=200 (shared fraction and Jaccard both 1.0), so identical cross-corpus "
+    "SGI is arithmetic rather than a finding about the market",
+    [1.0, 1.0],
+    [min(float(r["shared_fraction"]) for r in _le200),
+     min(float(r["jaccard"]) for r in _le200)],
+    "reports/sens01_market_profile_overlap.csv",
+    note="at K=500 the lists diverge for the first time (496/500 shared, "
+         "Jaccard 0.9841), which is why the claim is scoped to K<=200")
+add("C202", "Sec.IV-B2 does not present the identical cross-corpus SGI as evidence "
+    "about the market", True,
+    "That agreement is arithmetic, not a finding about the market" in TEX
+    and "supporting H3 even more cleanly" not in TEX
+    and "not of the market corpus at all" not in TEX,
+    "paper/main.tex Sec.IV-B2")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],

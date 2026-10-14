@@ -378,6 +378,30 @@
     "note": ""
   },
   {
+    "id": "C201",
+    "claim": "cross-corpus top-K market skill lists are identical at every swept K<=200 (shared fraction and Jaccard both 1.0), so identical cross-corpus SGI is arithmetic rather than a finding about the market",
+    "ms_value": [
+      1.0,
+      1.0
+    ],
+    "artifact_value": [
+      1.0,
+      1.0
+    ],
+    "match": true,
+    "evidence": "reports/sens01_market_profile_overlap.csv",
+    "note": "at K=500 the lists diverge for the first time (496/500 shared, Jaccard 0.9841), which is why the claim is scoped to K<=200"
+  },
+  {
+    "id": "C202",
+    "claim": "Sec.IV-B2 does not present the identical cross-corpus SGI as evidence about the market",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex Sec.IV-B2",
+    "note": ""
+  },
+  {
     "id": "C12",
     "claim": "SGI tau=0.7 = 46.0%",
     "ms_value": 0.46,

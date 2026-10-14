@@ -91,6 +91,7 @@ LOC = {
     "C11n": "Sec.IV-B2 (profile-size sensitivity; SENS02)",
     "C11o": "Abstract", "C11p": "Abstract", "C11q": "Abstract",
     "C11r": "Abstract", "C11s": "Abstract",
+    "C201": "Sec.IV-B2 (SENS02); Tab.hypotheses", "C202": "Sec.IV-B2 (SENS02)",
 }
 for r in rows:
     r["manuscript_location"] = LOC.get(r["claim_id"], "various")

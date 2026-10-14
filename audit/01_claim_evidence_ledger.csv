@@ -29,6 +29,8 @@ C11p,main,Abstract,"abstract semantic SGI envelope at tau=0.5 [0.04, 0.42] over 
 C11q,main,Abstract,"abstract: SGI falls 0.32 -> 0.04 as the covering set grows from 100 to all 5,047 skills","[0.32, 0.04, 5047]","[0.32, 0.04, 5047]",reproduced,table_covering_set_sweep.csv + metrics.json n_reference_skills,"the covering-set axis alone moves SGI by 28 pp, which is why the abstract restricts interpretation to matched settings",
 C11r,main,Abstract,abstract restricts interpretation to matched settings,true,true,reproduced,paper/main.tex abstract,,
 C11s,main,Abstract,"abstract headline 52.0/32.0 percent is stated as the matched-setting configuration, not as a corpus-general value",true,true,reproduced,paper/main.tex abstract,,
+C201,main,Sec.IV-B2 (SENS02); Tab.hypotheses,"cross-corpus top-K market skill lists are identical at every swept K<=200 (shared fraction and Jaccard both 1.0), so identical cross-corpus SGI is arithmetic rather than a finding about the market","[1.0, 1.0]","[1.0, 1.0]",reproduced,reports/sens01_market_profile_overlap.csv,"at K=500 the lists diverge for the first time (496/500 shared, Jaccard 0.9841), which is why the claim is scoped to K<=200",
+C202,main,Sec.IV-B2 (SENS02),Sec.IV-B2 does not present the identical cross-corpus SGI as evidence about the market,true,true,reproduced,paper/main.tex Sec.IV-B2,,
 C12,main,Abstract,SGI tau=0.7 = 46.0%,0.46,0.46,reproduced,results/ALIGN02_semantic_sbert/metrics.json,,
 C12b,main,various,"SGI tau=0.7 CI [0.37, 0.56]","[0.37, 0.56]","[0.37, 0.56]",reproduced,results/ALIGN02_semantic_sbert/metrics.json,,
 C12c,main,various,SGI tau=0.4 = 20.0%,0.2,0.2,reproduced,results/ALIGN02_semantic_sbert/metrics.json,,
