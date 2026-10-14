@@ -237,6 +237,53 @@ add("C11m", "SENS02 covering-set size P_acad=500 reproduces ALIGN04's "
 add("C11n", "SENS02 all seven registered contrasts pass", True,
     _s02["all_registered_contrasts_ok"],
     "metrics.json registered_contrasts R1-R7")
+
+# --- abstract sensitivity envelope: SENS01's K x n_post grid plus SENS02's
+# covering-set sweep, both on the primary corpus.  The abstract quotes one
+# envelope over the two experiments, so the envelope is derived from the
+# artifacts here rather than trusted from the prose.  The abstract states
+# these at 2 dp (its standing precision), so the comparison rounds the
+# artifact values to 2 dp and records the exact ones in the note.
+_PRIM = "hf_2024"
+
+
+def _sgi_envelope(match: str, tau: str = "") -> list:
+    vals = [float(r["SGI"]) for r in _sens_grid
+            if r["corpus"] == _PRIM and r["match"] == match and r["tau"] == tau]
+    vals += [float(r["SGI"]) for r in _s02_grid
+             if r["corpus"] == _PRIM and r["match"] == match and r["tau"] == tau]
+    assert vals, f"no SGI cells for {match} tau={tau!r} on {_PRIM}"
+    return [min(vals), max(vals)]
+
+
+add("C11o", "abstract lexical SGI envelope [0.29, 0.73] over the SENS01 grid x "
+    "SENS02 sweep (primary corpus, quoted at 2 dp)",
+    [0.29, 0.73], [round(v, 2) for v in _sgi_envelope("lexical")],
+    "results/SENS01_sgi_sensitivity/table_sensitivity_grid.csv + "
+    "results/SENS02_covering_set_sweep/table_covering_set_sweep.csv",
+    note="exact envelope %.4f-%.4f" % tuple(_sgi_envelope("lexical")))
+add("C11p", "abstract semantic SGI envelope at tau=0.5 [0.04, 0.42] over the same "
+    "two sweeps (primary corpus, quoted at 2 dp)",
+    [0.04, 0.42], [round(v, 2) for v in _sgi_envelope("semantic", "0.5")],
+    "table_sensitivity_grid.csv + table_covering_set_sweep.csv",
+    note="exact envelope %.4f-%.4f" % tuple(_sgi_envelope("semantic", "0.5")))
+add("C11q", "abstract: SGI falls 0.32 -> 0.04 as the covering set grows from 100 "
+    "to all 5,047 skills",
+    [0.32, 0.04, 5047],
+    [float(_s02_cell(_PRIM, "semantic", "100", "0.5")["SGI"]),
+     float(_s02_cell(_PRIM, "semantic", "all", "0.5")["SGI"]),
+     _s02["n_reference_skills"]],
+    "table_covering_set_sweep.csv + metrics.json n_reference_skills",
+    note="the covering-set axis alone moves SGI by 28 pp, which is why the "
+         "abstract restricts interpretation to matched settings")
+add("C11r", "abstract restricts interpretation to matched settings", True,
+    "only comparisons at matched $(K, P)$ settings are interpretable" in TEX,
+    "paper/main.tex abstract")
+add("C11s", "abstract headline 52.0/32.0 percent is stated as the matched-setting "
+    "configuration, not as a corpus-general value", True,
+    "In the headline configuration (market top-100 vs.\\ occupational top-100)" in TEX
+    and "Both are the headline configuration" not in TEX,
+    "paper/main.tex abstract")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],

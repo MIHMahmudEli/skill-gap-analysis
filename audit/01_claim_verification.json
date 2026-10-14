@@ -313,6 +313,71 @@
     "note": ""
   },
   {
+    "id": "C11o",
+    "claim": "abstract lexical SGI envelope [0.29, 0.73] over the SENS01 grid x SENS02 sweep (primary corpus, quoted at 2 dp)",
+    "ms_value": [
+      0.29,
+      0.73
+    ],
+    "artifact_value": [
+      0.29,
+      0.73
+    ],
+    "match": true,
+    "evidence": "results/SENS01_sgi_sensitivity/table_sensitivity_grid.csv + results/SENS02_covering_set_sweep/table_covering_set_sweep.csv",
+    "note": "exact envelope 0.2900-0.7280"
+  },
+  {
+    "id": "C11p",
+    "claim": "abstract semantic SGI envelope at tau=0.5 [0.04, 0.42] over the same two sweeps (primary corpus, quoted at 2 dp)",
+    "ms_value": [
+      0.04,
+      0.42
+    ],
+    "artifact_value": [
+      0.04,
+      0.42
+    ],
+    "match": true,
+    "evidence": "table_sensitivity_grid.csv + table_covering_set_sweep.csv",
+    "note": "exact envelope 0.0400-0.4200"
+  },
+  {
+    "id": "C11q",
+    "claim": "abstract: SGI falls 0.32 -> 0.04 as the covering set grows from 100 to all 5,047 skills",
+    "ms_value": [
+      0.32,
+      0.04,
+      5047
+    ],
+    "artifact_value": [
+      0.32,
+      0.04,
+      5047
+    ],
+    "match": true,
+    "evidence": "table_covering_set_sweep.csv + metrics.json n_reference_skills",
+    "note": "the covering-set axis alone moves SGI by 28 pp, which is why the abstract restricts interpretation to matched settings"
+  },
+  {
+    "id": "C11r",
+    "claim": "abstract restricts interpretation to matched settings",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex abstract",
+    "note": ""
+  },
+  {
+    "id": "C11s",
+    "claim": "abstract headline 52.0/32.0 percent is stated as the matched-setting configuration, not as a corpus-general value",
+    "ms_value": true,
+    "artifact_value": true,
+    "match": true,
+    "evidence": "paper/main.tex abstract",
+    "note": ""
+  },
+  {
     "id": "C12",
     "claim": "SGI tau=0.7 = 46.0%",
     "ms_value": 0.46,
