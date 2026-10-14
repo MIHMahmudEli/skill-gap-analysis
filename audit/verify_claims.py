@@ -315,6 +315,19 @@ add("C203", "the 519,814 -> 518,953 difference is 861 postings carrying no skill
          "861 with an empty job_skills value, 518,953 non-empty. C155 already "
          "asserts n_postings == 518953; this check ties the manuscript's "
          "explanation of the gap to that same number")
+add("C204", "Limitations discloses SENS02's skill-list interval at the headline "
+    "cell as [0.23, 0.42] against the headline [0.23, 0.41], attributing the "
+    "offset to the embedding-batch tie boundary rather than to a different measurement",
+    [0.23, 0.42, True],
+    [float(_s02_cell(_PRIM, "semantic", "100", "0.5")["CI_skill_lo"]),
+     float(_s02_cell(_PRIM, "semantic", "100", "0.5")["CI_skill_hi"]),
+     "tie-boundary reordering alone moves the interval" in TEX],
+    "results/SENS02_covering_set_sweep/table_covering_set_sweep.csv + "
+    "paper/main.tex Limitations item 6",
+    note="coverage (0.68) and point estimate (0.32) are identical to the headline "
+         "cell, so only the interval moves, and only at its upper end; the headline "
+         "interval itself is asserted separately by C11b from ALIGN02's "
+         "sgi_ci_at_tau_0.5")
 sens = {row["tau"]: row for row in a2["sensitivity"]}
 add("C12", "SGI tau=0.7 = 46.0%", 0.46, sens[0.7]["SGI"], "ALIGN02 sensitivity")
 add("C12b", "SGI tau=0.7 CI [0.37, 0.56]", [0.37, 0.56],
