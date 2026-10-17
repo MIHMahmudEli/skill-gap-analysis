@@ -1,6 +1,7 @@
 \documentclass[journal]{IEEEtran}
 
 % Packages
+\PassOptionsToPackage{hyphens}{url}
 \usepackage[utf8]{inputenc}
 % Greek letters and comparison operators used in the abstract have no
 % glyph in the T1 text font. Undeclared, pdflatex raises
@@ -51,12 +52,14 @@
 % Paper Title
 \title{Lexical versus Semantic Skill-Gap Measurement: A Sensitivity Audit on Job-Posting Data}
 
-\author{
-\IEEEauthorblockN{Author Names Redacted for Double-Blind Peer Review}\\
-\IEEEauthorblockA{\textit{Department of Computer Science and Engineering}\\
-Academic Research Institution\\
-contact@university.edu}
-\thanks{Manuscript submitted for peer review. All correspondence should be addressed to the corresponding author.}
+\author{Mohsin~Ibna~Hossain,
+        Md.~Yeahyea~Jam,
+        Shadman~Shakib,
+        Alif~Hasan~Khan,
+        and~Firoz~Ahmed%
+\thanks{Mohsin Ibna Hossain (ORCID: \url{https://orcid.org/0009-0003-9123-9040}), Md.~Yeahyea Jam, Shadman Shakib, and Alif Hasan Khan are with the Department of Computer Science and Engineering, American International University-Bangladesh (AIUB), Dhaka 1229, Bangladesh (e-mail: 23-50194-1@student.aiub.edu; 23-50187-1@student.aiub.edu; 23-50200-1@student.aiub.edu; 23-50186-1@student.aiub.edu).}%
+\thanks{Dr. Firoz Ahmed is with the Department of Computer Science and Engineering, American International University-Bangladesh (AIUB), Dhaka 1229, Bangladesh (e-mail: fahmed@aiub.edu).}%
+\thanks{Corresponding author: Dr. Firoz Ahmed (e-mail: fahmed@aiub.edu).}%
 }
 
 \begin{document}
@@ -168,21 +171,23 @@ To avoid pooling datasets with incompatible collection mechanisms, we divide the
 \centering
 \caption{Dataset Provenance and Structural Inventory, part I: the four posting sources that feed every experiment in this article (the other 11 of the 15 inventoried sources are in Appendix~\ref{app:sources}). Row accounting over all 15 sources: raw rows $3{,}163{,}517$ $=$ $1{,}869{,}435$ real posting rows $+$ $519{,}814$ posting--skill pair rows $+$ $316{,}279$ unverified aggregate rows $+$ $457{,}989$ unverified-provenance benchmark rows. De-duplication (linked pair $+$ nested corpus) removes $2\times519{,}814$ rows, leaving $2{,}123{,}889$ unique record rows ($1{,}349{,}621$ real posting rows, $316{,}279$ aggregate rows, $457{,}989$ unverified-provenance benchmark rows)---a row total, not a count of distinct postings. \emph{Analysis count:} the HF Skill Gap skills table lists $519{,}814$ postings, $861$ of which record no skill and are dropped by the loader, so the market-side analysis and bootstrap operate on $518{,}953$ (ALIGN03 \texttt{n\_postings}).}
 \label{tab:datasets}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}llrlcll@{}}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}p{2.3cm}p{3.8cm}rp{5.4cm}ccp{1.2cm}@{}}
 \toprule
-\textbf{Dataset Identifier} & \textbf{Source Platform \& Identifier / Slug} & \textbf{Rows} & \textbf{Domain / Description} & \textbf{Tier} & \textbf{Observation Period} & \textbf{License} \\
+\textbf{Dataset Identifier} & \textbf{Source Platform \& Identifier / Slug} & \textbf{Rows} & \textbf{Domain / Description} & \textbf{Tier} & \textbf{Obs.\ Period} & \textbf{License} \\
 \midrule
 \multicolumn{7}{@{}l}{\textit{Real web-scraped job postings (unit: one posting)}} \\
-LinkedIn Jobs \& Skills \cite{asaniczka2024linkedin} & Kaggle: \texttt{asaniczka/1-3m-linkedin-jobs-and-skills-2024} & 1,348,454 & Global job postings and extracted skill tokens (root of the scrape family) & 1 & 2024 & ODbL \\
-HF Skill Gap Jobs & HuggingFace: \texttt{skill-gap-analytics/jobs-corpus} & 519,814 & Enterprise job postings with occupational metadata (strict subset of the LinkedIn postings table; $0$ unique rows) & 1 & 2023--2024 & CC-BY 4.0 \\
-HF Job Skill Set & HuggingFace: \texttt{skill-gap-analytics/academic-reference} & 1,167 & Posting-derived occupational reference profile (a \emph{separate} HuggingFace dataset, not part of the LinkedIn scrape; a posting-level join finds no near-duplicate postings between it and the market corpus---Section~\ref{sec:methodology}) & 1 & 2023--2024 & CC-BY 4.0 \\
+LinkedIn Jobs \& Skills \cite{asaniczka2024linkedin} & Kaggle: \nolinkurl{asaniczka/1-3m-linkedin-jobs-and-skills-2024} & 1,348,454 & Global job postings and extracted skill tokens (root of the scrape family) & 1 & 2024 & ODbL \\
+\addlinespace[2pt]
+HF Skill Gap Jobs & HuggingFace: \nolinkurl{skill-gap-analytics/jobs-corpus} & 519,814 & Enterprise job postings with occupational metadata (strict subset of the LinkedIn postings table; $0$ unique rows) & 1 & 2023--2024 & CC-BY 4.0 \\
+\addlinespace[2pt]
+HF Job Skill Set & HuggingFace: \nolinkurl{skill-gap-analytics/academic-reference} & 1,167 & Posting-derived occupational reference profile (a \emph{separate} HuggingFace dataset, not part of the LinkedIn scrape; a posting-level join finds no near-duplicate postings between it and the market corpus---Section~\ref{sec:methodology}) & 1 & 2023--2024 & CC-BY 4.0 \\
 \midrule
 \multicolumn{7}{@{}l}{\textit{Posting--skill pair rows (unit: one posting--skill link; linked twin of the nested postings; $0$ unique rows after de-duplication)}} \\
-HF Skill Gap Skills & HuggingFace: \texttt{skill-gap-analytics/skills-corpus} & 519,814 & Granular skill requirements linked via \texttt{job\_id} (same 519,814 IDs as Jobs table) & 1 & 2023--2024 & CC-BY 4.0 \\
+HF Skill Gap Skills & HuggingFace: \nolinkurl{skill-gap-analytics/skills-corpus} & 519,814 & Granular skill requirements linked via \texttt{job\_id} (same 519,814 IDs as Jobs table) & 1 & 2023--2024 & CC-BY 4.0 \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabular}
 \end{table*}
 
 \subsubsection{Supplementary Demand-Side Source: O\*NET~30.0 and BLS OEWS (ALIGN06)}
@@ -293,12 +298,12 @@ The posting corpus spans general occupations rather than computing-only roles, s
 
 Regional parsing of 1.35M LinkedIn records (Figure~\ref{fig:geographic}) reveals that the posting corpus is predominantly concentrated in the United States (85.2\%), followed by the United Kingdom (8.4\%), Canada (4.2\%), and Australia (2.2\%).
 
-\begin{figure*}[!htbp]
+\begin{figure}[!htbp]
     \centering
     \FigGeo
     \caption{Geographic concentration of 1.35M job postings (GEO01).}
     \label{fig:geographic}
-\end{figure*}
+\end{figure}
 
 
 \subsection{RQ2: Lexical vs. Semantic Reference-Profile Alignment}
@@ -612,42 +617,56 @@ This appendix carries the numerical detail of the ALIGN06 demand-side check summ
 
 \textbf{Join multiplicity (amendment A4).} 64 of the 771 SOC bases are shared by more than one O\*NET-SOC code, so each code receives its base's full OEWS employment and the summed frame weight is $1.352\times$ the once-counted sum (194.3M against 143.8M). The computing/IT stratum is affected less ($1.299\times$, 4 of 13 bases shared). This multiplicity is measured and reported rather than silently rescaled, and it affects relative term shares only.
 
-\section{Sources Inventoried but Not Used in This Article}
-\label{app:sources}
+\clearpage
 
-Table~\ref{tab:datasets} lists the four posting sources from which every experiment in this article draws. The remaining eleven of the fifteen inventoried sources are recorded here for completeness rather than dropped: none of them feeds an experiment reported in this article, and the four student/alumni sources that do feed an experiment feed only the placement-audit experiments of the companion article (\texttt{paper\_placement/}). Provenance is the stated reason for most exclusions---\texttt{datasets/REAL\_VS\_SYNTHETIC.csv} records each source's generator-signature tier and \texttt{datasets/OVERLAP\_AUDIT.csv} its within-file and cross-file duplication---and neither audit was used to select a model parameter or a threshold.
-
-\begin{table*}[!htbp]
+\begin{table*}[!t]
 \centering
 \caption{Inventoried Sources Feeding No Experiment in This Article (11 of 15)}
 \label{tab:sources_unused}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}llrlcll@{}}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}p{2.3cm}p{3.8cm}rp{5.4cm}ccp{1.2cm}@{}}
 \toprule
-\textbf{Dataset Identifier} & \textbf{Source Platform \& Identifier / Slug} & \textbf{Rows} & \textbf{Domain / Description} & \textbf{Tier} & \textbf{Observation Period} & \textbf{License} \\
+\textbf{Dataset Identifier} & \textbf{Source Platform \& Identifier / Slug} & \textbf{Rows} & \textbf{Domain / Description} & \textbf{Tier} & \textbf{Obs.\ Period} & \textbf{License} \\
 \midrule
+\multicolumn{7}{@{}p{0.98\textwidth}@{}}{\textit{Aggregated count rows (unit: one title $\times$ skill keyword $\times$ count row; source scrape unverified)}} \\
+\addlinespace[1pt]
+USA Job Market Skills \cite{batuhanklac2024usa} & Kaggle: \nolinkurl{batuhanklac/usa-job-market-skills-and-title-analysis} & 316,279 & US title$\times$skill aggregate counts over 6,328 titles (not individual postings) & 1 & 2024 & CC0 \\
 \midrule
-\multicolumn{7}{@{}l}{\textit{Aggregated count rows (unit: one title $\times$ skill keyword $\times$ count row; source scrape unverified)}} \\
-USA Job Market Skills \cite{batuhanklac2024usa} & Kaggle: \texttt{batuhanklac/usa-job-market-skills-and-title-analysis} & 316,279 & US title$\times$skill aggregate counts over 6,328 titles (not individual postings) & 1 & 2024 & CC0 \\
+\multicolumn{7}{@{}p{0.98\textwidth}@{}}{\textit{Unverified-provenance benchmark rows (unit: one listing or profile row; evidence tiers are computed, not assigned: the share of applicable discriminating checks fired (uniformity, coin-flip), cut points $\ge$0.80 strong, $\ge$0.50 moderate, $\ge$0.20 weak/partial, else none found; one file is declared synthetic by its source; \texttt{datasets/REAL\_VS\_SYNTHETIC.csv}, \texttt{datasets/synthetic\_checks\_output.json})}} \\
+\addlinespace[1pt]
+AI Trends 2020--2026 \cite{shree09102024ai} & Kaggle: \nolinkurl{shree0910/ai-and-data-science-job-market-dataset-20202026} & 10,345 & AI/data-science job series (benchmark; strong generator signatures) & 1 & 2020--2026 & CC0 \\
+\addlinespace[2pt]
+AI Job Market Trends \cite{bismasajjad2024ai} & Kaggle: \nolinkurl{bismasajjad/global-ai-job-market-and-salary-trends-2025} & 15,000 & AI job and salary rows (benchmark; moderate generator signatures) & 1 & 2024--2025 & CC-BY 4.0 \\
+\addlinespace[2pt]
+India Skills Intelligence \cite{mansiaggarwal882024india} & Kaggle: \nolinkurl{mansiaggarwal88/india-professional-skills-intelligence} & 12,000 & Profiles declared synthetic by the source README, calibrated on India Skills Report 2026 & 1 & 2026 Calibrated & CC0 \\
 \midrule
-\multicolumn{7}{@{}l}{\textit{Unverified-provenance benchmark rows (unit: one listing or profile row; evidence tiers are computed, not assigned: the share of applicable discriminating checks fired (uniformity, coin-flip), cut points $\ge$0.80 strong, $\ge$0.50 moderate, $\ge$0.20 weak/partial, else none found; one file is declared synthetic by its source; \texttt{datasets/REAL\_VS\_SYNTHETIC.csv}, \texttt{datasets/synthetic\_checks\_output.json})}} \\
-AI Trends 2020--2026 \cite{shree09102024ai} & Kaggle: \texttt{shree0910/ai-and-data-science-job-market-dataset-20202026} & 10,345 & AI/data-science job series (benchmark; strong generator signatures) & 1 & 2020--2026 & CC0 \\
-AI Job Market Trends \cite{bismasajjad2024ai} & Kaggle: \texttt{bismasajjad/global-ai-job-market-and-salary-trends-2025} & 15,000 & AI job and salary rows (benchmark; moderate generator signatures) & 1 & 2024--2025 & CC-BY 4.0 \\
-India Skills Intelligence \cite{mansiaggarwal882024india} & Kaggle: \texttt{mansiaggarwal88/india-professional-skills-intelligence} & 12,000 & Profiles declared synthetic by the source README, calibrated on India Skills Report 2026 & 1 & 2026 Calibrated & CC0 \\
-\midrule
-\multicolumn{7}{@{}l}{\textit{Student/alumni benchmark records (unit: one student/alumni row; provenance unverified, generator-signature tiers moderate/partial/none found; $0$ verified real rows)}} \\
-International Graduates \cite{quackquackrp2024international} & Kaggle: \texttt{quackquackrp/international-graduates-employment-dataset} & 300,000 & Multi-country alumni outcomes benchmark (weak/partial generator signatures) & 2 & 2023--2024 & CC0 \\
-Student Career Success \cite{mobeenfatimah2024career} & Kaggle: \texttt{mobeenfatimah/student-career-success-prediction-dataset} & 50,000 & Student success benchmark (provenance unverified; no generator signatures found) & 2 & 2024 & CC-BY 4.0 \\
-Career Change Prediction \cite{jahnavipaliwal2024field} & Kaggle: \texttt{jahnavipaliwal/field-of-study-vs-occupation} & 38,444 & Field-of-study/occupation transition benchmark (moderate generator signatures) & 2 & 2024 & CC0 \\
-College Placement \cite{sumedh15072024college} & Kaggle: \texttt{sumedh1507/college-student-placement} & 10,000 & Placement-classification benchmark (moderate generator signatures) & 2 & 2024 & CC0 \\
-Global Placement \cite{rakesh6302024global} & Kaggle: \texttt{rakesh630/global-student-placement-2025-dataset} & 10,000 & Multi-national placement benchmark (moderate generator signatures) & 2 & 2024--2025 & CC0 \\
-NGESS Employment \cite{philipdayo2024ngess} & Kaggle: \texttt{philipdayo/ngess-graduate-employment-dataset} & 7,200 & Survey-style graduate cohort (provenance unverified; no generator signatures found) & 2 & 2023--2024 & CC0 \\
-India Fresher Market \cite{shambhurajejagadale2024india} & Kaggle: \texttt{shambhurajejagadale/indian-fresher-job-market} & 5,000 & Fresher-hiring benchmark rows (weak/partial generator signatures) & 2 & 2024 & CC0 \\
+\multicolumn{7}{@{}p{0.98\textwidth}@{}}{\textit{Student/alumni benchmark records (unit: one student/alumni row; provenance unverified, generator-signature tiers moderate/partial/none found; $0$ verified real rows)}} \\
+\addlinespace[1pt]
+International Graduates \cite{quackquackrp2024international} & Kaggle: \nolinkurl{quackquackrp/international-graduates-employment-dataset} & 300,000 & Multi-country alumni outcomes benchmark (weak/partial generator signatures) & 2 & 2023--2024 & CC0 \\
+\addlinespace[2pt]
+Student Career Success \cite{mobeenfatimah2024career} & Kaggle: \nolinkurl{mobeenfatimah/student-career-success-prediction-dataset} & 50,000 & Student success benchmark (provenance unverified; no generator signatures found) & 2 & 2024 & CC-BY 4.0 \\
+\addlinespace[2pt]
+Career Change Prediction \cite{jahnavipaliwal2024field} & Kaggle: \nolinkurl{jahnavipaliwal/field-of-study-vs-occupation} & 38,444 & Field-of-study/occupation transition benchmark (moderate generator signatures) & 2 & 2024 & CC0 \\
+\addlinespace[2pt]
+College Placement \cite{sumedh15072024college} & Kaggle: \nolinkurl{sumedh1507/college-student-placement} & 10,000 & Placement-classification benchmark (moderate generator signatures) & 2 & 2024 & CC0 \\
+\addlinespace[2pt]
+Global Placement \cite{rakesh6302024global} & Kaggle: \nolinkurl{rakesh630/global-student-placement-2025-dataset} & 10,000 & Multi-national placement benchmark (moderate generator signatures) & 2 & 2024--2025 & CC0 \\
+\addlinespace[2pt]
+NGESS Employment \cite{philipdayo2024ngess} & Kaggle: \nolinkurl{philipdayo/ngess-graduate-employment-dataset} & 7,200 & Survey-style graduate cohort (provenance unverified; no generator signatures found) & 2 & 2023--2024 & CC0 \\
+\addlinespace[2pt]
+India Fresher Market \cite{shambhurajejagadale2024india} & Kaggle: \nolinkurl{shambhurajejagadale/indian-fresher-job-market} & 5,000 & Fresher-hiring benchmark rows (weak/partial generator signatures) & 2 & 2024 & CC0 \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabular}
 \end{table*}
 
+\section{Sources Inventoried but Not Used in This Article}
+\label{app:sources}
+
+Table~\ref{tab:datasets} lists the four posting sources from which every experiment in this article draws. The remaining eleven of the fifteen inventoried sources are recorded here in Table~\ref{tab:sources_unused} for completeness rather than dropped: none of them feeds an experiment reported in this article, and the four student/alumni sources that do feed an experiment feed only the placement-audit experiments of the companion article (\texttt{paper\_placement/}). Provenance is the stated reason for most exclusions---\texttt{datasets/REAL\_VS\_SYNTHETIC.csv} records each source's generator-signature tier and \texttt{datasets/OVERLAP\_AUDIT.csv} its within-file and cross-file duplication---and neither audit was used to select a model parameter or a threshold.
+
+\clearpage
+\balance
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
